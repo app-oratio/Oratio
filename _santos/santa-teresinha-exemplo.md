@@ -1,7 +1,7 @@
 ---
 title: "[Exemplo] Santa Teresinha"
 slug: "santa-teresinha-exemplo"
-subtitle: "Biografia a completar após revisão"
+subtitle: "Biografia a completar após re visão"
 description: "Segundo modelo demonstrativo para a collection de santos."
 category: "Santos"
 dates: "A confirmar editorialmente"
