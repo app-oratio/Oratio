@@ -1,0 +1,63 @@
+:root {
+  color-scheme: light;
+  --oratio-background: #FFFBFE;
+  --oratio-surface: #FFFFFF;
+  --oratio-surface-secondary: #F3EDF7;
+  --oratio-surface-tertiary: #E6E0E9;
+  --oratio-divider: #E7E0EC;
+  --oratio-primary: #004A98;
+  --oratio-primary-hover: #003F82;
+  --oratio-primary-pressed: #00356E;
+  --oratio-primary-container: #D7E8FF;
+  --oratio-on-primary-container: #00315F;
+  --oratio-text-primary: #1C1B1F;
+  --oratio-text-secondary: #49454F;
+  --oratio-text-muted: #79747E;
+  --oratio-text-on-primary: #FFFFFF;
+  --oratio-link: #0B57D0;
+  --oratio-control-normal: #79747E;
+  --oratio-navigation: #49454F;
+  --oratio-teal: #2EC4B6;
+  --oratio-teal-container: #D5F5F1;
+  --oratio-gold: #9A7428;
+  --oratio-gold-container: #F7EDD3;
+  --oratio-success: #287A45;
+  --oratio-success-container: #D9F2DF;
+  --oratio-warning: #8A5A00;
+  --oratio-warning-container: #FFF0C7;
+  --oratio-error: #BA1A1A;
+  --oratio-error-container: #FFDAD6;
+  --oratio-shadow: rgba(28, 27, 31, 0.12);
+  --oratio-overlay: rgba(28, 27, 31, 0.48);
+  --oratio-ripple: rgba(0, 0, 0, 0.20);
+
+  --font-heading: "Libre Baskerville", "Noto Serif", Georgia, serif;
+  --font-body: "Inter", "Noto Sans", Roboto, Arial, sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  --container-small: 720px;
+  --container-medium: 960px;
+  --container-large: 1200px;
+  --container-wide: 1360px;
+  --content-reading-width: 760px;
+
+  --radius-small: 8px;
+  --radius-medium: 14px;
+  --radius-large: 22px;
+  --radius-pill: 999px;
+  --header-height: 4.5rem;
+  --transition-fast: 160ms ease;
+  --transition-normal: 260ms ease;
+}
+

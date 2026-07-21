@@ -1,0 +1,14 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+ul[role='list'], ol[role='list'] { list-style: none; }
+body { min-height: 100vh; text-rendering: optimizeLegibility; }
+img, picture, svg { display: block; max-width: 100%; }
+img { height: auto; }
+input, button, textarea, select { color: inherit; font: inherit; }
+button, select { cursor: pointer; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+:target { scroll-margin-top: 6.5rem; }
+
