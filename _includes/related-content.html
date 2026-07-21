@@ -1,0 +1,13 @@
+{% if page.related and page.related.size > 0 %}
+  {% assign related_pool = site.oracoes | concat: site.novenas | concat: site.santos | concat: site.devocionarios | concat: site.formacoes | concat: site.posts %}
+  <section class="related-section" aria-labelledby="related-title">
+    <div class="section-heading"><div><p class="eyebrow">Continue explorando</p><h2 id="related-title">Conteúdos relacionados</h2></div></div>
+    <div class="card-grid card-grid--3">
+      {% for related_slug in page.related limit: 3 %}
+        {% assign related_item = related_pool | where: 'slug', related_slug | first %}
+        {% if related_item %}{% include content-card.html item=related_item type='Relacionado' %}{% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+

@@ -1,0 +1,4 @@
+{% assign post = include.item %}
+{% capture post_meta %}{{ post.date | date: '%d/%m/%Y' }}{% endcapture %}
+{% include content-card.html item=post type='Blog' meta=post_meta featured=include.featured %}
+

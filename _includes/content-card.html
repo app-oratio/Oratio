@@ -1,0 +1,23 @@
+{% assign card = include.item %}
+{% assign card_title = include.title | default: card.title %}
+{% assign card_description = include.description | default: card.description %}
+{% assign card_url = include.url | default: card.url %}
+{% assign card_image = include.image | default: card.image %}
+{% assign card_type = include.type | default: card.type | default: 'Conteúdo' %}
+<article class="content-card{% if include.featured %} content-card--featured{% endif %}" data-card>
+  <a class="content-card__media image-shell" href="{{ card_url | relative_url }}" tabindex="-1" aria-hidden="true" data-image-shell>
+    {% if card_image %}
+      <img src="{{ card_image | relative_url }}" alt="" width="640" height="400" loading="lazy" decoding="async" data-fallback-image>
+      <span class="image-placeholder" hidden><span aria-hidden="true">✢</span><small>{{ card_type }}</small></span>
+    {% else %}
+      <span class="image-placeholder"><span aria-hidden="true">✢</span><small>{{ card_type }}</small></span>
+    {% endif %}
+  </a>
+  <div class="content-card__body">
+    <div class="content-card__meta"><span class="chip">{{ card_type }}</span>{% if include.meta %}<span>{{ include.meta }}</span>{% endif %}</div>
+    <h3><a href="{{ card_url | relative_url }}">{{ card_title }}</a></h3>
+    {% if card_description %}<p>{{ card_description | strip_html | truncate: 150 }}</p>{% endif %}
+    <a class="card-link" href="{{ card_url | relative_url }}">Abrir conteúdo <span aria-hidden="true">→</span></a>
+  </div>
+</article>
+

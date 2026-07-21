@@ -1,0 +1,10 @@
+{% assign app_download_url = site.data.app.play_store_url | default: '/aplicativo/#download', true %}
+<aside class="app-banner" aria-label="Conheça o aplicativo Oratio">
+  <div>
+    <p class="eyebrow">Leve o Oratio com você</p>
+    <h2>{{ include.title | default: 'Reze também pelo aplicativo' }}</h2>
+    <p>{{ include.text | default: 'Acesse orações, liturgia e conteúdos espirituais em uma experiência pensada para o Android.' }}</p>
+  </div>
+  <a class="button button--light" href="{{ app_download_url | relative_url }}">{{ site.data.app.download_label }}</a>
+</aside>
+

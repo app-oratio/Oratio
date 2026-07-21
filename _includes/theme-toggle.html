@@ -1,0 +1,5 @@
+<button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Ativar tema escuro" aria-pressed="false"{% if include.id %} id="{{ include.id }}"{% endif %}>
+  <span class="theme-toggle__symbol" data-theme-symbol aria-hidden="true">◐</span>
+  {% if include.show_label %}<span data-theme-label>Tema</span>{% endif %}
+</button>
+

@@ -1,0 +1,24 @@
+{% unless page.url == '/' %}
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Início</a></li>
+    {% if page.breadcrumb_parent %}
+      <li><a href="{{ page.breadcrumb_parent.url | relative_url }}">{{ page.breadcrumb_parent.label }}</a></li>
+    {% elsif page.collection == 'oracoes' %}
+      <li><a href="{{ '/oracoes/' | relative_url }}">Orações</a></li>
+    {% elsif page.collection == 'novenas' or page.collection == 'dias_novena' %}
+      <li><a href="{{ '/novenas/' | relative_url }}">Novenas</a></li>
+    {% elsif page.collection == 'santos' %}
+      <li><a href="{{ '/santos/' | relative_url }}">Santos</a></li>
+    {% elsif page.collection == 'devocionarios' %}
+      <li><a href="{{ '/devocionarios/' | relative_url }}">Devocionários</a></li>
+    {% elsif page.collection == 'formacoes' %}
+      <li><a href="{{ '/formacoes/' | relative_url }}">Formações</a></li>
+    {% elsif page.layout == 'post' %}
+      <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+    {% endif %}
+    <li aria-current="page">{{ page.breadcrumb_title | default: page.title }}</li>
+  </ol>
+</nav>
+{% endunless %}
+

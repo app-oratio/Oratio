@@ -1,0 +1,5 @@
+<aside class="notice notice--{{ include.type | default: 'info' }}"{% if include.live %} aria-live="polite"{% endif %}>
+  {% if include.title %}<strong>{{ include.title }}</strong>{% endif %}
+  <p>{{ include.text }}</p>
+</aside>
+

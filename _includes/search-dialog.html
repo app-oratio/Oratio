@@ -1,0 +1,24 @@
+<div class="search-dialog" data-search-dialog hidden>
+  <div class="search-dialog__backdrop" data-search-close></div>
+  <section class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title" data-search-panel data-index-url="{{ '/search/index.json' | relative_url }}">
+    <header class="search-panel__header">
+      <div>
+        <p class="eyebrow">Pesquisa local</p>
+        <h2 id="search-title">Buscar no Oratio</h2>
+      </div>
+      <button class="icon-button" type="button" data-search-close aria-label="Fechar busca">{% include icon.html name='close' %}</button>
+    </header>
+    <form class="search-form" role="search" data-search-form>
+      <label for="site-search-input">O que você deseja encontrar?</label>
+      <div class="search-form__field">
+        {% include icon.html name='search' %}
+        <input id="site-search-input" type="search" name="q" autocomplete="off" enterkeyhint="search" placeholder="Oração, novena, santo ou assunto" data-search-input>
+        <button type="button" class="text-button" data-search-clear hidden>Limpar</button>
+      </div>
+    </form>
+    <p class="search-status" data-search-status aria-live="polite">Digite ao menos dois caracteres para pesquisar.</p>
+    <div class="search-results" data-search-results tabindex="-1"></div>
+    <noscript><p class="notice notice--warning">Ative o JavaScript para usar a busca local.</p></noscript>
+  </section>
+</div>
+

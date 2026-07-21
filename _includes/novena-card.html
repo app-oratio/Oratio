@@ -1,0 +1,4 @@
+{% assign novena = include.item %}
+{% capture novena_meta %}{{ novena.days | default: 9 }} dias{% endcapture %}
+{% include content-card.html item=novena type='Novena' meta=novena_meta %}
+

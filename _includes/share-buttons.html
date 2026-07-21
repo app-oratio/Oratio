@@ -1,0 +1,7 @@
+<div class="share-tools" data-share-tools data-share-title="{{ page.title | escape }}" data-share-url="{{ page.url | absolute_url }}">
+  <span class="share-tools__label">Compartilhar</span>
+  <button class="button button--tonal button--small" type="button" data-native-share>{% include icon.html name='share' %}<span>Compartilhar</span></button>
+  <button class="button button--text button--small" type="button" data-copy-link>{% include icon.html name='copy' %}<span data-copy-link-label>Copiar link</span></button>
+  <span class="visually-hidden" data-share-status aria-live="polite"></span>
+</div>
+

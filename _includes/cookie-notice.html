@@ -1,0 +1,7 @@
+{% if site.data.site.show_storage_notice %}
+<aside class="storage-notice" data-storage-notice hidden aria-label="Aviso sobre armazenamento local">
+  <p>{{ site.data.site.storage_notice_text }}</p>
+  <button class="button button--primary button--small" type="button" data-storage-accept>Entendi</button>
+</aside>
+{% endif %}
+

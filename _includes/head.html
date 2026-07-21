@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#004A98">
+<meta name="color-scheme" content="light dark">
+<script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/icons/pwa/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="Feed do blog do Oratio" href="{{ '/feed.xml' | absolute_url }}">
+{% seo %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.data.site.organization_name | jsonify }},
+  "url": {{ '/' | absolute_url | jsonify }},
+  "logo": {{ '/assets/images/branding/oratio-logo.png' | absolute_url | jsonify }},
+  "email": {{ site.data.site.email | jsonify }},
+  "sameAs": [{% assign visible_social = site.data.social | where_exp: 'item', 'item.url != empty' %}{% for social in visible_social %}{{ social.url | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]
+}
+</script>
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "author": {"@type": "Organization", "name": {{ page.author | default: site.author.name | jsonify }}},
+  "mainEntityOfPage": {{ page.url | absolute_url | jsonify }},
+  "image": {{ page.image | default: '/assets/images/social/og-default.webp' | absolute_url | jsonify }}
+}
+</script>
+{% endif %}
+
