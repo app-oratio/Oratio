@@ -1,0 +1,13 @@
+name: "Oratio"
+full_name: "Oratio | App Católico"
+tagline: "Que Seu nome nunca se afaste dos seus lábios"
+short_description: "Um auxílio para sua vida de oração."
+platform: "Android"
+current_version: "3.1.0"
+minimum_android: "Android 6.0 ou superior"
+play_store_url: "https://play.google.com/store/apps/details?id=com.apostoladoimc.oratio"
+apk_url: ""
+support_url: "/contato/"
+free: true
+download_label: "Baixar gratuitamente"
+

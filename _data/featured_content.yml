@@ -1,0 +1,17 @@
+# Conteúdos demonstrativos. Revise os títulos e URLs antes da publicação.
+- type: "Novena"
+  title: "Exemplo de novena guiada"
+  description: "Estrutura demonstrativa com índice, dias e progresso salvo no navegador."
+  url: "/novenas/novena-demonstrativa/"
+  image: "/assets/images/novenas/novena-demonstrativa/cover.webp"
+- type: "Oração"
+  title: "Ave-Maria"
+  description: "Exemplo de página de oração com leitura confortável e ferramentas úteis."
+  url: "/oracoes/ave-maria/"
+  image: "/assets/images/prayers/ave-maria.webp"
+- type: "Formação"
+  title: "Como criar um momento diário de oração"
+  description: "Uma breve formação demonstrativa para apresentar o acervo espiritual."
+  url: "/formacoes/momento-diario-de-oracao/"
+  image: "/assets/images/formation/momento-diario.webp"
+
