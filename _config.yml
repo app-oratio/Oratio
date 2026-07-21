@@ -1,0 +1,112 @@
+# Configuração principal do portal Oratio.
+# Em um repositório de projeto, use url: "https://usuario.github.io" e
+# baseurl: "/nome-do-repositorio". Em domínio próprio, use baseurl: "".
+title: "Oratio | App Católico"
+description: "Portal oficial do Oratio, aplicativo católico de oração, liturgia e formação espiritual."
+url: "https://usuario.github.io"
+baseurl: ""
+lang: "pt-BR"
+locale: "pt_BR"
+timezone: "America/Sao_Paulo"
+
+author:
+  name: "Equipe Oratio"
+
+organization:
+  name: "Oratio"
+  apostolate: "Immaculata Mater Christi"
+  logo: "/assets/images/branding/oratio-logo.png"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+permalink: /blog/:year/:month/:title/
+
+collections:
+  oracoes:
+    output: true
+    permalink: /oracoes/:name/
+  novenas:
+    output: true
+    permalink: /novenas/:name/
+  dias_novena:
+    output: true
+  devocionarios:
+    output: true
+    permalink: /devocionarios/:name/
+  santos:
+    output: true
+    permalink: /santos/:name/
+  formacoes:
+    output: true
+    permalink: /formacoes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: "Equipe Oratio"
+      image: "/assets/images/social/og-default.webp"
+  - scope:
+      path: ""
+      type: oracoes
+    values:
+      layout: prayer
+  - scope:
+      path: ""
+      type: novenas
+    values:
+      layout: novena
+  - scope:
+      path: ""
+      type: dias_novena
+    values:
+      layout: novena-day
+  - scope:
+      path: ""
+      type: devocionarios
+    values:
+      layout: devotional
+  - scope:
+      path: ""
+      type: santos
+    values:
+      layout: saint
+  - scope:
+      path: ""
+      type: formacoes
+    values:
+      layout: formation
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+feed:
+  path: feed.xml
+
+sass:
+  style: compressed
+
+# Arquivos que não fazem parte do site publicado.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - GUIA_DE_IMPLEMENTACAO.md
+  - LICENSE
+  - CNAME.example
+  - tools
+  - vendor
+  - node_modules
+
+include:
+  - .well-known
+
+strict_front_matter: true
+

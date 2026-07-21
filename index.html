@@ -1,0 +1,112 @@
+---
+layout: home
+title: "Oratio | App Católico"
+description: "Um aplicativo católico gratuito para oração, liturgia, novenas, santos e formação espiritual."
+permalink: /
+---
+{% assign app_download_url = site.data.app.play_store_url | default: '/aplicativo/#download', true %}
+<section class="hero">
+  <div class="container container--large hero__grid">
+    <div class="hero__content">
+      <div class="hero__brand"><img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="56" height="56" alt=""><span>App católico para Android</span></div>
+      <h1 class="hero__title">Reserve um tempo <span>para Deus.</span></h1>
+      <p class="hero__tagline">“{{ site.data.app.tagline }}”</p>
+      <p class="page-lead">O Oratio reúne oração, liturgia e formação espiritual em uma experiência serena, acessível e organizada, criada para acompanhar a vida católica sem distrações.</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="{{ app_download_url | relative_url }}">{% include icon.html name='download' %}<span>{{ site.data.app.download_label }}</span></a>
+        <a class="button button--tonal" href="{{ '/sobre/' | relative_url }}">Conhecer o Oratio</a>
+      </div>
+      <p class="hero__notes"><span>✓ Gratuito</span><span>✓ Disponível para Android</span><span>✓ Projeto independente</span></p>
+      <a class="play-store-slot image-shell" href="{{ app_download_url | relative_url }}" aria-label="Acessar página de download do Oratio" data-image-shell>
+        <img src="{{ '/assets/images/app/google-play-badge.webp' | relative_url }}" width="564" height="168" alt="Disponível no Google Play" data-fallback-image>
+        <span class="image-placeholder" hidden><span>▶</span><small>Adicionar selo Google Play</small></span>
+      </a>
+    </div>
+    <div class="hero__visual" aria-label="Prévia do aplicativo Oratio">
+      <div class="hero__phone image-shell" data-image-shell>
+        <img src="{{ '/assets/images/app/hero-app-screen.webp' | relative_url }}" width="720" height="1440" alt="Tela principal do aplicativo Oratio" fetchpriority="high" decoding="async" data-fallback-image>
+        <span class="image-placeholder" hidden><span>✢</span><small>Substitua pelo print do app</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface section--bordered" aria-labelledby="mission-title">
+  <div class="container container--large mission-grid">
+    <div class="mission-copy">
+      <p class="eyebrow">Nossa missão</p>
+      <h2 id="mission-title">Tecnologia a serviço da vida de oração</h2>
+      <p>O Oratio não foi pensado para aumentar o tempo diante da tela, mas para ajudar cada pessoa a interromper a pressa cotidiana, encontrar um roteiro confiável e reservar um tempo sincero para Deus.</p>
+      <p class="mission-note">A simplicidade não é ausência de conteúdo, mas espaço para que o essencial permaneça em primeiro lugar.</p>
+    </div>
+    <ul class="principle-list">
+      <li><strong>Oração sem distrações</strong><span>Uma interface sóbria, organizada e fácil de usar.</span></li>
+      <li><strong>Acesso gratuito</strong><span>Conteúdos espirituais disponíveis sem monetização invasiva.</span></li>
+      <li><strong>Formação e tradição</strong><span>Espaço para liturgia, devoções e aprendizado contínuo.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="features-title">
+  <div class="container container--large">
+    <div class="section-heading"><div><p class="eyebrow">Recursos principais</p><h2 id="features-title">Uma biblioteca para rezar e aprender</h2></div><a href="{{ '/recursos/' | relative_url }}">Ver todos os recursos</a></div>
+    <div class="feature-grid">
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">L</span><h3>Liturgia diária</h3><p>Acompanhe os textos litúrgicos do dia em uma leitura organizada.</p><a href="{{ '/recursos/#liturgia' | relative_url }}">Conhecer</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">H</span><h3>Liturgia das Horas</h3><p>Reze as horas canônicas e organize sua rotina de oração.</p><a href="{{ '/recursos/#liturgia-das-horas' | relative_url }}">Conhecer</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">R</span><h3>Santo Rosário</h3><p>Medite os mistérios com um roteiro claro e contemplativo.</p><a href="{{ '/recursos/#rosario' | relative_url }}">Conhecer</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">N</span><h3>Novenas</h3><p>Acompanhe cada dia e mantenha seu progresso no próprio dispositivo.</p><a href="{{ '/novenas/' | relative_url }}">Abrir novenas</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">D</span><h3>Devocionários</h3><p>Encontre exercícios espirituais e roteiros de devoção.</p><a href="{{ '/devocionarios/' | relative_url }}">Abrir devocionários</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">S</span><h3>História dos Santos</h3><p>Conheça testemunhos, virtudes e memórias da vida cristã.</p><a href="{{ '/santos/' | relative_url }}">Conhecer santos</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">B</span><h3>Biblioteca espiritual</h3><p>Reúna orações, formações e textos para consulta contínua.</p><a href="{{ '/formacoes/' | relative_url }}">Explorar biblioteca</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">M</span><h3>Músicas</h3><p>Utilize seleções musicais que favorecem o recolhimento.</p><a href="{{ '/recursos/#musicas' | relative_url }}">Conhecer</a></article>
+      <article class="feature-card"><span class="feature-card__icon" aria-hidden="true">A</span><h3>Lembretes de oração</h3><p>Crie pontos de pausa ao longo do dia com lembretes discretos.</p><a href="{{ '/recursos/#lembretes' | relative_url }}">Conhecer</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" aria-labelledby="featured-title">
+  <div class="container container--large">
+    <div class="section-heading"><div><p class="eyebrow">Destaque editorial</p><h2 id="featured-title">Para este momento</h2></div><p>Os itens abaixo são demonstrativos e podem ser trocados em <code>_data/featured_content.yml</code>.</p></div>
+    <div class="card-grid card-grid--3">
+      {% for item in site.data.featured_content %}{% include content-card.html item=item featured=true %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="screenshots-title">
+  <div class="container container--large">
+    <div class="section-heading"><div><p class="eyebrow">Dentro do aplicativo</p><h2 id="screenshots-title">Uma experiência familiar e tranquila</h2></div><p>Substitua estas imagens pelos prints reais mantendo os nomes documentados.</p></div>
+    <div class="screenshots" aria-label="Capturas de tela do Oratio">
+      {% assign screenshot_names = 'home,prayer,liturgy,library,music' | split: ',' %}
+      {% assign screenshot_labels = 'Início,Oração,Liturgia,Biblioteca,Músicas' | split: ',' %}
+      {% for screenshot in screenshot_names %}
+        <figure class="screenshot"><div class="image-shell" data-image-shell><img src="{{ '/assets/images/screenshots/' | append: screenshot | append: '.webp' | relative_url }}" width="540" height="1080" loading="lazy" decoding="async" alt="Tela de {{ screenshot_labels[forloop.index0] }} do aplicativo Oratio" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>{{ screenshot_labels[forloop.index0] }}</small></span></div><figcaption>{{ screenshot_labels[forloop.index0] }}</figcaption></figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="spiritual-callout">
+  <div class="container container--large spiritual-callout__inner">
+    <div><p class="eyebrow">Um convite à presença</p><h2>Que cada abertura do Oratio seja o começo de um encontro, e não apenas mais alguns minutos diante da tela.</h2><p>Encontre um lugar tranquilo, escolha sua oração e permita que o silêncio também faça parte do caminho.</p></div>
+    <a class="button button--light" href="{{ app_download_url | relative_url }}">Baixar o app</a>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="recent-title">
+  <div class="container container--large">
+    <div class="section-heading"><div><p class="eyebrow">Conteúdos recentes</p><h2 id="recent-title">Novidades da biblioteca</h2></div><button class="button button--tonal" type="button" data-search-open>{% include icon.html name='search' %}<span>Buscar conteúdo</span></button></div>
+    <div class="stack">
+      <section aria-labelledby="recent-posts"><div class="section-heading"><h3 id="recent-posts">Do blog</h3><a href="{{ '/blog/' | relative_url }}">Ver todas</a></div><div class="card-grid card-grid--3">{% for post in site.posts limit: 3 %}{% include post-card.html item=post %}{% endfor %}</div></section>
+      <section aria-labelledby="popular-prayers"><div class="section-heading"><h3 id="popular-prayers">Orações</h3><a href="{{ '/oracoes/' | relative_url }}">Ver todas</a></div><div class="card-grid card-grid--3">{% assign featured_prayers = site.oracoes | where: 'featured', true | sort: 'order' %}{% for prayer in featured_prayers limit: 3 %}{% include prayer-card.html item=prayer %}{% endfor %}</div></section>
+      <section aria-labelledby="recent-formations"><div class="section-heading"><h3 id="recent-formations">Formações</h3><a href="{{ '/formacoes/' | relative_url }}">Ver todas</a></div><div class="card-grid card-grid--3">{% assign recent_formations = site.formacoes | sort: 'date' | reverse %}{% for formation in recent_formations limit: 3 %}{% include content-card.html item=formation type='Formação' %}{% endfor %}</div></section>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container container--large">
+    <div class="support-card"><div><p class="eyebrow">Projeto independente e gratuito</p><h2>Ajude o Oratio a alcançar mais pessoas</h2><p>Você pode apoiar divulgando o aplicativo, enviando sugestões, colaborando com a revisão de conteúdos ou contribuindo pelos canais oficiais que forem configurados.</p></div><div class="hero__actions"><a class="button button--primary" href="{{ '/apoiar/' | relative_url }}">Como apoiar</a><a class="button button--tonal" href="{{ '/contato/' | relative_url }}">Entrar em contato</a></div></div>
+  </div>
+</section>
+
