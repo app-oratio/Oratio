@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% assign novena_days = site.dias_novena | where: 'novena', page.slug | sort: 'day' %}
+<div class="container container--large page-shell">
+  {% include breadcrumb.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Novena demonstrativa' text='Os três dias abaixo mostram o funcionamento técnico. Revise e complete o conteúdo antes da publicação.' %}{% endif %}
+  <article class="novena-page">
+    <header class="novena-hero">
+      <div class="image-shell" data-image-shell>
+        {% if page.image %}<img src="{{ page.image | relative_url }}" alt="" width="720" height="720" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Novena</small></span>{% else %}<span class="image-placeholder"><span>✢</span><small>Novena</small></span>{% endif %}
+      </div>
+      <div>
+        <span class="chip">{{ page.category | default: 'Novena' }}</span>
+        <h1>{{ page.title }}</h1>
+        <p class="page-lead">{{ page.description }}</p>
+        <dl class="content-facts"><div><dt>Duração</dt><dd>{{ page.days | default: novena_days.size }} dias</dd></div>{% if page.saint %}<div><dt>Intercessão</dt><dd>{{ page.saint }}</dd></div>{% endif %}</dl>
+        {% if novena_days.first %}<a class="button button--primary" href="{{ novena_days.first.url | relative_url }}">Começar a novena</a>{% endif %}
+      </div>
+    </header>
+    <div class="prose prose--wide">{{ content }}</div>
+    <section class="novena-index" aria-labelledby="novena-days-title">
+      <div class="section-heading"><div><p class="eyebrow">Roteiro de oração</p><h2 id="novena-days-title">Dias da novena</h2></div></div>
+      {% if novena_days.size > 0 %}
+        <ol class="day-list">
+          {% for day in novena_days %}<li><a href="{{ day.url | relative_url }}"><span>Dia {{ day.day }}</span><strong>{{ day.title }}</strong><span aria-hidden="true">→</span></a></li>{% endfor %}
+        </ol>
+      {% else %}
+        {% include empty-state.html title='Os dias ainda não foram publicados' text='Adicione documentos à pasta _dias_novena para preencher este índice.' %}
+      {% endif %}
+    </section>
+    {% include share-buttons.html %}
+  </article>
+  {% include app-download-banner.html title='Reze esta novena no Oratio' %}
+</div>
+

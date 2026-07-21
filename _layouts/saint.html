@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div class="container container--medium page-shell">
+  {% include breadcrumb.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Biografia demonstrativa' text='Datas, títulos e demais informações devem ser conferidos em fontes seguras antes da publicação.' %}{% endif %}
+  <header class="saint-header">
+    <div class="image-shell image-shell--portrait" data-image-shell>{% if page.image %}<img src="{{ page.image | relative_url }}" alt="Representação de {{ page.title }}" width="560" height="700" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Santo</small></span>{% else %}<span class="image-placeholder"><span>✢</span><small>Santo</small></span>{% endif %}</div>
+    <div><span class="chip">{{ page.category | default: 'História dos Santos' }}</span><h1>{{ page.title }}</h1>{% if page.subtitle %}<p class="saint-subtitle">{{ page.subtitle }}</p>{% endif %}<dl class="content-facts">{% if page.dates %}<div><dt>Datas</dt><dd>{{ page.dates }}</dd></div>{% endif %}{% if page.liturgical_memorial %}<div><dt>Memória litúrgica</dt><dd>{{ page.liturgical_memorial }}</dd></div>{% endif %}</dl></div>
+  </header>
+  <article class="prose">{{ content }}</article>
+  {% include share-buttons.html %}
+  {% include related-content.html %}
+</div>
+

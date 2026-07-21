@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{% assign words = content | number_of_words %}
+{% assign reading_time = words | divided_by: 200 | plus: 1 %}
+<div class="container container--medium page-shell">
+  {% include breadcrumb.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Publicação demonstrativa' text='Esta postagem serve apenas como exemplo e não representa um comunicado oficial.' %}{% endif %}
+  <article class="post-page">
+    <header class="content-header">
+      {% if page.categories.first %}<span class="chip">{{ page.categories.first }}</span>{% endif %}
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+      <p class="post-meta"><span>{{ page.author | default: site.author.name }}</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d/%m/%Y' }}</time><span>{{ reading_time }} min de leitura</span></p>
+    </header>
+    {% if page.image %}<figure class="post-cover image-shell" data-image-shell><img src="{{ page.image | relative_url }}" width="1200" height="675" alt="" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Blog</small></span></figure>{% endif %}
+    <div class="prose">{{ content }}</div>
+    {% include share-buttons.html %}
+  </article>
+  {% include related-content.html %}
+  <nav class="post-navigation" aria-label="Publicações adjacentes">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>Publicação anterior</span><strong>{{ page.previous.title }}</strong></a>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}"><span>Próxima publicação</span><strong>{{ page.next.title }}</strong></a>{% endif %}
+  </nav>
+  {% include app-download-banner.html %}
+</div>
+

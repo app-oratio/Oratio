@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="container container--medium page-shell">
+  {% include breadcrumb.html %}
+  <header class="page-header">
+    {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+  </header>
+  {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Este conteúdo existe apenas para apresentar a estrutura do projeto e deve ser revisado antes da publicação.' %}{% endif %}
+  <article class="prose{% if page.reading_width == 'wide' %} prose--wide{% endif %}">
+    {{ content }}
+  </article>
+</div>
+{% if page.show_app_banner %}<div class="container container--large">{% include app-download-banner.html %}</div>{% endif %}
+

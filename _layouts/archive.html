@@ -1,0 +1,34 @@
+---
+layout: default
+---
+{% assign collection_items = site[page.collection_name] | sort: 'order' %}
+<div class="container container--large page-shell">
+  {% include breadcrumb.html %}
+  <header class="page-header page-header--split">
+    <div><p class="eyebrow">Biblioteca espiritual</p><h1>{{ page.title }}</h1><p class="page-lead">{{ page.description }}</p></div>
+    <button class="button button--tonal" type="button" data-search-open>{% include icon.html name='search' %}<span>Pesquisar no acervo</span></button>
+  </header>
+  {{ content }}
+  <section class="archive" data-archive data-page-size="9">
+    <div class="archive-toolbar">
+      <div class="field-group"><label for="archive-filter-{{ page.collection_name }}">Filtrar nesta página</label><input id="archive-filter-{{ page.collection_name }}" type="search" data-archive-filter placeholder="Digite um título ou categoria"></div>
+      {% assign archive_categories = collection_items | map: 'category' | compact | uniq | sort %}
+      <div class="field-group"><label for="archive-category-{{ page.collection_name }}">Categoria</label><select id="archive-category-{{ page.collection_name }}" data-archive-category><option value="">Todas as categorias</option>{% for category in archive_categories %}<option value="{{ category | escape }}">{{ category }}</option>{% endfor %}</select></div>
+      <p data-archive-count aria-live="polite">{{ collection_items.size }} conteúdos</p>
+    </div>
+    <div class="card-grid card-grid--3" data-archive-grid>
+      {% for item in collection_items %}
+        <div data-archive-item data-category="{{ item.category | downcase | escape }}" data-search-text="{{ item.title | append: ' ' | append: item.description | append: ' ' | append: item.category | downcase | escape }}">
+          {% case page.collection_name %}
+            {% when 'oracoes' %}{% include prayer-card.html item=item %}
+            {% when 'novenas' %}{% include novena-card.html item=item %}
+            {% when 'santos' %}{% include saint-card.html item=item %}
+            {% else %}{% include content-card.html item=item type=page.item_type %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+    <div data-archive-empty hidden>{% include empty-state.html %}</div>
+    {% include pagination.html %}
+  </section>
+</div>

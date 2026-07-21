@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="container container--medium page-shell">
+  {% include breadcrumb.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Revise este devocionário antes de utilizá-lo como conteúdo oficial.' %}{% endif %}
+  <header class="content-header"><span class="chip">{{ page.category | default: 'Devocionário' }}</span><h1>{{ page.title }}</h1><p class="page-lead">{{ page.description }}</p></header>
+  <article class="prose prayer-text">{{ content }}</article>
+  {% include share-buttons.html %}
+  {% include related-content.html %}
+  {% include app-download-banner.html %}
+</div>
+

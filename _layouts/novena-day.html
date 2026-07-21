@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% assign novena = site.novenas | where: 'slug', page.novena | first %}
+{% assign novena_days = site.dias_novena | where: 'novena', page.novena | sort: 'day' %}
+{% assign previous_number = page.day | minus: 1 %}
+{% assign next_number = page.day | plus: 1 %}
+{% assign previous_day = novena_days | where: 'day', previous_number | first %}
+{% assign next_day = novena_days | where: 'day', next_number | first %}
+<div class="container container--small page-shell novena-day" data-novena-progress data-novena-slug="{{ page.novena }}" data-novena-day="{{ page.day }}" data-novena-total="{{ novena.days | default: novena_days.size }}">
+  {% include breadcrumb.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Dia demonstrativo' text='Este texto breve demonstra o funcionamento do acompanhamento local.' %}{% endif %}
+  <header class="content-header content-header--center">
+    <a class="overline-link" href="{{ novena.url | relative_url }}">{{ novena.title | default: 'Novena' }}</a>
+    <p class="day-number">Dia {{ page.day }} de {{ novena.days | default: novena_days.size }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="progress-block">
+    <div class="progress-track" role="progressbar" aria-label="Progresso da novena" aria-valuemin="0" aria-valuemax="{{ novena.days | default: novena_days.size }}" aria-valuenow="0" data-progress-track><span data-progress-bar></span></div>
+    <p data-progress-label aria-live="polite">O progresso será carregado neste navegador.</p>
+  </div>
+  <article class="prose prayer-text">{{ content }}</article>
+  <div class="completion-card">
+    <label class="check-control"><input type="checkbox" data-day-complete><span>{% include icon.html name='check' %}</span><strong>Marcar este dia como concluído</strong></label>
+    <p>O progresso é salvo somente neste navegador e não exige conta.</p>
+    <button class="button button--text button--small" type="button" data-progress-reset>{% include icon.html name='reset' %}<span>Reiniciar progresso</span></button>
+  </div>
+  <nav class="content-navigation" aria-label="Navegação entre os dias">
+    {% if previous_day %}<a class="button button--tonal" href="{{ previous_day.url | relative_url }}">{% include icon.html name='arrow-left' %}<span>Dia anterior</span></a>{% else %}<span></span>{% endif %}
+    <a class="button button--text" href="{{ novena.url | relative_url }}">Índice</a>
+    {% if next_day %}<a class="button button--primary" href="{{ next_day.url | relative_url }}"><span>Próximo dia</span>{% include icon.html name='arrow-right' %}</a>{% else %}<a class="button button--primary" href="{{ novena.url | relative_url }}">Concluir</a>{% endif %}
+  </nav>
+  {% include share-buttons.html %}
+</div>
+

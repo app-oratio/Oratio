@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<div class="container container--large page-shell">
+  {% include breadcrumb.html %}
+  <header class="page-header"><p class="eyebrow">Documento institucional</p><h1>{{ page.title }}</h1><p class="page-lead">{{ page.description }}</p>{% if page.last_updated %}<p class="content-byline">Última atualização: {{ page.last_updated }}</p>{% endif %}</header>
+  <div class="legal-layout">
+    {% if page.toc %}<nav class="legal-toc" aria-label="Sumário"><strong>Nesta página</strong><ol>{% for item in page.toc %}<li><a href="#{{ item.id }}">{{ item.label }}</a></li>{% endfor %}</ol></nav>{% endif %}
+    <article class="prose legal-content">{{ content }}</article>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    {% include head.html %}
+  </head>
+  <body class="layout-{{ page.layout | default: 'default' }}" data-baseurl="{{ site.baseurl }}">
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+    {% include toolbar.html %}
+    {% include drawer.html %}
+    <main id="main-content" tabindex="-1">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    {% include search-dialog.html %}
+    {% include cookie-notice.html %}
+    {% include scripts.html %}
+  </body>
+</html>
+
