@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /search/index.json
+search: false
+sitemap: false
+---
+{% assign search_documents = site.pages | concat: site.posts | concat: site.oracoes | concat: site.novenas | concat: site.devocionarios | concat: site.santos | concat: site.formacoes %}
+{% assign search_documents = search_documents | where_exp: 'item', 'item.search != false' %}
+[
+{% for item in search_documents %}
+  {
+    "title": {{ item.title | default: site.title | jsonify }},
+    "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "type": {% if item.collection == 'posts' %}"Blog"{% elsif item.collection == 'oracoes' %}"Oração"{% elsif item.collection == 'novenas' %}"Novena"{% elsif item.collection == 'santos' %}"Santo"{% elsif item.collection == 'devocionarios' %}"Devocionário"{% elsif item.collection == 'formacoes' %}"Formação"{% else %}"Página"{% endif %},
+    "category": {{ item.category | default: item.categories.first | jsonify }},
+    "tags": {{ item.tags | default: empty | jsonify }},
+    "keywords": {{ item.keywords | default: empty | jsonify }},
+    "excerpt": {{ item.content | strip_html | normalize_whitespace | truncate: 320 | jsonify }},
+    "image": {{ item.image | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
