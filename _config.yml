@@ -3,8 +3,8 @@
 # baseurl: "/nome-do-repositorio". Em domínio próprio, use baseurl: "".
 title: "Oratio | App Católico"
 description: "Portal oficial do Oratio, aplicativo católico de oração, liturgia e formação espiritual."
-url: "https://usuario.github.io"
-baseurl: ""
+url: "https://app-oratio.github.io"
+baseurl: "Oratio"
 lang: "pt-BR"
 locale: "pt_BR"
 timezone: "America/Sao_Paulo"
