@@ -1,25 +1,69 @@
-{% assign app_download_url = site.data.app.play_store_url | default: '/aplicativo/#download', true %}
+{% assign app_download_url = site.data.app.play_store_url | default: '/aplicativo/#download' %}
+
 <div class="drawer-layer" data-drawer-layer aria-hidden="true" inert>
-  <button class="drawer-backdrop" type="button" data-drawer-close tabindex="-1" aria-label="Fechar menu"></button>
-  <aside class="drawer" id="site-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação" tabindex="-1">
+  <button
+    class="drawer-backdrop"
+    type="button"
+    data-drawer-close
+    tabindex="-1"
+    aria-label="Fechar menu">
+  </button>
+
+  <aside
+    class="drawer"
+    id="site-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu de navegação"
+    tabindex="-1">
+
     <div class="drawer__header">
       <a class="brand" href="{{ '/' | relative_url }}" data-drawer-first>
-        <img class="brand__symbol" src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="44" height="44" alt="">
-        <span><strong class="brand__name">Oratio</strong><small>App Católico</small></span>
+        <img
+          class="brand__symbol"
+          src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}"
+          width="44"
+          height="44"
+          alt="">
+
+        <span>
+          <strong class="brand__name">Oratio</strong>
+          <small>App Católico</small>
+        </span>
       </a>
-      <button class="icon-button" type="button" data-drawer-close aria-label="Fechar menu">
+
+      <button
+        class="icon-button"
+        type="button"
+        data-drawer-close
+        aria-label="Fechar menu">
         {% include icon.html name='close' %}
       </button>
     </div>
-    <p class="drawer__tagline">{{ site.data.app.short_description }}</p>
+
+    <p class="drawer__tagline">
+      {{ site.data.app.short_description }}
+    </p>
 
     <nav class="drawer__nav" aria-label="Menu completo">
       {% for group in site.data.navigation.drawer_groups %}
-        <section class="drawer__group" aria-labelledby="drawer-group-{{ forloop.index }}">
-          <h2 id="drawer-group-{{ forloop.index }}">{{ group.title }}</h2>
+        <section
+          class="drawer__group"
+          aria-labelledby="drawer-group-{{ forloop.index }}">
+
+          <h2 id="drawer-group-{{ forloop.index }}">
+            {{ group.title }}
+          </h2>
+
           <ul>
             {% for item in group.links %}
-              <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+              <li>
+                <a
+                  href="{{ item.url | relative_url }}"
+                  {% if page.url == item.url %}aria-current="page"{% endif %}>
+                  {{ item.label }}
+                </a>
+              </li>
             {% endfor %}
           </ul>
         </section>
@@ -28,13 +72,37 @@
 
     <div class="drawer__tools">
       {% include theme-toggle.html id='drawer-theme-toggle' show_label=true %}
-      <a class="button button--primary" href="{{ app_download_url | relative_url }}">Baixar o aplicativo</a>
+
+      {% if site.data.app.play_store_url %}
+        <a
+          class="button button--primary"
+          href="{{ site.data.app.play_store_url }}"
+          target="_blank"
+          rel="noopener noreferrer">
+          Baixar o aplicativo
+        </a>
+      {% else %}
+        <a
+          class="button button--primary"
+          href="{{ '/aplicativo/#download' | relative_url }}">
+          Baixar o aplicativo
+        </a>
+      {% endif %}
     </div>
 
     {% assign visible_social = site.data.social | where_exp: 'item', 'item.url != empty' %}
+
     {% if visible_social.size > 0 %}
       <ul class="social-links" aria-label="Redes sociais">
-        {% for social in visible_social %}<li><a href="{{ social.url }}" rel="me noopener noreferrer">{{ social.name }}</a></li>{% endfor %}
+        {% for social in visible_social %}
+          <li>
+            <a
+              href="{{ social.url }}"
+              rel="me noopener noreferrer">
+              {{ social.name }}
+            </a>
+          </li>
+        {% endfor %}
       </ul>
     {% endif %}
   </aside>
