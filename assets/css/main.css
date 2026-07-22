@@ -7,6 +7,7 @@
 {% include_relative components.css %}
 {% include_relative content.css %}
 {% include_relative home.css %}
+{% include_relative about.css %}
 {% include_relative responsive.css %}
 {% include_relative dark-theme.css %}
 {% include_relative print.css %}
