@@ -432,9 +432,118 @@ reading_width: wide
       </div>
     </details>
 
-    <details class="about-accordion" id="iniciativas">
+
+    <details class="about-accordion" id="logomarca">
       <summary class="about-accordion__summary">
         <span class="about-accordion__number" aria-hidden="true">06</span>
+        <span class="about-accordion__heading">
+          <span class="about-accordion__eyebrow">Uma identidade mariana</span>
+          <span class="about-accordion__title">Nossa logomarca</span>
+          <span class="about-accordion__description">Conheça os elementos que traduzem visualmente a espiritualidade e a missão do Oratio.</span>
+        </span>
+        <span class="about-accordion__toggle" aria-hidden="true"></span>
+      </summary>
+
+      <div class="about-accordion__content">
+        <div class="about-accordion__inner">
+          <figure class="about-logo-meaning">
+            <div class="about-logo-meaning__image">
+              <img
+                src="{{ '/assets/images/branding/oratio-logo.png' | relative_url }}"
+                width="1000"
+                height="375"
+                loading="lazy"
+                decoding="async"
+                alt="Logomarca do Oratio, formada pela imagem da Santíssima Virgem Maria, pelo lema em latim e pelo nome Oratio">
+            </div>
+            <figcaption>
+              Logomarca concebida em outubro de 2024 por Marcelo Rodrigues Alves.
+            </figcaption>
+          </figure>
+
+          <div class="about-rich-copy">
+            <p>
+              A logomarca do Oratio não funciona apenas como uma identificação visual. Concebida em outubro de 2024 por <strong>Marcelo Rodrigues Alves</strong>, grande designer e amigo do projeto, ela reúne em uma única composição a origem mariana, a espiritualidade contemplativa e a finalidade missionária do Oratio.
+            </p>
+
+            <p>
+              No centro do símbolo está a <strong>Santíssima Virgem Maria, a Imaculada Mãe de Cristo</strong>, representada com o véu e as mãos recolhidas junto ao peito. Sua postura evoca oração, humildade, entrega e contemplação, virtudes que desejamos favorecer em cada pessoa que utiliza o aplicativo.
+            </p>
+
+            <p>
+              A presença de Maria também preserva a memória das origens do projeto no Apostolado Immaculata Mater Christi e expressa a consagração desta missão à Mãe de Deus. Ela ocupa o centro da composição não para deter a atenção sobre si mesma, mas porque sua missão é sempre conduzir os fiéis a Jesus Cristo.
+            </p>
+
+            <p>
+              Ao redor da imagem mariana encontra-se o lema que acompanha o Oratio desde a formação de sua identidade:
+            </p>
+          </div>
+
+          <div class="about-logo-motto">
+            <strong>“Que Seu Nome não se afaste dos teus lábios.”</strong>
+            <span>Sit nomen suum non derelinquas lábia tua.</span>
+          </div>
+
+          <div class="about-logo-elements">
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">M</span>
+              <div>
+                <h3>A Virgem Maria</h3>
+                <p>Representa a principal inspiração, a proteção materna e a orientação espiritual do projeto, sempre conduzindo a Jesus Cristo.</p>
+              </div>
+            </article>
+
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">✦</span>
+              <div>
+                <h3>As mãos recolhidas</h3>
+                <p>Expressam oração, interioridade, entrega e contemplação, recordando que toda a tecnologia do Oratio deve conduzir ao encontro com Deus.</p>
+              </div>
+            </article>
+
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">○</span>
+              <div>
+                <h3>A forma circular</h3>
+                <p>Evoca unidade, continuidade e permanência, enquanto envolve a imagem mariana com o lema que orienta toda a missão.</p>
+              </div>
+            </article>
+
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">A</span>
+              <div>
+                <h3>O lema ao redor da imagem</h3>
+                <p>Mostra que o propósito de conservar o Nome do Senhor nos lábios e no coração envolve e orienta toda a identidade do Oratio.</p>
+              </div>
+            </article>
+
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">B</span>
+              <div>
+                <h3>O azul e o branco</h3>
+                <p>As cores tradicionalmente associadas à iconografia mariana comunicam serenidade, profundidade, pureza, simplicidade e contemplação.</p>
+              </div>
+            </article>
+
+            <article>
+              <span class="about-logo-elements__mark" aria-hidden="true">O</span>
+              <div>
+                <h3>O nome Oratio</h3>
+                <p>A palavra latina para “oração” apresenta com simplicidade aquilo que deve permanecer no centro de todos os conteúdos, recursos e iniciativas do projeto.</p>
+              </div>
+            </article>
+          </div>
+
+          <p class="about-logo-conclusion">
+            Em conjunto, esses elementos transformam a logomarca em uma síntese visual daquilo que o Oratio procura viver: uma missão mariana, contemplativa e inteiramente orientada para que o Nome de Jesus permaneça presente nos lábios, no coração e na vida cotidiana.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="about-accordion" id="iniciativas">
+      <summary class="about-accordion__summary">
+        <span class="about-accordion__number" aria-hidden="true">07</span>
         <span class="about-accordion__heading">
           <span class="about-accordion__eyebrow">Gratidão a quem abriu caminhos</span>
           <span class="about-accordion__title">Iniciativas que nos impulsionam</span>
@@ -485,7 +594,7 @@ reading_width: wide
 
     <details class="about-accordion" id="lema">
       <summary class="about-accordion__summary">
-        <span class="about-accordion__number" aria-hidden="true">07</span>
+        <span class="about-accordion__number" aria-hidden="true">08</span>
         <span class="about-accordion__heading">
           <span class="about-accordion__eyebrow">A alma do projeto</span>
           <span class="about-accordion__title">Nosso lema</span>
@@ -522,7 +631,7 @@ reading_width: wide
 
     <details class="about-accordion" id="conteudos">
       <summary class="about-accordion__summary">
-        <span class="about-accordion__number" aria-hidden="true">08</span>
+        <span class="about-accordion__number" aria-hidden="true">09</span>
         <span class="about-accordion__heading">
           <span class="about-accordion__eyebrow">Um auxílio para a vida espiritual</span>
           <span class="about-accordion__title">O que oferecemos</span>
@@ -595,7 +704,7 @@ reading_width: wide
 
     <details class="about-accordion" id="gratuidade">
       <summary class="about-accordion__summary">
-        <span class="about-accordion__number" aria-hidden="true">09</span>
+        <span class="about-accordion__number" aria-hidden="true">10</span>
         <span class="about-accordion__heading">
           <span class="about-accordion__eyebrow">Uma missão sustentada pela comunidade</span>
           <span class="about-accordion__title">Gratuito, sem anúncios e independente</span>
@@ -643,7 +752,7 @@ reading_width: wide
 
     <details class="about-accordion" id="unidos">
       <summary class="about-accordion__summary">
-        <span class="about-accordion__number" aria-hidden="true">10</span>
+        <span class="about-accordion__number" aria-hidden="true">11</span>
         <span class="about-accordion__heading">
           <span class="about-accordion__eyebrow">Muito além da tecnologia</span>
           <span class="about-accordion__title">Unidos em oração</span>
