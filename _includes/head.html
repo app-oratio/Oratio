@@ -4,6 +4,9 @@
 <meta name="color-scheme" content="light dark">
 <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{% if page.layout == 'app-page' %}
+<link rel="stylesheet" href="{{ '/assets/css/app-page.css' | relative_url }}">
+{% endif %}
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/icons/pwa/apple-touch-icon.png' | relative_url }}">
@@ -35,4 +38,3 @@
 }
 </script>
 {% endif %}
-
