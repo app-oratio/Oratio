@@ -8,6 +8,12 @@ minimum_android: "Android 6.0 ou superior"
 play_store_url: "https://play.google.com/store/apps/details?id=com.apostoladoimc.oratio"
 apk_url: ""
 support_url: "/contato/"
+privacy_url: "/privacidade/"
 free: true
 download_label: "Baixar gratuitamente"
-
+hero:
+  eyebrow: "Aplicativo católico para Android"
+  title: "Reserve um tempo para Deus."
+  description: "O Oratio reúne oração, liturgia, Sagradas Escrituras, formação e devoção em uma experiência serena e organizada, criada para acompanhar diferentes momentos da vida espiritual."
+  screenshot: "/assets/images/screenshots/01-tela-inicial.png"
+  screenshot_alt: "Tela inicial do aplicativo Oratio"

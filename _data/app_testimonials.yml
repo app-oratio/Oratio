@@ -1,0 +1,14 @@
+- name: "Gabriel"
+  date: "10 de março de 2026"
+  rating: 5
+  text: "Aplicativo muito bom! Além de possuir muitas orações e devoções, em português e em latim, também oferece a Liturgia do Dia e a Liturgia das Horas, algo que não é fácil encontrar de forma compacta em outros aplicativos. Disponibiliza ainda livros gratuitos, incluindo as Sagradas Escrituras em português, latim e grego, além de outros escritos dos santos e músicas em latim. É um aplicativo muito completo!"
+
+- name: "Marcos"
+  date: "14 de julho de 2026"
+  rating: 5
+  text: "Sem palavras... Simplesmente o melhor aplicativo católico que já usei! É o mais completo que já vi, com Liturgia Diária, orações, Bíblia Sagrada nas duas traduções mais famosas, Ave-Maria e Matos Soares, plano de leitura da Bíblia e do Catecismo, livros gratuitos e muitas outras coisas."
+
+- name: "Samuel"
+  date: "3 de junho de 2025"
+  rating: 5
+  text: "Aplicativo excelente para fins espirituais. Possui não apenas a Liturgia Diária, mas também diversas orações, datas importantes e várias funções para auxiliar no crescimento da fé. Além disso, o desenvolvedor é muito próximo da comunidade e está sempre por perto para ouvir sugestões."

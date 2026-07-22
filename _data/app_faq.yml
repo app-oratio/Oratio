@@ -1,0 +1,49 @@
+- question: "O Oratio é gratuito?"
+  answer:
+    - "Sim. O Oratio pode ser baixado e utilizado gratuitamente, oferecendo acesso às suas orações, devoções, conteúdos litúrgicos, livros, músicas e recursos de formação espiritual."
+
+- question: "Em quais dispositivos o Oratio está disponível?"
+  answer:
+    - "Atualmente, o Oratio está disponível para smartphones e tablets com Android 6.0 ou uma versão superior do sistema operacional. A compatibilidade e o desempenho podem variar conforme as características de cada aparelho."
+
+- question: "O Oratio está disponível para iPhone e iPad?"
+  answer:
+    - "Ainda não. Atualmente, o Oratio está disponível somente para dispositivos Android e pode ser baixado por meio da Google Play. Ainda não existe uma versão oficial para iOS."
+
+- question: "O aplicativo possui a Liturgia diária e a Liturgia das Horas?"
+  answer:
+    - "Sim. O Oratio reúne a Liturgia diária e a Liturgia das Horas em uma organização pensada para facilitar o acompanhamento da oração da Igreja ao longo do dia e de todo o ano litúrgico."
+
+- question: "Quais versões da Bíblia estão disponíveis?"
+  answer:
+    - "Em português, estão disponíveis as traduções Bíblia Ave-Maria e Matos Soares."
+    - "Em latim, o aplicativo oferece a Vulgata Latina, a Vulgata Clementina e a Nova Vulgata."
+    - "Em grego, estão disponíveis a Septuaginta com o Novo Testamento em alfabeto grego e uma edição da Septuaginta com o Novo Testamento transliterados para o alfabeto latino, facilitando a leitura por pessoas que não dominam o alfabeto grego."
+
+- question: "Os livros disponíveis no Oratio são gratuitos?"
+  answer:
+    - "Sim. A biblioteca reúne obras de acesso gratuito, incluindo escritos espirituais, textos de santos e outros conteúdos católicos que podem ajudar na formação e no crescimento da fé."
+
+- question: "Como funcionam os pedidos de oração comunitários?"
+  answer:
+    - "Os pedidos comunitários permitem compartilhar uma intenção para que outras pessoas possam rezar por ela. O objetivo desse recurso é formar uma corrente de oração, preservando o respeito, a sobriedade e a finalidade espiritual de cada pedido."
+
+- question: "Qual é a diferença entre pedidos comunitários e intenções privadas?"
+  answer:
+    - "Os pedidos comunitários podem ser apresentados à comunidade de oração do Oratio, enquanto as intenções privadas permanecem reservadas ao próprio usuário. Dessa forma, é possível reunir nomes, necessidades e agradecimentos pessoais sem torná-los públicos."
+
+- question: "O Oratio acompanha as intenções mensais do Papa?"
+  answer:
+    - "Sim. O aplicativo apresenta as intenções mensais confiadas pelo Papa à Igreja, permitindo que cada usuário una sua oração às necessidades da evangelização e do mundo."
+
+- question: "Posso sugerir novos conteúdos ou comunicar algum problema?"
+  answer:
+    - "Sim. Sugestões, correções e relatos de problemas são importantes para o desenvolvimento do Oratio e podem ser enviados pelos canais oficiais de suporte disponíveis no site e no aplicativo."
+
+- question: "O Oratio substitui a participação na vida da Igreja?"
+  answer:
+    - "Não. O Oratio é um auxílio para a oração pessoal, a formação e o acompanhamento da liturgia, mas não substitui a participação na Santa Missa, nos sacramentos, na vida paroquial e na comunhão concreta com a Igreja."
+
+- question: "Como o Oratio protege meus dados e minhas intenções?"
+  answer:
+    - "O Oratio procura utilizar apenas as informações necessárias para o funcionamento de seus recursos. Os detalhes sobre armazenamento, uso de dados e tratamento de pedidos ou intenções podem ser consultados na Política de Privacidade do aplicativo."
