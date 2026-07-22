@@ -204,9 +204,32 @@
   box-shadow: 0 16px 34px color-mix(in srgb, var(--oratio-primary) 28%, transparent);
 }
 
-.app-store-button span {
+html[data-theme='light'] .app-hero .app-store-button {
+  color: #FFFFFF;
+}
+
+html[data-theme='dark'] .app-hero .app-store-button {
+  color: #000000;
+}
+
+.app-store-button__icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  background-color: currentColor;
+  -webkit-mask: url('../icons/google-play.svg') center / contain no-repeat;
+  mask: url('../icons/google-play.svg') center / contain no-repeat;
+}
+
+.app-store-button__label {
   display: grid;
+  color: inherit;
   text-align: left;
+}
+
+.app-store-button small,
+.app-store-button strong {
+  color: inherit;
 }
 
 .app-store-button small {
@@ -492,6 +515,7 @@
   display: flex;
   justify-content: space-between;
   gap: var(--space-4);
+  margin: 0 0 var(--space-3);
   color: var(--oratio-text-muted);
   font-size: 0.88rem;
 }
@@ -775,9 +799,20 @@
   text-align: center;
 }
 
-.app-final-cta__content > img {
+.app-final-cta__logo {
+  display: grid;
+  width: 88px;
+  height: 88px;
+  place-items: center;
   margin-bottom: var(--space-6);
-  filter: brightness(0) invert(1);
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.app-final-cta__logo img {
+  width: 72px;
+  height: 72px;
 }
 
 .app-final-cta .app-eyebrow {
@@ -798,15 +833,28 @@
 }
 
 .app-store-button--light {
-  border-color: var(--oratio-text-on-primary);
-  background: var(--oratio-text-on-primary);
-  color: var(--oratio-primary);
+  border-color: #FFFFFF;
+  background: #FFFFFF;
+  color: #00315F;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
 }
 
 .app-store-button--light:hover {
-  background: var(--oratio-primary-container);
-  color: var(--oratio-on-primary-container);
+  border-color: #EAF2FF;
+  background: #EAF2FF;
+  color: #00315F;
+}
+
+html[data-theme='dark'] .app-store-button--light {
+  border-color: #183A61;
+  background: #183A61;
+  color: #FFFFFF;
+}
+
+html[data-theme='dark'] .app-store-button--light:hover {
+  border-color: #244E79;
+  background: #244E79;
+  color: #FFFFFF;
 }
 
 /* Barra de download móvel */
