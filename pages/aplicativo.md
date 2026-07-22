@@ -49,10 +49,8 @@ image: /assets/images/social/og-default.webp
 
         <div class="app-hero__actions">
           <a class="button app-store-button" href="{{ download_url }}" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-              <path d="M4.2 3.7c-.13.3-.2.67-.2 1.12v14.36c0 .45.07.82.2 1.12l8.05-8.3L4.2 3.7Zm9.12 9.4-2.06 2.12-6.1 6.28c.5.18 1.08.08 1.72-.28l9.06-5.15-2.62-2.97Zm3.8-4.02-9.07-5.15c-.64-.36-1.22-.46-1.72-.28l8.16 8.4 2.63-2.97Zm1.17.67-2.8 3.25 2.8 3.25c1.14.65 1.71.23 1.71-1.25v-4c0-1.48-.57-1.9-1.71-1.25Z" fill="currentColor"/>
-            </svg>
-            <span>
+            <span class="app-store-button__icon" aria-hidden="true"></span>
+            <span class="app-store-button__label">
               <small>Disponível na</small>
               <strong>Google Play</strong>
             </span>
@@ -128,6 +126,11 @@ image: /assets/images/social/og-default.webp
     </div>
 
     <div class="app-carousel" data-app-carousel-root>
+      <div class="app-carousel__meta" aria-live="polite">
+        <span data-carousel-status>1 de {{ site.data.app_features | size }}</span>
+        <span>Deslize para conhecer mais recursos</span>
+      </div>
+
       <div class="app-carousel__track" data-app-carousel tabindex="0" aria-label="Principais recursos do Oratio">
         {% for feature in site.data.app_features %}
           <article class="app-feature-card" id="recurso-{{ feature.id }}">
@@ -158,10 +161,6 @@ image: /assets/images/social/og-default.webp
         {% endfor %}
       </div>
 
-      <div class="app-carousel__meta" aria-live="polite">
-        <span data-carousel-status>1 de {{ site.data.app_features | size }}</span>
-        <span>Deslize para conhecer mais recursos</span>
-      </div>
     </div>
   </div>
 </section>
@@ -264,15 +263,15 @@ image: /assets/images/social/og-default.webp
 
 <section class="app-final-cta" id="download" aria-labelledby="app-download-title" data-app-final-cta>
   <div class="container app-final-cta__content">
-    <img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="72" height="72" alt="">
+    <span class="app-final-cta__logo" aria-hidden="true">
+      <img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="72" height="72" alt="">
+    </span>
     <p class="app-eyebrow">Leve o Oratio com você</p>
     <h2 id="app-download-title">Que Seu nome nunca se afaste dos seus lábios</h2>
     <p>Seja dentro de uma igreja, em seu quarto ou durante uma viagem, o Oratio permanece disponível para ajudar você a encontrar um momento de oração e voltar o coração para Deus.</p>
     <a class="button app-store-button app-store-button--light" href="{{ download_url }}" target="_blank" rel="noopener noreferrer">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <path d="M4.2 3.7c-.13.3-.2.67-.2 1.12v14.36c0 .45.07.82.2 1.12l8.05-8.3L4.2 3.7Zm9.12 9.4-2.06 2.12-6.1 6.28c.5.18 1.08.08 1.72-.28l9.06-5.15-2.62-2.97Zm3.8-4.02-9.07-5.15c-.64-.36-1.22-.46-1.72-.28l8.16 8.4 2.63-2.97Zm1.17.67-2.8 3.25 2.8 3.25c1.14.65 1.71.23 1.71-1.25v-4c0-1.48-.57-1.9-1.71-1.25Z" fill="currentColor"/>
-      </svg>
-      <span>
+      <span class="app-store-button__icon" aria-hidden="true"></span>
+      <span class="app-store-button__label">
         <small>Disponível na</small>
         <strong>Google Play</strong>
       </span>
