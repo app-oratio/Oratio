@@ -691,6 +691,29 @@
 
 }
 
+
+@media (max-width: 767px) {
+  .home-section-heading {
+    align-items: start;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-section-heading > div,
+  .home-section-heading > p,
+  .home-section-heading > a {
+    grid-column: 1;
+    justify-self: start;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .home-section-heading > p {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 767px) {
   .home-hero__visual {
     max-width: 17.25rem;
