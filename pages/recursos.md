@@ -7,7 +7,7 @@ image: /assets/images/social/og-default.webp
 ---
 
 {% assign app = site.data.app %}
-{% assign download_url = app.play_store_url | default: '/aplicativo/#download', true %}
+{% assign download_url = app.play_store_url | default: '/aplicativo/#download' %}
 {% assign prayer_catalog = site.data.prayer_catalog %}
 {% assign prayer_total = 0 %}
 {% for category in prayer_catalog.categories %}
