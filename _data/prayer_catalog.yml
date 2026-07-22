@@ -1,0 +1,399 @@
+title: Catálogo da aba Oração
+description: Orações, rosários, terços, novenas, ladainhas, meditações e exercícios espirituais disponíveis no aplicativo
+  Oratio.
+categories:
+- id: rosarios
+  title: Rosários e mistérios
+  description: Mistérios do Rosário em português e latim, versões completas, contemplações com cláusulas e formas extensas
+    de oração mariana.
+  items:
+  - Mistérios Gozosos
+  - Mistérios Luminosos
+  - Mistérios Dolorosos
+  - Mistérios Gloriosos
+  - Rosário Completo
+  - Rosário das Mil Ave-Marias
+  - Mysteria Gaudiosa
+  - Mysteria Luminosa
+  - Mysteria Dolorosa
+  - Mysteria Gloriosa
+  - Rosarium
+  - Mistérios Gozosos com Cláusulas
+  - Mistérios Luminosos com Cláusulas
+  - Mistérios Dolorosos com Cláusulas
+  - Mistérios Gloriosos com Cláusulas
+  - Rosário das Cláusulas
+- id: tercos
+  title: Terços, coroas e coroinhas
+  description: Terços, coroas e coroinhas dedicados à misericórdia, à Paixão de Cristo, a Nossa Senhora, aos santos e às almas
+    do Purgatório.
+  items:
+  - Terço da Misericórdia
+  - Terço de São Miguel Arcanjo
+  - Terço do Preciosíssimo Sangue de Jesus
+  - Terço pelas Almas do Purgatório
+  - Terço da Imaculada Conceição
+  - Terço de São José
+  - Terço da Sagrada Família de Nazaré
+  - Terço da Sagrada Face
+  - Rosário de Deus Pai
+  - Coroinha de Nossa Senhora
+  - Coroinha de Nossa Senhora em Latim
+  - Coroa das Sete Dores de Nossa Senhora
+  - Coroa de Nossa Senhora das Lágrimas
+  - Coroinha de Santa Filomena
+  - Coroa pelas Almas do Purgatório
+  - Coroa do Divino Espírito Santo
+  - 40 Pai-Nossos
+- id: cotidiano
+  title: Orações para o cotidiano
+  description: Roteiros breves para começar e terminar o dia, estudar, fazer as refeições e oferecer as atividades diárias
+    a Deus.
+  items:
+  - Orações ao acordar
+  - Orações para antes de dormir
+  - Ângelus
+  - Ângelus em Latim
+  - Regina Caeli (Português e Latim)
+  - Oração para antes de estudar — Santo Tomás de Aquino
+  - Orações para antes e depois das refeições
+  - Oferecimento do dia
+- id: fundamentais
+  title: Orações fundamentais da fé
+  description: Orações essenciais da tradição católica, credos, invocações, cânticos solenes e fórmulas tradicionais para
+    diferentes momentos.
+  items:
+  - Sinal da Cruz
+  - Pai Nosso
+  - Ave Maria
+  - Glória ao Pai
+  - Credo Apostólico
+  - Credo Niceno-Constantinopolitano
+  - Salve Rainha
+  - Vinde Espírito Santo
+  - Vinde, Espírito Criador (Veni Creator Spiritus)
+  - Ato de Contrição
+  - Confesso a Deus
+  - Lembrai-Vos
+  - À Vossa Proteção
+  - Consagração a Nossa Senhora
+  - Santo Anjo
+  - Oração a São Miguel Arcanjo
+  - Couraça de São Patrício (Português e Latim)
+  - Oração Universal — Papa Clemente XI
+  - Cântico de Zacarias (Benedictus)
+  - Santo anjo, amparo de minh’alma
+  - Santo, Santo, Santo
+  - Credo de Santo Atanásio
+  - Te Deum
+  - Tomai, Senhor, e recebei — Santo Inácio de Loyola
+- id: oficios
+  title: Ofícios, Via-Sacra e Horas Santas
+  description: Exercícios mais prolongados de oração, contemplação da Paixão, ofícios devocionais e momentos de adoração.
+  items:
+  - Via Sacra
+  - Ofício de Nossa Senhora
+  - Ofício Glorioso de São José
+  - Ofício das Benditas Almas do Purgatório
+  - Ofício das Trevas
+  - Ofício da Paixão de Nosso Senhor
+  - Relógio da Paixão
+  - Hora Santa
+  - Hora Santa de Santa Gemma Galgani
+- id: novenas
+  title: Novenas
+  description: Novenas do calendário litúrgico, de Nossa Senhora, dos santos, dos anjos e de diferentes devoções da Igreja.
+  items:
+  - Novena de Pentecostes
+  - Novena à Nossa Senhora da Anunciação
+  - Novena à Nossa Senhora da Apresentação
+  - Novena da Purificação de Nossa Senhora
+  - Novena de Nossa Senhora da Assunção
+  - Novena aos Beatos Inácio de Azevedo e Companheiros
+  - Novena pelas Almas do Purgatório
+  - Novena a São Paulo Apóstolo
+  - Novena da Divina Misericórdia
+  - Novena da Epifania do Senhor
+  - Novena da Exaltação da Santa Cruz
+  - Novena à Nossa Senhora da Conceição
+  - Novena ao Imaculado Coração de Maria
+  - Novena a São João Batista
+  - Novena de Natal com Meditações de S. Leão Magno
+  - Novena da Natividade de Nossa Senhora
+  - Novena à Nossa Senhora Aparecida
+  - Novena à Nossa Senhora das Dores
+  - Novena à Nossa Senhora de Fátima
+  - Novena à Nossa Senhora de Guadalupe
+  - Novena à Nossa Senhora de Lourdes
+  - Novena à Nossa Senhora do Carmo
+  - Novena à Nossa Senhora do Rosário
+  - Novena a Cristo Rei
+  - Novena a Sagrada Família
+  - Novena ao Sagrado Coração de Jesus
+  - Novena à Santa Águeda
+  - Novena à Santa Catarina de Alexandria
+  - Novena à Santa Catarina de Sena
+  - Novena à Santa Cecília
+  - Novena à Santa Clara de Assis
+  - Novena à Santa Edwiges
+  - Novena à Santa Faustina Kowalska
+  - Novena à Santa Francisca Romana
+  - Novena à Santa Gertrudes
+  - Novena à Santa Inês
+  - Novena à Santa Isabel da Hungria
+  - Novena à Santa Isabel de Portugal
+  - Novena à Santa Luzia
+  - Novena à Santa Margarida Maria Alacoque
+  - Novena à Santa Maria Goretti
+  - Novena à Santa Maria, Mãe de Deus
+  - Novena à Santa Mônica
+  - Novena à Santa Paulina do Coração Agonizante de Jesus
+  - Novena à Santa Rita de Cássia
+  - Novena à Santa Rosa de Lima
+  - Novena à Santa Teresa Benedita da Cruz (Edith Stein)
+  - Novena à Santa Teresa D'Ávila
+  - Novena das Rosas de Santa Teresinha
+  - Novena a Santíssima Trindade
+  - Novena ao Santíssimo Sacramento
+  - Novena ao Santíssimo Nome de Jesus
+  - Novena a Santo Afonso Maria de Ligório
+  - Novena a Santo Agostinho
+  - Novena a Santo Antônio
+  - Novena a São Pedro Apóstolo
+  - Novena a São José de Anchieta
+  - Novena a São Luiz Gonzaga
+  - Novena a Nossa Senhora do Perpétuo Socorro
+  - Novena a São Bento
+  - Novena a São Camilo de Lellis
+  - Novena a São Charbel Makhlouf
+  - Novena a São Luís e Santa Zélia Martin
+  - Novena a São Joaquim e Santa Ana
+  - Novena a Santo Inácio de Loyola
+  - Novena a São Pedro Julião Eymard
+  - Novena a São João Maria Vianney
+  - Novena a São Caetano
+  - Novena a São Domingos de Gusmão
+  - Novena a São Lourenço
+  - Novena a São Maximiliano Maria Kolbe
+  - Novena a São Pio X
+  - Novena a São Bartolomeu
+  - Novena a São Roque
+  - Novena Vocacional à Rainha dos Apóstolos
+  - Novena a São Pio de Pietrelcina
+  - Novena a São Vicente de Paulo
+  - Novena aos Santos Arcanjos
+  - Novena ao Anjo da Guarda
+  - Novena a São Francisco de Assis
+  - Novena a Nossa Senhora do Brasil
+  - Novena a São José de Cupertino
+  - Novena a Santo Inácio de Antioquia
+  - Novena a São Lucas
+  - Novena a São Paulo da Cruz
+  - Novena a São João Paulo II
+  - Novena a Santo Antônio Maria Claret
+  - Novena a São Frei Galvão
+  - Novena a São Judas Tadeu
+  - Novena a Todos os Santos
+  - Novena a São Carlo Acutis
+  - Novena Consoladora a São Rafael Arcanjo
+  - Novena a São Pedro de Alcântara
+  - Novena de Natal de Santo André
+  - Novena da Graça de São Francisco Xavier
+  - Novena à Nossa Senhora das Graças
+  - Novena a São João da Cruz
+  - Novena a São João de Deus
+  - Novena a São Patrício
+  - Novena a São José
+  - Novena a São Vicente de Ferrer
+  - Novena a São João Batista de La Salle
+  - Novena a Sagrada Face
+  - Novena a São Valentim
+  - Novena aos Pastorinho Jacinta e Francisco
+  - Novena a Nossa Senhora do Desterro
+  - Novena ao Verbo Encarnado
+  - Novena a São José em honra das Sete Alegrias e Dores
+  - Novena à Nossa Senhora das Candeias
+  - Novena à Santa Escolástica
+  - Nove Meses com Maria (Novena da Santa Gravidez de Nossa Senhora)
+  - Novena a Santa Gemma Galgani
+  - Novena a Santa Bernadette Soubirous
+  - Novena a São Jorge da Capadócia
+  - Novena à Santa Gianna Beretta Molla
+  - Novena a Santo Expedito
+  - Novena a São Peregrino
+  - Novena a São Rafael Arnáiz Barón
+  - Novena a São José Operário
+  - Novena de Súplica à Nossa Senhora de Pompéia
+  - Novena de Agradecimento à Nossa Senhora de Pompéia
+  - Novena a São Filipe Neri
+  - Novena a São Pancrácio
+- id: longas
+  title: Devoções prolongadas e itinerários
+  description: Trezenas, trintenas, quaresmas devocionais, meses temáticos e o itinerário anual de Bíblia e Catecismo.
+  items:
+  - Trezena a Santo Antônio
+  - Trintena a São José
+  - Quaresma de São Miguel Arcanjo
+  - Quaresma de Santa Filomena
+  - Mês com o Sagrado Coração de Jesus
+  - Mês de São José
+  - Mês de Nossa Senhora
+  - Bíblia e Catecismo em 1 ano - Mês 1
+  - Bíblia e Catecismo em 1 ano - Mês 2
+  - Bíblia e Catecismo em 1 ano - Mês 3
+  - Bíblia e Catecismo em 1 ano - Mês 4
+  - Bíblia e Catecismo em 1 ano - Mês 5
+  - Bíblia e Catecismo em 1 ano - Mês 6
+  - Bíblia e Catecismo em 1 ano - Mês 7
+  - Devoção das 9 primeiras sextas-feiras ao Sagrado Coração
+  - 15 Sábados à Nossa Senhora do Rosário
+  - Bíblia e Catecismo em 1 ano - Mês 8
+  - Bíblia e Catecismo em 1 ano - Mês 9
+  - Bíblia e Catecismo em 1 ano - Mês 10
+  - Bíblia e Catecismo em 1 ano - Mês 11
+  - Bíblia e Catecismo em 1 ano - Mês 12
+- id: ladainhas
+  title: Ladainhas
+  description: Ladainhas dirigidas a Deus, a Cristo, ao Espírito Santo, a Nossa Senhora, aos santos e pelas almas.
+  items:
+  - Ladainha à Jesus Misericordioso por uma Boa Morte
+  - Ladainha a Nossa Senhora, Mãe da Divina Misericórdia
+  - Ladainha da Divina Misericórdia
+  - Ladainha das Chagas de Cristo
+  - Ladainha da Sagrada Cabeça de Jesus
+  - Ladainha ao Menino Jesus de Praga
+  - Ladainha a São Miguel Arcanjo
+  - Ladainha da Humildade
+  - Ladainha a São Luís Maria Grignion de Montfort
+  - Ladainha do Preciosíssimo Sangue de Jesus
+  - Ladainha de Deus Pai
+  - Ladainha do Espírito Santo
+  - Ladainha de Nossa Senhora
+  - Ladainha ao Santíssimo Nome de Jesus
+  - Ladainha do Sagrado Coração de Jesus
+  - Ladainha de Santa Filomena
+  - Ladainha pelas Almas do Purgatório
+  - Ladainha de São Filipe Neri
+  - Ladainha de São José
+- id: sacramentos
+  title: Confissão, Missa e Comunhão
+  description: Exames, guias e orações para preparar e prolongar a vivência dos sacramentos, da Santa Missa e da Comunhão.
+  items:
+  - Exame de Consciência Detalhado a partir dos Mandamentos de Deus e da Igreja
+  - Guia para Confissão
+  - Orações para depois da Confissão
+  - Orações para a Santa Missa
+  - Alma de Cristo (Anima Christi)
+  - Comunhão Espiritual
+  - O Salutaris Hostia
+  - Pange Lingua
+  - Ó Hóstia Santa
+  - Oração para antes de comungar
+- id: meditacoes
+  title: Meditações e tempos litúrgicos
+  description: Meditações para acompanhar Advento, Natal, Quaresma, Páscoa e Tempo Comum, além de exercícios de reparação.
+  items:
+  - Exercício de Desagravo pelo Carnaval
+  - Meditações de Santo Afonso para o Advento
+  - Meditações de Santo Afonso para a Quaresma
+  - Meditações de Santo Afonso para a Páscoa
+  - Meditações de Santo Afonso para o Tempo Comum II
+  - Meditações de Santo Afonso para o Tempo Comum III
+  - Meditações de Santo Afonso para o Tempo do Natal
+  - Meditações de Santo Afonso para o Tempo Comum I
+- id: igreja
+  title: Igreja, Papa e sacerdotes
+  description: Orações pelo Papa, pela Igreja, por sua unidade, pela paz e pela santificação dos sacerdotes.
+  items:
+  - Orações pela Alma do Papa Francisco
+  - Oração para o Período de Sede Vacante
+  - Oração pelo Papa Leão XIV (Português e Latim)
+  - Oração pela Paz da Igreja
+  - Orações pela Unidade da Igreja
+  - Oração pelos Sacerdotes — Santa Teresinha
+- id: purgatorio
+  title: Almas do Purgatório e fiéis defuntos
+  description: Súplicas, sufrágios e orações tradicionais pelos falecidos, pelas almas abandonadas e pelos agonizantes.
+  items:
+  - Oração para libertar mil almas do Purgatório (Oração de Santa Gertrudes)
+  - Súplica à Santissima Virgem pelas Almas Do Purgatório
+  - Oração a Nossa Senhora de Montligeon pelas almas abandonadas do purgatório
+  - Oração a Jesus Crucificado em sufrágio das almas do purgatório
+  - Oração a Santa Cruz pelas Almas
+  - Oração pelas Almas do Purgatório
+  - Oração de São Nicolau de Tolentino pelas Almas do Purgatório
+  - Salve Rainha pelos Mortos
+  - Ave Maria meditada pelas Almas
+  - Pai Nosso pelas Almas do Purgatório
+  - Oração para libertar uma alma do purgatório
+  - Oração a São José pelas Almas do Purgatório
+  - Dai-lhes, Senhor, o descanso eterno (Requiem)
+  - Oração pelos fiéis defuntos
+- id: espirito
+  title: Espírito Santo
+  description: Invocações ao Espírito Santo, pedidos de seus dons e orações de santos, papas e autores espirituais.
+  items:
+  - Oração ao Espírito Santo
+  - Vem, Espírito Santo — Papa Pio XII
+  - Espírito Santo, Deus de Amor — Santo Tomás de Aquino
+  - Oração para pedir os 7 dons do Espírito Santo
+  - Espírito Santo, inspirai-me – Santa Miriam de Jesus Crucificado
+  - Oferta Diária ao Espírito Santo — Beata Elena Guerra
+  - Invocação ao Espírito Santo — Pe. Stefano Gobbi
+- id: cristo
+  title: Jesus Cristo, Eucaristia e Trindade
+  description: Orações a Jesus, à Santíssima Trindade, à Cruz, à Eucaristia e aos mistérios centrais da fé cristã.
+  items:
+  - Oração a Jesus — São Luís de Montfort
+  - A Deus Uno e Trino
+  - Adoro-te Devoto
+  - Oração a Jesus Crucificado
+  - Cordeiro de Deus (Agnus Dei)
+  - Glória a Deus nas Alturas (Gloria in excelsis Deo)
+  - Livrai-me, Senhor Jesus
+  - Ó Boa Cruz
+  - Olhai, Senhor, do vosso santuário
+- id: marianas
+  title: Nossa Senhora
+  description: Orações, cânticos, invocações e devoções marianas reunidas além dos rosários, coroas e novenas.
+  items:
+  - Alma Redemptoris Mater
+  - Ave, Rainha dos Céus
+  - Cântico de Nossa Senhora (Magnificat)
+  - Oração da Medalha Milagrosa
+  - Orações de Fátima
+  - Orações do Anjo de Portugal
+  - Santa Maria, socorrei
+  - Oração à Imaculada Conceição pelo app Oratio
+- id: sao-jose-santos
+  title: São José e santos
+  description: Orações de intercessão, proteção e confiança dirigidas a São José e a outros santos da Igreja.
+  items:
+  - Oração a São José pela Igreja — Papa Leão XIII
+  - Oração a São José para antes do Trabalho
+  - Ave José
+  - Oração da Medalha de São Bento
+  - São José, pai e protetor das virgens
+- id: atos-pedidos
+  title: Atos, virtudes e necessidades
+  description: Atos de fé e confiança, pedidos de virtudes, orações em necessidades concretas e súplicas pela perseverança
+    cristã.
+  items:
+  - Ato de Abandono
+  - Ato de Caridade
+  - Ato de Confiança
+  - Ato de Esperança
+  - Ato de Fé
+  - Oração contra maus pensamentos
+  - Inspirai, ó Senhor
+  - Oração para pedir a caridade — Santo Afonso de Ligório
+  - Orações para pedir a paciência
+  - Oração para pedir a pureza
+  - Orações pela graça da boa morte
+  - Oração para alcançar a salvação — Santo Agostinho
+  - Oração pelo dom das lágrimas
+  - Oração pelo perdão dos pecados
+  - Oração pelos agonizantes
+  - Orações pelos doentes
+  - Oração pelos pais
+  - Oração pelos pecadores
