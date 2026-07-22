@@ -1,7 +1,8 @@
 ---
 layout: home
 title: "Oratio | App Católico"
-description: "Um aplicativo católico gratuito para oração, liturgia, novenas, santos e formação espiritual."
+description: "O Oratio é um aplicativo católico gratuito para Android, com Liturgia, Rosário, novenas, devocionários, santos, músicas e formação espiritual."
+image: "/assets/images/social/og-default.webp"
 permalink: /
 ---
 
@@ -13,31 +14,65 @@ permalink: /
   {% assign app_download_external = false %}
 {% endif %}
 
-<section class="hero">
-  <div class="container container--large hero__grid">
-    <div class="hero__content">
-      <div class="hero__brand">
+{% assign published_prayers = site.oracoes | where_exp: 'item', 'item.demo != true' | sort: 'order' %}
+{% assign home_prayer = published_prayers | first %}
+
+{% assign published_novenas = site.novenas | where_exp: 'item', 'item.demo != true' | sort: 'title' %}
+{% assign home_novena = published_novenas | first %}
+
+{% assign published_formations = site.formacoes | where_exp: 'item', 'item.demo != true' | sort: 'date' | reverse %}
+{% assign home_formation = published_formations | first %}
+
+{% assign recent_posts = site.posts | where_exp: 'item', 'item.demo != true' %}
+{% assign featured_prayers = published_prayers | where: 'featured', true %}
+{% if featured_prayers == empty %}
+  {% assign featured_prayers = published_prayers %}
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": {{ site.data.app.name | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": {{ site.data.app.platform | jsonify }},
+  "softwareVersion": {{ site.data.app.current_version | jsonify }},
+  "url": {{ '/' | absolute_url | jsonify }},
+  "downloadUrl": {{ app_download_url | jsonify }},
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  }
+}
+</script>
+
+<section class="home-hero" aria-labelledby="home-hero-title">
+  <div class="container container--large home-hero__grid">
+    <div class="home-hero__copy">
+      <p class="home-hero__kicker">
         <img
           src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}"
-          width="56"
-          height="56"
+          width="30"
+          height="30"
           alt="">
-        <span>App católico para Android</span>
-      </div>
+        <span>Aplicativo católico gratuito</span>
+      </p>
 
-      <h1 class="hero__title">
+      <h1 class="home-hero__title" id="home-hero-title">
         Reserve um tempo <span>para Deus.</span>
       </h1>
 
-      <p class="hero__tagline">
+      <p class="home-hero__lead">
+        Liturgia, oração e formação espiritual reunidas em uma experiência serena, organizada e criada para acompanhar a vida católica sem distrações desnecessárias.
+      </p>
+
+      <blockquote class="home-hero__quote">
         “{{ site.data.app.tagline }}”
-      </p>
+      </blockquote>
 
-      <p class="page-lead">
-        O Oratio reúne oração, liturgia e formação espiritual em uma experiência serena, acessível e organizada, criada para acompanhar a vida católica sem distrações.
-      </p>
-
-      <div class="hero__actions">
+      <div class="home-hero__actions">
         <a
           class="button button--primary"
           href="{{ app_download_url }}"
@@ -51,43 +86,22 @@ permalink: /
 
         <a
           class="button button--tonal"
-          href="{{ '/sobre/' | relative_url }}">
-          Conhecer o Oratio
+          href="#conteudos">
+          Explorar conteúdos
         </a>
       </div>
 
-      <p class="hero__notes">
-        <span>✓ Gratuito</span>
-        <span>✓ Disponível para Android</span>
-        <span>✓ Projeto independente</span>
-      </p>
-
-      <a
-        class="play-store-slot image-shell"
-        href="{{ app_download_url }}"
-        {% if app_download_external %}
-          target="_blank"
-          rel="noopener noreferrer"
-        {% endif %}
-        aria-label="Acessar página de download do Oratio"
-        data-image-shell>
-
-        <img
-          src="{{ '/assets/images/app/google-play-badge.webp' | relative_url }}"
-          width="564"
-          height="168"
-          alt="Disponível no Google Play"
-          data-fallback-image>
-
-        <span class="image-placeholder" hidden>
-          <span>▶</span>
-          <small>Adicionar selo Google Play</small>
-        </span>
-      </a>
+      <ul class="home-hero__facts" aria-label="Informações sobre o aplicativo">
+        <li>{% include icon.html name='check' %}<span>Gratuito</span></li>
+        <li>{% include icon.html name='check' %}<span>{{ site.data.app.minimum_android }}</span></li>
+        <li>{% include icon.html name='check' %}<span>Projeto independente</span></li>
+      </ul>
     </div>
 
-    <div class="hero__visual" aria-label="Prévia do aplicativo Oratio">
-      <div class="hero__phone image-shell" data-image-shell>
+    <div class="home-hero__visual">
+      <div class="home-hero__halo" aria-hidden="true"></div>
+
+      <div class="home-hero__phone image-shell" data-image-shell>
         <img
           src="{{ '/assets/images/app/hero-app-screen.webp' | relative_url }}"
           width="720"
@@ -99,177 +113,309 @@ permalink: /
 
         <span class="image-placeholder" hidden>
           <span>✢</span>
-          <small>Substitua pelo print do app</small>
+          <small>Tela inicial do Oratio</small>
         </span>
+      </div>
+
+      <div class="home-hero__seal">
+        <strong>100%</strong>
+        <span>gratuito</span>
       </div>
     </div>
   </div>
 </section>
 
+
+<section class="section home-editorial" aria-labelledby="home-editorial-title">
+  <div class="container container--large">
+    <div class="section-heading home-section-heading">
+      <div>
+        <p class="eyebrow">Destaque editorial</p>
+        <h2 id="home-editorial-title">Para este momento</h2>
+      </div>
+
+      <p>
+        Uma seleção de orações, devoções e formações escolhidas para acompanhar este tempo da vida espiritual.
+      </p>
+    </div>
+
+    {% if site.data.featured_content %}
+      <div class="home-editorial__grid">
+        {% for item in site.data.featured_content limit: 3 %}
+          {% include content-card.html item=item featured=true %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <span class="empty-state__symbol" aria-hidden="true">✢</span>
+        <h3>Novos destaques serão publicados em breve</h3>
+        <p>Enquanto isso, explore as coleções espirituais disponíveis no portal.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
 <section
-  class="section section--surface section--bordered"
-  aria-labelledby="mission-title">
+  class="section section--surface section--bordered home-recent"
+  id="conteudos"
+  aria-labelledby="home-recent-title">
 
-  <div class="container container--large mission-grid">
-    <div class="mission-copy">
+  <div class="container container--large">
+    <div class="home-recent__intro">
+      <div>
+        <p class="eyebrow">Conteúdos recentes</p>
+        <h2 id="home-recent-title">Novidades da biblioteca</h2>
+        <p>
+          Acompanhe as publicações mais recentes do blog, encontre orações em destaque e continue sua formação espiritual.
+        </p>
+      </div>
+
+      <button class="button button--tonal" type="button" data-search-open>
+        {% include icon.html name='search' %}
+        <span>Buscar conteúdo</span>
+      </button>
+    </div>
+
+    <div class="home-recent__groups">
+      <section class="home-recent__group" aria-labelledby="home-blog-title">
+        <header class="home-recent__group-header">
+          <h3 id="home-blog-title">Do blog</h3>
+          <a href="{{ '/blog/' | relative_url }}">Ver todos <span aria-hidden="true">→</span></a>
+        </header>
+
+        {% if recent_posts != empty %}
+          <div class="home-recent__grid">
+            {% for post in recent_posts limit: 3 %}
+              {% include post-card.html item=post %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="home-recent__empty">
+            <p>Os primeiros artigos do blog serão publicados em breve.</p>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="home-recent__group" aria-labelledby="home-prayers-title">
+        <header class="home-recent__group-header">
+          <h3 id="home-prayers-title">Orações</h3>
+          <a href="{{ '/oracoes/' | relative_url }}">Ver todas <span aria-hidden="true">→</span></a>
+        </header>
+
+        {% if featured_prayers != empty %}
+          <div class="home-recent__grid">
+            {% for prayer in featured_prayers limit: 3 %}
+              {% include prayer-card.html item=prayer %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="home-recent__empty">
+            <p>Novas orações serão adicionadas à biblioteca em breve.</p>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="home-recent__group" aria-labelledby="home-formations-title">
+        <header class="home-recent__group-header">
+          <h3 id="home-formations-title">Formações</h3>
+          <a href="{{ '/formacoes/' | relative_url }}">Ver todas <span aria-hidden="true">→</span></a>
+        </header>
+
+        {% if published_formations != empty %}
+          <div class="home-recent__grid">
+            {% for formation in published_formations limit: 3 %}
+              {% include content-card.html item=formation type='Formação' %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="home-recent__empty">
+            <p>Os primeiros conteúdos de formação serão publicados em breve.</p>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</section>
+
+<nav class="home-paths" aria-label="Acessos rápidos aos conteúdos">
+  <div class="container container--large">
+    <ul class="home-paths__grid">
+      <li>
+        <a href="{{ '/oracoes/' | relative_url }}">
+          <span>Orações</span>
+          <small>Reze com calma</small>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/novenas/' | relative_url }}">
+          <span>Novenas</span>
+          <small>Acompanhe cada dia</small>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/devocionarios/' | relative_url }}">
+          <span>Devocionários</span>
+          <small>Exercícios espirituais</small>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/santos/' | relative_url }}">
+          <span>Santos</span>
+          <small>Vidas e testemunhos</small>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/formacoes/' | relative_url }}">
+          <span>Formações</span>
+          <small>Aprenda e aprofunde</small>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/blog/' | relative_url }}">
+          <span>Blog</span>
+          <small>Conteúdos recentes</small>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="section home-mission" aria-labelledby="home-mission-title">
+  <div class="container container--large home-mission__grid">
+    <div class="home-mission__copy">
       <p class="eyebrow">Nossa missão</p>
-
-      <h2 id="mission-title">
-        Tecnologia a serviço da vida de oração
-      </h2>
+      <h2 id="home-mission-title">Tecnologia a serviço da vida de oração</h2>
 
       <p>
         O Oratio não foi pensado para aumentar o tempo diante da tela, mas para ajudar cada pessoa a interromper a pressa cotidiana, encontrar um roteiro confiável e reservar um tempo sincero para Deus.
       </p>
 
-      <p class="mission-note">
-        A simplicidade não é ausência de conteúdo, mas espaço para que o essencial permaneça em primeiro lugar.
-      </p>
-    </div>
-
-    <ul class="principle-list">
-      <li>
-        <strong>Oração sem distrações</strong>
-        <span>Uma interface sóbria, organizada e fácil de usar.</span>
-      </li>
-
-      <li>
-        <strong>Acesso gratuito</strong>
-        <span>Conteúdos espirituais disponíveis sem monetização invasiva.</span>
-      </li>
-
-      <li>
-        <strong>Formação e tradição</strong>
-        <span>Espaço para liturgia, devoções e aprendizado contínuo.</span>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="features-title">
-  <div class="container container--large">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Recursos principais</p>
-        <h2 id="features-title">Uma biblioteca para rezar e aprender</h2>
-      </div>
-
-      <a href="{{ '/recursos/' | relative_url }}">
-        Ver todos os recursos
-      </a>
-    </div>
-
-    <div class="feature-grid">
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">L</span>
-        <h3>Liturgia diária</h3>
-        <p>Acompanhe os textos litúrgicos do dia em uma leitura organizada.</p>
-        <a href="{{ '/recursos/#liturgia' | relative_url }}">Conhecer</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">H</span>
-        <h3>Liturgia das Horas</h3>
-        <p>Reze as horas canônicas e organize sua rotina de oração.</p>
-        <a href="{{ '/recursos/#liturgia-das-horas' | relative_url }}">Conhecer</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">R</span>
-        <h3>Santo Rosário</h3>
-        <p>Medite os mistérios com um roteiro claro e contemplativo.</p>
-        <a href="{{ '/recursos/#rosario' | relative_url }}">Conhecer</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">N</span>
-        <h3>Novenas</h3>
-        <p>Acompanhe cada dia e mantenha seu progresso no próprio dispositivo.</p>
-        <a href="{{ '/novenas/' | relative_url }}">Abrir novenas</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">D</span>
-        <h3>Devocionários</h3>
-        <p>Encontre exercícios espirituais e roteiros de devoção.</p>
-        <a href="{{ '/devocionarios/' | relative_url }}">Abrir devocionários</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">S</span>
-        <h3>História dos Santos</h3>
-        <p>Conheça testemunhos, virtudes e memórias da vida cristã.</p>
-        <a href="{{ '/santos/' | relative_url }}">Conhecer santos</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">B</span>
-        <h3>Biblioteca espiritual</h3>
-        <p>Reúna orações, formações e textos para consulta contínua.</p>
-        <a href="{{ '/formacoes/' | relative_url }}">Explorar biblioteca</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">M</span>
-        <h3>Músicas</h3>
-        <p>Utilize seleções musicais que favorecem o recolhimento.</p>
-        <a href="{{ '/recursos/#musicas' | relative_url }}">Conhecer</a>
-      </article>
-
-      <article class="feature-card">
-        <span class="feature-card__icon" aria-hidden="true">A</span>
-        <h3>Lembretes de oração</h3>
-        <p>Crie pontos de pausa ao longo do dia com lembretes discretos.</p>
-        <a href="{{ '/recursos/#lembretes' | relative_url }}">Conhecer</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section
-  class="section section--surface"
-  aria-labelledby="featured-title">
-
-  <div class="container container--large">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Destaque editorial</p>
-        <h2 id="featured-title">Para este momento</h2>
-      </div>
+      <blockquote class="home-mission__quote">
+        <p>“Uma só coisa é necessária. Maria escolheu a melhor parte, que não lhe será tirada.”</p>
+        <cite>Lc 10,42</cite>
+      </blockquote>
 
       <p>
-        Os itens abaixo são demonstrativos e podem ser trocados em
-        <code>_data/featured_content.yml</code>.
+        Por isso, compreendemos a tecnologia não como um fim, mas como um instrumento simples e discreto, capaz de aproximar a oração da vida cotidiana sem substituir o silêncio, a presença e o encontro pessoal com Deus.
+      </p>
+
+      <p>
+        Nosso lema, “Que Seu nome nunca se afaste dos seus lábios”, resume essa missão: seja dentro de uma igreja, no recolhimento de um quarto, durante uma viagem ou em meio às ocupações de cada dia, o Oratio deseja estar sempre disponível para oferecer as palavras, os conteúdos e os caminhos necessários para que o Nome do Senhor permaneça vivo nos lábios, na mente e no coração de cada pessoa.
       </p>
     </div>
 
-    <div class="card-grid card-grid--3">
-      {% for item in site.data.featured_content %}
-        {% include content-card.html item=item featured=true %}
-      {% endfor %}
-    </div>
+    <ol class="home-principles">
+      <li>
+        <span>01</span>
+        <div>
+          <strong>Oração sem distrações</strong>
+          <p>Uma interface sóbria, organizada e fácil de utilizar durante os momentos de recolhimento.</p>
+        </div>
+      </li>
+      <li>
+        <span>02</span>
+        <div>
+          <strong>Acesso gratuito</strong>
+          <p>Recursos espirituais disponíveis sem transformar a oração em um produto inacessível.</p>
+        </div>
+      </li>
+      <li>
+        <span>03</span>
+        <div>
+          <strong>Tradição e formação</strong>
+          <p>Liturgia, devoções e conteúdos católicos apresentados com clareza e cuidado editorial.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
-<section class="section" aria-labelledby="screenshots-title">
+<section class="section section--surface section--bordered" aria-labelledby="home-features-title">
   <div class="container container--large">
-    <div class="section-heading">
+    <div class="section-heading home-section-heading">
       <div>
         <p class="eyebrow">Dentro do aplicativo</p>
-        <h2 id="screenshots-title">Uma experiência familiar e tranquila</h2>
+        <h2 id="home-features-title">Um auxílio completo para sua vida espiritual</h2>
+      </div>
+
+      <a href="{{ '/recursos/' | relative_url }}">Conhecer todos os recursos</a>
+    </div>
+
+    <div class="home-feature-grid">
+      <article class="home-feature">
+        <span class="home-feature__number" aria-hidden="true">01</span>
+        <h3>Liturgia diária</h3>
+        <p>Acompanhe as leituras, o salmo, o Evangelho e os demais textos litúrgicos em uma apresentação confortável.</p>
+        <a href="{{ '/recursos/#liturgia' | relative_url }}">Conhecer a Liturgia <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="home-feature">
+        <span class="home-feature__number" aria-hidden="true">02</span>
+        <h3>Liturgia das Horas</h3>
+        <p>Reze as horas canônicas e integre a oração oficial da Igreja à sua rotina ao longo do dia.</p>
+        <a href="{{ '/recursos/#liturgia-das-horas' | relative_url }}">Conhecer as Horas <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="home-feature">
+        <span class="home-feature__number" aria-hidden="true">03</span>
+        <h3>Santo Rosário</h3>
+        <p>Medite os mistérios com um roteiro simples, contemplativo e adequado ao ritmo da oração pessoal.</p>
+        <a href="{{ '/recursos/#rosario' | relative_url }}">Conhecer o Rosário <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="home-feature">
+        <span class="home-feature__number" aria-hidden="true">04</span>
+        <h3>Novenas e devocionários</h3>
+        <p>Acompanhe cada etapa de suas devoções e encontre exercícios espirituais para diferentes momentos do ano.</p>
+        <a href="{{ '/novenas/' | relative_url }}">Explorar devoções <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="home-feature">
+        <span class="home-feature__number" aria-hidden="true">05</span>
+        <h3>Santos e formação</h3>
+        <p>Conheça testemunhos de santidade e aprofunde a fé por meio de conteúdos organizados para leitura contínua.</p>
+        <a href="{{ '/santos/' | relative_url }}">Conhecer os santos <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="home-feature">
+
+
+        <span class="home-feature__number" aria-hidden="true">06</span>
+
+
+        <h3>Pedidos de oração comunitários</h3>
+
+
+        <p>Compartilhe uma intenção de forma simples e una-se, em espírito de caridade, às preces apresentadas pela comunidade do Oratio.</p>
+
+
+        <a href="{{ '/recursos/' | relative_url }}">Conhecer os pedidos <span aria-hidden="true">→</span></a>
+
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section home-preview" aria-labelledby="home-preview-title">
+  <div class="container container--large">
+    <div class="section-heading home-section-heading">
+      <div>
+        <p class="eyebrow">Uma experiência serena</p>
+        <h2 id="home-preview-title">Feito para acompanhar a oração, não para interrompê-la</h2>
       </div>
 
       <p>
-        Substitua estas imagens pelos prints reais mantendo os nomes documentados.
+        Telas organizadas, leitura confortável e uma navegação familiar para que o conteúdo permaneça sempre em primeiro lugar.
       </p>
     </div>
 
-    <div class="screenshots" aria-label="Capturas de tela do Oratio">
+    <div class="home-screenshots" aria-label="Capturas de tela do aplicativo Oratio">
       {% assign screenshot_names = 'home,prayer,liturgy,library,music' | split: ',' %}
-      {% assign screenshot_labels = 'Início,Oração,Liturgia,Biblioteca,Músicas' | split: ',' %}
+      {% assign screenshot_labels = 'Início,Orações,Liturgia,Biblioteca,Músicas' | split: ',' %}
 
       {% for screenshot in screenshot_names %}
-        <figure class="screenshot">
+        <figure class="home-screenshot">
           <div class="image-shell" data-image-shell>
             <img
               src="{{ '/assets/images/screenshots/' | append: screenshot | append: '.webp' | relative_url }}"
@@ -286,127 +432,83 @@ permalink: /
             </span>
           </div>
 
-          <figcaption>
-            {{ screenshot_labels[forloop.index0] }}
-          </figcaption>
+          <figcaption>{{ screenshot_labels[forloop.index0] }}</figcaption>
         </figure>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="spiritual-callout">
-  <div class="container container--large spiritual-callout__inner">
-    <div>
-      <p class="eyebrow">Um convite à presença</p>
 
-      <h2>
+<section class="home-callout" aria-labelledby="home-callout-title">
+  <div class="container container--large home-callout__inner">
+    <div class="home-callout__copy">
+      <p class="eyebrow">Um convite à presença</p>
+      <h2 id="home-callout-title">
         Que cada abertura do Oratio seja o começo de um encontro, e não apenas mais alguns minutos diante da tela.
       </h2>
-
       <p>
         Encontre um lugar tranquilo, escolha sua oração e permita que o silêncio também faça parte do caminho.
       </p>
     </div>
 
-    <a
-      class="button button--light"
-      href="{{ app_download_url }}"
-      {% if app_download_external %}
-        target="_blank"
-        rel="noopener noreferrer"
-      {% endif %}>
-      Baixar o app
-    </a>
-  </div>
-</section>
+    <div class="home-callout__actions">
+      <a
+        class="button button--light"
+        href="{{ app_download_url }}"
+        {% if app_download_external %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}>
+        {% include icon.html name='download' %}
+        <span>Baixar o Oratio</span>
+      </a>
 
-<section class="section" aria-labelledby="recent-title">
-  <div class="container container--large">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Conteúdos recentes</p>
-        <h2 id="recent-title">Novidades da biblioteca</h2>
-      </div>
+      <a
+        class="home-callout__store image-shell"
+        href="{{ app_download_url }}"
+        {% if app_download_external %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}
+        aria-label="Baixar o Oratio no Google Play"
+        data-image-shell>
 
-      <button
-        class="button button--tonal"
-        type="button"
-        data-search-open>
-        {% include icon.html name='search' %}
-        <span>Buscar conteúdo</span>
-      </button>
-    </div>
+        <img
+          src="{{ '/assets/images/app/google-play-badge.webp' | relative_url }}"
+          width="564"
+          height="168"
+          loading="lazy"
+          decoding="async"
+          alt="Disponível no Google Play"
+          data-fallback-image>
 
-    <div class="stack">
-      <section aria-labelledby="recent-posts">
-        <div class="section-heading">
-          <h3 id="recent-posts">Do blog</h3>
-          <a href="{{ '/blog/' | relative_url }}">Ver todas</a>
-        </div>
-
-        <div class="card-grid card-grid--3">
-          {% for post in site.posts limit: 3 %}
-            {% include post-card.html item=post %}
-          {% endfor %}
-        </div>
-      </section>
-
-      <section aria-labelledby="popular-prayers">
-        <div class="section-heading">
-          <h3 id="popular-prayers">Orações</h3>
-          <a href="{{ '/oracoes/' | relative_url }}">Ver todas</a>
-        </div>
-
-        <div class="card-grid card-grid--3">
-          {% assign featured_prayers = site.oracoes | where: 'featured', true | sort: 'order' %}
-
-          {% for prayer in featured_prayers limit: 3 %}
-            {% include prayer-card.html item=prayer %}
-          {% endfor %}
-        </div>
-      </section>
-
-      <section aria-labelledby="recent-formations">
-        <div class="section-heading">
-          <h3 id="recent-formations">Formações</h3>
-          <a href="{{ '/formacoes/' | relative_url }}">Ver todas</a>
-        </div>
-
-        <div class="card-grid card-grid--3">
-          {% assign recent_formations = site.formacoes | sort: 'date' | reverse %}
-
-          {% for formation in recent_formations limit: 3 %}
-            {% include content-card.html item=formation type='Formação' %}
-          {% endfor %}
-        </div>
-      </section>
+        <span class="image-placeholder" hidden>
+          <span>▶</span>
+          <small>Google Play</small>
+        </span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="section section--surface">
+<section class="section home-support" aria-labelledby="home-support-title">
   <div class="container container--large">
-    <div class="support-card">
+    <div class="home-support__card">
       <div>
         <p class="eyebrow">Projeto independente e gratuito</p>
-        <h2>Ajude o Oratio a alcançar mais pessoas</h2>
-
+        <h2 id="home-support-title">Ajude o Oratio a alcançar mais pessoas</h2>
         <p>
-          Você pode apoiar divulgando o aplicativo, enviando sugestões, colaborando com a revisão de conteúdos ou contribuindo pelos canais oficiais que forem configurados.
+          Divulgue o aplicativo, envie sugestões, colabore com a revisão dos conteúdos ou conheça as formas oficiais de apoiar a continuidade do projeto.
         </p>
       </div>
 
-      <div class="hero__actions">
-        <a
-          class="button button--primary"
-          href="{{ '/apoiar/' | relative_url }}">
-          Como apoiar
+      <div class="home-support__actions">
+        <a class="button button--primary" href="{{ '/apoiar/' | relative_url }}">
+          Conhecer formas de apoio
         </a>
 
-        <a
-          class="button button--tonal"
-          href="{{ '/contato/' | relative_url }}">
+        <a class="button button--tonal" href="{{ '/contato/' | relative_url }}">
           Entrar em contato
         </a>
       </div>
