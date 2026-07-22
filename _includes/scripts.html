@@ -5,4 +5,6 @@
 <script src="{{ '/assets/js/novena-navigation.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/archive.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
-
+{% if page.layout == 'app-page' %}
+<script src="{{ '/assets/js/app-page.js' | relative_url }}" defer></script>
+{% endif %}
