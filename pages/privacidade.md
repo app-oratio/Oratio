@@ -60,9 +60,11 @@ Os dados de contato não são utilizados para inscrição automática em listas 
 
 ## Armazenamento local {#armazenamento-local}
 
-O navegador pode armazenar localmente preferências e informações necessárias ao funcionamento de determinados recursos, como o tema claro ou escuro, o tamanho escolhido para o texto das orações, a confirmação de avisos e o progresso local das novenas.
+O navegador pode armazenar localmente preferências e informações necessárias ao funcionamento de determinados recursos, como o tema claro ou escuro, o tamanho escolhido para o texto das orações, a confirmação de avisos, o progresso dos itinerários devocionais, as datas particulares escolhidas, a contagem de terços, rosários e coroas, além das intenções de oração que o próprio visitante decidir registrar.
 
-Essas informações permanecem no dispositivo do visitante e podem ser apagadas pelas configurações do navegador. A remoção pode fazer com que determinadas preferências precisem ser configuradas novamente.
+Essas informações permanecem no dispositivo do visitante, não são transmitidas ao Oratio por esses recursos e podem ser apagadas pelas configurações do navegador. Em aparelhos ou perfis de navegador compartilhados, outras pessoas com acesso ao mesmo perfil poderão visualizar as intenções registradas, razão pela qual o visitante não deve inserir dados sensíveis ou informações de terceiros sem necessidade.
+
+O recurso de exportação cria, por iniciativa do próprio visitante, um arquivo JSON com o progresso, a data particular e as intenções vinculadas ao itinerário selecionado. Esse arquivo fica sob responsabilidade do visitante e somente volta a ser lido pelo portal quando é escolhido manualmente na ferramenta de importação.
 
 ## Serviços externos {#servicos-externos}
 
