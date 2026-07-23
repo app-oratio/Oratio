@@ -5,6 +5,7 @@ description: "Ajude a manter o Oratio gratuito, sem anúncios e disponível para
 permalink: /apoiar/
 kicker: "Caminhe conosco"
 reading_width: wide
+support_page: true
 ---
 {% assign support = site.data.support %}
 
