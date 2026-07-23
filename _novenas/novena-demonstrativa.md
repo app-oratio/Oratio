@@ -7,8 +7,12 @@ saint: "Conteúdo a definir"
 days: 3
 category: "Demonstração"
 featured: true
-start_date:
-end_date:
+calendar:
+  # O dia-base é o dia seguinte ao último dia contado.
+  # Com três dias, esta configuração gera 1, 2 e 3 de janeiro.
+  base_month: 1
+  base_day: 4
+  skip_weekdays: []
 demo: true
 keywords:
   - exemplo de novena
