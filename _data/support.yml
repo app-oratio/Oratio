@@ -1,0 +1,29 @@
+# Dados oficiais de apoio ao Oratio.
+# Este arquivo pode ser lido em qualquer página Jekyll por meio de site.data.support.
+
+contact_email: "apoio@oratioapp.com.br"
+
+recurring:
+  platform: "APOIA.se"
+  campaign_name: "Immaculata Mater Christi"
+  url: "https://apoia.se/immaculata"
+  display_url: "apoia.se/immaculata"
+
+one_time:
+  brazil:
+    method: "PIX"
+    pix_key: "apoio@oratioapp.com.br"
+    beneficiary: "Maissa Larissa dos Santos da Silva Diniz"
+    bank: "PicPay"
+    qr_code_image: "/assets/images/support/pix-qr-code.png"
+
+  europe:
+    method: "Transferência por IBAN"
+    iban: "BE48905542096227"
+    iban_display: "BE48 9055 4209 6227"
+    beneficiary: "Paulo Ricardo Alves"
+
+  international:
+    method: "PayPal"
+    email: "apoio@oratioapp.com.br"
+    platform_url: "https://www.paypal.com/br/home"
