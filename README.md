@@ -1,6 +1,6 @@
 # Oratio | App Católico
 
-Portal estático e responsivo do aplicativo Oratio, construído com Jekyll para apresentar o app e publicar blog, orações, novenas, devocionários, santos, formações e páginas institucionais no GitHub Pages.
+Portal estático e responsivo do aplicativo Oratio, construído com Jekyll para apresentar o app e publicar blog, orações, novenas, quaresmas, outros itinerários devocionais, terços, rosários, coroas, santos, formações e páginas institucionais no GitHub Pages.
 
 ## Tecnologias
 
@@ -15,6 +15,7 @@ Jekyll 4, HTML5 semântico, CSS moderno, JavaScript puro, Markdown, YAML e Liqui
 - `pages/`: páginas institucionais e arquivos de conteúdo.
 - `assets/`: estilos, scripts, imagens, ícones e fontes opcionais.
 - `search/index.json`: índice estático criado pelo Liquid.
+- `GUIA_DE_IMPLEMENTACAO.md`: modelos completos de orações, calendários, dias e orações contadas.
 
 ## Instalação rápida
 
@@ -38,7 +39,7 @@ O fluxo `.github/workflows/jekyll.yml` compila e publica automaticamente cada al
 
 ## Documentação
 
-Consulte [GUIA_DE_IMPLEMENTACAO.md](GUIA_DE_IMPLEMENTACAO.md) para instruções completas de instalação, edição, publicação, domínio próprio e solução de problemas.
+Consulte [GUIA_DE_IMPLEMENTACAO.md](GUIA_DE_IMPLEMENTACAO.md) para instruções completas de instalação, criação dos conteúdos, configuração dos calendários, armazenamento local, busca, publicação e domínio próprio.
 
 ## Licença
 

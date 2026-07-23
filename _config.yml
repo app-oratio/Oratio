@@ -32,8 +32,34 @@ collections:
   novenas:
     output: true
     permalink: /novenas/:name/
+  quaresmas:
+    output: true
+    permalink: /quaresmas/:name/
+  trintenas:
+    output: true
+    permalink: /trintenas/:name/
+  devocoes_mensais:
+    output: true
+    permalink: /devocoes-mensais/:name/
+  trezenas:
+    output: true
+    permalink: /trezenas/:name/
+  triduos:
+    output: true
+    permalink: /triduos/:name/
   dias_novena:
     output: true
+  dias_devocao:
+    output: true
+  tercos:
+    output: true
+    permalink: /tercos/:name/
+  rosarios:
+    output: true
+    permalink: /rosarios/:name/
+  coroas:
+    output: true
+    permalink: /coroas/:name/
   devocionarios:
     output: true
     permalink: /devocionarios/:name/
@@ -62,11 +88,65 @@ defaults:
       type: novenas
     values:
       layout: novena
+      devotion_type: "Novena"
+  - scope:
+      path: ""
+      type: quaresmas
+    values:
+      layout: novena
+      devotion_type: "Quaresma"
+  - scope:
+      path: ""
+      type: trintenas
+    values:
+      layout: novena
+      devotion_type: "Trintena"
+  - scope:
+      path: ""
+      type: devocoes_mensais
+    values:
+      layout: novena
+      devotion_type: "Devoção mensal"
+  - scope:
+      path: ""
+      type: trezenas
+    values:
+      layout: novena
+      devotion_type: "Trezena"
+  - scope:
+      path: ""
+      type: triduos
+    values:
+      layout: novena
+      devotion_type: "Tríduo"
   - scope:
       path: ""
       type: dias_novena
     values:
       layout: novena-day
+  - scope:
+      path: ""
+      type: dias_devocao
+    values:
+      layout: novena-day
+  - scope:
+      path: ""
+      type: tercos
+    values:
+      layout: counted-prayer
+      prayer_beads_type: "Terço"
+  - scope:
+      path: ""
+      type: rosarios
+    values:
+      layout: counted-prayer
+      prayer_beads_type: "Rosário"
+  - scope:
+      path: ""
+      type: coroas
+    values:
+      layout: counted-prayer
+      prayer_beads_type: "Coroa"
   - scope:
       path: ""
       type: devocionarios
@@ -109,4 +189,3 @@ include:
   - .well-known
 
 strict_front_matter: true
-

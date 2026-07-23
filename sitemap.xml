@@ -6,11 +6,26 @@ sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% assign sitemap_documents = site.pages | concat: site.posts | concat: site.oracoes | concat: site.novenas | concat: site.dias_novena | concat: site.devocionarios | concat: site.santos | concat: site.formacoes %}
+  {% assign sitemap_documents = site.pages
+    | concat: site.posts
+    | concat: site.oracoes
+    | concat: site.novenas
+    | concat: site.quaresmas
+    | concat: site.trintenas
+    | concat: site.devocoes_mensais
+    | concat: site.trezenas
+    | concat: site.triduos
+    | concat: site.dias_novena
+    | concat: site.dias_devocao
+    | concat: site.tercos
+    | concat: site.rosarios
+    | concat: site.coroas
+    | concat: site.devocionarios
+    | concat: site.santos
+    | concat: site.formacoes %}
   {% for document in sitemap_documents %}
     {% if document.sitemap != false and document.url and document.url != empty %}
       <url><loc>{{ document.url | absolute_url | xml_escape }}</loc>{% if document.date %}<lastmod>{{ document.date | date_to_xmlschema }}</lastmod>{% elsif document.last_modified_at %}<lastmod>{{ document.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}</url>
     {% endif %}
   {% endfor %}
 </urlset>
-
