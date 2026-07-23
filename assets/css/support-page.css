@@ -288,7 +288,7 @@
 
 .support-recurring-card__visual {
   align-content: center;
-  display: grid;
+  display: none;
   gap: var(--space-4);
   justify-items: center;
   min-height: 17rem;
@@ -306,7 +306,7 @@
 }
 
 .support-recurring-card__visual img {
-  filter: brightness(0) invert(1);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
   height: auto;
   opacity: 0.96;
   position: relative;
@@ -447,15 +447,6 @@
 .support-qr.is-loaded .support-qr__placeholder {
   opacity: 0;
   pointer-events: none;
-}
-
-.support-qr figcaption {
-  color: var(--oratio-text-muted);
-  font-size: 0.76rem;
-  line-height: 1.5;
-  max-width: 24rem;
-  overflow-wrap: anywhere;
-  text-align: center;
 }
 
 .support-payment-details {
@@ -615,6 +606,11 @@
   border-top: 4px solid var(--oratio-primary-container);
 }
 
+.support-other-card__action {
+  justify-self: start;
+  margin-top: auto;
+}
+
 .support-faq {
   border-block: 1px solid var(--oratio-divider);
 }
@@ -769,6 +765,10 @@
   .support-recurring-card {
     grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.65fr);
   }
+
+  .support-recurring-card__visual {
+    display: grid;
+  }
 }
 
 @media (max-width: 520px) {
@@ -814,14 +814,6 @@
     width: 100%;
   }
 
-  .support-recurring-card__visual {
-    min-height: 13rem;
-  }
-
-  .support-recurring-card__halo {
-    height: 14rem;
-    width: 14rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
