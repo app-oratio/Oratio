@@ -19,6 +19,8 @@ categories:
     label: "Sugestão para o Oratio"
   - value: "Privacidade e dados"
     label: "Privacidade e dados"
+  - value: "Direitos autorais"
+    label: "Direitos autorais"
   - value: "Colaboração ou parceria"
     label: "Colaboração ou parceria"
   - value: "Outro assunto"
