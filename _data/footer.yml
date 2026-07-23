@@ -6,6 +6,12 @@ columns:
         url: "/oracoes/"
       - label: "Novenas"
         url: "/novenas/"
+      - label: "Quaresmas"
+        url: "/quaresmas/"
+      - label: "Terços"
+        url: "/tercos/"
+      - label: "Rosários e coroas"
+        url: "/rosarios/"
       - label: "Devocionários"
         url: "/devocionarios/"
       - label: "Santos"
@@ -36,4 +42,3 @@ columns:
         url: "/creditos/"
       - label: "Feed do blog"
         url: "/feed.xml"
-

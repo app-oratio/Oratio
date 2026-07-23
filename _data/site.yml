@@ -5,5 +5,4 @@ country: "Brasil"
 email: "contato@oratioapp.com.br"
 independent_notice: "Iniciativa católica independente, mantida com dedicação voluntária."
 show_storage_notice: false
-storage_notice_text: "Este site guarda apenas sua preferência de tema e, quando utilizado, o progresso local das novenas."
-
+storage_notice_text: "Este site pode guardar neste navegador preferências, progresso devocional, datas particulares, contagens e intenções de oração registradas por você."
