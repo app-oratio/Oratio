@@ -61,7 +61,8 @@
     var title = normalize(documentItem.title);
     var haystack = normalize([
       documentItem.title, documentItem.description, documentItem.type, documentItem.category,
-      (documentItem.tags || []).join(' '), (documentItem.keywords || []).join(' '), documentItem.excerpt
+      (documentItem.tags || []).join(' '), (documentItem.keywords || []).join(' '),
+      documentItem.excerpt, documentItem.searchText
     ].join(' '));
     var matchesAll = terms.every(function (term) { return haystack.indexOf(term) >= 0; });
     if (!matchesAll) return -1;
@@ -71,6 +72,25 @@
       if (title.indexOf(term) >= 0) return score + 6;
       return score + 1;
     }, 0);
+  }
+
+  function matchingExcerpt(documentItem, terms) {
+    var description = String(documentItem.description || '');
+    var normalizedDescription = normalize(description);
+    if (terms.some(function (term) { return normalizedDescription.indexOf(term) >= 0; })) return description;
+
+    var source = String(documentItem.searchText || documentItem.excerpt || description);
+    var normalizedSource = normalize(source);
+    var position = -1;
+    terms.some(function (term) {
+      position = normalizedSource.indexOf(term);
+      return position >= 0;
+    });
+    if (position < 0) return description || source.slice(0, 190);
+    var start = Math.max(0, position - 72);
+    var end = Math.min(source.length, position + 150);
+    var snippet = source.slice(start, end).trim();
+    return (start > 0 ? '…' : '') + snippet + (end < source.length ? '…' : '');
   }
 
   function render(query) {
@@ -99,11 +119,12 @@
         link.href = entry.item.url;
         var type = document.createElement('span');
         type.className = 'search-result__type';
-        type.textContent = entry.item.type || 'Conteúdo';
+        type.textContent = (entry.item.type || 'Conteúdo') +
+          (entry.item.searchScope ? ' · ' + entry.item.searchScope : '');
         var title = document.createElement('strong');
         appendHighlighted(title, entry.item.title, terms);
         var description = document.createElement('p');
-        appendHighlighted(description, entry.item.description || entry.item.excerpt || '', terms);
+        appendHighlighted(description, matchingExcerpt(entry.item, terms), terms);
         link.append(type, title, description);
         results.appendChild(link);
       });
