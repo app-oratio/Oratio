@@ -15,7 +15,11 @@
     {% when 'arrow-right' %}<path d="M5 12h14m0 0l-6-6m6 6l-6 6"/>
     {% when 'plus' %}<path d="M12 5v14M5 12h14"/>
     {% when 'minus' %}<path d="M5 12h14"/>
+    {% when 'calendar' %}<rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M8 3v5M16 3v5M3.5 10h17"/>
+    {% when 'upload' %}<path d="M12 21V9m0 0L8 13m4-4 4 4M5 4h14"/>
+    {% when 'edit' %}<path d="M4 20h4l11-11-4-4L4 16v4ZM13.5 6.5l4 4"/>
+    {% when 'trash' %}<path d="M4 7h16M9 3h6l1 4H8l1-4ZM7 7l1 14h8l1-14M10 11v6M14 11v6"/>
+    {% when 'heart' %}<path d="M20.5 9.2c0 5.2-8.5 10-8.5 10s-8.5-4.8-8.5-10A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.5 2.8Z"/>
     {% else %}<path d="M12 3v18M6 9h12"/>
   {% endcase %}
 </svg>
-

@@ -1,0 +1,40 @@
+{% assign intentions_key = include.key | default: page.slug %}
+{% assign intentions_id = intentions_key | slugify %}
+<section class="intention-panel{% if include.compact %} intention-panel--compact{% endif %}"
+  id="intencoes-{{ intentions_id }}"
+  data-intentions-root
+  data-intention-key="{{ intentions_key | escape }}"
+  aria-labelledby="intencoes-titulo-{{ intentions_id }}">
+  <div class="intention-panel__heading">
+    <div class="intention-panel__icon" aria-hidden="true">{% include icon.html name='heart' %}</div>
+    <div>
+      <p class="eyebrow">Somente neste dispositivo</p>
+      <h2 id="intencoes-titulo-{{ intentions_id }}">Minhas intenções</h2>
+      <p>Registre aqui as intenções que deseja recordar durante esta oração. Elas não são enviadas ao Oratio e permanecem no armazenamento local deste navegador.</p>
+    </div>
+  </div>
+
+  <form class="intention-form" data-intention-form>
+    <div class="field-group">
+      <label for="intencao-{{ intentions_id }}">Intenção particular</label>
+      <textarea id="intencao-{{ intentions_id }}" name="intention" rows="3" maxlength="1200" required data-intention-input placeholder="Escreva sua intenção de oração"></textarea>
+      <div class="field-help">
+        <span>Evite registrar informações sensíveis, especialmente em dispositivos compartilhados.</span>
+        <span data-intention-counter>0 de 1.200</span>
+      </div>
+    </div>
+    <div class="intention-form__actions">
+      <button class="button button--primary button--small" type="submit">
+        {% include icon.html name='plus' %}
+        <span data-intention-submit-label>Adicionar intenção</span>
+      </button>
+      <button class="button button--text button--small" type="button" data-intention-cancel hidden>Cancelar edição</button>
+    </div>
+  </form>
+
+  <p class="status-message" data-intention-status aria-live="polite"></p>
+  <div class="intention-empty" data-intention-empty>
+    <p>Nenhuma intenção foi registrada para esta oração.</p>
+  </div>
+  <ul class="intention-list" data-intention-list aria-label="Intenções registradas"></ul>
+</section>

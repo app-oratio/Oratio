@@ -6,8 +6,36 @@
       <li><a href="{{ page.breadcrumb_parent.url | relative_url }}">{{ page.breadcrumb_parent.label }}</a></li>
     {% elsif page.collection == 'oracoes' %}
       <li><a href="{{ '/oracoes/' | relative_url }}">Orações</a></li>
-    {% elsif page.collection == 'novenas' or page.collection == 'dias_novena' %}
+    {% elsif page.collection == 'novenas' %}
       <li><a href="{{ '/novenas/' | relative_url }}">Novenas</a></li>
+    {% elsif page.collection == 'dias_novena' %}
+      <li><a href="{{ '/novenas/' | relative_url }}">Novenas</a></li>
+      {% if devotion %}<li><a href="{{ devotion.url | relative_url }}">{{ devotion.title }}</a></li>{% endif %}
+    {% elsif page.collection == 'quaresmas' %}
+      <li><a href="{{ '/quaresmas/' | relative_url }}">Quaresmas</a></li>
+    {% elsif page.collection == 'trintenas' %}
+      <li><a href="{{ '/trintenas/' | relative_url }}">Trintenas</a></li>
+    {% elsif page.collection == 'devocoes_mensais' %}
+      <li><a href="{{ '/devocoes-mensais/' | relative_url }}">Devoções mensais</a></li>
+    {% elsif page.collection == 'trezenas' %}
+      <li><a href="{{ '/trezenas/' | relative_url }}">Trezenas</a></li>
+    {% elsif page.collection == 'triduos' %}
+      <li><a href="{{ '/triduos/' | relative_url }}">Tríduos</a></li>
+    {% elsif page.collection == 'dias_devocao' %}
+      {% case devotion.collection %}
+        {% when 'quaresmas' %}<li><a href="{{ '/quaresmas/' | relative_url }}">Quaresmas</a></li>
+        {% when 'trintenas' %}<li><a href="{{ '/trintenas/' | relative_url }}">Trintenas</a></li>
+        {% when 'devocoes_mensais' %}<li><a href="{{ '/devocoes-mensais/' | relative_url }}">Devoções mensais</a></li>
+        {% when 'trezenas' %}<li><a href="{{ '/trezenas/' | relative_url }}">Trezenas</a></li>
+        {% when 'triduos' %}<li><a href="{{ '/triduos/' | relative_url }}">Tríduos</a></li>
+      {% endcase %}
+      {% if devotion %}<li><a href="{{ devotion.url | relative_url }}">{{ devotion.title }}</a></li>{% endif %}
+    {% elsif page.collection == 'tercos' %}
+      <li><a href="{{ '/tercos/' | relative_url }}">Terços</a></li>
+    {% elsif page.collection == 'rosarios' %}
+      <li><a href="{{ '/rosarios/' | relative_url }}">Rosários</a></li>
+    {% elsif page.collection == 'coroas' %}
+      <li><a href="{{ '/coroas/' | relative_url }}">Coroas</a></li>
     {% elsif page.collection == 'santos' %}
       <li><a href="{{ '/santos/' | relative_url }}">Santos</a></li>
     {% elsif page.collection == 'devocionarios' %}
@@ -21,4 +49,3 @@
   </ol>
 </nav>
 {% endunless %}
-

@@ -1,5 +1,18 @@
 {% if page.related and page.related.size > 0 %}
-  {% assign related_pool = site.oracoes | concat: site.novenas | concat: site.santos | concat: site.devocionarios | concat: site.formacoes | concat: site.posts %}
+  {% assign related_pool = site.oracoes
+    | concat: site.novenas
+    | concat: site.quaresmas
+    | concat: site.trintenas
+    | concat: site.devocoes_mensais
+    | concat: site.trezenas
+    | concat: site.triduos
+    | concat: site.tercos
+    | concat: site.rosarios
+    | concat: site.coroas
+    | concat: site.santos
+    | concat: site.devocionarios
+    | concat: site.formacoes
+    | concat: site.posts %}
   <section class="related-section" aria-labelledby="related-title">
     <div class="section-heading"><div><p class="eyebrow">Continue explorando</p><h2 id="related-title">Conteúdos relacionados</h2></div></div>
     <div class="card-grid card-grid--3">
@@ -10,4 +23,3 @@
     </div>
   </section>
 {% endif %}
-
