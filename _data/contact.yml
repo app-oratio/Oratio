@@ -1,7 +1,25 @@
-heading: "Fale com a equipe Oratio"
-support_email: "contato@exemplo.com"
-response_note: "Substitua este e-mail pelo endereço oficial antes da publicação."
-form_enabled: false
-form_action: ""
-form_method: "POST"
+heading: "Fale com o Oratio"
+support_email: "contato@oratioapp.com.br"
+response_note: "As mensagens são lidas pessoalmente e respondidas conforme a disponibilidade. Como o Oratio é um projeto independente, algumas solicitações podem levar alguns dias para receber uma resposta."
 
+form_enabled: true
+form_action: "https://api.web3forms.com/submit"
+form_method: "POST"
+access_key: "12c2698f-d2d7-4763-87bb-7e01aaa01103"
+from_name: "Site do Oratio"
+email_subject_prefix: "Oratio | Contato pelo site"
+message_max_length: 5000
+
+categories:
+  - value: "Suporte técnico"
+    label: "Suporte técnico"
+  - value: "Correção de conteúdo"
+    label: "Correção de conteúdo"
+  - value: "Sugestão para o Oratio"
+    label: "Sugestão para o Oratio"
+  - value: "Privacidade e dados"
+    label: "Privacidade e dados"
+  - value: "Colaboração ou parceria"
+    label: "Colaboração ou parceria"
+  - value: "Outro assunto"
+    label: "Outro assunto"
