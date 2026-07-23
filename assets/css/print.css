@@ -1,7 +1,7 @@
 @media print {
   @page { margin: 1.8cm; }
   html, body { background: #FFFFFF !important; color: #000000 !important; font-size: 11pt; }
-  .site-header, .drawer-layer, .site-footer, .search-dialog, .storage-notice, .reading-toolbar, .share-tools, .app-banner, .breadcrumb, .content-navigation, .completion-card, .related-section, .notice { display: none !important; }
+  .site-header, .drawer-layer, .site-footer, .search-dialog, .storage-notice, .reading-toolbar, .share-tools, .app-banner, .breadcrumb, .content-navigation, .completion-card, .related-section, .notice, .intention-panel, .devotion-dashboard, .devotion-calendar, .day-progress-card, .counted-dashboard, .counted-group__actions, .bead-counter { display: none !important; }
   main, .page-shell, .container { max-width: none !important; padding: 0 !important; width: auto !important; }
   h1, h2, h3, p, li, strong { color: #000000 !important; }
   a { color: #000000 !important; text-decoration: none !important; }
