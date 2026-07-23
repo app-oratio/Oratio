@@ -1,36 +1,114 @@
 ---
 layout: default
 ---
-{% assign novena = site.novenas | where: 'slug', page.novena | first %}
-{% assign novena_days = site.dias_novena | where: 'novena', page.novena | sort: 'day' %}
+{% assign devotion_slug = page.devotion | default: page.novena %}
+{% assign all_devotions = site.novenas | concat: site.quaresmas | concat: site.trintenas | concat: site.devocoes_mensais | concat: site.trezenas | concat: site.triduos %}
+{% assign devotion = all_devotions | where: 'slug', devotion_slug | first %}
+{% assign modern_days = site.dias_devocao | where: 'devotion', devotion_slug %}
+{% assign legacy_days = site.dias_novena | where: 'novena', devotion_slug %}
+{% assign devotion_days = legacy_days | concat: modern_days | sort: 'day' %}
+{% assign total_days = devotion.days | default: devotion_days.size %}
+{% assign devotion_type = devotion.devotion_type | default: devotion.category | default: 'Novena' %}
 {% assign previous_number = page.day | minus: 1 %}
 {% assign next_number = page.day | plus: 1 %}
-{% assign previous_day = novena_days | where: 'day', previous_number | first %}
-{% assign next_day = novena_days | where: 'day', next_number | first %}
-<div class="container container--small page-shell novena-day" data-novena-progress data-novena-slug="{{ page.novena }}" data-novena-day="{{ page.day }}" data-novena-total="{{ novena.days | default: novena_days.size }}">
+{% assign previous_day = devotion_days | where: 'day', previous_number | first %}
+{% assign next_day = devotion_days | where: 'day', next_number | first %}
+{% assign calendar = devotion.calendar %}
+{% assign calendar_configured = false %}
+{% if calendar.base_month and calendar.base_day %}
+  {% assign calendar_configured = true %}
+{% elsif calendar.start_month and calendar.start_day %}
+  {% assign calendar_configured = true %}
+{% endif %}
+{% capture devotion_id %}{{ devotion.collection }}:{{ devotion.slug }}{% endcapture %}
+{% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
+
+<div class="container container--medium page-shell novena-day devotion-day-layout"
+  data-devotion-progress
+  data-devotion-page="day"
+  data-devotion-id="{{ devotion_id | strip | escape }}"
+  data-devotion-slug="{{ devotion.slug | escape }}"
+  data-devotion-type="{{ devotion_type | escape }}"
+  data-devotion-day="{{ page.day }}"
+  data-devotion-total="{{ total_days }}"
+  data-intention-key="{{ intention_key | strip | escape }}"
+  data-calendar-configured="{{ calendar_configured }}"
+  data-calendar-base-month="{{ calendar.base_month }}"
+  data-calendar-base-day="{{ calendar.base_day }}"
+  data-calendar-start-month="{{ calendar.start_month }}"
+  data-calendar-start-day="{{ calendar.start_day }}"
+  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Dia demonstrativo' text='Este texto breve demonstra o funcionamento do acompanhamento local.' %}{% endif %}
-  <header class="content-header content-header--center">
-    <a class="overline-link" href="{{ novena.url | relative_url }}">{{ novena.title | default: 'Novena' }}</a>
-    <p class="day-number">Dia {{ page.day }} de {{ novena.days | default: novena_days.size }}</p>
+
+  <header class="content-header content-header--center devotion-day-header">
+    <a class="overline-link" href="{{ devotion.url | relative_url }}">{{ devotion.title | default: devotion_type }}</a>
+    <p class="day-number">Dia {{ page.day }} de {{ total_days }}</p>
     <h1>{{ page.title }}</h1>
+    {% if page.theme %}<p class="devotion-day-theme">{{ page.theme }}</p>{% endif %}
     {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+    <p class="devotion-day-date">
+      {% include icon.html name='calendar' %}
+      <time data-current-day-date>Calculando a data deste dia</time>
+    </p>
   </header>
-  <div class="progress-block">
-    <div class="progress-track" role="progressbar" aria-label="Progresso da novena" aria-valuemin="0" aria-valuemax="{{ novena.days | default: novena_days.size }}" aria-valuenow="0" data-progress-track><span data-progress-bar></span></div>
-    <p data-progress-label aria-live="polite">O progresso será carregado neste navegador.</p>
+
+  <noscript>
+    <p class="notice notice--warning">O texto deste dia permanece disponível, porém a data calculada, o progresso e as intenções exigem JavaScript ativado.</p>
+  </noscript>
+
+  <section class="day-progress-card" aria-label="Progresso do itinerário">
+    <div class="day-progress-card__summary">
+      <div>
+        <strong data-progress-percent>0%</strong>
+        <span data-progress-label>Carregando o progresso</span>
+      </div>
+      <a href="{{ devotion.url | relative_url }}#calendario">Alterar as datas</a>
+    </div>
+    <div class="progress-track" role="progressbar" aria-label="Progresso da devoção" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-track>
+      <span data-progress-bar></span>
+    </div>
+  </section>
+
+  <div class="reading-toolbar" aria-label="Ferramentas de leitura">
+    <div class="button-group" aria-label="Tamanho do texto">
+      <button class="icon-button" type="button" data-prayer-font="decrease" aria-label="Diminuir texto">{% include icon.html name='minus' %}</button>
+      <span aria-hidden="true">A</span>
+      <button class="icon-button" type="button" data-prayer-font="increase" aria-label="Aumentar texto">{% include icon.html name='plus' %}</button>
+    </div>
+    <button class="button button--text button--small" type="button" data-copy-prayer>{% include icon.html name='copy' %}<span data-copy-prayer-label>Copiar este dia</span></button>
+    <button class="button button--text button--small" type="button" data-print-page>{% include icon.html name='print' %}<span>Imprimir</span></button>
   </div>
-  <article class="prose prayer-text">{{ content }}</article>
-  <div class="completion-card">
-    <label class="check-control"><input type="checkbox" data-day-complete><span>{% include icon.html name='check' %}</span><strong>Marcar este dia como concluído</strong></label>
-    <p>O progresso é salvo somente neste navegador e não exige conta.</p>
-    <button class="button button--text button--small" type="button" data-progress-reset>{% include icon.html name='reset' %}<span>Reiniciar progresso</span></button>
+
+  <article class="prose prayer-text devotion-day-content" data-prayer-text>{{ content }}</article>
+  <p class="status-message" data-prayer-status aria-live="polite"></p>
+
+  <div class="completion-card devotion-day-completion">
+    <label class="check-control">
+      <input type="checkbox" data-day-complete>
+      <span>{% include icon.html name='check' %}</span>
+      <strong>Marcar o dia {{ page.day }} como concluído</strong>
+    </label>
+    <div>
+      <p>O acompanhamento é salvo somente neste navegador e pode ser alterado também pela página principal deste itinerário.</p>
+      <p class="last-update">Última atualização: <time data-progress-updated>nenhuma</time></p>
+    </div>
   </div>
+
+  {% include prayer-intentions.html key=intention_key compact=true %}
+
   <nav class="content-navigation" aria-label="Navegação entre os dias">
-    {% if previous_day %}<a class="button button--tonal" href="{{ previous_day.url | relative_url }}">{% include icon.html name='arrow-left' %}<span>Dia anterior</span></a>{% else %}<span></span>{% endif %}
-    <a class="button button--text" href="{{ novena.url | relative_url }}">Índice</a>
-    {% if next_day %}<a class="button button--primary" href="{{ next_day.url | relative_url }}"><span>Próximo dia</span>{% include icon.html name='arrow-right' %}</a>{% else %}<a class="button button--primary" href="{{ novena.url | relative_url }}">Concluir</a>{% endif %}
+    {% if previous_day %}
+      <a class="button button--tonal" href="{{ previous_day.url | relative_url }}">{% include icon.html name='arrow-left' %}<span>Dia anterior</span></a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    <a class="button button--text" href="{{ devotion.url | relative_url }}">Ver todos os dias</a>
+    {% if next_day %}
+      <a class="button button--primary" href="{{ next_day.url | relative_url }}"><span>Próximo dia</span>{% include icon.html name='arrow-right' %}</a>
+    {% else %}
+      <a class="button button--primary" href="{{ devotion.url | relative_url }}"><span>Concluir itinerário</span>{% include icon.html name='check' %}</a>
+    {% endif %}
   </nav>
   {% include share-buttons.html %}
 </div>
-

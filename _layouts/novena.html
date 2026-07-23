@@ -1,36 +1,155 @@
 ---
 layout: default
 ---
-{% assign novena_days = site.dias_novena | where: 'novena', page.slug | sort: 'day' %}
-<div class="container container--large page-shell">
+{% assign modern_days = site.dias_devocao | where: 'devotion', page.slug %}
+{% assign legacy_days = site.dias_novena | where: 'novena', page.slug %}
+{% assign devotion_days = legacy_days | concat: modern_days | sort: 'day' %}
+{% assign total_days = page.days | default: devotion_days.size %}
+{% assign devotion_type = page.devotion_type | default: page.category | default: 'Novena' %}
+{% assign calendar = page.calendar %}
+{% assign calendar_configured = false %}
+{% if calendar.base_month and calendar.base_day %}
+  {% assign calendar_configured = true %}
+{% elsif calendar.start_month and calendar.start_day %}
+  {% assign calendar_configured = true %}
+{% endif %}
+{% capture devotion_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
+{% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
+
+<div class="container container--large page-shell devotion-layout"
+  data-devotion-progress
+  data-devotion-page="index"
+  data-devotion-id="{{ devotion_id | strip | escape }}"
+  data-devotion-slug="{{ page.slug | escape }}"
+  data-devotion-type="{{ devotion_type | escape }}"
+  data-devotion-total="{{ total_days }}"
+  data-intention-key="{{ intention_key | strip | escape }}"
+  data-calendar-configured="{{ calendar_configured }}"
+  data-calendar-base-month="{{ calendar.base_month }}"
+  data-calendar-base-day="{{ calendar.base_day }}"
+  data-calendar-start-month="{{ calendar.start_month }}"
+  data-calendar-start-day="{{ calendar.start_day }}"
+  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}">
   {% include breadcrumb.html %}
-  {% if page.demo %}{% include alert-message.html type='warning' title='Novena demonstrativa' text='Os três dias abaixo mostram o funcionamento técnico. Revise e complete o conteúdo antes da publicação.' %}{% endif %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Este itinerário apresenta o funcionamento técnico do sistema. Revise e complete os textos antes da publicação.' %}{% endif %}
+
   <article class="novena-page">
     <header class="novena-hero">
-      <div class="image-shell" data-image-shell>
-        {% if page.image %}<img src="{{ page.image | relative_url }}" alt="" width="720" height="720" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Novena</small></span>{% else %}<span class="image-placeholder"><span>✢</span><small>Novena</small></span>{% endif %}
+      <div class="image-shell devotion-cover" data-image-shell>
+        {% if page.image %}
+          <img src="{{ page.image | relative_url }}" alt="" width="720" height="720" decoding="async" data-fallback-image>
+          <span class="image-placeholder" hidden><span>✢</span><small>{{ devotion_type }}</small></span>
+        {% else %}
+          <span class="image-placeholder"><span>✢</span><small>{{ devotion_type }}</small></span>
+        {% endif %}
       </div>
       <div>
-        <span class="chip">{{ page.category | default: 'Novena' }}</span>
+        <span class="chip">{{ devotion_type }}</span>
         <h1>{{ page.title }}</h1>
-        <p class="page-lead">{{ page.description }}</p>
-        <dl class="content-facts"><div><dt>Duração</dt><dd>{{ page.days | default: novena_days.size }} dias</dd></div>{% if page.saint %}<div><dt>Intercessão</dt><dd>{{ page.saint }}</dd></div>{% endif %}</dl>
-        {% if novena_days.first %}<a class="button button--primary" href="{{ novena_days.first.url | relative_url }}">Começar a novena</a>{% endif %}
+        {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+        <dl class="content-facts">
+          <div><dt>Duração</dt><dd>{{ total_days }} {% if total_days == 1 %}dia{% else %}dias{% endif %}</dd></div>
+          {% if page.saint %}<div><dt>Intercessão</dt><dd>{{ page.saint }}</dd></div>{% endif %}
+          <div><dt>Calendário</dt><dd data-calendar-hero-summary>Calculando as datas</dd></div>
+        </dl>
+        {% if devotion_days.first %}
+          <a class="button button--primary devotion-primary-action" href="{{ devotion_days.first.url | relative_url }}" data-devotion-continue>
+            <span data-devotion-continue-label>Continuar no dia 1</span>
+            {% include icon.html name='arrow-right' %}
+          </a>
+        {% endif %}
       </div>
     </header>
-    <div class="prose prose--wide">{{ content }}</div>
-    <section class="novena-index" aria-labelledby="novena-days-title">
-      <div class="section-heading"><div><p class="eyebrow">Roteiro de oração</p><h2 id="novena-days-title">Dias da novena</h2></div></div>
-      {% if novena_days.size > 0 %}
-        <ol class="day-list">
-          {% for day in novena_days %}<li><a href="{{ day.url | relative_url }}"><span>Dia {{ day.day }}</span><strong>{{ day.title }}</strong><span aria-hidden="true">→</span></a></li>{% endfor %}
+
+    <noscript>
+      <p class="notice notice--warning">Os textos e links dos dias permanecem disponíveis, porém o calendário, o progresso, as intenções e o backup exigem JavaScript ativado.</p>
+    </noscript>
+
+    <section class="devotion-dashboard" aria-labelledby="progress-title">
+      <div class="progress-ring" style="--progress-value: 0%" data-progress-ring aria-hidden="true">
+        <span><strong data-progress-percent>0%</strong><small>concluído</small></span>
+      </div>
+      <div class="devotion-dashboard__content">
+        <p class="eyebrow">Seu acompanhamento</p>
+        <h2 id="progress-title">Progresso deste itinerário</h2>
+        <p data-progress-label aria-live="polite">Nenhum dia concluído até o momento.</p>
+        <p class="last-update">Última atualização: <time data-progress-updated>nenhuma</time></p>
+        <div class="devotion-dashboard__actions">
+          <button class="button button--tonal button--small" type="button" data-progress-export>
+            {% include icon.html name='download' %}
+            <span>Exportar progresso</span>
+          </button>
+          <button class="button button--text button--small" type="button" data-progress-import>
+            {% include icon.html name='upload' %}
+            <span>Importar progresso</span>
+          </button>
+          <input type="file" accept=".json,application/json" data-progress-import-file hidden>
+          <button class="button button--text button--small" type="button" data-progress-reset>
+            {% include icon.html name='reset' %}
+            <span>Reiniciar dias</span>
+          </button>
+        </div>
+        <p class="status-message" data-progress-status aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="devotion-calendar" id="calendario" aria-labelledby="calendar-title">
+      <div class="devotion-calendar__heading">
+        <div class="devotion-calendar__icon" aria-hidden="true">{% include icon.html name='calendar' %}</div>
+        <div>
+          <p class="eyebrow">Calendário da devoção</p>
+          <h2 id="calendar-title">Datas de cada dia</h2>
+          <p data-calendar-summary>O calendário oficial será calculado neste navegador.</p>
+        </div>
+      </div>
+      <form class="custom-date-form" data-custom-date-form>
+        <div class="field-group">
+          <label for="custom-start-{{ page.slug }}">Quero começar em outra data</label>
+          <input id="custom-start-{{ page.slug }}" type="date" data-custom-start>
+        </div>
+        <button class="button button--primary button--small" type="submit">Usar esta data</button>
+        <button class="button button--text button--small" type="button" data-use-official-calendar>Voltar ao calendário oficial</button>
+      </form>
+      {% if calendar.skip_weekdays and calendar.skip_weekdays.size > 0 %}
+        <p class="calendar-exception"><strong>Exceção configurada:</strong> os dias indicados pelo arquivo da devoção não entram na contagem, tanto no calendário oficial quanto no particular.</p>
+      {% endif %}
+      <p class="status-message" data-calendar-status aria-live="polite"></p>
+    </section>
+
+    <div class="prose prose--wide devotion-introduction">{{ content }}</div>
+
+    <section class="novena-index" aria-labelledby="devotion-days-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Roteiro de oração</p>
+          <h2 id="devotion-days-title">Dias de {{ devotion_type | downcase }}</h2>
+        </div>
+        <p><strong data-progress-count>0 de {{ total_days }}</strong> concluídos</p>
+      </div>
+      {% if devotion_days.size > 0 %}
+        <ol class="day-list devotion-day-list">
+          {% for day in devotion_days %}
+            <li data-devotion-day-item data-day-number="{{ day.day }}" data-day-url="{{ day.url | relative_url }}">
+              <button class="day-completion-toggle" type="button" data-day-toggle aria-pressed="false" aria-label="Marcar o dia {{ day.day }} como concluído">
+                {% include icon.html name='check' %}
+              </button>
+              <a href="{{ day.url | relative_url }}">
+                <span class="day-list__number">Dia {{ day.day }}</span>
+                <strong>{{ day.title }}</strong>
+                {% if day.theme %}<span class="day-list__theme">{{ day.theme }}</span>{% endif %}
+                <time class="day-list__date" data-day-date></time>
+                <span class="day-list__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          {% endfor %}
         </ol>
       {% else %}
-        {% include empty-state.html title='Os dias ainda não foram publicados' text='Adicione documentos à pasta _dias_novena para preencher este índice.' %}
+        {% include empty-state.html title='Os dias ainda não foram publicados' text='Adicione os documentos de cada dia à coleção correspondente para preencher este índice.' %}
       {% endif %}
     </section>
+
+    {% include prayer-intentions.html key=intention_key %}
     {% include share-buttons.html %}
   </article>
-  {% include app-download-banner.html title='Reze esta novena no Oratio' %}
+  {% include app-download-banner.html title='Reze este itinerário no Oratio' %}
 </div>
-

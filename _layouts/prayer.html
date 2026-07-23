@@ -1,28 +1,45 @@
 ---
 layout: default
 ---
-<div class="container container--medium page-shell">
+<div class="container container--large page-shell prayer-layout">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Exemplo para revisão' text='Esta oração foi incluída como demonstração da estrutura editorial.' %}{% endif %}
   <article class="prayer-page">
-    <header class="content-header">
-      <span class="chip">{{ page.category | default: 'Oração' }}</span>
-      <h1>{{ page.title }}</h1>
-      {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
-    </header>
-    <div class="reading-toolbar" aria-label="Ferramentas de leitura">
-      <div class="button-group" aria-label="Tamanho do texto">
-        <button class="icon-button" type="button" data-prayer-font="decrease" aria-label="Diminuir texto">{% include icon.html name='minus' %}</button>
-        <span aria-hidden="true">A</span>
-        <button class="icon-button" type="button" data-prayer-font="increase" aria-label="Aumentar texto">{% include icon.html name='plus' %}</button>
+    <header class="prayer-hero">
+      <div class="prayer-hero__symbol" aria-hidden="true">
+        <span>✢</span>
       </div>
-      <button class="button button--text button--small" type="button" data-copy-prayer>{% include icon.html name='copy' %}<span data-copy-prayer-label>Copiar oração</span></button>
-      <button class="button button--text button--small" type="button" data-print-page>{% include icon.html name='print' %}<span>Imprimir</span></button>
+      <div class="prayer-hero__content">
+        <span class="chip">{{ page.category | default: 'Oração' }}</span>
+        <h1>{{ page.title }}</h1>
+        {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+        {% if page.source or page.duration %}
+          <dl class="content-facts">
+            {% if page.source %}<div><dt>Fonte ou tradição</dt><dd>{{ page.source }}</dd></div>{% endif %}
+            {% if page.duration %}<div><dt>Tempo aproximado</dt><dd>{{ page.duration }}</dd></div>{% endif %}
+          </dl>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="prayer-reading-shell">
+      <div class="reading-toolbar" aria-label="Ferramentas de leitura">
+        <div class="button-group" aria-label="Tamanho do texto">
+          <button class="icon-button" type="button" data-prayer-font="decrease" aria-label="Diminuir texto">{% include icon.html name='minus' %}</button>
+          <span aria-hidden="true">A</span>
+          <button class="icon-button" type="button" data-prayer-font="increase" aria-label="Aumentar texto">{% include icon.html name='plus' %}</button>
+        </div>
+        <button class="button button--text button--small" type="button" data-copy-prayer>{% include icon.html name='copy' %}<span data-copy-prayer-label>Copiar oração</span></button>
+        <button class="button button--text button--small" type="button" data-print-page>{% include icon.html name='print' %}<span>Imprimir</span></button>
+      </div>
+      <div class="prayer-text prose prayer-copy-source" data-prayer-text>
+        {{ content }}
+      </div>
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
     </div>
-    <div class="prayer-text prose prayer-copy-source" data-prayer-text>
-      {{ content }}
-    </div>
-    <p class="status-message" data-prayer-status aria-live="polite"></p>
+
+    {% capture prayer_intention_key %}prayer:{{ page.slug }}{% endcapture %}
+    {% include prayer-intentions.html key=prayer_intention_key %}
     {% include share-buttons.html %}
   </article>
   {% include related-content.html %}

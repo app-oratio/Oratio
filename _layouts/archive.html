@@ -22,13 +22,18 @@ layout: default
           {% case page.collection_name %}
             {% when 'oracoes' %}{% include prayer-card.html item=item %}
             {% when 'novenas' %}{% include novena-card.html item=item %}
+            {% when 'quaresmas' %}{% include novena-card.html item=item type='Quaresma' %}
+            {% when 'trintenas' %}{% include novena-card.html item=item type='Trintena' %}
+            {% when 'devocoes_mensais' %}{% include novena-card.html item=item type='Devoção mensal' %}
+            {% when 'trezenas' %}{% include novena-card.html item=item type='Trezena' %}
+            {% when 'triduos' %}{% include novena-card.html item=item type='Tríduo' %}
             {% when 'santos' %}{% include saint-card.html item=item %}
             {% else %}{% include content-card.html item=item type=page.item_type %}
           {% endcase %}
         </div>
       {% endfor %}
     </div>
-    <div data-archive-empty hidden>{% include empty-state.html %}</div>
+    <div data-archive-empty{% if collection_items.size > 0 %} hidden{% endif %}>{% include empty-state.html %}</div>
     {% include pagination.html %}
   </section>
 </div>
