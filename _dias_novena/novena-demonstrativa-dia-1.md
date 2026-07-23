@@ -2,6 +2,7 @@
 title: "Primeiro dia"
 novena: "novena-demonstrativa"
 day: 1
+theme: "Disponibilidade para começar"
 description: "Primeiro dia do modelo técnico de novena."
 permalink: /novenas/novena-demonstrativa/dia-1/
 demo: true
@@ -19,4 +20,3 @@ O início de um caminho espiritual não depende de grandes sentimentos, mas da d
 ## Oração
 
 Senhor, recebei este momento e conduzi nossos passos na perseverança. Amém.
-

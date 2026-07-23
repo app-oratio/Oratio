@@ -2,6 +2,7 @@
 title: "Segundo dia"
 novena: "novena-demonstrativa"
 day: 2
+theme: "Perseverança nas dificuldades"
 description: "Segundo dia do modelo técnico de novena."
 permalink: /novenas/novena-demonstrativa/dia-2/
 demo: true
@@ -19,4 +20,3 @@ A fidelidade cresce quando retomamos o caminho com simplicidade, mesmo depois da
 ## Oração
 
 Senhor, ensinai-nos a recomeçar e a buscar vossa presença com confiança. Amém.
-

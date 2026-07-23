@@ -2,6 +2,7 @@
 title: "Terceiro dia"
 novena: "novena-demonstrativa"
 day: 3
+theme: "Gratidão e continuidade"
 description: "Terceiro dia do modelo técnico de novena."
 permalink: /novenas/novena-demonstrativa/dia-3/
 demo: true
@@ -19,4 +20,3 @@ A conclusão de um roteiro não encerra a busca por Deus, mas pode transformar a
 ## Oração
 
 Senhor, acolhei nossa gratidão e conservai em nós o desejo de permanecer convosco. Amém.
-
