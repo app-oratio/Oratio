@@ -9,6 +9,7 @@
 {% include_relative home.css %}
 {% include_relative about.css %}
 {% include_relative support-page.css %}
+{% include_relative contact-page.css %}
 {% include_relative responsive.css %}
 {% include_relative dark-theme.css %}
 {% include_relative print.css %}
