@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -77,7 +78,25 @@ def validate_yaml() -> None:
 
 
 def validate_documents() -> None:
-    content_roots = ["_posts", "_oracoes", "_novenas", "_dias_novena", "_devocionarios", "_santos", "_formacoes", "pages"]
+    content_roots = [
+        "_posts",
+        "_oracoes",
+        "_novenas",
+        "_quaresmas",
+        "_trintenas",
+        "_devocoes_mensais",
+        "_trezenas",
+        "_triduos",
+        "_dias_novena",
+        "_dias_devocao",
+        "_tercos",
+        "_rosarios",
+        "_coroas",
+        "_devocionarios",
+        "_santos",
+        "_formacoes",
+        "pages",
+    ]
     for folder in content_roots:
         for path in sorted((ROOT / folder).glob("*.md")):
             data = front_matter(path)
@@ -86,16 +105,141 @@ def validate_documents() -> None:
                 continue
             if not data.get("title"):
                 error(f"Documento sem title: {path.relative_to(ROOT)}")
-            if folder != "_dias_novena" and not data.get("description"):
+            if folder not in {"_dias_novena", "_dias_devocao"} and not data.get("description"):
                 WARNINGS.append(f"Documento sem description: {path.relative_to(ROOT)}")
 
-    novenas = {front_matter(path).get("slug") for path in (ROOT / "_novenas").glob("*.md")}
+    series_folders = [
+        "_novenas",
+        "_quaresmas",
+        "_trintenas",
+        "_devocoes_mensais",
+        "_trezenas",
+        "_triduos",
+    ]
+    series: dict[str, dict] = {}
+    valid_weekdays = {
+        "domingo",
+        "sunday",
+        "segunda",
+        "segunda-feira",
+        "monday",
+        "terça",
+        "terca",
+        "terça-feira",
+        "terca-feira",
+        "tuesday",
+        "quarta",
+        "quarta-feira",
+        "wednesday",
+        "quinta",
+        "quinta-feira",
+        "thursday",
+        "sexta",
+        "sexta-feira",
+        "friday",
+        "sábado",
+        "sabado",
+        "saturday",
+    }
+    for folder in series_folders:
+        for path in (ROOT / folder).glob("*.md"):
+            data = front_matter(path)
+            slug = data.get("slug")
+            if not slug:
+                error(f"Itinerário sem slug: {path.relative_to(ROOT)}")
+                continue
+            if slug in series:
+                error(f"Slug de itinerário duplicado: {slug}")
+            series[slug] = data
+            if not isinstance(data.get("days"), int) or data["days"] < 1:
+                error(f"Campo days deve ser inteiro positivo: {path.relative_to(ROOT)}")
+            calendar = data.get("calendar")
+            if not isinstance(calendar, dict):
+                error(f"Itinerário sem bloco calendar: {path.relative_to(ROOT)}")
+                continue
+            month = calendar.get("base_month")
+            day = calendar.get("base_day")
+            if not isinstance(month, int) or not 1 <= month <= 12:
+                error(f"calendar.base_month deve estar entre 1 e 12: {path.relative_to(ROOT)}")
+            if not isinstance(day, int) or not 1 <= day <= 31:
+                error(f"calendar.base_day deve estar entre 1 e 31: {path.relative_to(ROOT)}")
+            elif isinstance(month, int) and 1 <= month <= 12:
+                try:
+                    date(2024, month, day)
+                except ValueError:
+                    error(f"Data-base impossível: {path.relative_to(ROOT)}")
+            skipped = calendar.get("skip_weekdays", [])
+            if not isinstance(skipped, list):
+                error(f"calendar.skip_weekdays deve ser uma lista: {path.relative_to(ROOT)}")
+            else:
+                for value in skipped:
+                    if isinstance(value, int) and not 0 <= value <= 6:
+                        error(f"calendar.skip_weekdays aceita números de 0 a 6: {path.relative_to(ROOT)}")
+                    elif isinstance(value, str) and value.strip().lower() not in valid_weekdays:
+                        error(f"Dia da semana desconhecido em {path.relative_to(ROOT)}: {value}")
+                    elif not isinstance(value, (int, str)):
+                        error(f"Dia da semana inválido em {path.relative_to(ROOT)}: {value!r}")
+
+    day_numbers: dict[str, list[int]] = {slug: [] for slug in series}
     for path in (ROOT / "_dias_novena").glob("*.md"):
         data = front_matter(path)
-        if data.get("novena") not in novenas:
+        if data.get("novena") not in series:
             error(f"Dia aponta para novena inexistente: {path.relative_to(ROOT)}")
         if not isinstance(data.get("day"), int):
             error(f"Campo day deve ser inteiro: {path.relative_to(ROOT)}")
+        elif data.get("novena") in day_numbers:
+            day_numbers[data["novena"]].append(data["day"])
+    for path in (ROOT / "_dias_devocao").glob("*.md"):
+        data = front_matter(path)
+        if data.get("devotion") not in series:
+            error(f"Dia aponta para itinerário inexistente: {path.relative_to(ROOT)}")
+        if not isinstance(data.get("day"), int):
+            error(f"Campo day deve ser inteiro: {path.relative_to(ROOT)}")
+        elif data.get("devotion") in day_numbers:
+            day_numbers[data["devotion"]].append(data["day"])
+        if not data.get("permalink"):
+            error(f"Dia devocional sem permalink explícito: {path.relative_to(ROOT)}")
+
+    for slug, data in series.items():
+        expected = list(range(1, data["days"] + 1))
+        actual = sorted(day_numbers.get(slug, []))
+        if actual != expected:
+            error(
+                f"Dias incompletos ou duplicados em {slug}: "
+                f"esperado {expected}, encontrado {actual}"
+            )
+
+    for folder in ["_tercos", "_rosarios", "_coroas"]:
+        for path in (ROOT / folder).glob("*.md"):
+            data = front_matter(path)
+            sections = data.get("sections")
+            if not isinstance(sections, list) or not sections:
+                error(f"Oração contada sem sections: {path.relative_to(ROOT)}")
+                continue
+            used_sections: set[str] = set()
+            for section_index, section in enumerate(sections, start=1):
+                groups = section.get("groups") if isinstance(section, dict) else None
+                section_id = str(section.get("id", section_index)) if isinstance(section, dict) else str(section_index)
+                if section_id in used_sections:
+                    error(f"Etapa com id duplicado em {path.relative_to(ROOT)}: {section_id}")
+                used_sections.add(section_id)
+                if not isinstance(groups, list) or not groups:
+                    error(f"Etapa sem groups em {path.relative_to(ROOT)}")
+                    continue
+                used_groups: set[str] = set()
+                for group_index, group in enumerate(groups, start=1):
+                    if not isinstance(group, dict) or not group.get("label"):
+                        error(f"Grupo de contagem sem label em {path.relative_to(ROOT)}")
+                        continue
+                    group_id = str(group.get("id", group_index))
+                    if group_id in used_groups:
+                        error(
+                            f"Grupo com id duplicado na etapa {section_id} "
+                            f"em {path.relative_to(ROOT)}: {group_id}"
+                        )
+                    used_groups.add(group_id)
+                    if not isinstance(group.get("count", 1), int) or group.get("count", 1) < 1:
+                        error(f"Grupo de contagem com count inválido em {path.relative_to(ROOT)}")
 
 
 def validate_liquid_balance() -> None:
