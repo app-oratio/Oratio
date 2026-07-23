@@ -155,7 +155,7 @@ reading_width: wide
                   alt=""
                 >
                 <strong>QR Code PIX</strong>
-                <span>Adicione a imagem oficial no caminho indicado abaixo.</span>
+                <span>O QR Code oficial será exibido aqui.</span>
               </div>
               <img
                 class="support-qr__image"
@@ -167,9 +167,6 @@ reading_width: wide
                 data-support-qr-image
               >
             </div>
-            <figcaption>
-              Caminho da imagem: <code>{{ support.one_time.brazil.qr_code_image }}</code>
-            </figcaption>
           </figure>
 
           <div class="support-payment-details">
@@ -325,7 +322,7 @@ reading_width: wide
     <div class="support-section__heading">
       <p class="support-kicker">Outras formas de ajudar</p>
       <h2 id="support-other-title">Nem todo apoio precisa ser financeiro</h2>
-      <p>O crescimento do Oratio também depende da oração, da divulgação responsável e da colaboração de pessoas dispostas a oferecer seus conhecimentos e sua experiência.</p>
+      <p>O crescimento do Oratio também depende da oração, da divulgação responsável, de avaliações sinceras e de sugestões que ajudem a aperfeiçoar o aplicativo.</p>
     </div>
 
     <div class="support-other-grid">
@@ -342,8 +339,17 @@ reading_width: wide
         <p>Relatos claros ajudam a aperfeiçoar os conteúdos, corrigir problemas e compreender necessidades reais dos usuários.</p>
       </article>
       <article class="support-other-card">
-        <h3>Colabore com seus conhecimentos</h3>
-        <p>Pessoas com experiência em liturgia, teologia, revisão, acessibilidade, design ou desenvolvimento podem entrar em contato.</p>
+        <h3>Avalie na Google Play</h3>
+        <p>Uma avaliação sincera ajuda outras pessoas a conhecerem o Oratio e oferece um retorno importante para o aperfeiçoamento do aplicativo.</p>
+        <a
+          class="button button--tonal support-other-card__action"
+          href="{{ site.data.app.play_store_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Avaliar o Oratio
+          <span aria-hidden="true">↗</span>
+        </a>
       </article>
     </div>
   </section>
