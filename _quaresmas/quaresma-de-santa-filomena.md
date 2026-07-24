@@ -1,7 +1,7 @@
 ---
 title: "Quaresma de Santa Filomena"
 slug: "quaresma-de-santa-filomena"
-description: "Quarenta dias de oração em memória do período em que Santa Filomena permaneceu presa, pedindo sua intercessão e crescendo na fé."
+description: "Quarenta dias de oração em memória do período em que Santa Filomena permaneceu presa, pedindo sua intercessão e crescendo na fé. "
 image: "/assets/images/quaresma/quaresma-de-santa-filomena.png"
 image_alt: "Santa Filomena representada como jovem virgem e mártir"
 saint: "Santa Filomena"
