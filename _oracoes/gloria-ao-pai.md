@@ -4,6 +4,9 @@ description: "Breve doxologia cristã apresentada como exemplo de oração."
 category: "Orações fundamentais"
 slug: "gloria-ao-pai"
 image: "/assets/images/prayers/gloria-ao-pai.webp"
+image_alt: "Imagem de capa da oração Glória ao Pai"
+common_prayer: "gloria-ao-pai"
+default_language: "pt"
 featured: true
 order: 3
 demo: true
@@ -14,6 +17,3 @@ related:
   - pai-nosso
   - ave-maria
 ---
-
-Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém.
-

@@ -4,6 +4,9 @@ description: "Oração cristã fundamental, apresentada aqui como conteúdo demo
 category: "Orações fundamentais"
 slug: "pai-nosso"
 image: "/assets/images/prayers/pai-nosso.webp"
+image_alt: "Imagem de capa da oração do Pai-Nosso"
+common_prayer: "pai-nosso"
+default_language: "pt"
 featured: true
 order: 1
 demo: true
@@ -14,8 +17,3 @@ related:
   - ave-maria
   - gloria-ao-pai
 ---
-
-Pai nosso, que estais nos céus, santificado seja o vosso nome; venha a nós o vosso Reino; seja feita a vossa vontade, assim na terra como no céu.
-
-O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.
-
