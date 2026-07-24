@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  var roots = document.querySelectorAll('[data-counted-prayer]');
+  var roots = document.querySelectorAll('[data-devotional-content]');
   if (!roots.length) return;
 
   function formatDateTime(value) {
-    if (!value || Number.isNaN(Date.parse(value))) return 'nenhuma';
+    if (!value || Number.isNaN(Date.parse(value))) return 'nunca';
     return new Intl.DateTimeFormat('pt-BR', {
       dateStyle: 'medium',
       timeStyle: 'short'
@@ -17,9 +17,15 @@
   }
 
   function setup(root) {
-    var contentId = root.getAttribute('data-counted-id');
-    var storageKey = 'oratio:counted-prayer:v1:' + contentId;
+    var contentId = root.getAttribute('data-devotional-id');
+    if (!contentId) return;
+
+    var storageKey = 'oratio:devotional-sequence:v2:' + contentId;
+    var legacyKey = root.getAttribute('data-legacy-counted') === 'true'
+      ? 'oratio:counted-prayer:v1:' + contentId
+      : '';
     var groups = Array.prototype.slice.call(root.querySelectorAll('[data-counted-group]'));
+    var units = Array.prototype.slice.call(root.querySelectorAll('[data-prayer-unit]'));
     var status = root.querySelector('[data-counted-status]');
     var memoryState = null;
 
@@ -28,7 +34,7 @@
     }
 
     function defaultState() {
-      return { version: 1, groups: {}, updatedAt: null };
+      return { version: 2, groups: {}, updatedAt: null };
     }
 
     function sanitizeState(value) {
@@ -40,20 +46,12 @@
         clean[id] = Math.min(groupMaximum(group), Math.max(0, Number(sourceGroups[id]) || 0));
       });
       return {
-        version: 1,
+        version: 2,
         groups: clean,
         updatedAt: source.updatedAt && !Number.isNaN(Date.parse(source.updatedAt))
           ? new Date(source.updatedAt).toISOString()
           : null
       };
-    }
-
-    function readState() {
-      var raw = null;
-      try { raw = window.localStorage.getItem(storageKey); } catch (error) { raw = memoryState; }
-      if (!raw && memoryState) raw = memoryState;
-      if (!raw) return sanitizeState(defaultState());
-      try { return sanitizeState(JSON.parse(raw)); } catch (error) { return sanitizeState(defaultState()); }
     }
 
     function saveState(state) {
@@ -69,24 +67,65 @@
       }
     }
 
-    function createBeads(group) {
-      var container = group.querySelector('[data-bead-counter]');
-      if (!container || container.children.length) return;
-      var total = groupMaximum(group);
-      var label = group.getAttribute('data-group-label') || 'oração';
-      for (var index = 1; index <= total; index += 1) {
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'bead-button';
-        button.setAttribute('data-bead-number', String(index));
-        button.setAttribute('aria-label', label + ', item ' + index + ' de ' + total);
-        button.setAttribute('aria-pressed', 'false');
-        var number = document.createElement('span');
-        number.textContent = String(index);
-        button.appendChild(number);
-        container.appendChild(button);
+    function readState() {
+      var raw = null;
+      try { raw = window.localStorage.getItem(storageKey); } catch (error) { raw = memoryState; }
+      if (!raw && memoryState) raw = memoryState;
+      if (raw) {
+        try { return sanitizeState(JSON.parse(raw)); } catch (error) { return sanitizeState(defaultState()); }
       }
+
+      if (legacyKey) {
+        var legacy = null;
+        try { legacy = window.localStorage.getItem(legacyKey); } catch (error) { legacy = null; }
+        if (legacy) {
+          try {
+            var migrated = sanitizeState(JSON.parse(legacy));
+            saveState(migrated);
+            return migrated;
+          } catch (error) {
+            return sanitizeState(defaultState());
+          }
+        }
+      }
+      return sanitizeState(defaultState());
     }
+
+    function applyLanguage(language) {
+      var selected = language === 'la' ? 'la' : 'pt';
+      units.forEach(function (unit) {
+        var panels = Array.prototype.slice.call(unit.querySelectorAll('[data-language-panel]'));
+        if (!panels.length) return;
+        var target = panels.find(function (panel) {
+          return panel.getAttribute('data-language') === selected;
+        });
+        if (!target) {
+          target = panels.find(function (panel) {
+            return panel.getAttribute('data-language') === 'pt';
+          }) || panels[0];
+        }
+        panels.forEach(function (panel) {
+          panel.hidden = panel !== target;
+        });
+      });
+      root.querySelectorAll('[data-language-option]').forEach(function (button) {
+        var active = button.getAttribute('data-language-option') === selected;
+        button.setAttribute('aria-pressed', String(active));
+        button.classList.toggle('is-active', active);
+      });
+    }
+
+    var hasPortuguese = Boolean(root.querySelector('[data-language-panel][data-language="pt"]'));
+    var hasLatin = Boolean(root.querySelector('[data-language-panel][data-language="la"]'));
+    root.querySelectorAll('[data-language-switcher]').forEach(function (switcher) {
+      switcher.hidden = !(hasPortuguese && hasLatin);
+    });
+    root.querySelectorAll('[data-language-option]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyLanguage(button.getAttribute('data-language-option'));
+      });
+    });
+    applyLanguage((root.getAttribute('data-default-language') || 'pt').toLowerCase());
 
     function updateGroup(group, amount) {
       var id = group.getAttribute('data-group-id');
@@ -115,55 +154,62 @@
         if (!firstIncomplete && value < maximum) firstIncomplete = group;
 
         var output = group.querySelector('[data-group-output]');
+        var valueLabel = group.querySelector('[data-group-value]');
+        var bar = group.querySelector('[data-group-bar]');
         if (output) output.textContent = value + ' de ' + maximum;
+        if (valueLabel) valueLabel.textContent = String(value);
+        if (bar) bar.style.transform = 'scaleX(' + Math.min(1, value / maximum) + ')';
         group.classList.toggle('is-complete', value >= maximum);
-        group.querySelectorAll('[data-bead-number]').forEach(function (button) {
-          var active = Number(button.getAttribute('data-bead-number')) <= value;
-          button.classList.toggle('is-complete', active);
-          button.setAttribute('aria-pressed', String(active));
-        });
+
         var back = group.querySelector('[data-count-back]');
         var forward = group.querySelector('[data-count-forward]');
         if (back) back.disabled = value <= 0;
         if (forward) forward.disabled = value >= maximum;
       });
 
-      root.querySelectorAll('[data-counted-section]').forEach(function (section) {
+      root.querySelectorAll('[data-devotional-section]').forEach(function (section) {
         var sectionGroups = Array.prototype.slice.call(section.querySelectorAll('[data-counted-group]'));
+        if (!sectionGroups.length) return;
         var sectionValues = sectionGroups.map(function (group) {
           var id = group.getAttribute('data-group-id');
           return { value: state.groups[id] || 0, maximum: groupMaximum(group) };
         });
-        var sectionCompleted = sectionValues.length > 0 && sectionValues.every(function (item) { return item.value >= item.maximum; });
+        var sectionCompleted = sectionValues.every(function (item) { return item.value >= item.maximum; });
         var sectionStarted = sectionValues.some(function (item) { return item.value > 0; });
         section.classList.toggle('is-complete', sectionCompleted);
         section.classList.toggle('is-started', sectionStarted && !sectionCompleted);
         var stateLabel = section.querySelector('[data-section-state]');
-        if (stateLabel) stateLabel.textContent = sectionCompleted ? 'Concluída' : (sectionStarted ? 'Em andamento' : 'Não iniciada');
+        if (stateLabel) {
+          stateLabel.textContent = sectionCompleted ? 'Concluída' : (sectionStarted ? 'Em andamento' : 'Não iniciada');
+        }
       });
 
       var percent = total ? Math.round((completed / total) * 100) : 0;
-      var progressLabel = root.querySelector('[data-counted-progress-label]');
-      var percentLabel = root.querySelector('[data-counted-percent]');
-      var fraction = root.querySelector('[data-counted-fraction]');
-      var updated = root.querySelector('[data-counted-updated]');
-      var track = root.querySelector('[data-counted-track]');
-      var bar = root.querySelector('[data-counted-bar]');
-      if (progressLabel) progressLabel.textContent = completed + ' de ' + total + (completed === 1 ? ' oração marcada.' : ' orações marcadas.');
-      if (percentLabel) percentLabel.textContent = percent + '%';
-      if (fraction) fraction.textContent = completed + ' de ' + total;
-      if (updated) {
-        updated.textContent = formatDateTime(state.updatedAt);
-        if (state.updatedAt) updated.dateTime = state.updatedAt;
-        else updated.removeAttribute('datetime');
-      }
-      if (track) track.setAttribute('aria-valuenow', String(percent));
-      if (bar) bar.style.transform = 'scaleX(' + Math.min(1, percent / 100) + ')';
+      root.querySelectorAll('[data-counted-progress-label]').forEach(function (element) {
+        element.textContent = completed + ' de ' + total + (completed === 1 ? ' oração marcada.' : ' orações marcadas.');
+      });
+      root.querySelectorAll('[data-counted-percent]').forEach(function (element) {
+        element.textContent = percent + '%';
+      });
+      root.querySelectorAll('[data-counted-fraction]').forEach(function (element) {
+        element.textContent = completed + ' de ' + total;
+      });
+      root.querySelectorAll('[data-counted-updated]').forEach(function (element) {
+        element.textContent = formatDateTime(state.updatedAt);
+        if (state.updatedAt) element.dateTime = state.updatedAt;
+        else element.removeAttribute('datetime');
+      });
+      root.querySelectorAll('[data-counted-track]').forEach(function (element) {
+        element.setAttribute('aria-valuenow', String(percent));
+      });
+      root.querySelectorAll('[data-counted-bar]').forEach(function (element) {
+        element.style.transform = 'scaleX(' + Math.min(1, percent / 100) + ')';
+      });
 
       var continueButton = root.querySelector('[data-counted-continue]');
       var continueLabel = root.querySelector('[data-counted-continue-label]');
       if (continueButton && continueLabel) {
-        if (!firstIncomplete && total > 0) {
+        if (groups.length && !firstIncomplete) {
           continueButton.setAttribute('data-counted-complete', 'true');
           continueButton.removeAttribute('data-counted-target');
           continueLabel.textContent = 'Rezar novamente';
@@ -172,21 +218,12 @@
           continueButton.setAttribute('data-counted-target', firstIncomplete.getAttribute('data-group-id'));
           continueLabel.textContent = completed > 0
             ? 'Continuar em ' + firstIncomplete.getAttribute('data-group-label')
-            : 'Começar a contagem';
+            : 'Começar a oração';
         }
       }
     }
 
     groups.forEach(function (group) {
-      createBeads(group);
-      group.querySelectorAll('[data-bead-number]').forEach(function (button) {
-        button.addEventListener('click', function () {
-          var state = readState();
-          var id = group.getAttribute('data-group-id');
-          var selected = Number(button.getAttribute('data-bead-number'));
-          updateGroup(group, state.groups[id] === selected ? selected - 1 : selected);
-        });
-      });
       var back = group.querySelector('[data-count-back]');
       var forward = group.querySelector('[data-count-forward]');
       if (back) back.addEventListener('click', function () {
@@ -212,19 +249,23 @@
         return;
       }
       var targetId = continueButton.getAttribute('data-counted-target');
-      var target = groups.find(function (group) { return group.getAttribute('data-group-id') === targetId; });
+      var target = groups.find(function (group) {
+        return group.getAttribute('data-group-id') === targetId;
+      });
+      if (!target) target = root.querySelector('[data-devotional-section], [data-prayer-unit]');
       if (target) target.scrollIntoView({ behavior: scrollBehavior(), block: 'center' });
     });
 
-    var resetButton = root.querySelector('[data-counted-reset]');
-    if (resetButton) resetButton.addEventListener('click', function () {
-      var confirmed = window.confirm('Deseja apagar toda a contagem desta oração neste navegador? As intenções serão mantidas.');
-      if (!confirmed) return;
-      var state = sanitizeState(defaultState());
-      state.updatedAt = new Date().toISOString();
-      saveState(state);
-      if (status) status.textContent = 'A contagem foi reiniciada.';
-      render();
+    root.querySelectorAll('[data-counted-reset]').forEach(function (resetButton) {
+      resetButton.addEventListener('click', function () {
+        var confirmed = window.confirm('Deseja apagar toda a contagem deste roteiro neste navegador? As intenções serão mantidas.');
+        if (!confirmed) return;
+        var state = sanitizeState(defaultState());
+        state.updatedAt = new Date().toISOString();
+        saveState(state);
+        if (status) status.textContent = 'A contagem foi reiniciada.';
+        render();
+      });
     });
 
     window.addEventListener('storage', function (event) {

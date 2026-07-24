@@ -42,20 +42,29 @@
     });
   });
 
-  var prayer = document.querySelector('[data-prayer-text]');
-  var prayerCopy = document.querySelector('[data-copy-prayer]');
-  var prayerStatus = document.querySelector('[data-prayer-status]');
-  if (prayer && prayerCopy) prayerCopy.addEventListener('click', function () {
-    copyText((document.querySelector('h1') ? document.querySelector('h1').textContent + '\n\n' : '') + prayer.innerText.trim())
-      .then(function () {
-        var label = prayerCopy.querySelector('[data-copy-prayer-label]');
-        if (label) label.textContent = 'Oração copiada';
-        if (prayerStatus) prayerStatus.textContent = 'A oração foi copiada.';
-        window.setTimeout(function () { if (label) label.textContent = 'Copiar oração'; }, 2200);
-      })
-      .catch(function () { if (prayerStatus) prayerStatus.textContent = 'Não foi possível copiar a oração.'; });
+  document.querySelectorAll('[data-copy-prayer]').forEach(function (prayerCopy) {
+    var copySource = prayerCopy.closest('[data-prayer-copy-source]') || document;
+    var prayerStatus = copySource.querySelector('[data-prayer-status]');
+    var prayerTexts = Array.prototype.slice.call(copySource.querySelectorAll('[data-prayer-text]'));
+    if (!prayerTexts.length) return;
+    prayerCopy.addEventListener('click', function () {
+      var title = document.querySelector('h1');
+      var text = prayerTexts.map(function (prayerText) {
+        return prayerText.innerText.trim();
+      }).filter(Boolean).join('\n\n');
+      var label = prayerCopy.querySelector('[data-copy-prayer-label]');
+      var originalLabel = label ? label.textContent : '';
+      copyText((title ? title.textContent + '\n\n' : '') + text)
+        .then(function () {
+          if (label) label.textContent = 'Texto copiado';
+          if (prayerStatus) prayerStatus.textContent = 'O texto de oração foi copiado.';
+          window.setTimeout(function () { if (label) label.textContent = originalLabel; }, 2200);
+        })
+        .catch(function () {
+          if (prayerStatus) prayerStatus.textContent = 'Não foi possível copiar o texto.';
+        });
+    });
   });
 
   document.querySelectorAll('[data-print-page]').forEach(function (button) { button.addEventListener('click', function () { window.print(); }); });
 }());
-

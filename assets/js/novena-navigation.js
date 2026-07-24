@@ -312,9 +312,6 @@
         if (state.updatedAt) element.dateTime = state.updatedAt;
         else element.removeAttribute('datetime');
       });
-      root.querySelectorAll('[data-progress-ring]').forEach(function (element) {
-        element.style.setProperty('--progress-value', percent + '%');
-      });
       root.querySelectorAll('[data-progress-bar]').forEach(function (element) {
         element.style.transform = 'scaleX(' + Math.min(1, percent / 100) + ')';
       });
@@ -454,37 +451,45 @@
       render();
     });
 
-    var exportButton = root.querySelector('[data-progress-export]');
-    if (exportButton) exportButton.addEventListener('click', function () {
-      var state = readState();
-      var intentions = window.OratioIntentions && intentionKey ? window.OratioIntentions.read(intentionKey) : [];
-      var backup = {
-        schema: 'oratio-devotion-progress',
-        version: 2,
-        exportedAt: new Date().toISOString(),
-        devotion: {
-          id: id,
-          slug: slug,
-          type: type,
-          totalDays: total
-        },
-        progress: state,
-        intentions: intentions
-      };
-      var blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
-      var url = URL.createObjectURL(blob);
-      var link = document.createElement('a');
-      link.href = url;
-      link.download = 'oratio-' + slug + '-progresso.json';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.setTimeout(function () { URL.revokeObjectURL(url); }, 0);
-      if (progressStatus) progressStatus.textContent = 'O arquivo de progresso foi exportado.';
+    root.querySelectorAll('[data-progress-export]').forEach(function (exportButton) {
+      exportButton.addEventListener('click', function () {
+        var state = readState();
+        var intentions = window.OratioIntentions && intentionKey ? window.OratioIntentions.read(intentionKey) : [];
+        var backup = {
+          schema: 'oratio-devotion-progress',
+          version: 2,
+          exportedAt: new Date().toISOString(),
+          devotion: {
+            id: id,
+            slug: slug,
+            type: type,
+            totalDays: total
+          },
+          progress: state,
+          intentions: intentions
+        };
+        var blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'oratio-' + slug + '-progresso.json';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(function () { URL.revokeObjectURL(url); }, 0);
+        var menu = exportButton.closest('details');
+        if (menu) menu.open = false;
+        if (progressStatus) progressStatus.textContent = 'O arquivo de progresso foi exportado.';
+      });
     });
 
-    var importButton = root.querySelector('[data-progress-import]');
-    if (importButton && importFile) importButton.addEventListener('click', function () { importFile.click(); });
+    root.querySelectorAll('[data-progress-import]').forEach(function (importButton) {
+      if (importFile) importButton.addEventListener('click', function () {
+        var menu = importButton.closest('details');
+        if (menu) menu.open = false;
+        importFile.click();
+      });
+    });
     if (importFile) importFile.addEventListener('change', function () {
       var file = importFile.files && importFile.files[0];
       if (!file) return;
