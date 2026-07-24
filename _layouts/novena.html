@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign modern_days = site.dias_devocao | where: 'devotion', page.slug %}
+{% assign modern_days = site.dias_novena | where: 'devotion', page.slug %}
 {% assign legacy_days = site.dias_novena | where: 'novena', page.slug %}
 {% assign devotion_days = legacy_days | concat: modern_days | sort: 'day' %}
 {% assign total_days = page.days | default: devotion_days.size %}
@@ -15,7 +15,6 @@ layout: default
 {% endif %}
 {% capture devotion_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 {% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
-{% assign devotion_default_language = page.default_language | default: 'pt' %}
 
 <div class="container container--large page-shell devotion-layout"
   data-devotion-progress
@@ -30,10 +29,7 @@ layout: default
   data-calendar-base-day="{{ calendar.base_day }}"
   data-calendar-start-month="{{ calendar.start_month }}"
   data-calendar-start-day="{{ calendar.start_day }}"
-  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}"
-  data-devotional-content
-  data-devotional-id="{{ devotion_id | strip | escape }}"
-  data-default-language="{{ devotion_default_language | escape }}">
+  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Este itinerário apresenta o funcionamento técnico do sistema. Revise e complete os textos antes da publicação.' %}{% endif %}
 
@@ -66,18 +62,10 @@ layout: default
     </header>
 
     <noscript>
-      <p class="notice notice--warning">Os textos e links dos dias permanecem disponíveis, porém o calendário, o progresso, as contagens, os idiomas, as intenções e o backup exigem JavaScript ativado.</p>
+      <p class="notice notice--warning">A apresentação e os links dos dias permanecem disponíveis, porém o calendário, o progresso, as intenções e o backup exigem JavaScript ativado.</p>
     </noscript>
 
-    <div class="devotion-reading" data-prayer-copy-source>
-      {% include reading-tools.html copy_label='Copiar apresentação' %}
-      {% if page.sections or page.common_prayer or page.texts or page.count %}
-        {% include devotional-sequence.html document=page content=content anchor='roteiro-geral' heading_id='devotion-sequence-title' progress_id='devotion-sequence-progress-title' kicker='Orações comuns' heading=page.sequence_title %}
-      {% else %}
-        <div class="prose prose--wide prayer-text devotion-introduction" data-prayer-text>{{ content }}</div>
-      {% endif %}
-      <p class="status-message" data-prayer-status aria-live="polite"></p>
-    </div>
+    <div class="prose prose--wide devotion-introduction">{{ content }}</div>
 
     <section class="devotion-dashboard" id="progresso" aria-labelledby="progress-title">
       <div class="devotion-dashboard__heading">

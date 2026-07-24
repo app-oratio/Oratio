@@ -4,7 +4,7 @@ layout: default
 {% assign devotion_slug = page.devotion | default: page.novena %}
 {% assign all_devotions = site.novenas | concat: site.quaresmas | concat: site.trintenas | concat: site.devocoes_mensais | concat: site.trezenas | concat: site.triduos %}
 {% assign devotion = all_devotions | where: 'slug', devotion_slug | first %}
-{% assign modern_days = site.dias_devocao | where: 'devotion', devotion_slug %}
+{% assign modern_days = site.dias_novena | where: 'devotion', devotion_slug %}
 {% assign legacy_days = site.dias_novena | where: 'novena', devotion_slug %}
 {% assign devotion_days = legacy_days | concat: modern_days | sort: 'day' %}
 {% assign total_days = devotion.days | default: devotion_days.size %}
@@ -23,7 +23,9 @@ layout: default
 {% capture devotion_id %}{{ devotion.collection }}:{{ devotion.slug }}{% endcapture %}
 {% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
 {% capture day_content_id %}{{ devotion_id }}:dia-{{ page.day }}{% endcapture %}
-{% assign day_default_language = page.default_language | default: devotion.default_language | default: 'pt' %}
+{% assign day_default_language = page['default-language'] | default: page.default_language | default: devotion['default-language'] | default: devotion.default_language | default: 'pt' %}
+{% assign day_cover_image = devotion.image %}
+{% assign day_cover_alt = devotion.image_alt | default: devotion.title %}
 
 <div class="container container--medium page-shell novena-day devotion-day-layout"
   data-devotion-progress
@@ -46,16 +48,19 @@ layout: default
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Dia demonstrativo' text='Este texto breve demonstra o funcionamento do acompanhamento local.' %}{% endif %}
 
-  <header class="content-header content-header--center devotion-day-header">
-    <a class="overline-link" href="{{ devotion.url | relative_url }}">{{ devotion.title | default: devotion_type }}</a>
-    <p class="day-number">Dia {{ page.day }} de {{ total_days }}</p>
-    <h1>{{ page.title }}</h1>
-    {% if page.theme %}<p class="devotion-day-theme">{{ page.theme }}</p>{% endif %}
-    {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
-    <p class="devotion-day-date">
-      {% include icon.html name='calendar' %}
-      <time data-current-day-date>Calculando a data deste dia</time>
-    </p>
+  <header class="devotional-hero devotion-day-hero">
+    {% include devotional-cover.html image=day_cover_image alt=day_cover_alt label=devotion_type class='devotion-day-cover' width=960 height=640 %}
+    <div class="devotional-hero__content content-header content-header--center devotion-day-header">
+      <a class="overline-link" href="{{ devotion.url | relative_url }}">{{ devotion.title | default: devotion_type }}</a>
+      <p class="day-number">Dia {{ page.day }} de {{ total_days }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.theme %}<p class="devotion-day-theme">{{ page.theme }}</p>{% endif %}
+      {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+      <p class="devotion-day-date">
+        {% include icon.html name='calendar' %}
+        <time data-current-day-date>Calculando a data deste dia</time>
+      </p>
+    </div>
   </header>
 
   <noscript>
@@ -77,11 +82,7 @@ layout: default
 
   <div data-prayer-copy-source>
     {% include reading-tools.html copy_label='Copiar este dia' %}
-    {% if page.sections or page.common_prayer or page.texts or page.count %}
-      {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='day-sequence-title' progress_id='day-sequence-progress-title' kicker='Roteiro deste dia' heading=page.sequence_title %}
-    {% else %}
-      <article class="prose prayer-text devotion-day-content" data-prayer-text>{{ content }}</article>
-    {% endif %}
+    {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='day-sequence-title' progress_id='day-sequence-progress-title' kicker='Roteiro deste dia' heading=page.sequence_title %}
     <p class="status-message" data-prayer-status aria-live="polite"></p>
   </div>
 

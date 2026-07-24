@@ -1,8 +1,9 @@
 ---
 layout: default
 ---
-{% assign prayer_common = site.data.common_prayers[page.common_prayer] %}
-{% assign prayer_default_language = page.default_language | default: prayer_common.default_language | default: 'pt' %}
+{% assign prayer_common_key = page['common-prayer'] | default: page.common_prayer %}
+{% assign prayer_common = site.data.common_prayers[prayer_common_key] %}
+{% assign prayer_default_language = page['default-language'] | default: page.default_language | default: prayer_common['default-language'] | default: prayer_common.default_language | default: 'pt' %}
 {% capture prayer_content_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 
 <div class="container container--large page-shell prayer-layout"
@@ -29,13 +30,7 @@ layout: default
 
     <div class="prayer-reading-shell" data-prayer-copy-source>
       {% include reading-tools.html copy_label='Copiar oração' %}
-      {% if page.sections or page.common_prayer or page.texts or page.count %}
-        {% include devotional-sequence.html document=page content=content hide_heading=true heading_id='prayer-sequence-title' progress_id='prayer-sequence-progress-title' %}
-      {% else %}
-        <div class="prayer-text prose prayer-copy-source" data-prayer-text>
-          {{ content }}
-        </div>
-      {% endif %}
+      {% include devotional-sequence.html document=page content=content hide_heading=true heading_id='prayer-sequence-title' progress_id='prayer-sequence-progress-title' %}
       <p class="status-message" data-prayer-status aria-live="polite"></p>
     </div>
 
