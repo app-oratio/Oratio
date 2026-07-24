@@ -26,10 +26,10 @@ sections:
     prayers:
       - id: sinal-inicial
         label: "Sinal da Cruz inicial"
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
       - id: invocacao
-        prayer: "vinde-espirito-santo"
+        common_prayer: "vinde-espirito-santo"
   - id: meditacao
     kicker: "Recolhimento"
     title: "Permanecer diante de Deus"
@@ -37,22 +37,22 @@ sections:
     prayers:
       - id: jaculatoria
         label: "Invocação breve demonstrativa"
+        label-latin: "Invocatio brevis demonstrativa"
+        prayer: |-
+          Senhor, reuni meus pensamentos e conservai meu coração em vossa presença.
+        prayer-latin: |-
+          Domine, cogitationes meas congrega et cor meum in praesentia tua conserva.
         count: 3
-        texts:
-          pt: |-
-            Senhor, reuni meus pensamentos e conservai meu coração em vossa presença.
-          la: |-
-            Domine, cogitationes meas congrega et cor meum in praesentia tua conserva.
   - id: encerramento
     kicker: "Conclusão"
     title: "Agradecimento"
     prayers:
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
       - id: sinal-final
         label: "Sinal da Cruz final"
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
 ---
 
