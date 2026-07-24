@@ -1,56 +1,47 @@
-/* Camada isolada para orações, itinerários devocionais e orações contadas. */
+/* Camada isolada para orações, itinerários, devocionários e sequências contáveis. */
 
-.prayer-hero {
-  align-items: center;
-  background:
-    radial-gradient(circle at 18% 20%, color-mix(in srgb, var(--oratio-primary-container) 74%, transparent), transparent 44%),
-    var(--oratio-surface);
+.devotional-hero {
+  background: var(--oratio-surface);
   border: 1px solid var(--oratio-divider);
   border-radius: var(--radius-large);
   display: grid;
-  gap: var(--space-6);
-  margin-block: var(--space-8);
+  margin-block: var(--space-8) var(--space-10);
   overflow: hidden;
-  padding: var(--space-6);
-  position: relative;
 }
-.prayer-hero::after {
-  border: 1px solid color-mix(in srgb, var(--oratio-primary) 18%, transparent);
-  border-radius: 50%;
-  content: "";
-  height: 15rem;
-  position: absolute;
-  right: -9rem;
-  top: -8rem;
-  width: 15rem;
-}
-.prayer-hero__symbol {
-  align-items: center;
-  aspect-ratio: 1;
-  background: var(--oratio-primary-container);
-  border-radius: 50%;
-  color: var(--oratio-on-primary-container);
-  display: flex;
-  font-family: var(--font-heading);
-  font-size: 2.75rem;
-  height: 6.5rem;
-  justify-content: center;
-  position: relative;
-  width: 6.5rem;
-  z-index: 1;
-}
-.prayer-hero__content {
+.devotional-hero__content {
+  align-content: center;
   display: grid;
   gap: var(--space-4);
-  position: relative;
-  z-index: 1;
+  padding: var(--space-6);
 }
-.prayer-hero__content .chip { justify-self: start; }
+.devotional-hero__content .chip,
+.devotional-hero__content .button { justify-self: start; }
+.devotional-cover {
+  aspect-ratio: 16 / 10;
+  border-radius: 0;
+  min-height: 12rem;
+}
+.devotional-cover__placeholder {
+  background:
+    radial-gradient(circle at 24% 20%, color-mix(in srgb, var(--oratio-teal-container) 62%, transparent), transparent 45%),
+    linear-gradient(145deg, var(--oratio-primary-container), color-mix(in srgb, var(--oratio-primary-container) 68%, var(--oratio-surface)));
+}
+.devotional-cover__placeholder img {
+  height: 3rem;
+  object-fit: contain;
+  width: 3rem;
+}
+.novena-hero .devotion-cover {
+  aspect-ratio: 1;
+  border-radius: var(--radius-large);
+  min-height: 18rem;
+}
+
 .prayer-reading-shell {
   background: var(--oratio-surface);
   border: 1px solid var(--oratio-divider);
   border-radius: var(--radius-large);
-  box-shadow: 0 16px 38px color-mix(in srgb, var(--oratio-shadow) 62%, transparent);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--oratio-shadow) 48%, transparent);
   margin-inline: auto;
   max-width: var(--content-reading-width);
   overflow: hidden;
@@ -62,8 +53,297 @@
   margin: 0;
   padding: var(--space-3);
 }
-.prayer-reading-shell .prayer-text { padding: var(--space-6); }
+.prayer-reading-shell > .prayer-text { padding: var(--space-6); }
+.prayer-reading-shell > .devotional-sequence { padding: var(--space-5); }
 .prayer-reading-shell > .status-message { padding-inline: var(--space-6); }
+
+.counted-prayer-reading,
+.devotional-book-reading,
+.devotion-reading {
+  margin-block: var(--space-8);
+}
+
+.devotional-sequence {
+  display: grid;
+  gap: var(--space-6);
+  margin-block: var(--space-8) var(--space-12);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+.devotional-sequence--single {
+  gap: var(--space-4);
+  margin-block: 0;
+}
+.devotional-sequence__introduction { margin-bottom: var(--space-3); }
+.devotional-sequence__heading {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+}
+.devotional-sequence__heading > div:first-child {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.language-switcher {
+  align-items: center;
+  color: var(--oratio-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  gap: var(--space-2);
+}
+.language-switcher[hidden] { display: none; }
+.language-switcher--standalone {
+  justify-content: flex-end;
+  padding-inline: var(--space-1);
+}
+.language-switcher > div {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  padding: 0.18rem;
+}
+.language-switcher button {
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--oratio-text-secondary);
+  font-size: 0.76rem;
+  font-weight: 750;
+  min-height: 2rem;
+  padding-inline: 0.7rem;
+}
+.language-switcher button:hover { color: var(--oratio-primary); }
+.language-switcher button.is-active {
+  background: var(--oratio-surface);
+  box-shadow: 0 1px 5px var(--oratio-shadow);
+  color: var(--oratio-primary);
+}
+
+.sequence-progress {
+  border-block: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+}
+.sequence-progress__summary,
+.sequence-progress__footer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: space-between;
+}
+.sequence-progress__summary > div { display: grid; gap: 0.15rem; }
+.sequence-progress__summary strong {
+  color: var(--oratio-text-primary);
+  font-size: 0.86rem;
+}
+.sequence-progress__percent {
+  color: var(--oratio-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.sequence-progress__footer {
+  color: var(--oratio-text-muted);
+  font-size: 0.76rem;
+}
+.sequence-progress__footer .button {
+  gap: var(--space-1);
+  min-height: 2rem;
+  padding-block: 0.2rem;
+}
+.progress-track--slim { height: 4px; }
+
+.devotional-sections {
+  display: grid;
+  gap: var(--space-6);
+}
+.devotional-section {
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  scroll-margin-top: calc(var(--header-height) + var(--space-5));
+}
+.devotional-section.is-started {
+  border-color: color-mix(in srgb, var(--oratio-primary) 38%, var(--oratio-divider));
+}
+.devotional-section.is-complete {
+  background: color-mix(in srgb, var(--oratio-success-container) 28%, var(--oratio-surface));
+  border-color: color-mix(in srgb, var(--oratio-success) 58%, var(--oratio-divider));
+}
+.devotional-section__header {
+  align-items: start;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+}
+.devotional-section__header > div { display: grid; gap: 0.15rem; }
+.devotional-section__number {
+  align-items: center;
+  background: var(--oratio-primary-container);
+  border-radius: 50%;
+  color: var(--oratio-on-primary-container);
+  display: flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  height: 2.25rem;
+  justify-content: center;
+  width: 2.25rem;
+}
+.devotional-section__theme {
+  color: var(--oratio-gold);
+  font-family: var(--font-heading);
+  margin-top: 0.15rem;
+}
+.devotional-section__state {
+  background: var(--oratio-surface-secondary);
+  border-radius: var(--radius-pill);
+  color: var(--oratio-text-muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+  grid-column: 2;
+  justify-self: start;
+  padding: 0.24rem 0.6rem;
+}
+.devotional-section.is-complete .devotional-section__state {
+  background: var(--oratio-success-container);
+  color: var(--oratio-success);
+}
+.devotional-section__meditation {
+  border-left: 2px solid var(--oratio-gold);
+  color: var(--oratio-text-secondary);
+  font-family: var(--font-heading);
+  padding-left: var(--space-4);
+}
+.devotional-section__meditation > * + * { margin-top: 0.8em; }
+.devotional-section__content { margin: 0; }
+
+.prayer-unit-list {
+  display: grid;
+  gap: var(--space-3);
+}
+.prayer-unit {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  scroll-margin-top: calc(var(--header-height) + var(--space-5));
+}
+.prayer-unit.is-complete {
+  border-color: color-mix(in srgb, var(--oratio-success) 55%, var(--oratio-divider));
+}
+.prayer-unit__heading {
+  align-items: start;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.prayer-unit__heading > div { display: grid; gap: 0.15rem; }
+.prayer-unit__heading h2,
+.prayer-unit__heading h4 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.prayer-unit__heading p {
+  color: var(--oratio-text-muted);
+  font-size: 0.8rem;
+}
+.prayer-unit__count {
+  color: var(--oratio-primary);
+  flex: 0 0 auto;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+.prayer-unit__text {
+  background: var(--oratio-surface);
+  border-left: 2px solid color-mix(in srgb, var(--oratio-primary) 62%, transparent);
+  border-radius: var(--radius-small);
+  line-height: 1.85;
+  padding: var(--space-4);
+}
+.prayer-unit__text p {
+  color: var(--oratio-text-primary);
+  font-size: var(--prayer-font-size);
+}
+.prayer-unit__text p + p { margin-top: 1em; }
+.prayer-unit__footer {
+  align-items: center;
+  display: grid;
+  gap: var(--space-2) var(--space-3);
+  grid-template-columns: auto minmax(3rem, 1fr);
+}
+.prayer-unit__link {
+  color: var(--oratio-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+.prayer-stepper {
+  align-items: center;
+  background: var(--oratio-surface);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-pill);
+  display: inline-grid;
+  grid-template-columns: 2.5rem minmax(3.2rem, auto) 2.5rem;
+  overflow: hidden;
+}
+.prayer-stepper__button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--oratio-primary);
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  padding: 0;
+  width: 2.5rem;
+}
+.prayer-stepper__button:hover { background: var(--oratio-primary-container); }
+.prayer-stepper__button:disabled {
+  color: var(--oratio-text-muted);
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+.prayer-stepper__button .icon {
+  height: 1rem;
+  width: 1rem;
+}
+.prayer-stepper__value {
+  align-items: baseline;
+  color: var(--oratio-text-muted);
+  display: flex;
+  font-size: 0.7rem;
+  gap: 0.2rem;
+  justify-content: center;
+  padding-inline: 0.35rem;
+}
+.prayer-stepper__value strong {
+  color: var(--oratio-text-primary);
+  font-size: 0.9rem;
+}
+.prayer-unit__meter {
+  background: var(--oratio-divider);
+  border-radius: var(--radius-pill);
+  height: 2px;
+  overflow: hidden;
+}
+.prayer-unit__meter span {
+  background: var(--oratio-primary);
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
 
 .intention-panel {
   background: var(--oratio-surface-secondary);
@@ -73,6 +353,7 @@
   gap: var(--space-6);
   margin-block: var(--space-10);
   padding: var(--space-5);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
 .intention-panel__heading {
   display: grid;
@@ -89,9 +370,14 @@
   border-radius: var(--radius-medium);
   color: var(--oratio-on-primary-container);
   display: flex;
-  height: 3.25rem;
+  height: 2.75rem;
   justify-content: center;
-  width: 3.25rem;
+  width: 2.75rem;
+}
+.intention-panel__icon .icon,
+.devotion-calendar__icon .icon {
+  height: 1.25rem;
+  width: 1.25rem;
 }
 .intention-form {
   background: var(--oratio-surface);
@@ -113,7 +399,8 @@
   gap: var(--space-2) var(--space-4);
   justify-content: space-between;
 }
-.intention-form__actions {
+.intention-form__actions,
+.intention-item__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
@@ -153,86 +440,111 @@
 }
 .intention-item__actions {
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
   gap: var(--space-1);
 }
 .intention-item__actions .button { gap: var(--space-1); }
 .intention-item__delete { color: var(--oratio-error); }
 .intention-panel--compact { margin-block: var(--space-8); }
 
-.devotion-cover { min-height: 18rem; }
 .devotion-primary-action { justify-self: start; }
-.devotion-dashboard {
+.devotion-shortcuts {
   align-items: center;
-  background: var(--oratio-primary-container);
-  border-radius: var(--radius-large);
-  display: grid;
-  gap: var(--space-6);
-  margin-block: var(--space-10);
-  padding: var(--space-6);
-}
-.progress-ring {
-  align-items: center;
-  aspect-ratio: 1;
-  background: conic-gradient(var(--oratio-primary) var(--progress-value), color-mix(in srgb, var(--oratio-surface) 64%, transparent) 0);
-  border-radius: 50%;
   display: flex;
-  justify-content: center;
-  justify-self: center;
-  position: relative;
-  width: min(11rem, 48vw);
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-top: var(--space-1);
 }
-.progress-ring::before {
-  background: var(--oratio-primary-container);
-  border-radius: 50%;
-  content: "";
-  inset: 0.8rem;
-  position: absolute;
+.devotion-shortcuts span {
+  color: var(--oratio-text-muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
 }
-.progress-ring > span {
-  display: grid;
-  justify-items: center;
-  position: relative;
-  z-index: 1;
+.devotion-shortcuts a {
+  color: var(--oratio-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-height: 2rem;
+  padding-block: 0.35rem;
+  text-decoration: none;
 }
-.progress-ring strong {
-  color: var(--oratio-on-primary-container);
-  font-family: var(--font-heading);
-  font-size: 2rem;
-}
-.progress-ring small { color: var(--oratio-on-primary-container); }
-.devotion-dashboard__content {
+.devotion-shortcuts a:hover { text-decoration: underline; }
+
+.devotion-dashboard {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
   display: grid;
   gap: var(--space-3);
-  min-width: 0;
+  margin-block: var(--space-8) var(--space-4);
+  padding: var(--space-4);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
+.devotion-dashboard__heading,
+.devotion-dashboard__meta {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: space-between;
+}
+.devotion-dashboard__heading > div { display: grid; gap: 0.15rem; }
+.devotion-dashboard__heading h2 { font-size: 1.25rem; }
+.devotion-dashboard__percent {
+  color: var(--oratio-primary);
+  font-size: 0.9rem;
+}
+.devotion-dashboard__meta p { font-size: 0.8rem; }
 .devotion-dashboard__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
+.devotion-progress-menu { display: none; }
 .last-update {
   color: var(--oratio-text-muted);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .devotion-calendar {
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-large);
+  border-bottom: 1px solid var(--oratio-divider);
+  border-top: 1px solid var(--oratio-divider);
   display: grid;
-  gap: var(--space-5);
-  margin-block: var(--space-10);
-  padding: var(--space-5);
+  gap: var(--space-3);
+  margin-block: var(--space-4) var(--space-8);
+  padding-block: var(--space-4);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
 .devotion-calendar__heading {
+  align-items: start;
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  grid-template-columns: auto minmax(0, 1fr);
 }
 .devotion-calendar__heading > div:last-child {
   display: grid;
-  gap: var(--space-2);
+  gap: 0.15rem;
+}
+.devotion-calendar__heading h2 { font-size: 1.2rem; }
+.devotion-calendar__heading p:last-child {
+  color: var(--oratio-text-muted);
+  font-size: 0.82rem;
+}
+.calendar-settings {
+  margin-left: calc(2.75rem + var(--space-3));
+}
+.calendar-settings > summary {
+  color: var(--oratio-primary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 750;
+  min-height: 2.5rem;
+  padding-block: 0.55rem;
+}
+.calendar-settings__content {
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
 }
 .custom-date-form {
   align-items: end;
@@ -243,12 +555,15 @@
   padding: var(--space-4);
 }
 .calendar-exception {
-  background: var(--oratio-warning-container);
-  border-radius: var(--radius-medium);
-  font-size: 0.88rem;
-  padding: var(--space-4);
+  color: var(--oratio-text-secondary);
+  font-size: 0.8rem;
 }
-.devotion-introduction { margin-block: var(--space-12); }
+
+.devotion-reading .devotion-introduction { margin-block: var(--space-8); }
+.devotion-layout .novena-index {
+  margin-block: var(--space-10);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
 .devotion-layout .novena-index > .section-heading {
   align-items: start;
   flex-direction: column;
@@ -281,20 +596,24 @@
   align-items: stretch;
   display: grid;
   gap: var(--space-2);
-  grid-template-columns: 3rem minmax(0, 1fr);
+  grid-template-columns: 2.5rem minmax(0, 1fr);
 }
 .day-completion-toggle {
   align-items: center;
   align-self: center;
   background: var(--oratio-surface);
-  border: 2px solid var(--oratio-divider);
+  border: 1px solid var(--oratio-divider);
   border-radius: 50%;
   color: transparent;
   display: flex;
-  height: 2.75rem;
+  height: 2.5rem;
   justify-content: center;
   padding: 0;
-  width: 2.75rem;
+  width: 2.5rem;
+}
+.day-completion-toggle .icon {
+  height: 1rem;
+  width: 1rem;
 }
 .day-completion-toggle:hover {
   border-color: var(--oratio-primary);
@@ -310,31 +629,25 @@
   display: grid;
   gap: var(--space-1) var(--space-3);
   grid-template-columns: minmax(0, 1fr) auto;
-  min-height: 6.5rem;
+  min-height: 6rem;
 }
 .devotion-day-list a > .day-list__number {
   color: var(--oratio-primary);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
   grid-column: 1;
-  grid-row: auto;
   text-transform: uppercase;
 }
-.devotion-day-list a > strong {
-  grid-column: 1;
-  grid-row: auto;
-}
+.devotion-day-list a > strong,
+.devotion-day-list a > .day-list__theme,
+.devotion-day-list a > .day-list__date { grid-column: 1; }
 .devotion-day-list a > .day-list__theme {
   color: var(--oratio-text-secondary);
-  font-size: 0.9rem;
-  grid-column: 1;
-  grid-row: auto;
+  font-size: 0.88rem;
 }
 .devotion-day-list a > .day-list__date {
   color: var(--oratio-text-muted);
-  font-size: 0.8rem;
-  grid-column: 1;
-  grid-row: auto;
+  font-size: 0.78rem;
 }
 .devotion-day-list a > .day-list__arrow {
   color: var(--oratio-primary);
@@ -342,12 +655,18 @@
   grid-row: 1 / 5;
 }
 .devotion-day-list li.is-complete a {
-  background: var(--oratio-success-container);
-  border-color: color-mix(in srgb, var(--oratio-success) 46%, var(--oratio-divider));
+  background: color-mix(in srgb, var(--oratio-success-container) 52%, var(--oratio-surface));
+  border-color: color-mix(in srgb, var(--oratio-success) 38%, var(--oratio-divider));
 }
-.devotion-day-list li.is-complete a > strong { text-decoration: line-through; text-decoration-thickness: 1px; }
+.devotion-day-list li.is-complete a > strong {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
 
-.devotion-day-header { margin-inline: auto; max-width: 46rem; }
+.devotion-day-header {
+  margin-inline: auto;
+  max-width: 46rem;
+}
 .devotion-day-theme {
   color: var(--oratio-gold);
   font-family: var(--font-heading);
@@ -359,247 +678,147 @@
   border-radius: var(--radius-pill);
   color: var(--oratio-on-primary-container);
   display: inline-flex;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   gap: var(--space-2);
   justify-self: center;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   padding-inline: var(--space-4);
 }
-.devotion-day-date .icon { height: 1.15rem; width: 1.15rem; }
+.devotion-day-date .icon {
+  height: 1rem;
+  width: 1rem;
+}
 .day-progress-card {
-  background: var(--oratio-surface-secondary);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-medium);
   display: grid;
-  gap: var(--space-3);
-  margin-block: var(--space-6);
-  padding: var(--space-4);
+  gap: var(--space-2);
+  margin-block: var(--space-5);
+  padding-block: var(--space-3);
 }
 .day-progress-card__summary {
   align-items: end;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
   justify-content: space-between;
 }
-.day-progress-card__summary > div { display: grid; }
-.day-progress-card__summary strong { font-family: var(--font-heading); font-size: 1.4rem; }
+.day-progress-card__summary > div {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.day-progress-card__summary strong {
+  color: var(--oratio-primary);
+  font-size: 0.88rem;
+}
 .day-progress-card__summary span,
-.day-progress-card__summary a { font-size: 0.82rem; }
+.day-progress-card__summary a { font-size: 0.76rem; }
 .devotion-day-content {
   background: var(--oratio-surface);
   border: 1px solid var(--oratio-divider);
   border-radius: var(--radius-large);
   padding: var(--space-5);
 }
-.devotion-day-completion { align-items: start; }
-
-.counted-prayer-hero {
-  align-items: center;
-  background: linear-gradient(145deg, var(--oratio-primary-container), var(--oratio-teal-container));
-  border-radius: var(--radius-large);
-  display: grid;
-  gap: var(--space-8);
-  margin-block: var(--space-8) var(--space-10);
-  overflow: hidden;
-  padding: var(--space-6);
-}
-.counted-prayer-hero > div:last-child {
-  display: grid;
-  gap: var(--space-4);
-}
-.counted-prayer-hero .chip { justify-self: start; }
-.counted-prayer-hero .button { justify-self: start; }
-.counted-prayer-hero__symbol {
-  align-items: center;
-  aspect-ratio: 1;
-  background: var(--oratio-surface);
-  border-radius: 50%;
-  color: var(--oratio-primary);
-  display: flex;
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  justify-content: center;
-  justify-self: center;
-  max-width: 15rem;
-  position: relative;
-  width: 70%;
-}
-.counted-prayer-hero__beads {
-  border: 0.75rem dotted var(--oratio-primary);
-  border-radius: 50%;
-  inset: 1.2rem;
-  opacity: 0.42;
-  position: absolute;
-}
-.counted-dashboard {
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-large);
-  display: grid;
-  gap: var(--space-4);
-  margin-block: var(--space-10);
-  padding: var(--space-5);
-}
-.counted-dashboard > div:first-child { display: grid; gap: var(--space-2); }
-.counted-dashboard__value {
-  align-items: baseline;
-  display: flex;
-  gap: var(--space-3);
-}
-.counted-dashboard__value strong {
-  color: var(--oratio-primary);
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-}
-.counted-dashboard__value span { color: var(--oratio-text-muted); }
-.counted-dashboard .progress-track { grid-column: 1 / -1; }
-.counted-dashboard > .button { justify-self: start; }
-.counted-prayer-introduction { margin-block: var(--space-10); }
-.counted-sequence { margin-block: var(--space-12); }
-.counted-section {
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-large);
-  display: grid;
-  gap: var(--space-5);
-  padding: var(--space-5);
-  scroll-margin-top: calc(var(--header-height) + var(--space-5));
-}
-.counted-section + .counted-section { margin-top: var(--space-5); }
-.counted-section.is-started { border-color: color-mix(in srgb, var(--oratio-primary) 52%, var(--oratio-divider)); }
-.counted-section.is-complete {
-  background: color-mix(in srgb, var(--oratio-success-container) 54%, var(--oratio-surface));
-  border-color: var(--oratio-success);
-}
-.counted-section__header {
+.devotion-day-completion {
   align-items: start;
-  display: grid;
-  gap: var(--space-3);
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-}
-.counted-section__header > div { display: grid; gap: var(--space-1); }
-.counted-section__number {
-  align-items: center;
-  background: var(--oratio-primary-container);
-  border-radius: 50%;
-  color: var(--oratio-on-primary-container);
-  display: flex;
-  font-weight: 800;
-  height: 2.75rem;
-  justify-content: center;
-  width: 2.75rem;
-}
-.counted-section__theme {
-  color: var(--oratio-gold);
-  font-family: var(--font-heading);
-  margin-top: var(--space-1);
-}
-.counted-section__state {
   background: var(--oratio-surface-secondary);
-  border-radius: var(--radius-pill);
-  color: var(--oratio-text-muted);
-  font-size: 0.72rem;
-  font-weight: 750;
-  grid-column: 2;
-  justify-self: start;
-  padding: 0.3rem 0.65rem;
-}
-.counted-section.is-complete .counted-section__state {
-  background: var(--oratio-success-container);
-  color: var(--oratio-success);
-}
-.counted-section__meditation {
-  border-left: 3px solid var(--oratio-gold);
-  font-family: var(--font-heading);
-  padding-left: var(--space-4);
-}
-.counted-groups { display: grid; gap: var(--space-4); }
-.counted-group {
-  background: var(--oratio-surface-secondary);
-  border: 1px solid transparent;
-  border-radius: var(--radius-medium);
-  display: grid;
-  gap: var(--space-4);
+  border: 1px solid var(--oratio-divider);
+  gap: var(--space-2);
   padding: var(--space-4);
-  scroll-margin-top: calc(var(--header-height) + var(--space-5));
 }
-.counted-group.is-complete { border-color: var(--oratio-success); }
-.counted-group__heading {
-  align-items: start;
-  display: flex;
-  gap: var(--space-3);
-  justify-content: space-between;
-}
-.counted-group__heading > div { display: grid; gap: var(--space-1); }
-.counted-group__heading p { font-size: 0.82rem; }
-.counted-group__heading output {
-  color: var(--oratio-primary);
-  flex: 0 0 auto;
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-.bead-counter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-.bead-button {
-  align-items: center;
+.devotion-day-completion p { color: var(--oratio-text-muted); }
+
+.devotional-book-content {
   background: var(--oratio-surface);
-  border: 2px solid var(--oratio-divider);
-  border-radius: 50%;
-  color: var(--oratio-text-muted);
-  display: flex;
-  font-size: 0.75rem;
-  font-weight: 750;
-  height: 2.75rem;
-  justify-content: center;
-  padding: 0;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-  width: 2.75rem;
-}
-.bead-button:hover { border-color: var(--oratio-primary); transform: translateY(-1px); }
-.bead-button.is-complete {
-  background: var(--oratio-primary);
-  border-color: var(--oratio-primary);
-  color: var(--oratio-text-on-primary);
-}
-.counted-group__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  padding: var(--space-5);
 }
 
 @media (min-width: 640px) {
-  .prayer-hero { grid-template-columns: auto minmax(0, 1fr); padding: var(--space-8); }
-  .prayer-reading-shell .prayer-text { padding: var(--space-8); }
+  .devotional-hero__content { padding: var(--space-8); }
+  .prayer-reading-shell > .prayer-text { padding: var(--space-8); }
+  .prayer-reading-shell > .devotional-sequence { padding: var(--space-8); }
+  .devotional-section__header { grid-template-columns: 2.25rem minmax(0, 1fr) auto; }
+  .devotional-section__state {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .prayer-unit__footer { grid-template-columns: auto minmax(3rem, 1fr) auto; }
+  .prayer-unit__link {
+    grid-column: 3;
+    justify-self: end;
+  }
   .intention-panel { padding: var(--space-6); }
-  .intention-panel__heading,
-  .devotion-calendar__heading { grid-template-columns: auto minmax(0, 1fr); }
-  .intention-item { align-items: start; grid-template-columns: minmax(0, 1fr) auto; }
-  .devotion-dashboard { grid-template-columns: auto minmax(0, 1fr); padding: var(--space-8); }
+  .intention-panel__heading { grid-template-columns: auto minmax(0, 1fr); }
+  .intention-item {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
   .custom-date-form { grid-template-columns: minmax(13rem, 1fr) auto auto; }
-  .devotion-day-content { padding: var(--space-8); }
   .devotion-layout .novena-index > .section-heading {
     align-items: end;
     flex-direction: row;
   }
   .devotion-type-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .counted-dashboard { grid-template-columns: minmax(0, 1fr) auto; padding: var(--space-6); }
-  .counted-dashboard__value { justify-self: end; }
-  .counted-section__header { grid-template-columns: 2.75rem minmax(0, 1fr) auto; }
-  .counted-section__state { grid-column: 3; grid-row: 1; }
+  .devotion-progress-menu { display: none; }
+  .devotion-day-content,
+  .devotional-book-content { padding: var(--space-8); }
 }
 
 @media (min-width: 768px) {
-  .counted-prayer-hero { grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr); padding: var(--space-10); }
-  .counted-prayer-hero__symbol { width: 100%; }
+  .devotional-hero {
+    grid-template-columns: minmax(15rem, 0.88fr) minmax(0, 1.12fr);
+    min-height: 23rem;
+  }
+  .devotional-hero .devotional-cover {
+    aspect-ratio: auto;
+    height: 100%;
+  }
 }
 
 @media (max-width: 639px) {
-  .devotion-dashboard__actions .button,
+  .devotion-dashboard__actions--desktop { display: none; }
+  .devotion-progress-menu {
+    display: block;
+    justify-self: start;
+  }
+  .devotion-progress-menu > summary {
+    align-items: center;
+    border-radius: var(--radius-pill);
+    color: var(--oratio-primary);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 0.82rem;
+    font-weight: 750;
+    gap: var(--space-2);
+    list-style: none;
+    min-height: 2.5rem;
+    padding-inline: var(--space-3);
+  }
+  .devotion-progress-menu > summary::marker { content: ""; }
+  .devotion-progress-menu > summary::-webkit-details-marker { display: none; }
+  .devotion-progress-menu > summary .icon {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+  .devotion-progress-menu > div {
+    background: var(--oratio-surface);
+    border: 1px solid var(--oratio-divider);
+    border-radius: var(--radius-medium);
+    display: grid;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+    padding: var(--space-2);
+  }
+  .devotion-progress-menu .button {
+    justify-content: flex-start;
+    width: 100%;
+  }
   .custom-date-form .button,
   .intention-form__actions .button { width: 100%; }
-  .counted-group__actions .button { flex: 1 1 8rem; }
+  .calendar-settings { margin-left: 0; }
+  .language-switcher--standalone { justify-content: flex-start; }
+  .prayer-unit__footer { grid-template-columns: minmax(0, 1fr); }
+  .prayer-unit__meter { grid-row: 2; }
 }
