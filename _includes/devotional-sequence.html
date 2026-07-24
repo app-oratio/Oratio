@@ -91,7 +91,7 @@
             {% if sequence_section_counted %}<span class="devotional-section__state" data-section-state>Não iniciada</span>{% endif %}
           </header>
           {% if sequence_section.meditation %}
-            <div class="devotional-section__meditation">{{ sequence_section.meditation | markdownify }}</div>
+            <div class="devotional-section__meditation" data-reading-text data-reading-font-base="1">{{ sequence_section.meditation | markdownify }}</div>
           {% endif %}
           {% if sequence_section.content %}
             <div class="prose devotional-section__content">{{ sequence_section.content | markdownify }}</div>

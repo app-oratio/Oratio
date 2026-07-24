@@ -75,7 +75,12 @@
       {% if prayer_unit.note %}<p>{{ prayer_unit.note }}</p>{% endif %}
     </div>
     {% if prayer_unit_counted %}
-      <output class="prayer-unit__count" data-group-output aria-live="polite">0 de {{ prayer_unit_count }}</output>
+      <div class="prayer-unit__repetition" aria-label="Repetir esta oração {{ prayer_unit_count }} {% if prayer_unit_count == 1 %}vez{% else %}vezes{% endif %}">
+        <strong class="prayer-unit__count">
+          {{ prayer_unit_count }} {% if prayer_unit_count == 1 %}vez{% else %}vezes{% endif %}
+        </strong>
+        <output class="prayer-unit__count-progress" data-group-output aria-live="polite">0 de {{ prayer_unit_count }}</output>
+      </div>
     {% endif %}
   </header>
 
