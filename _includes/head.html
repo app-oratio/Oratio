@@ -20,7 +20,25 @@
 <link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
 <link rel="alternate" type="application/atom+xml" title="Feed do blog do Oratio" href="{{ '/feed.xml' | absolute_url }}">
 
+{% assign inherited_social_image = nil %}
+{% assign inherited_social_image_alt = nil %}
+{% if page.collection == 'dias_novena' and page.image == nil %}
+  {% assign social_devotion_slug = page.devotion | default: page.novena %}
+  {% assign social_devotions = site.novenas | concat: site.quaresmas | concat: site.trintenas | concat: site.devocoes_mensais | concat: site.trezenas | concat: site.triduos %}
+  {% assign social_devotion = social_devotions | where: 'slug', social_devotion_slug | first %}
+  {% assign inherited_social_image = social_devotion.image %}
+  {% assign inherited_social_image_alt = social_devotion.image_alt | default: social_devotion.title | default: page.title %}
+{% endif %}
+
 {% seo %}
+
+{% if inherited_social_image %}
+<meta property="og:image" content="{{ inherited_social_image | absolute_url }}">
+<meta property="og:image:secure_url" content="{{ inherited_social_image | absolute_url }}">
+<meta property="og:image:alt" content="{{ inherited_social_image_alt | escape }}">
+<meta name="twitter:image" content="{{ inherited_social_image | absolute_url }}">
+<meta name="twitter:image:alt" content="{{ inherited_social_image_alt | escape }}">
+{% endif %}
 
 <script type="application/ld+json">
 {
