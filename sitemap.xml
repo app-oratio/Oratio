@@ -16,7 +16,6 @@ sitemap: false
     | concat: site.trezenas
     | concat: site.triduos
     | concat: site.dias_novena
-    | concat: site.dias_devocao
     | concat: site.tercos
     | concat: site.rosarios
     | concat: site.coroas

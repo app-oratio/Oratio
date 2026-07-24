@@ -49,8 +49,6 @@ collections:
     permalink: /triduos/:name/
   dias_novena:
     output: true
-  dias_devocao:
-    output: true
   tercos:
     output: true
     permalink: /tercos/:name/
@@ -122,11 +120,6 @@ defaults:
   - scope:
       path: ""
       type: dias_novena
-    values:
-      layout: novena-day
-  - scope:
-      path: ""
-      type: dias_devocao
     values:
       layout: novena-day
   - scope:
