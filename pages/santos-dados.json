@@ -1,0 +1,78 @@
+---
+layout: null
+permalink: /santos/dados.json
+search: false
+sitemap: false
+---
+{% assign saints_data = site.santos | where_exp: 'item', 'item.published != false' | sort_natural: 'title' %}
+{% assign related_content = site.oracoes
+  | concat: site.novenas
+  | concat: site.quaresmas
+  | concat: site.trintenas
+  | concat: site.devocoes_mensais
+  | concat: site.trezenas
+  | concat: site.triduos
+  | concat: site.tercos
+  | concat: site.rosarios
+  | concat: site.coroas
+  | concat: site.devocionarios
+  | concat: site.formacoes
+  | concat: site.posts %}
+{
+  "timezone": {{ site.timezone | default: 'America/Sao_Paulo' | jsonify }},
+  "generatedAt": {{ site.time | date_to_xmlschema | jsonify }},
+  "saints": [
+    {% for saint in saints_data %}
+    {
+      "slug": {{ saint.slug | default: saint.basename_without_ext | jsonify }},
+      "title": {{ saint.title | jsonify }},
+      "shortTitle": {{ saint.short_title | jsonify }},
+      "subtitle": {{ saint.subtitle | jsonify }},
+      "description": {{ saint.description | strip_html | strip_newlines | jsonify }},
+      "url": {{ saint.url | relative_url | jsonify }},
+      "image": {% if saint.image %}{{ saint.image | relative_url | jsonify }}{% else %}null{% endif %},
+      "imageAlt": {{ saint.image_alt | default: saint.title | jsonify }},
+      "imagePosition": {{ saint.image_position | default: 'center' | jsonify }},
+      "imageWidth": {{ saint.image_width | default: 1200 | jsonify }},
+      "imageHeight": {{ saint.image_height | default: 675 | jsonify }},
+      "entryType": {{ saint.entry_type | default: 'Santo' | jsonify }},
+      "saintType": {{ saint.saint_type | jsonify }},
+      "category": {{ saint.category | jsonify }},
+      "liturgicalRank": {{ saint.liturgical_rank | jsonify }},
+      "liturgicalDate": {{ saint.liturgical_date | jsonify }},
+      "liturgicalMemorial": {{ saint.liturgical_memorial | jsonify }},
+      "memorialMonth": {{ saint.memorial_month | jsonify }},
+      "memorialDay": {{ saint.memorial_day | jsonify }},
+      "lifeDates": {{ saint.life_dates | default: saint.dates | jsonify }},
+      "religiousFamily": {{ saint.religious_family | jsonify }},
+      "patronages": {{ saint.patronages | default: empty | jsonify }},
+      "virtues": {{ saint.virtues | default: empty | jsonify }},
+      "tags": {{ saint.tags | default: empty | jsonify }},
+      "keywords": {{ saint.keywords | default: empty | jsonify }},
+      "aliases": {{ saint.aliases | default: empty | jsonify }},
+      "relatedSaints": {{ saint.related_saints | default: empty | jsonify }},
+      "dailyOrder": {{ saint.daily_order | default: 100 | jsonify }},
+      "featured": {{ saint.featured | default: false | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "content": [
+    {% for item in related_content %}
+    {
+      "slug": {{ item.slug | default: item.basename_without_ext | jsonify }},
+      "title": {{ item.title | jsonify }},
+      "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
+      "searchText": {{ item.content | markdownify | strip_html | normalize_whitespace | truncate: 1400 | jsonify }},
+      "url": {{ item.url | relative_url | jsonify }},
+      "image": {% if item.image %}{{ item.image | relative_url | jsonify }}{% else %}null{% endif %},
+      "type": {% case item.collection %}{% when 'posts' %}"Artigo"{% when 'oracoes' %}"Oração"{% when 'novenas' %}"Novena"{% when 'quaresmas' %}"Quaresma"{% when 'trintenas' %}"Trintena"{% when 'devocoes_mensais' %}"Devoção mensal"{% when 'trezenas' %}"Trezena"{% when 'triduos' %}"Tríduo"{% when 'tercos' %}"Terço"{% when 'rosarios' %}"Rosário"{% when 'coroas' %}"Coroa"{% when 'devocionarios' %}"Devocionário"{% when 'formacoes' %}"Formação"{% else %}"Conteúdo"{% endcase %},
+      "category": {{ item.category | default: item.categories.first | jsonify }},
+      "tags": {{ item.tags | default: empty | jsonify }},
+      "keywords": {{ item.keywords | default: empty | jsonify }},
+      "saints": {{ item.saints | default: empty | jsonify }},
+      "saintSlugs": {{ item.saint_slugs | default: empty | jsonify }},
+      "related": {{ item.related | default: empty | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

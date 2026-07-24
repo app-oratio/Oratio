@@ -1,11 +1,9 @@
 ---
-layout: archive
+layout: saints-archive
 title: "História dos Santos"
-description: "Conheça testemunhos de vida cristã, virtudes, memórias litúrgicas e orações."
+description: "Conheça testemunhos de vida cristã, virtudes, memórias litúrgicas, festas, solenidades e conteúdos devocionais relacionados."
 permalink: /santos/
-collection_name: santos
-item_type: "Santo"
+saints_page: true
 ---
 
-<p class="notice">As biografias demonstrativas estão marcadas para revisão. Não publique datas, títulos ou citações sem conferência editorial.</p>
-
+<p class="notice notice--warning">As biografias marcadas como demonstração ainda precisam de revisão editorial completa. O novo sistema aceita conteúdos publicados gradualmente sem impedir a navegação pelas demais histórias.</p>
