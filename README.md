@@ -15,7 +15,7 @@ Jekyll 4, HTML5 semântico, CSS moderno, JavaScript puro, Markdown, YAML e Liqui
 - `pages/`: páginas institucionais e arquivos de conteúdo.
 - `assets/`: estilos, scripts, imagens, ícones e fontes opcionais.
 - `search/index.json`: índice estático criado pelo Liquid.
-- `GUIA_DE_IMPLEMENTACAO.md`: modelos completos de orações, calendários, dias e orações contadas.
+- `GUIA_DE_IMPLEMENTACAO.md`: documentação completa do motor universal, catálogo de orações comuns, idiomas, contagens, seções, calendários e conteúdos demonstrativos.
 
 ## Instalação rápida
 
