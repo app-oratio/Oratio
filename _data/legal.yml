@@ -1,0 +1,71 @@
+labels:
+  privacy:
+    singular: "Política de Privacidade"
+    plural: "Políticas de Privacidade"
+    selector_title: "Escolha a Política de Privacidade"
+    selector_description: "O Site e o aplicativo Android possuem operações diferentes e, por isso, cada ambiente apresenta uma política própria, com escopo, dados e serviços externos descritos separadamente."
+  terms:
+    singular: "Termos de Uso"
+    plural: "Termos de Uso"
+    selector_title: "Escolha os Termos de Uso"
+    selector_description: "Consulte o documento correspondente ao ambiente utilizado, pois as regras do portal web não são idênticas às condições aplicáveis ao aplicativo Android."
+
+environments:
+  site:
+    label: "Site"
+    eyebrow: "Portal web"
+    description: "Documentos aplicáveis à navegação no portal, ao formulário de contato, ao armazenamento local do navegador e aos serviços utilizados pelo site."
+  app:
+    label: "App Android"
+    eyebrow: "Aplicativo móvel"
+    description: "Documentos aplicáveis à instalação e ao uso do Oratio para Android, incluindo dados locais, permissões, notificações, serviços da plataforma e atualizações do aplicativo."
+
+current:
+  privacy:
+    site:
+      title: "Política de Privacidade do Site"
+      url: "/privacidade/site/"
+      version: "2026.07.24"
+      effective_date: "24 de julho de 2026"
+      summary: "Explica o tratamento de informações durante a navegação no portal e o envio de mensagens pelo formulário de contato."
+    app:
+      title: "Política de Privacidade do App Android"
+      url: "/privacidade/app/"
+      version: "2026.07.24"
+      effective_date: "24 de julho de 2026"
+      summary: "Explica como o aplicativo utiliza dados locais, permissões do Android, notificações e serviços necessários à distribuição e ao funcionamento."
+  terms:
+    site:
+      title: "Termos de Uso do Site"
+      url: "/termos/site/"
+      version: "2026.07.24"
+      effective_date: "24 de julho de 2026"
+      summary: "Apresenta as regras para acessar, consultar, compartilhar e utilizar os conteúdos disponibilizados no portal."
+    app:
+      title: "Termos de Uso do App Android"
+      url: "/termos/app/"
+      version: "2026.07.24"
+      effective_date: "24 de julho de 2026"
+      summary: "Apresenta as condições de instalação e uso do aplicativo, bem como regras sobre conteúdo, atualizações e disponibilidade."
+
+archive:
+  - kind: "privacy"
+    kind_label: "Política de Privacidade"
+    environment: "general"
+    environment_label: "Documento geral anterior"
+    title: "Política de Privacidade geral"
+    url: "/documentos-legais/historico/privacidade/2026-07-23/"
+    version: "2026.07.23"
+    published_at: "23 de julho de 2026"
+    superseded_at: "24 de julho de 2026"
+    summary: "Versão anterior que tratava principalmente do portal e apenas mencionava que o aplicativo poderia possuir regras próprias."
+  - kind: "terms"
+    kind_label: "Termos de Uso"
+    environment: "general"
+    environment_label: "Documento geral anterior"
+    title: "Termos de Uso gerais"
+    url: "/documentos-legais/historico/termos/2026-07-20/"
+    version: "2026.07.20"
+    published_at: "20 de julho de 2026"
+    superseded_at: "24 de julho de 2026"
+    summary: "Versão anterior que reunia em um único documento referências ao portal e ao aplicativo."

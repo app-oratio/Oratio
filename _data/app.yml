@@ -8,7 +8,9 @@ minimum_android: "Android 6.0 ou superior"
 play_store_url: "https://play.google.com/store/apps/details?id=com.apostoladoimc.oratio"
 apk_url: ""
 support_url: "/contato/"
-privacy_url: "/privacidade/"
+privacy_url: "/privacidade/app/"
+terms_url: "/termos/app/"
+legal_center_url: "/documentos-legais/"
 free: true
 download_label: "Baixar gratuitamente"
 hero:
