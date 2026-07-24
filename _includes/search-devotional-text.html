@@ -1,10 +1,25 @@
 {% assign search_devotional_document = include.document %}
-{% assign search_devotional_common = site.data.common_prayers[search_devotional_document.common_prayer] %}
+{% assign search_devotional_common_key = search_devotional_document['common-prayer'] | default: search_devotional_document.common_prayer %}
+{% if search_devotional_common_key == nil or search_devotional_common_key == empty %}
+  {% assign search_devotional_legacy_common = site.data.common_prayers[search_devotional_document.prayer] %}
+  {% if search_devotional_legacy_common %}
+    {% assign search_devotional_common_key = search_devotional_document.prayer %}
+  {% endif %}
+{% endif %}
+{% assign search_devotional_common = site.data.common_prayers[search_devotional_common_key] %}
 {% if search_devotional_common %}
-  {{ search_devotional_common.title }}
+  {{ search_devotional_common.label }} {{ search_devotional_common.title }}
+  {{ search_devotional_common['label-latin'] }} {{ search_devotional_common.label_latin }}
+  {{ search_devotional_common.prayer | markdownify | strip_html }}
+  {{ search_devotional_common['prayer-latin'] | markdownify | strip_html }}
+  {{ search_devotional_common.prayer_latin | markdownify | strip_html }}
   {{ search_devotional_common.texts.pt | markdownify | strip_html }}
   {{ search_devotional_common.texts.la | markdownify | strip_html }}
 {% endif %}
+{{ search_devotional_document.label }} {{ search_devotional_document['label-latin'] }} {{ search_devotional_document.label_latin }}
+{{ search_devotional_document.prayer | markdownify | strip_html }}
+{{ search_devotional_document['prayer-latin'] | markdownify | strip_html }}
+{{ search_devotional_document.prayer_latin | markdownify | strip_html }}
 {{ search_devotional_document.texts.pt | markdownify | strip_html }}
 {{ search_devotional_document.texts.la | markdownify | strip_html }}
 {% if search_devotional_document.sections %}
@@ -14,14 +29,27 @@
     {{ search_section.content | markdownify | strip_html }}
     {% assign search_prayers = search_section.prayers | default: search_section.groups %}
     {% for search_prayer in search_prayers %}
-      {% assign search_common_key = search_prayer.prayer | default: search_prayer.common_prayer %}
+      {% assign search_common_key = search_prayer['common-prayer'] | default: search_prayer.common_prayer %}
+      {% if search_common_key == nil or search_common_key == empty %}
+        {% assign search_legacy_common = site.data.common_prayers[search_prayer.prayer] %}
+        {% if search_legacy_common %}
+          {% assign search_common_key = search_prayer.prayer %}
+        {% endif %}
+      {% endif %}
       {% assign search_common = site.data.common_prayers[search_common_key] %}
-      {{ search_prayer.label }} {{ search_prayer.note }}
+      {{ search_prayer.label }} {{ search_prayer['label-latin'] }} {{ search_prayer.label_latin }} {{ search_prayer.note }}
+      {{ search_prayer.prayer | markdownify | strip_html }}
+      {{ search_prayer['prayer-latin'] | markdownify | strip_html }}
+      {{ search_prayer.prayer_latin | markdownify | strip_html }}
       {{ search_prayer.text | markdownify | strip_html }}
       {{ search_prayer.texts.pt | markdownify | strip_html }}
       {{ search_prayer.texts.la | markdownify | strip_html }}
       {% if search_common %}
-        {{ search_common.title }}
+        {{ search_common.label }} {{ search_common.title }}
+        {{ search_common['label-latin'] }} {{ search_common.label_latin }}
+        {{ search_common.prayer | markdownify | strip_html }}
+        {{ search_common['prayer-latin'] | markdownify | strip_html }}
+        {{ search_common.prayer_latin | markdownify | strip_html }}
         {{ search_common.texts.pt | markdownify | strip_html }}
         {{ search_common.texts.la | markdownify | strip_html }}
       {% endif %}

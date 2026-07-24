@@ -1,22 +1,50 @@
 {% assign prayer_unit = include.item %}
-{% assign prayer_common_key = prayer_unit.prayer | default: prayer_unit.common_prayer %}
+{% assign prayer_inline_pt = prayer_unit.prayer %}
+{% assign prayer_common_key = prayer_unit['common-prayer'] | default: prayer_unit.common_prayer %}
+{% if prayer_common_key == nil or prayer_common_key == empty %}
+  {% assign prayer_legacy_common = site.data.common_prayers[prayer_inline_pt] %}
+  {% if prayer_legacy_common %}
+    {% assign prayer_common_key = prayer_inline_pt %}
+    {% assign prayer_inline_pt = nil %}
+  {% endif %}
+{% endif %}
 {% assign prayer_common = site.data.common_prayers[prayer_common_key] %}
-{% assign prayer_unit_title = prayer_unit.label | default: prayer_common.title | default: prayer_unit.title | default: 'Oração' %}
-{% assign prayer_unit_text_pt = prayer_unit.texts.pt | default: prayer_unit.text | default: prayer_common.texts.pt %}
-{% assign prayer_unit_text_la = prayer_unit.texts.la | default: prayer_common.texts.la %}
-{% assign prayer_unit_url = prayer_unit.prayer_url | default: prayer_common.url %}
-{% assign prayer_unit_default_language = include.default_language | default: prayer_unit.default_language | default: prayer_common.default_language | default: 'pt' %}
+
+{% assign prayer_unit_title_pt = prayer_unit.label | default: prayer_common.label | default: prayer_common.title | default: prayer_unit.title | default: 'Oração' %}
+{% assign prayer_unit_title_la_explicit = prayer_unit['label-latin'] | default: prayer_unit.label_latin %}
+{% if prayer_unit.label %}
+  {% assign prayer_unit_title_la = prayer_unit_title_la_explicit | default: prayer_unit_title_pt %}
+{% else %}
+  {% assign prayer_unit_title_la = prayer_unit_title_la_explicit | default: prayer_common['label-latin'] | default: prayer_common.label_latin | default: prayer_common.title_latin | default: prayer_unit_title_pt %}
+{% endif %}
+{% assign prayer_common_text_pt = prayer_common.prayer | default: prayer_common.texts.pt %}
+{% assign prayer_common_text_la = prayer_common['prayer-latin'] | default: prayer_common.prayer_latin | default: prayer_common.texts.la %}
+{% assign prayer_unit_text_pt = prayer_inline_pt | default: prayer_unit.texts.pt | default: prayer_unit.text | default: prayer_common_text_pt %}
+{% assign prayer_unit_text_la_explicit = prayer_unit['prayer-latin'] | default: prayer_unit.prayer_latin | default: prayer_unit.texts.la %}
+{% if prayer_inline_pt %}
+  {% assign prayer_unit_text_la = prayer_unit_text_la_explicit | default: prayer_unit_text_pt %}
+{% else %}
+  {% assign prayer_unit_text_la = prayer_unit_text_la_explicit | default: prayer_common_text_la | default: prayer_unit_text_pt %}
+{% endif %}
+{% assign prayer_unit_has_latin = false %}
+{% if prayer_unit_text_la_explicit %}
+  {% assign prayer_unit_has_latin = true %}
+{% elsif prayer_inline_pt == nil or prayer_inline_pt == empty %}
+  {% if prayer_common_text_la %}
+    {% assign prayer_unit_has_latin = true %}
+  {% endif %}
+{% endif %}
+{% assign prayer_unit_url = prayer_unit['prayer-url'] | default: prayer_unit.prayer_url | default: prayer_common.url %}
+{% assign prayer_unit_default_language = prayer_unit['default-language'] | default: prayer_unit.default_language | default: include.default_language | default: prayer_common['default-language'] | default: prayer_common.default_language | default: 'pt' %}
 {% assign prayer_unit_show_latin = false %}
-{% if prayer_unit_default_language == 'la' and prayer_unit_text_la %}
+{% if prayer_unit_default_language == 'la' %}
   {% assign prayer_unit_show_latin = true %}
 {% endif %}
+{% assign prayer_unit_count = prayer_unit.count | plus: 0 %}
 {% assign prayer_unit_counted = false %}
-{% if prayer_unit.count %}
-  {% assign prayer_unit_counted = true %}
-{% elsif include.count_all %}
+{% if prayer_unit.count and prayer_unit_count > 0 %}
   {% assign prayer_unit_counted = true %}
 {% endif %}
-{% assign prayer_unit_count = prayer_unit.count | default: 1 %}
 {% assign prayer_unit_local_id = prayer_unit.id | default: include.index %}
 {% capture prayer_unit_id %}{{ include.section_id }}:{{ prayer_unit_local_id }}{% endcapture %}
 
@@ -25,16 +53,24 @@
     data-counted-group
     data-group-id="{{ prayer_unit_id | strip | escape }}"
     data-group-count="{{ prayer_unit_count }}"
-    data-group-label="{{ prayer_unit_title | escape }}"
+    data-group-label="{{ prayer_unit_title_pt | escape }}"
+    data-group-label-pt="{{ prayer_unit_title_pt | escape }}"
+    data-group-label-la="{{ prayer_unit_title_la | escape }}"
   {% endif %}
   data-prayer-unit
   data-unit-default-language="{{ prayer_unit_default_language | escape }}">
   <header class="prayer-unit__heading">
     <div>
       {% if include.single %}
-        <h2>{{ prayer_unit_title }}</h2>
+        <h2>
+          <span data-language-label data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>{{ prayer_unit_title_pt }}</span>
+          <span data-language-label data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>{{ prayer_unit_title_la }}</span>
+        </h2>
       {% else %}
-        <h4>{{ prayer_unit_title }}</h4>
+        <h4>
+          <span data-language-label data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>{{ prayer_unit_title_pt }}</span>
+          <span data-language-label data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>{{ prayer_unit_title_la }}</span>
+        </h4>
       {% endif %}
       {% if prayer_unit.note %}<p>{{ prayer_unit.note }}</p>{% endif %}
     </div>
@@ -44,36 +80,43 @@
   </header>
 
   {% if prayer_unit_text_pt or prayer_unit_text_la or include.fallback_content %}
+    <div class="language-switcher prayer-unit__language" data-unit-language-switcher aria-label="Idioma de {{ prayer_unit_title_pt | escape }}">
+      <span>Idioma</span>
+      <div role="group" aria-label="Selecionar o idioma desta oração">
+        <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
+        <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
+      </div>
+    </div>
     <div class="prayer-unit__text prayer-text" data-prayer-text>
-      {% if prayer_unit_text_pt or include.fallback_content %}
-        <div lang="pt-BR" data-language-panel data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>
-          {% if prayer_unit_text_pt %}
-            {{ prayer_unit_text_pt | markdownify }}
-          {% else %}
-            {{ include.fallback_content }}
-          {% endif %}
-        </div>
-      {% endif %}
-      {% if prayer_unit_text_la %}
-        <div lang="la" data-language-panel data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>
+      <div lang="pt-BR" data-language-panel data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>
+        {% if prayer_unit_text_pt %}
+          {{ prayer_unit_text_pt | markdownify }}
+        {% else %}
+          {{ include.fallback_content }}
+        {% endif %}
+      </div>
+      <div lang="{% if prayer_unit_has_latin %}la{% else %}pt-BR{% endif %}" data-language-panel data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>
+        {% if prayer_unit_text_la %}
           {{ prayer_unit_text_la | markdownify }}
-        </div>
-      {% endif %}
+        {% else %}
+          {{ include.fallback_content }}
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 
   {% if prayer_unit_counted or prayer_unit_url %}
     <footer class="prayer-unit__footer">
       {% if prayer_unit_counted %}
-        <div class="prayer-stepper" role="group" aria-label="Contagem de {{ prayer_unit_title | escape }}">
-          <button class="prayer-stepper__button" type="button" data-count-back aria-label="Voltar uma marcação em {{ prayer_unit_title | escape }}">
+        <div class="prayer-stepper" role="group" aria-label="Contagem de {{ prayer_unit_title_pt | escape }}">
+          <button class="prayer-stepper__button" type="button" data-count-back aria-label="Voltar uma marcação em {{ prayer_unit_title_pt | escape }}">
             {% include icon.html name='minus' %}
           </button>
           <span class="prayer-stepper__value" aria-hidden="true">
             <strong data-group-value>0</strong>
             <span>/ {{ prayer_unit_count }}</span>
           </span>
-          <button class="prayer-stepper__button prayer-stepper__button--forward" type="button" data-count-forward aria-label="Registrar uma oração em {{ prayer_unit_title | escape }}">
+          <button class="prayer-stepper__button prayer-stepper__button--forward" type="button" data-count-forward aria-label="Registrar uma oração em {{ prayer_unit_title_pt | escape }}">
             {% include icon.html name='plus' %}
           </button>
         </div>

@@ -1,5 +1,6 @@
 {% assign sequence_document = include.document | default: page %}
 {% assign sequence_sections = sequence_document.sections %}
+{% assign sequence_default_language = sequence_document['default-language'] | default: sequence_document.default_language | default: 'pt' %}
 {% assign sequence_has_sections = false %}
 {% if sequence_sections and sequence_sections.size > 0 %}
   {% assign sequence_has_sections = true %}
@@ -9,15 +10,17 @@
   {% for sequence_section in sequence_sections %}
     {% assign sequence_items = sequence_section.prayers | default: sequence_section.groups %}
     {% for sequence_item in sequence_items %}
-      {% if sequence_item.count or include.count_all %}
+      {% assign sequence_item_count = sequence_item.count | plus: 0 %}
+      {% if sequence_item.count and sequence_item_count > 0 %}
         {% assign sequence_has_counted = true %}
       {% endif %}
     {% endfor %}
   {% endfor %}
 {% elsif sequence_document.count %}
-  {% assign sequence_has_counted = true %}
-{% elsif include.count_all %}
-  {% assign sequence_has_counted = true %}
+  {% assign sequence_document_count = sequence_document.count | plus: 0 %}
+  {% if sequence_document_count > 0 %}
+    {% assign sequence_has_counted = true %}
+  {% endif %}
 {% endif %}
 
 <section class="devotional-sequence{% unless sequence_has_sections %} devotional-sequence--single{% endunless %}"
@@ -38,25 +41,8 @@
         <p class="eyebrow">{{ include.kicker | default: 'Roteiro de oração' }}</p>
         <h2 id="{{ include.heading_id | default: 'devotional-sequence-title' }}">{{ include.heading | default: sequence_document.sequence_title | default: 'Orações e etapas' }}</h2>
       </div>
-      <div class="language-switcher" data-language-switcher hidden aria-label="Idioma das orações">
-        <span>Idioma</span>
-        <div role="group" aria-label="Selecionar idioma">
-          <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
-          <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
-        </div>
-      </div>
     </div>
   {% endunless %}
-
-  {% if include.hide_heading %}
-    <div class="language-switcher language-switcher--standalone" data-language-switcher hidden aria-label="Idioma das orações">
-      <span>Idioma</span>
-      <div role="group" aria-label="Selecionar idioma">
-        <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
-        <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
-      </div>
-    </div>
-  {% endif %}
 
   {% if sequence_has_counted %}
     <div class="sequence-progress" data-sequence-progress aria-labelledby="{{ include.progress_id | default: 'sequence-progress-title' }}">
@@ -89,7 +75,8 @@
         {% assign sequence_items = sequence_section.prayers | default: sequence_section.groups %}
         {% assign sequence_section_counted = false %}
         {% for sequence_item in sequence_items %}
-          {% if sequence_item.count or include.count_all %}
+          {% assign sequence_item_count = sequence_item.count | plus: 0 %}
+          {% if sequence_item.count and sequence_item_count > 0 %}
             {% assign sequence_section_counted = true %}
           {% endif %}
         {% endfor %}
@@ -112,7 +99,7 @@
           {% if sequence_items and sequence_items.size > 0 %}
             <div class="prayer-unit-list">
               {% for sequence_item in sequence_items %}
-                {% include devotional-prayer-unit.html item=sequence_item section_id=sequence_section_id index=forloop.index default_language=sequence_document.default_language count_all=include.count_all %}
+                {% include devotional-prayer-unit.html item=sequence_item section_id=sequence_section_id index=forloop.index default_language=sequence_default_language %}
               {% endfor %}
             </div>
           {% endif %}
@@ -120,6 +107,6 @@
       {% endfor %}
     </div>
   {% else %}
-    {% include devotional-prayer-unit.html item=sequence_document section_id='principal' index=1 default_language=sequence_document.default_language count_all=include.count_all fallback_content=include.content single=true %}
+    {% include devotional-prayer-unit.html item=sequence_document section_id='principal' index=1 default_language=sequence_default_language fallback_content=include.content single=true %}
   {% endif %}
 </section>
