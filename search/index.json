@@ -21,34 +21,48 @@ sitemap: false
   | concat: site.formacoes %}
 {% assign search_documents = search_documents | where_exp: 'item', 'item.search != false' %}
 [
-{% for item in search_documents %}
-  {% capture searchable_content %}
-    {{ item.content | markdownify | strip_html }}
-    {% include search-devotional-text.html document=item %}
-    {% case item.collection %}
-      {% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}
-        {% assign modern_search_days = site.dias_novena | where: 'devotion', item.slug %}
-        {% assign legacy_search_days = site.dias_novena | where: 'novena', item.slug %}
-        {% assign child_search_days = legacy_search_days | concat: modern_search_days | sort: 'day' %}
-        {% for child_day in child_search_days %}
-          {{ child_day.title }} {{ child_day.theme }} {{ child_day.description }}
-          {{ child_day.content | markdownify | strip_html }}
-          {% include search-devotional-text.html document=child_day %}
-        {% endfor %}
-    {% endcase %}
-  {% endcapture %}
-  {
-    "title": {{ item.title | default: site.title | jsonify }},
-    "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
-    "url": {{ item.url | relative_url | jsonify }},
-    "type": {% case item.collection %}{% when 'posts' %}"Blog"{% when 'oracoes' %}"Oração"{% when 'novenas' %}"Novena"{% when 'quaresmas' %}"Quaresma"{% when 'trintenas' %}"Trintena"{% when 'devocoes_mensais' %}"Devoção mensal"{% when 'trezenas' %}"Trezena"{% when 'triduos' %}"Tríduo"{% when 'tercos' %}"Terço"{% when 'rosarios' %}"Rosário"{% when 'coroas' %}"Coroa"{% when 'santos' %}"Santo"{% when 'devocionarios' %}"Devocionário"{% when 'formacoes' %}"Formação"{% else %}"Página"{% endcase %},
-    "category": {{ item.category | default: item.categories.first | jsonify }},
-    "tags": {{ item.tags | default: empty | jsonify }},
-    "keywords": {{ item.keywords | default: empty | jsonify }},
-    "excerpt": {{ searchable_content | normalize_whitespace | truncate: 320 | jsonify }},
-    "searchText": {{ searchable_content | normalize_whitespace | jsonify }},
-    "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% else %}null{% endcase %},
-    "image": {{ item.image | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
-{% endfor %}
+  {% for item in search_documents %}
+    {% capture searchable_content %}
+      {{ item.content | markdownify | strip_html }}
+      {% include search-devotional-text.html document=item %}
+      {% if item.collection == 'santos' %}
+        {{ item.short_title }}
+        {{ item.subtitle }}
+        {{ item.saint_type }}
+        {{ item.religious_family }}
+        {{ item.liturgical_rank }}
+        {{ item.liturgical_memorial }}
+        {{ item.aliases | join: ' ' }}
+        {{ item.patronages | join: ' ' }}
+        {{ item.virtues | join: ' ' }}
+      {% endif %}
+      {% case item.collection %}
+        {% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}
+          {% assign modern_search_days = site.dias_novena | where: 'devotion', item.slug %}
+          {% assign legacy_search_days = site.dias_novena | where: 'novena', item.slug %}
+          {% assign child_search_days = legacy_search_days | concat: modern_search_days | sort: 'day' %}
+          {% for child_day in child_search_days %}
+            {{ child_day.title }}
+            {{ child_day.theme }}
+            {{ child_day.description }}
+            {{ child_day.content | markdownify | strip_html }}
+            {% include search-devotional-text.html document=child_day %}
+          {% endfor %}
+      {% endcase %}
+    {% endcapture %}
+    {
+      "title": {{ item.title | default: site.title | jsonify }},
+      "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
+      "url": {{ item.url | relative_url | jsonify }},
+      "type": {% case item.collection %}{% when 'posts' %}"Blog"{% when 'oracoes' %}"Oração"{% when 'novenas' %}"Novena"{% when 'quaresmas' %}"Quaresma"{% when 'trintenas' %}"Trintena"{% when 'devocoes_mensais' %}"Devoção mensal"{% when 'trezenas' %}"Trezena"{% when 'triduos' %}"Tríduo"{% when 'tercos' %}"Terço"{% when 'rosarios' %}"Rosário"{% when 'coroas' %}"Coroa"{% when 'santos' %}"Santo"{% when 'devocionarios' %}"Devocionário"{% when 'formacoes' %}"Formação"{% else %}"Página"{% endcase %},
+      "category": {{ item.category | default: item.categories.first | jsonify }},
+      "tags": {{ item.tags | default: empty | jsonify }},
+      "keywords": {{ item.keywords | default: empty | jsonify }},
+      "aliases": {{ item.aliases | default: empty | jsonify }},
+      "excerpt": {{ searchable_content | normalize_whitespace | truncate: 320 | jsonify }},
+      "searchText": {{ searchable_content | normalize_whitespace | jsonify }},
+      "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% else %}null{% endcase %},
+      "image": {{ item.image | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
 ]
