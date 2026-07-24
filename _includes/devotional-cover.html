@@ -1,0 +1,23 @@
+{% assign devotional_cover_image = include.image | default: page.image %}
+{% assign devotional_cover_alt = include.alt | default: page.image_alt | default: page.title %}
+{% assign devotional_cover_label = include.label | default: page.category | default: 'Oração' %}
+<div class="image-shell devotional-cover{% if include.class %} {{ include.class }}{% endif %}" data-image-shell>
+  {% if devotional_cover_image %}
+    <img
+      src="{{ devotional_cover_image | relative_url }}"
+      alt="{{ devotional_cover_alt | escape }}"
+      width="{{ include.width | default: 960 }}"
+      height="{{ include.height | default: 640 }}"
+      decoding="async"
+      data-fallback-image>
+    <span class="image-placeholder devotional-cover__placeholder" hidden>
+      <img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="48" height="48" alt="">
+      <small>{{ devotional_cover_label }}</small>
+    </span>
+  {% else %}
+    <span class="image-placeholder devotional-cover__placeholder">
+      <img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="48" height="48" alt="">
+      <small>{{ devotional_cover_label }}</small>
+    </span>
+  {% endif %}
+</div>

@@ -1,0 +1,87 @@
+{% assign prayer_unit = include.item %}
+{% assign prayer_common_key = prayer_unit.prayer | default: prayer_unit.common_prayer %}
+{% assign prayer_common = site.data.common_prayers[prayer_common_key] %}
+{% assign prayer_unit_title = prayer_unit.label | default: prayer_common.title | default: prayer_unit.title | default: 'Oração' %}
+{% assign prayer_unit_text_pt = prayer_unit.texts.pt | default: prayer_unit.text | default: prayer_common.texts.pt %}
+{% assign prayer_unit_text_la = prayer_unit.texts.la | default: prayer_common.texts.la %}
+{% assign prayer_unit_url = prayer_unit.prayer_url | default: prayer_common.url %}
+{% assign prayer_unit_default_language = include.default_language | default: prayer_unit.default_language | default: prayer_common.default_language | default: 'pt' %}
+{% assign prayer_unit_show_latin = false %}
+{% if prayer_unit_default_language == 'la' and prayer_unit_text_la %}
+  {% assign prayer_unit_show_latin = true %}
+{% endif %}
+{% assign prayer_unit_counted = false %}
+{% if prayer_unit.count %}
+  {% assign prayer_unit_counted = true %}
+{% elsif include.count_all %}
+  {% assign prayer_unit_counted = true %}
+{% endif %}
+{% assign prayer_unit_count = prayer_unit.count | default: 1 %}
+{% assign prayer_unit_local_id = prayer_unit.id | default: include.index %}
+{% capture prayer_unit_id %}{{ include.section_id }}:{{ prayer_unit_local_id }}{% endcapture %}
+
+<article class="prayer-unit{% if prayer_unit_counted %} prayer-unit--counted{% endif %}"
+  {% if prayer_unit_counted %}
+    data-counted-group
+    data-group-id="{{ prayer_unit_id | strip | escape }}"
+    data-group-count="{{ prayer_unit_count }}"
+    data-group-label="{{ prayer_unit_title | escape }}"
+  {% endif %}
+  data-prayer-unit
+  data-unit-default-language="{{ prayer_unit_default_language | escape }}">
+  <header class="prayer-unit__heading">
+    <div>
+      {% if include.single %}
+        <h2>{{ prayer_unit_title }}</h2>
+      {% else %}
+        <h4>{{ prayer_unit_title }}</h4>
+      {% endif %}
+      {% if prayer_unit.note %}<p>{{ prayer_unit.note }}</p>{% endif %}
+    </div>
+    {% if prayer_unit_counted %}
+      <output class="prayer-unit__count" data-group-output aria-live="polite">0 de {{ prayer_unit_count }}</output>
+    {% endif %}
+  </header>
+
+  {% if prayer_unit_text_pt or prayer_unit_text_la or include.fallback_content %}
+    <div class="prayer-unit__text prayer-text" data-prayer-text>
+      {% if prayer_unit_text_pt or include.fallback_content %}
+        <div lang="pt-BR" data-language-panel data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>
+          {% if prayer_unit_text_pt %}
+            {{ prayer_unit_text_pt | markdownify }}
+          {% else %}
+            {{ include.fallback_content }}
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if prayer_unit_text_la %}
+        <div lang="la" data-language-panel data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>
+          {{ prayer_unit_text_la | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if prayer_unit_counted or prayer_unit_url %}
+    <footer class="prayer-unit__footer">
+      {% if prayer_unit_counted %}
+        <div class="prayer-stepper" role="group" aria-label="Contagem de {{ prayer_unit_title | escape }}">
+          <button class="prayer-stepper__button" type="button" data-count-back aria-label="Voltar uma marcação em {{ prayer_unit_title | escape }}">
+            {% include icon.html name='minus' %}
+          </button>
+          <span class="prayer-stepper__value" aria-hidden="true">
+            <strong data-group-value>0</strong>
+            <span>/ {{ prayer_unit_count }}</span>
+          </span>
+          <button class="prayer-stepper__button prayer-stepper__button--forward" type="button" data-count-forward aria-label="Registrar uma oração em {{ prayer_unit_title | escape }}">
+            {% include icon.html name='plus' %}
+          </button>
+        </div>
+        <div class="prayer-unit__meter" aria-hidden="true"><span data-group-bar></span></div>
+      {% endif %}
+      {% if prayer_unit_url %}
+        <a class="prayer-unit__link" href="{{ prayer_unit_url | relative_url }}">Abrir oração completa</a>
+      {% endif %}
+    </footer>
+  {% endif %}
+</article>

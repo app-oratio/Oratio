@@ -1,0 +1,125 @@
+{% assign sequence_document = include.document | default: page %}
+{% assign sequence_sections = sequence_document.sections %}
+{% assign sequence_has_sections = false %}
+{% if sequence_sections and sequence_sections.size > 0 %}
+  {% assign sequence_has_sections = true %}
+{% endif %}
+{% assign sequence_has_counted = false %}
+{% if sequence_has_sections %}
+  {% for sequence_section in sequence_sections %}
+    {% assign sequence_items = sequence_section.prayers | default: sequence_section.groups %}
+    {% for sequence_item in sequence_items %}
+      {% if sequence_item.count or include.count_all %}
+        {% assign sequence_has_counted = true %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% elsif sequence_document.count %}
+  {% assign sequence_has_counted = true %}
+{% elsif include.count_all %}
+  {% assign sequence_has_counted = true %}
+{% endif %}
+
+<section class="devotional-sequence{% unless sequence_has_sections %} devotional-sequence--single{% endunless %}"
+  {% if include.anchor %}id="{{ include.anchor }}"{% endif %}
+  data-devotional-sequence
+  {% if include.hide_heading %}
+    aria-label="{{ sequence_document.title | default: 'Roteiro de oração' | escape }}"
+  {% else %}
+    aria-labelledby="{{ include.heading_id | default: 'devotional-sequence-title' }}"
+  {% endif %}>
+  {% if sequence_has_sections and include.content and include.content != empty %}
+    <div class="prose prose--wide devotional-sequence__introduction">{{ include.content }}</div>
+  {% endif %}
+
+  {% unless include.hide_heading %}
+    <div class="devotional-sequence__heading">
+      <div>
+        <p class="eyebrow">{{ include.kicker | default: 'Roteiro de oração' }}</p>
+        <h2 id="{{ include.heading_id | default: 'devotional-sequence-title' }}">{{ include.heading | default: sequence_document.sequence_title | default: 'Orações e etapas' }}</h2>
+      </div>
+      <div class="language-switcher" data-language-switcher hidden aria-label="Idioma das orações">
+        <span>Idioma</span>
+        <div role="group" aria-label="Selecionar idioma">
+          <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
+          <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+
+  {% if include.hide_heading %}
+    <div class="language-switcher language-switcher--standalone" data-language-switcher hidden aria-label="Idioma das orações">
+      <span>Idioma</span>
+      <div role="group" aria-label="Selecionar idioma">
+        <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
+        <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if sequence_has_counted %}
+    <div class="sequence-progress" data-sequence-progress aria-labelledby="{{ include.progress_id | default: 'sequence-progress-title' }}">
+      <div class="sequence-progress__summary">
+        <div>
+          <strong id="{{ include.progress_id | default: 'sequence-progress-title' }}" data-counted-progress-label>Nenhuma oração marcada.</strong>
+          <span class="last-update">Atualizado: <time data-counted-updated>nunca</time></span>
+        </div>
+        <span class="sequence-progress__percent" data-counted-percent>0%</span>
+      </div>
+      <div class="progress-track progress-track--slim" role="progressbar" aria-label="Progresso deste roteiro de oração" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-counted-track>
+        <span data-counted-bar></span>
+      </div>
+      <div class="sequence-progress__footer">
+        <span data-counted-fraction>0 de 0</span>
+        <button class="button button--text button--small" type="button" data-counted-reset>
+          {% include icon.html name='reset' %}
+          <span>Reiniciar</span>
+        </button>
+      </div>
+      <p class="status-message" data-counted-status aria-live="polite"></p>
+    </div>
+  {% endif %}
+
+  {% if sequence_has_sections %}
+    <div class="devotional-sections">
+      {% for sequence_section in sequence_sections %}
+        {% assign sequence_section_number = forloop.index %}
+        {% assign sequence_section_id = sequence_section.id | default: sequence_section_number %}
+        {% assign sequence_items = sequence_section.prayers | default: sequence_section.groups %}
+        {% assign sequence_section_counted = false %}
+        {% for sequence_item in sequence_items %}
+          {% if sequence_item.count or include.count_all %}
+            {% assign sequence_section_counted = true %}
+          {% endif %}
+        {% endfor %}
+        <article class="devotional-section" id="secao-{{ sequence_section_id | slugify }}" data-devotional-section>
+          <header class="devotional-section__header">
+            <span class="devotional-section__number">{{ sequence_section_number }}</span>
+            <div>
+              {% if sequence_section.kicker %}<p class="eyebrow">{{ sequence_section.kicker }}</p>{% endif %}
+              <h3>{{ sequence_section.title }}</h3>
+              {% if sequence_section.theme %}<p class="devotional-section__theme">{{ sequence_section.theme }}</p>{% endif %}
+            </div>
+            {% if sequence_section_counted %}<span class="devotional-section__state" data-section-state>Não iniciada</span>{% endif %}
+          </header>
+          {% if sequence_section.meditation %}
+            <div class="devotional-section__meditation">{{ sequence_section.meditation | markdownify }}</div>
+          {% endif %}
+          {% if sequence_section.content %}
+            <div class="prose devotional-section__content">{{ sequence_section.content | markdownify }}</div>
+          {% endif %}
+          {% if sequence_items and sequence_items.size > 0 %}
+            <div class="prayer-unit-list">
+              {% for sequence_item in sequence_items %}
+                {% include devotional-prayer-unit.html item=sequence_item section_id=sequence_section_id index=forloop.index default_language=sequence_document.default_language count_all=include.count_all %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% include devotional-prayer-unit.html item=sequence_document section_id='principal' index=1 default_language=sequence_document.default_language count_all=include.count_all fallback_content=include.content single=true %}
+  {% endif %}
+</section>

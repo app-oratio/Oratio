@@ -1,7 +1,12 @@
 {% assign intentions_key = include.key | default: page.slug %}
 {% assign intentions_id = intentions_key | slugify %}
+{% if include.anchor %}
+  {% assign intentions_anchor = include.anchor %}
+{% else %}
+  {% capture intentions_anchor %}intencoes-{{ intentions_id }}{% endcapture %}
+{% endif %}
 <section class="intention-panel{% if include.compact %} intention-panel--compact{% endif %}"
-  id="intencoes-{{ intentions_id }}"
+  id="{{ intentions_anchor }}"
   data-intentions-root
   data-intention-key="{{ intentions_key | escape }}"
   aria-labelledby="intencoes-titulo-{{ intentions_id }}">
