@@ -1,4 +1,4 @@
-# Oratio | App Católico
+# Oratio | App Católico 
 
 Portal estático e responsivo do aplicativo Oratio, construído com Jekyll para apresentar o app e publicar blog, orações, novenas, quaresmas, outros itinerários devocionais, terços, rosários, coroas, santos, formações e páginas institucionais no GitHub Pages.
 
