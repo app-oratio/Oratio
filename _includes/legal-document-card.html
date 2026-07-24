@@ -1,0 +1,16 @@
+{% assign document = include.document %}
+{% assign environment = include.environment %}
+<article class="legal-document-card">
+  <div class="legal-document-card__topline">
+    <span class="chip">{{ environment.eyebrow }}</span>
+    <span class="legal-version">Versão {{ document.version }}</span>
+  </div>
+  <div class="legal-document-card__body">
+    <h2>{{ document.title }}</h2>
+    <p>{{ document.summary }}</p>
+  </div>
+  <div class="legal-document-card__footer">
+    <span>Em vigor desde {{ document.effective_date }}</span>
+    <a class="button button--tonal button--small" href="{{ document.url | relative_url }}">Ler documento</a>
+  </div>
+</article>
