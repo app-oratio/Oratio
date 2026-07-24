@@ -19,10 +19,10 @@ sections:
     title: "Preparar o coração"
     prayers:
       - id: sinal
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
       - id: espirito-santo
-        prayer: "vinde-espirito-santo"
+        common_prayer: "vinde-espirito-santo"
   - id: suplica
     kicker: "Oração principal"
     title: "Súplica demonstrativa"
@@ -31,14 +31,14 @@ sections:
     prayers:
       - id: invocacao
         label: "Invocação pela fidelidade"
+        label-latin: "Invocatio pro fidelitate"
+        prayer: |-
+          Senhor, tornai nosso coração fiel nas pequenas decisões de cada dia.
+        prayer-latin: |-
+          Domine, cor nostrum fidele fac in parvis consiliis uniuscuiusque diei.
         count: 3
-        texts:
-          pt: |-
-            Senhor, tornai nosso coração fiel nas pequenas decisões de cada dia.
-          la: |-
-            Domine, cor nostrum fidele fac in parvis consiliis uniuscuiusque diei.
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
 ---
 

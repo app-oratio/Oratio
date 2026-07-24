@@ -2,6 +2,8 @@
 title: "[Demonstração] Oração ao começar o dia"
 slug: "oracao-ao-comecar-o-dia-demonstrativa"
 description: "Modelo de oração matinal criado para testar a leitura, as intenções particulares e as ações da página."
+image: "/assets/images/placeholders/template-landscape.svg"
+image_alt: "Capa demonstrativa da oração ao começar o dia"
 category: "Orações para o cotidiano"
 duration: "2 minutos"
 source: "Texto demonstrativo original para o portal Oratio"

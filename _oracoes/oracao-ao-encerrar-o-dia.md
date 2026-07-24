@@ -2,6 +2,8 @@
 title: "[Demonstração] Oração ao encerrar o dia"
 slug: "oracao-ao-encerrar-o-dia-demonstrativa"
 description: "Modelo de oração noturna que demonstra textos divididos em preparação, exame e entrega confiante."
+image: "/assets/images/placeholders/template-landscape.svg"
+image_alt: "Capa demonstrativa da oração ao encerrar o dia"
 category: "Orações para o cotidiano"
 duration: "3 minutos"
 source: "Texto demonstrativo original para o portal Oratio"

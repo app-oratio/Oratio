@@ -2,6 +2,8 @@
 title: "[Demonstração] Oração pela família"
 slug: "oracao-pela-familia-demonstrativa"
 description: "Modelo de oração familiar criado para testar conteúdos mais longos e o registro local de intenções."
+image: "/assets/images/placeholders/template-landscape.svg"
+image_alt: "Capa demonstrativa da oração pela família"
 category: "Orações pela família"
 duration: "3 minutos"
 source: "Texto demonstrativo original para o portal Oratio"

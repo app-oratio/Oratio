@@ -2,6 +2,8 @@
 title: "[Demonstração] Oração antes do estudo"
 slug: "oracao-antes-do-estudo-demonstrativa"
 description: "Modelo de oração para estudantes, preparado para demonstrar categorias, palavras-chave e intenções locais."
+image: "/assets/images/placeholders/template-landscape.svg"
+image_alt: "Capa demonstrativa da oração antes do estudo"
 category: "Orações para estudos e trabalho"
 duration: "2 minutos"
 source: "Texto demonstrativo original para o portal Oratio"
