@@ -8,15 +8,16 @@
     window.addEventListener('scroll', updateHeader, { passive: true });
   }
 
-  var prayerTexts = document.querySelectorAll('[data-prayer-text]');
-  if (prayerTexts.length) {
+  var readingTexts = document.querySelectorAll('[data-prayer-text], [data-reading-text]');
+  if (readingTexts.length) {
     var storageKey = 'oratio-prayer-font-scale';
     var scale = 1;
     try { scale = Number(window.localStorage.getItem(storageKey)) || 1; } catch (error) { scale = 1; }
     scale = Math.min(1.35, Math.max(0.9, scale));
     function applyScale() {
-      prayerTexts.forEach(function (prayerText) {
-        prayerText.style.setProperty('--prayer-font-size', (1.125 * scale).toFixed(3) + 'rem');
+      readingTexts.forEach(function (readingText) {
+        var baseSize = Number(readingText.getAttribute('data-reading-font-base')) || 1.125;
+        readingText.style.setProperty('--prayer-font-size', (baseSize * scale).toFixed(3) + 'rem');
       });
       document.querySelectorAll('[data-prayer-font-value]').forEach(function (output) {
         output.textContent = Math.round(scale * 100) + '%';
