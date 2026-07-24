@@ -17,13 +17,13 @@ sections:
     meditation: "Contemple, neste exemplo, a atenção com que acolhemos o chamado de Deus."
     prayers:
       - id: pai-nosso
-        prayer: "pai-nosso"
+        common_prayer: "pai-nosso"
         count: 1
       - id: ave-maria
-        prayer: "ave-maria"
+        common_prayer: "ave-maria"
         count: 3
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
   - id: segundo-misterio
     kicker: "Segundo mistério"
@@ -31,16 +31,16 @@ sections:
     meditation: "O número reduzido de repetições existe apenas para tornar o teste editorial mais rápido."
     prayers:
       - id: pai-nosso
-        prayer: "pai-nosso"
+        common_prayer: "pai-nosso"
         count: 1
       - id: ave-maria
-        prayer: "ave-maria"
+        common_prayer: "ave-maria"
         count: 3
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
       - id: fatima
-        prayer: "oracao-de-fatima"
+        common_prayer: "oracao-de-fatima"
         count: 1
 ---
 
