@@ -63,7 +63,7 @@ collections:
     permalink: /devocionarios/:name/
   santos:
     output: true
-    permalink: /santos/:name/
+    permalink: /santos/:title/
   formacoes:
     output: true
     permalink: /formacoes/:name/
@@ -172,6 +172,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - GUIA_DE_IMPLEMENTACAO.md
+  - GUIA_SANTOS.md
   - LICENSE
   - CNAME.example
   - tools
