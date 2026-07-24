@@ -1,0 +1,1022 @@
+/* Sistema de santos: estilos isolados para o acervo, o calendário e as biografias. */
+.saints-archive,
+.saint-page {
+  --saints-accent-soft: color-mix(in srgb, var(--oratio-gold-container) 72%, var(--oratio-surface));
+  --saints-border-accent: color-mix(in srgb, var(--oratio-gold) 34%, var(--oratio-divider));
+}
+
+.saints-hero {
+  align-items: stretch;
+  background:
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--oratio-gold-container) 78%, transparent), transparent 34%),
+    linear-gradient(145deg, var(--oratio-primary-container), var(--oratio-surface));
+  border: 1px solid color-mix(in srgb, var(--oratio-primary) 18%, var(--oratio-divider));
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: var(--space-6);
+  margin-block: var(--space-6) var(--space-8);
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+}
+
+.saints-hero::after {
+  border: 1px solid color-mix(in srgb, var(--oratio-gold) 26%, transparent);
+  border-radius: 50%;
+  content: '';
+  height: 18rem;
+  pointer-events: none;
+  position: absolute;
+  right: -7rem;
+  top: -9rem;
+  width: 18rem;
+}
+
+.saints-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.saints-hero__copy {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.saints-hero__copy h1 {
+  max-width: 14ch;
+}
+
+.saints-hero__copy .page-lead {
+  max-width: 48rem;
+}
+
+.saints-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.saints-hero__summary {
+  align-content: center;
+  background: color-mix(in srgb, var(--oratio-surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--oratio-gold) 28%, var(--oratio-divider));
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: var(--space-2);
+  min-height: 13rem;
+  padding: var(--space-6);
+}
+
+.saints-hero__summary strong {
+  color: var(--oratio-gold);
+  font-family: var(--font-heading);
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  line-height: 0.9;
+}
+
+.saints-hero__summary > span {
+  color: var(--oratio-text-primary);
+  font-weight: 800;
+}
+
+.saints-hero__summary p {
+  font-size: 0.9rem;
+}
+
+.saint-today {
+  background: var(--oratio-surface);
+  border: 1px solid var(--saints-border-accent);
+  border-radius: var(--radius-large);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--oratio-shadow) 70%, transparent);
+  display: grid;
+  gap: var(--space-5);
+  margin-block: var(--space-8) var(--space-12);
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  position: relative;
+}
+
+.saint-today::before {
+  background: linear-gradient(90deg, var(--oratio-gold), color-mix(in srgb, var(--oratio-gold) 28%, var(--oratio-primary)));
+  content: '';
+  height: 4px;
+  inset: 0 0 auto;
+  position: absolute;
+}
+
+.saint-today--compact {
+  margin-block: var(--space-6);
+}
+
+.saint-today__heading {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  justify-content: space-between;
+}
+
+.saint-today__heading > div:first-child {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.saint-today__heading h2 {
+  margin: 0;
+}
+
+.saint-today__heading [data-saint-of-day-date] {
+  color: var(--oratio-text-secondary);
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.saint-today__navigation {
+  align-items: center;
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-pill);
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+}
+
+.saint-today__date-picker {
+  display: grid;
+  gap: 0.1rem;
+  padding-inline: var(--space-2);
+}
+
+.saint-today__date-picker span {
+  color: var(--oratio-text-muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.saint-today__date-picker input {
+  background: transparent;
+  border: 0;
+  color: var(--oratio-text-primary);
+  font: inherit;
+  font-size: 0.82rem;
+  min-height: 28px;
+  outline: 0;
+}
+
+.saint-today__content {
+  min-height: 8rem;
+}
+
+.saint-today__status,
+.saint-related__status {
+  color: var(--oratio-text-muted);
+  font-size: 0.9rem;
+}
+
+.saint-today__multiple-note {
+  background: var(--saints-accent-soft);
+  border-radius: var(--radius-medium);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+}
+
+.saint-today__grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.saint-today__empty {
+  align-items: center;
+  border: 1px dashed var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.saint-mini-card {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+}
+
+.saint-mini-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+.saint-mini-card__body {
+  align-content: center;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+.saint-mini-card__meta,
+.saint-card__meta {
+  align-items: center;
+  color: var(--oratio-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  gap: var(--space-2);
+}
+
+.saint-mini-card h3,
+.saint-card h3 {
+  margin: 0;
+}
+
+.saint-mini-card h3 a,
+.saint-card h3 a {
+  color: var(--oratio-text-primary);
+  text-decoration: none;
+}
+
+.saint-mini-card h3 a:hover,
+.saint-card h3 a:hover {
+  color: var(--oratio-primary);
+}
+
+.saint-mini-card__subtitle,
+.saint-card__subtitle {
+  color: var(--oratio-text-secondary);
+  font-weight: 650;
+}
+
+.saint-mini-card__date,
+.saint-card__date {
+  color: var(--oratio-gold);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.saints-library {
+  scroll-margin-top: calc(var(--header-height) + var(--space-5));
+}
+
+.saints-library__heading {
+  margin-bottom: var(--space-6);
+}
+
+.saints-toolbar {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+}
+
+.saints-toolbar .field-group {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.saints-toolbar .field-group > span {
+  color: var(--oratio-text-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.saints-toolbar input,
+.saints-toolbar select {
+  background: var(--oratio-surface);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  color: var(--oratio-text-primary);
+  font: inherit;
+  min-height: 48px;
+  padding: 0.7rem var(--space-3);
+  width: 100%;
+}
+
+.saints-toolbar input:focus,
+.saints-toolbar select:focus {
+  border-color: var(--oratio-primary);
+  box-shadow: 0 0 0 2px var(--oratio-primary-container);
+  outline: 0;
+}
+
+.saints-view-tabs {
+  border-bottom: 1px solid var(--oratio-divider);
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  overflow-x: auto;
+  padding: 0 var(--space-1);
+  scrollbar-width: thin;
+}
+
+.saints-view-tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: var(--oratio-text-secondary);
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+}
+
+.saints-view-tabs button:hover {
+  background: var(--oratio-surface-secondary);
+  color: var(--oratio-primary);
+}
+
+.saints-view-tabs button[aria-selected='true'] {
+  border-bottom-color: var(--oratio-primary);
+  color: var(--oratio-primary);
+}
+
+.saints-panel[hidden] {
+  display: none;
+}
+
+.saints-results-header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.saints-results-header p {
+  color: var(--oratio-text-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.saints-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.saint-card {
+  background: var(--oratio-surface);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.saint-card:hover {
+  border-color: var(--saints-border-accent);
+  box-shadow: 0 12px 30px var(--oratio-shadow);
+  transform: translateY(-2px);
+}
+
+.saint-card__media {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+
+.saint-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.saint-card__description {
+  display: -webkit-box;
+  font-size: 0.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.saint-card__link {
+  align-items: center;
+  color: var(--oratio-primary);
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  gap: var(--space-2);
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.saint-card__link:hover {
+  text-decoration: underline;
+}
+
+.saints-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.saints-calendar {
+  background: var(--oratio-surface);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+.saints-calendar__toolbar {
+  align-items: center;
+  background: var(--oratio-surface-secondary);
+  border-bottom: 1px solid var(--oratio-divider);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+}
+
+.saints-calendar__toolbar h3 {
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  margin: 0;
+}
+
+.saints-calendar__weekdays,
+.saints-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.saints-calendar__weekdays {
+  border-bottom: 1px solid var(--oratio-divider);
+}
+
+.saints-calendar__weekdays span {
+  color: var(--oratio-text-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: var(--space-3) var(--space-1);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.saints-calendar__blank,
+.saints-calendar__day {
+  min-height: clamp(3.25rem, 9vw, 6rem);
+}
+
+.saints-calendar__blank {
+  background: color-mix(in srgb, var(--oratio-surface-secondary) 50%, transparent);
+  border-bottom: 1px solid var(--oratio-divider);
+  border-right: 1px solid var(--oratio-divider);
+}
+
+.saints-calendar__day {
+  align-content: start;
+  background: var(--oratio-surface);
+  border: 0;
+  border-bottom: 1px solid var(--oratio-divider);
+  border-right: 1px solid var(--oratio-divider);
+  color: var(--oratio-text-primary);
+  cursor: pointer;
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+  padding: var(--space-2);
+  position: relative;
+}
+
+.saints-calendar__day:hover,
+.saints-calendar__day:focus-visible {
+  background: var(--oratio-primary-container);
+}
+
+.saints-calendar__day.has-saints {
+  box-shadow: inset 0 -3px var(--oratio-gold);
+}
+
+.saints-calendar__day.is-today .saints-calendar__day-number {
+  background: var(--oratio-primary);
+  border-radius: 50%;
+  color: var(--oratio-text-on-primary);
+  display: grid;
+  height: 1.75rem;
+  place-items: center;
+  width: 1.75rem;
+}
+
+.saints-calendar__day-number {
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.saints-calendar__day-count {
+  background: var(--oratio-gold-container);
+  border-radius: var(--radius-pill);
+  color: var(--oratio-gold);
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 0.2rem 0.48rem;
+}
+
+.saints-calendar__selection {
+  border-top: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+.saints-calendar__selection > h4 {
+  text-transform: capitalize;
+}
+
+.saints-alphabet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.saints-alphabet a {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: 50%;
+  color: var(--oratio-text-primary);
+  display: grid;
+  font-size: 0.82rem;
+  font-weight: 850;
+  height: 2.6rem;
+  place-items: center;
+  text-decoration: none;
+  width: 2.6rem;
+}
+
+.saints-alphabet a:hover {
+  background: var(--oratio-primary-container);
+  border-color: var(--oratio-primary);
+  color: var(--oratio-on-primary-container);
+}
+
+.saints-alpha-groups {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.saints-alpha-group {
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+.saints-alpha-group > h3 {
+  align-items: center;
+  color: var(--oratio-gold);
+  display: flex;
+  font-size: 2.25rem;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.saints-alpha-group > h3::after {
+  background: var(--oratio-divider);
+  content: '';
+  height: 1px;
+  width: 100%;
+}
+
+.saints-undated-intro {
+  background: var(--oratio-surface-secondary);
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  padding: var(--space-5);
+}
+
+.saints-editorial-note {
+  background: var(--oratio-surface-secondary);
+  border-left: 4px solid var(--oratio-gold);
+  border-radius: var(--radius-medium);
+  margin-top: var(--space-10);
+  padding: var(--space-5);
+}
+
+/* Página individual */
+.saint-profile-hero {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: 0;
+  margin-block: var(--space-6) var(--space-8);
+  overflow: hidden;
+}
+
+.saint-profile-hero__media {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+  min-height: 0;
+}
+
+.saint-profile-hero__content {
+  align-content: center;
+  display: grid;
+  gap: var(--space-4);
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.saint-profile-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip--gold {
+  background: var(--oratio-gold-container);
+  color: var(--oratio-gold);
+}
+
+.saint-subtitle {
+  color: var(--oratio-gold);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+}
+
+.saint-facts {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin-top: var(--space-2);
+}
+
+.saint-facts > div {
+  border-left: 3px solid var(--saints-border-accent);
+  display: grid;
+  gap: 0.18rem;
+  padding-left: var(--space-3);
+}
+
+.saint-facts dt {
+  color: var(--oratio-text-muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.saint-facts dd {
+  color: var(--oratio-text-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.saint-inline-list {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.saint-inline-list strong {
+  color: var(--oratio-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.saint-summary {
+  background: linear-gradient(145deg, var(--saints-accent-soft), var(--oratio-surface));
+  border: 1px solid var(--saints-border-accent);
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-8);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.saint-summary .prose {
+  max-width: 68rem;
+}
+
+.saint-virtues {
+  align-items: start;
+  border-block: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-5);
+  margin-block: var(--space-8);
+  padding-block: var(--space-6);
+}
+
+.saint-virtues ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.saint-virtues li {
+  background: var(--oratio-primary-container);
+  border-radius: var(--radius-pill);
+  color: var(--oratio-on-primary-container);
+  font-size: 0.84rem;
+  font-weight: 750;
+  padding: 0.55rem 0.9rem;
+}
+
+.saint-reading-layout {
+  align-items: start;
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.saint-toc {
+  background: var(--oratio-surface-secondary);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  padding: var(--space-5);
+}
+
+.saint-toc > strong {
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.saint-toc ol {
+  display: grid;
+  gap: var(--space-2);
+  list-style-position: inside;
+}
+
+.saint-toc li {
+  color: var(--oratio-text-muted);
+  font-size: 0.82rem;
+}
+
+.saint-toc li.is-subheading {
+  padding-left: var(--space-3);
+}
+
+.saint-toc a {
+  color: var(--oratio-text-secondary);
+  text-decoration: none;
+}
+
+.saint-toc a:hover {
+  color: var(--oratio-primary);
+  text-decoration: underline;
+}
+
+.saint-reading-layout__main {
+  min-width: 0;
+}
+
+.saint-article {
+  max-width: var(--content-reading-width);
+}
+
+.saint-article h2,
+.saint-article h3 {
+  scroll-margin-top: calc(var(--header-height) + var(--space-5));
+}
+
+.saint-prayer {
+  background: linear-gradient(145deg, var(--oratio-primary-container), color-mix(in srgb, var(--oratio-primary-container) 70%, var(--oratio-teal-container)));
+  border: 1px solid color-mix(in srgb, var(--oratio-primary) 24%, var(--oratio-divider));
+  border-radius: var(--radius-large);
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-10);
+  max-width: var(--content-reading-width);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  position: relative;
+}
+
+.saint-prayer::before {
+  color: color-mix(in srgb, var(--oratio-primary) 30%, transparent);
+  content: '✢';
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 1;
+  position: absolute;
+  right: var(--space-5);
+  top: var(--space-4);
+}
+
+.saint-prayer > * {
+  position: relative;
+}
+
+.saint-sources {
+  margin-block: var(--space-8);
+  max-width: var(--content-reading-width);
+}
+
+.saint-sources details {
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+.saint-sources summary {
+  background: var(--oratio-surface-secondary);
+  cursor: pointer;
+  font-weight: 800;
+  padding: var(--space-4) var(--space-5);
+}
+
+.saint-sources ol {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-8);
+}
+
+.saint-sources li {
+  color: var(--oratio-text-secondary);
+  font-size: 0.88rem;
+}
+
+.saint-related {
+  border-top: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-10);
+  margin-top: var(--space-12);
+  padding-top: var(--space-10);
+}
+
+.saint-related__group {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.saint-related__group > h3 {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.saint-related-content-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+}
+
+.saint-related-content-card {
+  background: var(--oratio-surface);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-large);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.saint-related-content-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+.saint-related-content-card__body {
+  display: grid;
+  flex: 1;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.saint-related-content-card h4 {
+  margin: 0;
+}
+
+.saint-related-content-card h4 a {
+  color: var(--oratio-text-primary);
+  text-decoration: none;
+}
+
+.saint-related-content-card h4 a:hover {
+  color: var(--oratio-primary);
+}
+
+.saint-related-content-card p {
+  font-size: 0.86rem;
+}
+
+@media (min-width: 680px) {
+  .saint-mini-card {
+    grid-template-columns: minmax(14rem, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .saint-mini-card__media {
+    aspect-ratio: auto;
+    min-height: 12rem;
+  }
+
+  .saints-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .saints-toolbar__search {
+    grid-column: 1 / -1;
+  }
+
+  .saint-virtues {
+    grid-template-columns: minmax(13rem, 0.55fr) minmax(0, 1.45fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .saints-hero {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.55fr);
+  }
+
+  .saint-today__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .saint-today__grid > :only-child {
+    grid-column: 1 / -1;
+  }
+
+  .saints-toolbar {
+    grid-template-columns: minmax(18rem, 2fr) repeat(3, minmax(9rem, 1fr));
+  }
+
+  .saints-toolbar__search {
+    grid-column: auto;
+  }
+
+  .saint-profile-hero {
+    grid-template-columns: minmax(0, 1.12fr) minmax(22rem, 0.88fr);
+  }
+
+  .saint-profile-hero__media {
+    aspect-ratio: 16 / 10;
+    min-height: 100%;
+  }
+
+  .saint-reading-layout {
+    grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 1fr);
+  }
+
+  .saint-toc {
+    max-height: calc(100vh - var(--header-height) - var(--space-8));
+    overflow-y: auto;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
+  }
+}
+
+@media (max-width: 560px) {
+  .saint-today__navigation {
+    border-radius: var(--radius-medium);
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .saint-today__date-picker {
+    flex: 1;
+  }
+
+  .saints-calendar__weekdays span {
+    font-size: 0.58rem;
+  }
+
+  .saints-calendar__day {
+    padding: var(--space-1);
+  }
+
+  .saints-calendar__day-count {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saint-card {
+    transition: none;
+  }
+
+  .saint-card:hover {
+    transform: none;
+  }
+}
+
+@media print {
+  .saint-today,
+  .saints-toolbar,
+  .saints-view-tabs,
+  .saint-related,
+  .saint-toc,
+  .share-tools {
+    display: none !important;
+  }
+
+  .saint-profile-hero,
+  .saint-summary,
+  .saint-prayer {
+    background: transparent;
+    border: 1px solid #999;
+    box-shadow: none;
+  }
+
+  .saint-reading-layout {
+    display: block;
+  }
+}
