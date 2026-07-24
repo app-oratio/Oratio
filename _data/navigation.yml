@@ -1,6 +1,4 @@
 desktop:
-  - label: "Início"
-    url: "/"
   - label: "Aplicativo"
     url: "/aplicativo/"
   - label: "Orações"
@@ -15,7 +13,9 @@ desktop:
     url: "/blog/"
 
 drawer_groups:
-  - title: "Principal"
+  - id: "oratio"
+    title: "Oratio"
+    default_open: true
     links:
       - label: "Página inicial"
         url: "/"
@@ -23,7 +23,9 @@ drawer_groups:
         url: "/aplicativo/"
       - label: "Recursos do Oratio"
         url: "/recursos/"
-  - title: "Rezar e aprender"
+
+  - id: "oracoes-devocoes"
+    title: "Orações e devoções"
     links:
       - label: "Orações"
         url: "/oracoes/"
@@ -39,21 +41,31 @@ drawer_groups:
         url: "/trezenas/"
       - label: "Tríduos"
         url: "/triduos/"
+      - label: "Devocionários"
+        url: "/devocionarios/"
+
+  - id: "tercos-rosarios"
+    title: "Terços e rosários"
+    links:
       - label: "Terços"
         url: "/tercos/"
       - label: "Rosários"
         url: "/rosarios/"
       - label: "Coroas e coroinhas"
         url: "/coroas/"
-      - label: "Devocionários"
-        url: "/devocionarios/"
+
+  - id: "formacao-conteudo"
+    title: "Formação e conteúdo"
+    links:
       - label: "História dos Santos"
         url: "/santos/"
       - label: "Formações"
         url: "/formacoes/"
-      - label: "Biblioteca e blog"
+      - label: "Blog"
         url: "/blog/"
-  - title: "Institucional"
+
+  - id: "institucional"
+    title: "Institucional"
     links:
       - label: "Sobre o Oratio"
         url: "/sobre/"
@@ -61,7 +73,7 @@ drawer_groups:
         url: "/apoiar/"
       - label: "Contato e suporte"
         url: "/contato/"
-      - label: "Privacidade"
+      - label: "Política de Privacidade"
         url: "/privacidade/"
-      - label: "Termos de uso"
+      - label: "Termos de Uso"
         url: "/termos/"
