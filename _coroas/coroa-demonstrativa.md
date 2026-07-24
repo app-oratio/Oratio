@@ -16,15 +16,15 @@ sections:
     title: "Apresentação da intenção"
     prayers:
       - id: sinal
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
       - id: oferecimento
         label: "Oferecimento breve"
-        texts:
-          pt: |-
-            Senhor, acolhei esta intenção e ordenai nossos desejos segundo a vossa vontade. Amém.
-          la: |-
-            Domine, suscipe hanc intentionem et desideria nostra secundum voluntatem tuam ordina. Amen.
+        label-latin: "Oblatio brevis"
+        prayer: |-
+          Senhor, acolhei esta intenção e ordenai nossos desejos segundo a vossa vontade. Amém.
+        prayer-latin: |-
+          Domine, suscipe hanc intentionem et desideria nostra secundum voluntatem tuam ordina. Amen.
         count: 1
   - id: suplicas
     kicker: "Sete invocações"
@@ -32,18 +32,18 @@ sections:
     prayers:
       - id: invocacao
         label: "Jesus, eu confio em vós"
+        label-latin: "Iesu, in te confido"
+        prayer: |-
+          Jesus, eu confio em vós.
+        prayer-latin: |-
+          Iesu, in te confido.
         count: 7
-        texts:
-          pt: |-
-            Jesus, eu confio em vós.
-          la: |-
-            Iesu, in te confido.
   - id: fim
     kicker: "Conclusão"
     title: "Doxologia"
     prayers:
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
 ---
 
