@@ -1,0 +1,20 @@
+{% assign app_download_label = include.label | default: site.data.app.download_label | default: 'Baixar o aplicativo' %}
+{% assign app_download_classes = include.classes | default: 'button button--primary' %}
+{% if site.data.app.play_store_url %}
+<a
+  class="{{ app_download_classes }}"
+  href="{{ site.data.app.play_store_url }}"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="{{ app_download_label }} na Google Play">
+  {% unless include.hide_icon %}{% include icon.html name='download' %}{% endunless %}
+  <span>{{ app_download_label }}</span>
+</a>
+{% else %}
+<a
+  class="{{ app_download_classes }}"
+  href="{{ '/aplicativo/#download' | relative_url }}">
+  {% unless include.hide_icon %}{% include icon.html name='download' %}{% endunless %}
+  <span>{{ app_download_label }}</span>
+</a>
+{% endif %}

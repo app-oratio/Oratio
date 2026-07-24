@@ -1,0 +1,15 @@
+{% assign visible_social = site.data.social | where_exp: 'item', 'item.url != empty' %}
+{% if visible_social.size > 0 %}
+<ul class="social-links{% if include.classes %} {{ include.classes }}{% endif %}" aria-label="{{ include.label | default: 'Redes sociais' }}">
+  {% for social in visible_social %}
+  <li>
+    <a
+      href="{{ social.url }}"
+      target="_blank"
+      rel="me noopener noreferrer">
+      {{ social.name }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

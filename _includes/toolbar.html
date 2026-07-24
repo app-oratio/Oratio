@@ -1,8 +1,5 @@
-{% assign app_download_url = site.data.app.play_store_url | default: '/aplicativo/#download' %}
-
 <header class="site-header" data-site-header>
-  <div class="toolbar container container--wide" role="navigation" aria-label="Navegação principal">
-
+  <div class="toolbar container container--wide">
     <button
       class="icon-button toolbar__menu"
       type="button"
@@ -13,61 +10,52 @@
       {% include icon.html name='menu' %}
     </button>
 
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Oratio, página inicial">
+    <a class="brand toolbar__brand" href="{{ '/' | relative_url }}" aria-label="Oratio, página inicial">
       <img
         class="brand__symbol"
         src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}"
         width="40"
         height="40"
         alt="">
-      <span class="brand__name">Oratio</span>
+      <span class="brand__copy">
+        <strong class="brand__name">Oratio</strong>
+        <small>App Católico</small>
+      </span>
     </a>
 
     <nav class="toolbar__nav" aria-label="Seções principais">
       <ul>
         {% for item in site.data.navigation.desktop %}
-          {% assign item_url = item.url | relative_url %}
-          <li>
-            <a
-              href="{{ item_url }}"
-              {% if page.url == item.url %}aria-current="page"{% endif %}>
-              {{ item.label }}
-            </a>
-          </li>
+        {% assign item_is_current = false %}
+        {% if page.url == item.url %}
+          {% assign item_is_current = true %}
+        {% elsif item.url != '/' and page.url contains item.url %}
+          {% assign item_is_current = true %}
+        {% endif %}
+        <li>
+          <a
+            href="{{ item.url | relative_url }}"
+            {% if item_is_current %}aria-current="page"{% endif %}>
+            {{ item.label }}
+          </a>
+        </li>
         {% endfor %}
       </ul>
     </nav>
 
     <div class="toolbar__actions">
       <button
-        class="icon-button"
+        class="icon-button toolbar__search"
         type="button"
         data-search-open
-        aria-label="Abrir busca"
+        aria-label="Buscar no Oratio"
         aria-haspopup="dialog">
         {% include icon.html name='search' %}
       </button>
 
       {% include theme-toggle.html id='toolbar-theme-toggle' %}
 
-      {% if site.data.app.play_store_url %}
-        <a
-          class="button button--primary toolbar__download"
-          href="{{ site.data.app.play_store_url }}"
-          target="_blank"
-          rel="noopener noreferrer">
-          {% include icon.html name='download' %}
-          <span>Baixar o app</span>
-        </a>
-      {% else %}
-        <a
-          class="button button--primary toolbar__download"
-          href="{{ '/aplicativo/#download' | relative_url }}">
-          {% include icon.html name='download' %}
-          <span>Baixar o app</span>
-        </a>
-      {% endif %}
+      {% include app-download-link.html classes='button button--primary toolbar__download' label='Baixar app' %}
     </div>
-
   </div>
-  </header>
+</header>
