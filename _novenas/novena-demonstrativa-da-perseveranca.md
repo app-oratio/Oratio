@@ -2,6 +2,8 @@
 title: "[Demonstração] Novena pela perseverança"
 slug: "novena-demonstrativa-da-perseveranca"
 description: "Novena demonstrativa completa, com nove dias temáticos, calendário oficial de 1º a 9 de janeiro e progresso local."
+image: "/assets/images/placeholders/template-square.svg"
+image_alt: "Capa demonstrativa da novena pela perseverança"
 days: 9
 category: "Demonstrações do sistema devocional"
 featured: false
@@ -28,8 +30,6 @@ Esta novena foi escrita como conteúdo original de demonstração para conferir 
 
 Reserve um momento possível em cada dia, releia a intenção registrada no painel particular e percorra o conteúdo com calma, marcando o dia somente depois de concluir a oração. Como se trata de um exemplo editorial, os textos podem ser substituídos por uma novena revisada e aprovada sem que os campos técnicos precisem ser alterados.
 
-## Oração comum para os nove dias
+## Conteúdo dos dias
 
-Senhor Deus, que conheceis nossa fragilidade e não deixais de nos chamar à fidelidade, sustentai-nos nos pequenos compromissos de cada dia, purificai nossas intenções e ensinai-nos a recomeçar sempre que o desânimo ou a distração interromperem o caminho.
-
-Concedei-nos uma perseverança humilde, que não dependa de reconhecimento ou entusiasmo passageiro, mas se alimente da confiança em vossa graça e produza frutos concretos de caridade, responsabilidade e serviço. Por Cristo, nosso Senhor. Amém.
+Cada oração, meditação e intenção desta demonstração está concentrada nos nove arquivos diários. Esta página principal apresenta somente a proposta da novena e as ferramentas de calendário, progresso, navegação e intenções particulares.
