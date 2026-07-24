@@ -2,6 +2,8 @@
 title: "[Demonstração] Terço da confiança"
 slug: "terco-demonstrativo-da-confianca"
 description: "Roteiro demonstrativo com preparação, três mistérios, encerramento e contagem individual das orações."
+image: "/assets/images/placeholders/template-landscape.svg"
+image_alt: "Capa demonstrativa do Terço da confiança"
 category: "Demonstrações de orações contadas"
 prayer_beads_type: "Terço"
 sequence_title: "Etapas e mistérios demonstrativos"
@@ -18,13 +20,16 @@ sections:
     title: "Apresentação da intenção"
     theme: "Colocar-se diante de Deus"
     meditation: "Recorde a intenção particular registrada nesta página e ofereça o tempo da oração pelas pessoas e necessidades que deseja confiar ao Senhor."
-    groups:
+    prayers:
       - id: sinal-da-cruz
         label: "Sinal da Cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
         note: "Inicie a oração com atenção e recolhimento."
       - id: oferecimento
         label: "Oferecimento"
+        prayer: |-
+          Senhor, recebei este tempo de oração e as intenções que trazemos no coração, fortalecendo nossa confiança para que ela se transforme em fidelidade, serviço e gratidão nos acontecimentos cotidianos. Por Cristo, nosso Senhor. Amém.
         count: 1
         note: "Apresente a intenção deste momento."
   - id: primeiro-misterio
@@ -32,67 +37,79 @@ sections:
     title: "A confiança que começa"
     theme: "Dar o primeiro passo"
     meditation: "Contemple a graça de iniciar o bem possível, mesmo quando o caminho completo ainda não está claro."
-    groups:
+    prayers:
       - id: pai-nosso
         label: "Pai-Nosso"
         count: 1
+        common_prayer: "pai-nosso"
         prayer_url: "/oracoes/pai-nosso/"
       - id: ave-maria
         label: "Ave-Maria"
         count: 10
+        common_prayer: "ave-maria"
         prayer_url: "/oracoes/ave-maria/"
       - id: gloria
         label: "Glória ao Pai"
         count: 1
+        common_prayer: "gloria-ao-pai"
         prayer_url: "/oracoes/gloria-ao-pai/"
   - id: segundo-misterio
     kicker: "Segundo mistério"
     title: "A confiança que persevera"
     theme: "Permanecer durante as dificuldades"
     meditation: "Contemple a fidelidade que se fortalece quando a oração continua sem depender apenas do entusiasmo ou de resultados imediatos."
-    groups:
+    prayers:
       - id: pai-nosso
         label: "Pai-Nosso"
         count: 1
+        common_prayer: "pai-nosso"
         prayer_url: "/oracoes/pai-nosso/"
       - id: ave-maria
         label: "Ave-Maria"
         count: 10
+        common_prayer: "ave-maria"
         prayer_url: "/oracoes/ave-maria/"
       - id: gloria
         label: "Glória ao Pai"
         count: 1
+        common_prayer: "gloria-ao-pai"
         prayer_url: "/oracoes/gloria-ao-pai/"
   - id: terceiro-misterio
     kicker: "Terceiro mistério"
     title: "A confiança que agradece"
     theme: "Reconhecer a graça recebida"
     meditation: "Contemple os auxílios que Deus oferece por meio das pessoas, dos acontecimentos cotidianos e das oportunidades de recomeçar."
-    groups:
+    prayers:
       - id: pai-nosso
         label: "Pai-Nosso"
         count: 1
+        common_prayer: "pai-nosso"
         prayer_url: "/oracoes/pai-nosso/"
       - id: ave-maria
         label: "Ave-Maria"
         count: 10
+        common_prayer: "ave-maria"
         prayer_url: "/oracoes/ave-maria/"
       - id: gloria
         label: "Glória ao Pai"
         count: 1
+        common_prayer: "gloria-ao-pai"
         prayer_url: "/oracoes/gloria-ao-pai/"
   - id: encerramento
     kicker: "Conclusão"
     title: "Ação de graças"
     theme: "Conservar os frutos da oração"
     meditation: "Agradeça pelo tempo de oração e escolha uma atitude concreta que expresse a confiança meditada neste roteiro."
-    groups:
+    prayers:
       - id: agradecimento
         label: "Oração de agradecimento"
+        prayer: |-
+          Senhor, recebei nossa gratidão por este tempo de oração e ajudai-nos a conservar seus frutos no cotidiano. Amém.
         count: 1
         prayer_url: "/oracoes/oracao-em-acao-de-gracas-demonstrativa/"
       - id: sinal-da-cruz
         label: "Sinal da Cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
 ---
 

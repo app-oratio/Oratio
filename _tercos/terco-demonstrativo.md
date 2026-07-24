@@ -18,17 +18,16 @@ sections:
     prayers:
       - id: sinal-inicial
         label: "Sinal da Cruz inicial"
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
       - id: oferecimento
         label: "Oferecimento"
-        count: 1
-        note: "Texto particular do arquivo, sem depender do catálogo comum."
-        texts:
-          pt: |-
-            Senhor, recebei este tempo de oração e as intenções que trazemos no coração. Conduzi-nos com serenidade e confiança. Amém.
-          la: |-
-            Domine, suscipe hoc tempus orationis et intentiones quas in corde gerimus. Duc nos cum serenitate et fiducia. Amen.
+        label-latin: "Oblatio"
+        note: "Esta unidade não declara count e, por isso, exibe o texto sem qualquer contador."
+        prayer: |-
+          Senhor, recebei este tempo de oração e as intenções que trazemos no coração. Conduzi-nos com serenidade e confiança. Amém.
+        prayer-latin: |-
+          Domine, suscipe hoc tempus orationis et intentiones quas in corde gerimus. Duc nos cum serenitate et fiducia. Amen.
   - id: primeiro-misterio
     kicker: "Primeiro mistério"
     title: "Mistério demonstrativo"
@@ -36,13 +35,13 @@ sections:
     meditation: "Leia a meditação correspondente antes de iniciar a contagem das orações."
     prayers:
       - id: pai-nosso
-        prayer: "pai-nosso"
+        common_prayer: "pai-nosso"
         count: 1
       - id: ave-maria
-        prayer: "ave-maria"
+        common_prayer: "ave-maria"
         count: 10
       - id: gloria
-        prayer: "gloria-ao-pai"
+        common_prayer: "gloria-ao-pai"
         count: 1
   - id: encerramento
     kicker: "Conclusão"
@@ -50,7 +49,7 @@ sections:
     prayers:
       - id: sinal-final
         label: "Sinal da Cruz final"
-        prayer: "sinal-da-cruz"
+        common_prayer: "sinal-da-cruz"
         count: 1
 ---
 
