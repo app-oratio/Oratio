@@ -27,7 +27,7 @@ sitemap: false
     {% include search-devotional-text.html document=item %}
     {% case item.collection %}
       {% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}
-        {% assign modern_search_days = site.dias_devocao | where: 'devotion', item.slug %}
+        {% assign modern_search_days = site.dias_novena | where: 'devotion', item.slug %}
         {% assign legacy_search_days = site.dias_novena | where: 'novena', item.slug %}
         {% assign child_search_days = legacy_search_days | concat: modern_search_days | sort: 'day' %}
         {% for child_day in child_search_days %}
