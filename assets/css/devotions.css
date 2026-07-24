@@ -99,6 +99,7 @@
   justify-content: flex-end;
   padding-inline: var(--space-1);
 }
+.prayer-unit__language { justify-self: end; }
 .language-switcher > div {
   background: var(--oratio-surface-secondary);
   border: 1px solid var(--oratio-divider);
@@ -559,7 +560,7 @@
   font-size: 0.8rem;
 }
 
-.devotion-reading .devotion-introduction { margin-block: var(--space-8); }
+.devotion-layout .devotion-introduction { margin-block: var(--space-8); }
 .devotion-layout .novena-index {
   margin-block: var(--space-10);
   scroll-margin-top: calc(var(--header-height) + var(--space-4));
@@ -664,9 +665,12 @@
 }
 
 .devotion-day-header {
-  margin-inline: auto;
-  max-width: 46rem;
+  margin: 0;
+  max-width: none;
+  width: 100%;
 }
+.devotion-day-hero { margin-block: var(--space-8); }
+.devotion-day-hero .devotion-day-cover { min-height: 15rem; }
 .devotion-day-theme {
   color: var(--oratio-gold);
   font-family: var(--font-heading);
@@ -819,6 +823,7 @@
   .intention-form__actions .button { width: 100%; }
   .calendar-settings { margin-left: 0; }
   .language-switcher--standalone { justify-content: flex-start; }
+  .prayer-unit__language { justify-self: start; }
   .prayer-unit__footer { grid-template-columns: minmax(0, 1fr); }
   .prayer-unit__meter { grid-row: 2; }
 }

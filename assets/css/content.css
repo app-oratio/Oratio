@@ -25,6 +25,7 @@
 
 .reading-toolbar { align-items: center; background: var(--oratio-surface-secondary); border: 1px solid var(--oratio-divider); border-radius: var(--radius-medium); display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: space-between; margin-block: var(--space-6); padding: var(--space-2); }
 .button-group { align-items: center; display: flex; gap: var(--space-1); }
+.reading-toolbar__font-value { color: var(--oratio-text-secondary); font-size: 0.78rem; font-variant-numeric: tabular-nums; font-weight: 750; min-width: 3.25rem; text-align: center; }
 .prayer-text { --prayer-font-size: 1.125rem; font-size: var(--prayer-font-size); line-height: 1.9; }
 .prayer-text p { color: var(--oratio-text-primary); }
 .status-message { color: var(--oratio-success); font-size: 0.86rem; min-height: 1.4rem; }
