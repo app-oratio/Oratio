@@ -30,6 +30,11 @@ REQUIRED = [
     "assets/js/drawer.js",
     "assets/js/search.js",
     "search/index.json",
+    "_data/common_prayers.yml",
+    "_includes/devotional-cover.html",
+    "_includes/devotional-prayer-unit.html",
+    "_includes/devotional-sequence.html",
+    "_includes/search-devotional-text.html",
     "GUIA_DE_IMPLEMENTACAO.md",
     ".github/workflows/jekyll.yml",
 ]
@@ -64,6 +69,167 @@ def front_matter(path: Path) -> dict:
     return data
 
 
+def validate_language(value: object, path: Path, context: str) -> None:
+    if value is not None and value not in {"pt", "la"}:
+        error(
+            f"{context} usa idioma padrão inválido em "
+            f"{path.relative_to(ROOT)}: {value!r}"
+        )
+
+
+def validate_text_variants(value: object, path: Path, context: str) -> None:
+    if value is None:
+        return
+    if not isinstance(value, dict):
+        error(f"{context} deve usar texts como mapa em {path.relative_to(ROOT)}")
+        return
+    if not value:
+        error(f"{context} possui texts vazio em {path.relative_to(ROOT)}")
+        return
+    for language, text in value.items():
+        if language not in {"pt", "la"}:
+            error(
+                f"{context} usa idioma não suportado em "
+                f"{path.relative_to(ROOT)}: {language!r}"
+            )
+        if not isinstance(text, str) or not text.strip():
+            error(
+                f"{context} possui texto vazio ou inválido para {language} "
+                f"em {path.relative_to(ROOT)}"
+            )
+
+
+def validate_prayer_structure(
+    data: dict,
+    path: Path,
+    common_prayers: dict,
+    *,
+    require_sections: bool = False,
+) -> None:
+    validate_language(data.get("default_language"), path, "Documento")
+    validate_text_variants(data.get("texts"), path, "Documento")
+
+    common_key = data.get("common_prayer")
+    if common_key and common_key not in common_prayers:
+        error(
+            f"Oração comum inexistente em {path.relative_to(ROOT)}: "
+            f"{common_key}"
+        )
+    if "count" in data and (
+        not isinstance(data["count"], int)
+        or isinstance(data["count"], bool)
+        or data["count"] < 1
+    ):
+        error(f"Campo count deve ser inteiro positivo: {path.relative_to(ROOT)}")
+
+    sections = data.get("sections")
+    if sections is None:
+        if require_sections:
+            error(f"Conteúdo contável sem sections: {path.relative_to(ROOT)}")
+        return
+    if not isinstance(sections, list) or not sections:
+        error(f"Campo sections deve ser uma lista não vazia: {path.relative_to(ROOT)}")
+        return
+
+    used_sections: set[str] = set()
+    for section_index, section in enumerate(sections, start=1):
+        if not isinstance(section, dict):
+            error(
+                f"Seção {section_index} deve ser um mapa em "
+                f"{path.relative_to(ROOT)}"
+            )
+            continue
+        section_id = str(section.get("id", section_index))
+        if section_id in used_sections:
+            error(f"Seção com id duplicado em {path.relative_to(ROOT)}: {section_id}")
+        used_sections.add(section_id)
+        if not section.get("title"):
+            error(
+                f"Seção {section_id} sem title em "
+                f"{path.relative_to(ROOT)}"
+            )
+
+        prayers = section.get("prayers")
+        legacy_groups = section.get("groups")
+        if prayers is not None and legacy_groups is not None:
+            error(
+                f"Seção {section_id} mistura prayers e groups em "
+                f"{path.relative_to(ROOT)}"
+            )
+        items = prayers if prayers is not None else legacy_groups
+        if items is None:
+            if require_sections:
+                error(
+                    f"Seção {section_id} sem prayers em "
+                    f"{path.relative_to(ROOT)}"
+                )
+            continue
+        if not isinstance(items, list) or not items:
+            error(
+                f"Seção {section_id} deve possuir uma lista de prayers "
+                f"em {path.relative_to(ROOT)}"
+            )
+            continue
+
+        used_items: set[str] = set()
+        for item_index, item in enumerate(items, start=1):
+            if not isinstance(item, dict):
+                error(
+                    f"Oração {item_index} da seção {section_id} deve ser um mapa "
+                    f"em {path.relative_to(ROOT)}"
+                )
+                continue
+            item_id = str(item.get("id", item_index))
+            if item_id in used_items:
+                error(
+                    f"Oração com id duplicado na seção {section_id} "
+                    f"em {path.relative_to(ROOT)}: {item_id}"
+                )
+            used_items.add(item_id)
+
+            prayer_key = item.get("prayer") or item.get("common_prayer")
+            if prayer_key and prayer_key not in common_prayers:
+                error(
+                    f"Oração comum inexistente na seção {section_id} "
+                    f"em {path.relative_to(ROOT)}: {prayer_key}"
+                )
+            validate_language(
+                item.get("default_language"),
+                path,
+                f"Oração {item_id} da seção {section_id}",
+            )
+            validate_text_variants(
+                item.get("texts"),
+                path,
+                f"Oração {item_id} da seção {section_id}",
+            )
+            if "count" in item and (
+                not isinstance(item["count"], int)
+                or isinstance(item["count"], bool)
+                or item["count"] < 1
+            ):
+                error(
+                    f"Oração {item_id} possui count inválido na seção "
+                    f"{section_id} em {path.relative_to(ROOT)}"
+                )
+            has_text = bool(
+                prayer_key
+                or item.get("texts")
+                or item.get("text")
+                or item.get("prayer_url")
+            )
+            if not item.get("label") and not prayer_key:
+                error(
+                    f"Oração {item_id} sem label nem referência comum "
+                    f"em {path.relative_to(ROOT)}"
+                )
+            if not has_text:
+                WARNINGS.append(
+                    f"Oração {item_id} sem texto incorporado na seção "
+                    f"{section_id} em {path.relative_to(ROOT)}"
+                )
+
+
 def validate_required_files() -> None:
     for relative in REQUIRED:
         if not (ROOT / relative).is_file():
@@ -78,6 +244,33 @@ def validate_yaml() -> None:
 
 
 def validate_documents() -> None:
+    common_path = ROOT / "_data/common_prayers.yml"
+    common_value = load_yaml(common_path, common_path.read_text(encoding="utf-8"))
+    common_prayers = common_value if isinstance(common_value, dict) else {}
+    if not common_prayers:
+        error("_data/common_prayers.yml deve possuir ao menos uma oração.")
+    for common_key, common_prayer in common_prayers.items():
+        if not isinstance(common_key, str) or not re.fullmatch(r"[a-z0-9-]+", common_key):
+            error(f"Chave inválida no catálogo de orações comuns: {common_key!r}")
+        if not isinstance(common_prayer, dict):
+            error(f"Oração comum deve ser um mapa: {common_key}")
+            continue
+        if not common_prayer.get("title"):
+            error(f"Oração comum sem title: {common_key}")
+        validate_language(
+            common_prayer.get("default_language"),
+            common_path,
+            f"Oração comum {common_key}",
+        )
+        validate_text_variants(
+            common_prayer.get("texts"),
+            common_path,
+            f"Oração comum {common_key}",
+        )
+        texts = common_prayer.get("texts")
+        if isinstance(texts, dict) and not texts.get("pt"):
+            error(f"Oração comum sem texto em português: {common_key}")
+
     content_roots = [
         "_posts",
         "_oracoes",
@@ -107,6 +300,25 @@ def validate_documents() -> None:
                 error(f"Documento sem title: {path.relative_to(ROOT)}")
             if folder not in {"_dias_novena", "_dias_devocao"} and not data.get("description"):
                 WARNINGS.append(f"Documento sem description: {path.relative_to(ROOT)}")
+            if folder in {
+                "_oracoes",
+                "_tercos",
+                "_rosarios",
+                "_coroas",
+                "_devocionarios",
+            }:
+                if not data.get("image"):
+                    error(f"Conteúdo sem imagem de capa: {path.relative_to(ROOT)}")
+                elif not data.get("image_alt"):
+                    WARNINGS.append(
+                        f"Imagem de capa sem image_alt: {path.relative_to(ROOT)}"
+                    )
+            validate_prayer_structure(
+                data,
+                path,
+                common_prayers,
+                require_sections=folder in {"_tercos", "_rosarios", "_coroas"},
+            )
 
     series_folders = [
         "_novenas",
@@ -208,39 +420,6 @@ def validate_documents() -> None:
                 f"Dias incompletos ou duplicados em {slug}: "
                 f"esperado {expected}, encontrado {actual}"
             )
-
-    for folder in ["_tercos", "_rosarios", "_coroas"]:
-        for path in (ROOT / folder).glob("*.md"):
-            data = front_matter(path)
-            sections = data.get("sections")
-            if not isinstance(sections, list) or not sections:
-                error(f"Oração contada sem sections: {path.relative_to(ROOT)}")
-                continue
-            used_sections: set[str] = set()
-            for section_index, section in enumerate(sections, start=1):
-                groups = section.get("groups") if isinstance(section, dict) else None
-                section_id = str(section.get("id", section_index)) if isinstance(section, dict) else str(section_index)
-                if section_id in used_sections:
-                    error(f"Etapa com id duplicado em {path.relative_to(ROOT)}: {section_id}")
-                used_sections.add(section_id)
-                if not isinstance(groups, list) or not groups:
-                    error(f"Etapa sem groups em {path.relative_to(ROOT)}")
-                    continue
-                used_groups: set[str] = set()
-                for group_index, group in enumerate(groups, start=1):
-                    if not isinstance(group, dict) or not group.get("label"):
-                        error(f"Grupo de contagem sem label em {path.relative_to(ROOT)}")
-                        continue
-                    group_id = str(group.get("id", group_index))
-                    if group_id in used_groups:
-                        error(
-                            f"Grupo com id duplicado na etapa {section_id} "
-                            f"em {path.relative_to(ROOT)}: {group_id}"
-                        )
-                    used_groups.add(group_id)
-                    if not isinstance(group.get("count", 1), int) or group.get("count", 1) < 1:
-                        error(f"Grupo de contagem com count inválido em {path.relative_to(ROOT)}")
-
 
 def validate_liquid_balance() -> None:
     pairs = {"if": "endif", "unless": "endunless", "for": "endfor", "case": "endcase", "capture": "endcapture"}
