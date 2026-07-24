@@ -91,15 +91,19 @@
       return sanitizeState(defaultState());
     }
 
-    function applyLanguage(language) {
-      var selected = language === 'la' ? 'la' : 'pt';
-      units.forEach(function (unit) {
-        var panels = Array.prototype.slice.call(unit.querySelectorAll('[data-language-panel]'));
-        if (!panels.length) return;
+    function setupUnitLanguage(unit) {
+      var panels = Array.prototype.slice.call(unit.querySelectorAll('[data-language-panel]'));
+      if (!panels.length) return;
+      var labels = Array.prototype.slice.call(unit.querySelectorAll('[data-language-label]'));
+      var buttons = Array.prototype.slice.call(unit.querySelectorAll('[data-language-option]'));
+
+      function applyUnitLanguage(language) {
+        var selected = language === 'la' ? 'la' : 'pt';
         var target = panels.find(function (panel) {
           return panel.getAttribute('data-language') === selected;
         });
         if (!target) {
+          selected = 'pt';
           target = panels.find(function (panel) {
             return panel.getAttribute('data-language') === 'pt';
           }) || panels[0];
@@ -107,25 +111,32 @@
         panels.forEach(function (panel) {
           panel.hidden = panel !== target;
         });
+        labels.forEach(function (label) {
+          label.hidden = label.getAttribute('data-language') !== selected;
+        });
+        buttons.forEach(function (button) {
+          var active = button.getAttribute('data-language-option') === selected;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('is-active', active);
+        });
+
+        var localizedLabel = unit.getAttribute('data-group-label-' + selected);
+        if (localizedLabel) unit.setAttribute('data-group-label', localizedLabel);
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyUnitLanguage(button.getAttribute('data-language-option'));
+        });
       });
-      root.querySelectorAll('[data-language-option]').forEach(function (button) {
-        var active = button.getAttribute('data-language-option') === selected;
-        button.setAttribute('aria-pressed', String(active));
-        button.classList.toggle('is-active', active);
-      });
+      applyUnitLanguage(
+        (unit.getAttribute('data-unit-default-language')
+          || root.getAttribute('data-default-language')
+          || 'pt').toLowerCase()
+      );
     }
 
-    var hasPortuguese = Boolean(root.querySelector('[data-language-panel][data-language="pt"]'));
-    var hasLatin = Boolean(root.querySelector('[data-language-panel][data-language="la"]'));
-    root.querySelectorAll('[data-language-switcher]').forEach(function (switcher) {
-      switcher.hidden = !(hasPortuguese && hasLatin);
-    });
-    root.querySelectorAll('[data-language-option]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        applyLanguage(button.getAttribute('data-language-option'));
-      });
-    });
-    applyLanguage((root.getAttribute('data-default-language') || 'pt').toLowerCase());
+    units.forEach(setupUnitLanguage);
 
     function updateGroup(group, amount) {
       var id = group.getAttribute('data-group-id');

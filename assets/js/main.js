@@ -18,6 +18,14 @@
       prayerTexts.forEach(function (prayerText) {
         prayerText.style.setProperty('--prayer-font-size', (1.125 * scale).toFixed(3) + 'rem');
       });
+      document.querySelectorAll('[data-prayer-font-value]').forEach(function (output) {
+        output.textContent = Math.round(scale * 100) + '%';
+      });
+      document.querySelectorAll('[data-prayer-font]').forEach(function (button) {
+        var action = button.getAttribute('data-prayer-font');
+        button.disabled = (action === 'decrease' && scale <= 0.9)
+          || (action === 'increase' && scale >= 1.35);
+      });
     }
     document.querySelectorAll('[data-prayer-font]').forEach(function (button) {
       button.addEventListener('click', function () {
