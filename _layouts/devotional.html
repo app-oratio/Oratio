@@ -1,14 +1,55 @@
 ---
 layout: default
 ---
-<div class="container container--medium page-shell">
+{% assign devotional_default_language = page.default_language | default: 'pt' %}
+{% capture devotional_content_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
+{% capture devotional_intention_key %}devotional:{{ page.slug }}{% endcapture %}
+
+<div class="container container--large page-shell devotional-book-layout"
+  data-devotional-content
+  data-devotional-id="{{ devotional_content_id | strip | escape }}"
+  data-default-language="{{ devotional_default_language | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Revise este devocionário antes de utilizá-lo como conteúdo oficial.' %}{% endif %}
-  <header class="content-header"><span class="chip">{{ page.category | default: 'Devocionário' }}</span><h1>{{ page.title }}</h1><p class="page-lead">{{ page.description }}</p></header>
-  <article class="prose prayer-text" data-prayer-text>{{ content }}</article>
-  {% capture devotional_intention_key %}devotional:{{ page.slug }}{% endcapture %}
-  {% include prayer-intentions.html key=devotional_intention_key %}
-  {% include share-buttons.html %}
+
+  <article>
+    <header class="devotional-hero devotional-book-hero">
+      {% include devotional-cover.html image=page.image alt=page.image_alt label=page.category class='devotional-book-cover' width=960 height=640 %}
+      <div class="devotional-hero__content">
+        <span class="chip">{{ page.category | default: 'Devocionário' }}</span>
+        <h1>{{ page.title }}</h1>
+        {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+        <dl class="content-facts">
+          {% if page.sections %}<div><dt>Seções</dt><dd>{{ page.sections | size }}</dd></div>{% endif %}
+          {% if page.duration %}<div><dt>Tempo aproximado</dt><dd>{{ page.duration }}</dd></div>{% endif %}
+          <div><dt>Idioma inicial</dt><dd>{% if devotional_default_language == 'la' %}Latim{% else %}Português{% endif %}</dd></div>
+        </dl>
+        {% if page.sections or page.count %}
+          <button class="button button--primary" type="button" data-counted-continue>
+            <span data-counted-continue-label>Começar o roteiro</span>
+            {% include icon.html name='arrow-right' %}
+          </button>
+        {% endif %}
+      </div>
+    </header>
+
+    <noscript>
+      <p class="notice notice--warning">O texto permanece disponível sem JavaScript, porém contagens, progresso e alternância de idioma dependem dele.</p>
+    </noscript>
+
+    <div class="devotional-book-reading" data-prayer-copy-source>
+      {% include reading-tools.html copy_label='Copiar devocionário' %}
+      {% if page.sections or page.common_prayer or page.texts or page.count %}
+        {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='devotional-book-sequence-title' progress_id='devotional-book-progress-title' kicker='Caminho de oração' heading=page.sequence_title %}
+      {% else %}
+        <article class="prose prayer-text devotional-book-content" data-prayer-text>{{ content }}</article>
+      {% endif %}
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
+    </div>
+
+    {% include prayer-intentions.html key=devotional_intention_key anchor='intencoes' %}
+    {% include share-buttons.html %}
+  </article>
   {% include related-content.html %}
-  {% include app-download-banner.html %}
+  {% include app-download-banner.html title='Leve este devocionário com você' %}
 </div>

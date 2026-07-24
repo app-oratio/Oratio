@@ -2,128 +2,48 @@
 layout: default
 ---
 {% assign beads_type = page.prayer_beads_type | default: page.category | default: 'Oração contada' %}
+{% assign counted_default_language = page.default_language | default: 'pt' %}
 {% capture counted_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 {% capture intention_key %}counted:{{ counted_id }}{% endcapture %}
 
 <div class="container container--large page-shell counted-prayer-layout"
-  data-counted-prayer
-  data-counted-id="{{ counted_id | strip | escape }}"
-  data-counted-title="{{ page.title | escape }}">
+  data-devotional-content
+  data-devotional-id="{{ counted_id | strip | escape }}"
+  data-default-language="{{ counted_default_language | escape }}"
+  data-legacy-counted="true">
   {% include breadcrumb.html %}
-  {% if page.demo %}{% include alert-message.html type='warning' title='Roteiro demonstrativo' text='Este conteúdo reduzido existe para apresentar o contador. Substitua-o por um roteiro integral e revisado antes da publicação.' %}{% endif %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Roteiro demonstrativo' text='Este conteúdo reduzido existe para apresentar o motor universal. Substitua-o por um roteiro integral e revisado antes da publicação.' %}{% endif %}
 
   <article>
-    <header class="counted-prayer-hero">
-      <div class="counted-prayer-hero__symbol" aria-hidden="true">
-        <span class="counted-prayer-hero__beads"></span>
-        <span>✢</span>
-      </div>
-      <div>
+    <header class="devotional-hero counted-prayer-hero">
+      {% include devotional-cover.html image=page.image alt=page.image_alt label=beads_type class='counted-prayer-cover' width=960 height=640 %}
+      <div class="devotional-hero__content">
         <span class="chip">{{ beads_type }}</span>
         <h1>{{ page.title }}</h1>
         {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
         <dl class="content-facts">
-          <div><dt>Etapas</dt><dd>{{ page.sections | size }}</dd></div>
+          <div><dt>Seções</dt><dd>{{ page.sections | size }}</dd></div>
           {% if page.mystery_set %}<div><dt>Mistérios</dt><dd>{{ page.mystery_set }}</dd></div>{% endif %}
+          <div><dt>Idioma inicial</dt><dd>{% if counted_default_language == 'la' %}Latim{% else %}Português{% endif %}</dd></div>
         </dl>
         <button class="button button--primary" type="button" data-counted-continue>
-          <span data-counted-continue-label>Começar a contagem</span>
+          <span data-counted-continue-label>Começar a oração</span>
           {% include icon.html name='arrow-right' %}
         </button>
       </div>
     </header>
 
-    <section class="counted-dashboard" aria-labelledby="counted-progress-title">
-      <div>
-        <p class="eyebrow">Contagem local</p>
-        <h2 id="counted-progress-title">Progresso da oração</h2>
-        <p data-counted-progress-label aria-live="polite">Nenhuma oração marcada.</p>
-        <p class="last-update">Última atualização: <time data-counted-updated>nenhuma</time></p>
-      </div>
-      <div class="counted-dashboard__value">
-        <strong data-counted-percent>0%</strong>
-        <span data-counted-fraction>0 de 0</span>
-      </div>
-      <div class="progress-track" role="progressbar" aria-label="Progresso da oração contada" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-counted-track>
-        <span data-counted-bar></span>
-      </div>
-      <button class="button button--text button--small" type="button" data-counted-reset>
-        {% include icon.html name='reset' %}
-        <span>Reiniciar contagem</span>
-      </button>
-      <p class="status-message" data-counted-status aria-live="polite"></p>
-    </section>
-
-    {% if content and content != empty %}
-      <div class="prose prose--wide counted-prayer-introduction">{{ content }}</div>
-    {% endif %}
-
     <noscript>
-      <p class="notice notice--warning">Ative o JavaScript para utilizar a contagem interativa. O roteiro e os títulos das etapas continuam disponíveis abaixo.</p>
+      <p class="notice notice--warning">O roteiro e os textos continuam disponíveis sem JavaScript, porém a contagem, o progresso e a alternância de idioma exigem que ele esteja ativado.</p>
     </noscript>
 
-    <section class="counted-sequence" aria-labelledby="counted-sequence-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Roteiro passo a passo</p>
-          <h2 id="counted-sequence-title">{{ page.sequence_title | default: 'Mistérios e orações' }}</h2>
-        </div>
-      </div>
+    <div class="counted-prayer-reading" data-prayer-copy-source>
+      {% include reading-tools.html copy_label='Copiar roteiro' %}
+      {% include devotional-sequence.html document=page content=content count_all=true anchor='roteiro' heading_id='counted-sequence-title' progress_id='counted-progress-title' kicker='Roteiro passo a passo' heading=page.sequence_title %}
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
+    </div>
 
-      {% for section in page.sections %}
-        {% assign section_number = forloop.index %}
-        {% assign section_id = section.id | default: section_number %}
-        <article class="counted-section" id="etapa-{{ section_id | slugify }}" data-counted-section>
-          <header class="counted-section__header">
-            <span class="counted-section__number">{{ section_number }}</span>
-            <div>
-              <p class="eyebrow">{{ section.kicker | default: 'Etapa de oração' }}</p>
-              <h3>{{ section.title }}</h3>
-              {% if section.theme %}<p class="counted-section__theme">{{ section.theme }}</p>{% endif %}
-            </div>
-            <span class="counted-section__state" data-section-state>Não iniciada</span>
-          </header>
-          {% if section.meditation %}<p class="counted-section__meditation">{{ section.meditation }}</p>{% endif %}
-
-          <div class="counted-groups">
-            {% for group in section.groups %}
-              {% assign group_number = forloop.index %}
-              {% assign group_id = group.id | default: group_number %}
-              {% assign group_count = group.count | default: 1 %}
-              <div class="counted-group"
-                data-counted-group
-                data-group-id="{{ section_id | escape }}:{{ group_id | escape }}"
-                data-group-count="{{ group_count }}"
-                data-group-label="{{ group.label | escape }}">
-                <div class="counted-group__heading">
-                  <div>
-                    <strong>{{ group.label }}</strong>
-                    {% if group.note %}<p>{{ group.note }}</p>{% endif %}
-                  </div>
-                  <output data-group-output>0 de {{ group_count }}</output>
-                </div>
-                <div class="bead-counter" data-bead-counter aria-label="Contagem de {{ group.label | escape }}"></div>
-                <div class="counted-group__actions">
-                  <button class="button button--text button--small" type="button" data-count-back aria-label="Voltar uma oração em {{ group.label | escape }}">
-                    {% include icon.html name='minus' %}
-                    <span>Voltar</span>
-                  </button>
-                  <button class="button button--tonal button--small" type="button" data-count-forward>
-                    {% include icon.html name='plus' %}
-                    <span>Registrar oração</span>
-                  </button>
-                  {% if group.prayer_url %}
-                    <a class="button button--text button--small" href="{{ group.prayer_url | relative_url }}">Ver texto</a>
-                  {% endif %}
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </article>
-      {% endfor %}
-    </section>
-
-    {% include prayer-intentions.html key=intention_key %}
+    {% include prayer-intentions.html key=intention_key anchor='intencoes' %}
     {% include share-buttons.html %}
   </article>
   {% include app-download-banner.html title='Leve este roteiro de oração com você' %}

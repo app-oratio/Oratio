@@ -22,6 +22,8 @@ layout: default
 {% endif %}
 {% capture devotion_id %}{{ devotion.collection }}:{{ devotion.slug }}{% endcapture %}
 {% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
+{% capture day_content_id %}{{ devotion_id }}:dia-{{ page.day }}{% endcapture %}
+{% assign day_default_language = page.default_language | default: devotion.default_language | default: 'pt' %}
 
 <div class="container container--medium page-shell novena-day devotion-day-layout"
   data-devotion-progress
@@ -37,7 +39,10 @@ layout: default
   data-calendar-base-day="{{ calendar.base_day }}"
   data-calendar-start-month="{{ calendar.start_month }}"
   data-calendar-start-day="{{ calendar.start_day }}"
-  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}">
+  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}"
+  data-devotional-content
+  data-devotional-id="{{ day_content_id | strip | escape }}"
+  data-default-language="{{ day_default_language | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Dia demonstrativo' text='Este texto breve demonstra o funcionamento do acompanhamento local.' %}{% endif %}
 
@@ -54,7 +59,7 @@ layout: default
   </header>
 
   <noscript>
-    <p class="notice notice--warning">O texto deste dia permanece disponível, porém a data calculada, o progresso e as intenções exigem JavaScript ativado.</p>
+    <p class="notice notice--warning">O texto deste dia permanece disponível, porém a data calculada, o progresso, as contagens, os idiomas e as intenções exigem JavaScript ativado.</p>
   </noscript>
 
   <section class="day-progress-card" aria-label="Progresso do itinerário">
@@ -63,25 +68,22 @@ layout: default
         <strong data-progress-percent>0%</strong>
         <span data-progress-label>Carregando o progresso</span>
       </div>
-      <a href="{{ devotion.url | relative_url }}#calendario">Alterar as datas</a>
+      <a href="{{ devotion.url | relative_url }}#calendario">Ver calendário</a>
     </div>
-    <div class="progress-track" role="progressbar" aria-label="Progresso da devoção" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-track>
+    <div class="progress-track progress-track--slim" role="progressbar" aria-label="Progresso da devoção" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-track>
       <span data-progress-bar></span>
     </div>
   </section>
 
-  <div class="reading-toolbar" aria-label="Ferramentas de leitura">
-    <div class="button-group" aria-label="Tamanho do texto">
-      <button class="icon-button" type="button" data-prayer-font="decrease" aria-label="Diminuir texto">{% include icon.html name='minus' %}</button>
-      <span aria-hidden="true">A</span>
-      <button class="icon-button" type="button" data-prayer-font="increase" aria-label="Aumentar texto">{% include icon.html name='plus' %}</button>
-    </div>
-    <button class="button button--text button--small" type="button" data-copy-prayer>{% include icon.html name='copy' %}<span data-copy-prayer-label>Copiar este dia</span></button>
-    <button class="button button--text button--small" type="button" data-print-page>{% include icon.html name='print' %}<span>Imprimir</span></button>
+  <div data-prayer-copy-source>
+    {% include reading-tools.html copy_label='Copiar este dia' %}
+    {% if page.sections or page.common_prayer or page.texts or page.count %}
+      {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='day-sequence-title' progress_id='day-sequence-progress-title' kicker='Roteiro deste dia' heading=page.sequence_title %}
+    {% else %}
+      <article class="prose prayer-text devotion-day-content" data-prayer-text>{{ content }}</article>
+    {% endif %}
+    <p class="status-message" data-prayer-status aria-live="polite"></p>
   </div>
-
-  <article class="prose prayer-text devotion-day-content" data-prayer-text>{{ content }}</article>
-  <p class="status-message" data-prayer-status aria-live="polite"></p>
 
   <div class="completion-card devotion-day-completion">
     <label class="check-control">
@@ -90,12 +92,12 @@ layout: default
       <strong>Marcar o dia {{ page.day }} como concluído</strong>
     </label>
     <div>
-      <p>O acompanhamento é salvo somente neste navegador e pode ser alterado também pela página principal deste itinerário.</p>
+      <p>O acompanhamento é salvo somente neste navegador e também pode ser alterado na página principal.</p>
       <p class="last-update">Última atualização: <time data-progress-updated>nenhuma</time></p>
     </div>
   </div>
 
-  {% include prayer-intentions.html key=intention_key compact=true %}
+  {% include prayer-intentions.html key=intention_key compact=true anchor='intencoes' %}
 
   <nav class="content-navigation" aria-label="Navegação entre os dias">
     {% if previous_day %}

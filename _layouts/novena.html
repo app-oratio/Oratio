@@ -15,6 +15,7 @@ layout: default
 {% endif %}
 {% capture devotion_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 {% capture intention_key %}devotion:{{ devotion_id }}{% endcapture %}
+{% assign devotion_default_language = page.default_language | default: 'pt' %}
 
 <div class="container container--large page-shell devotion-layout"
   data-devotion-progress
@@ -29,20 +30,16 @@ layout: default
   data-calendar-base-day="{{ calendar.base_day }}"
   data-calendar-start-month="{{ calendar.start_month }}"
   data-calendar-start-day="{{ calendar.start_day }}"
-  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}">
+  data-calendar-skip-weekdays="{{ calendar.skip_weekdays | default: empty | jsonify | escape }}"
+  data-devotional-content
+  data-devotional-id="{{ devotion_id | strip | escape }}"
+  data-default-language="{{ devotion_default_language | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Este itinerário apresenta o funcionamento técnico do sistema. Revise e complete os textos antes da publicação.' %}{% endif %}
 
   <article class="novena-page">
     <header class="novena-hero">
-      <div class="image-shell devotion-cover" data-image-shell>
-        {% if page.image %}
-          <img src="{{ page.image | relative_url }}" alt="" width="720" height="720" decoding="async" data-fallback-image>
-          <span class="image-placeholder" hidden><span>✢</span><small>{{ devotion_type }}</small></span>
-        {% else %}
-          <span class="image-placeholder"><span>✢</span><small>{{ devotion_type }}</small></span>
-        {% endif %}
-      </div>
+      {% include devotional-cover.html image=page.image alt=page.image_alt label=devotion_type class='devotion-cover' width=720 height=720 %}
       <div>
         <span class="chip">{{ devotion_type }}</span>
         <h1>{{ page.title }}</h1>
@@ -58,24 +55,65 @@ layout: default
             {% include icon.html name='arrow-right' %}
           </a>
         {% endif %}
+        <nav class="devotion-shortcuts" aria-label="Atalhos desta devoção">
+          <span>Ir para</span>
+          <a href="#progresso">Progresso</a>
+          <a href="#calendario">Calendário</a>
+          <a href="#dias">Dias</a>
+          <a href="#intencoes">Intenções</a>
+        </nav>
       </div>
     </header>
 
     <noscript>
-      <p class="notice notice--warning">Os textos e links dos dias permanecem disponíveis, porém o calendário, o progresso, as intenções e o backup exigem JavaScript ativado.</p>
+      <p class="notice notice--warning">Os textos e links dos dias permanecem disponíveis, porém o calendário, o progresso, as contagens, os idiomas, as intenções e o backup exigem JavaScript ativado.</p>
     </noscript>
 
-    <section class="devotion-dashboard" aria-labelledby="progress-title">
-      <div class="progress-ring" style="--progress-value: 0%" data-progress-ring aria-hidden="true">
-        <span><strong data-progress-percent>0%</strong><small>concluído</small></span>
+    <div class="devotion-reading" data-prayer-copy-source>
+      {% include reading-tools.html copy_label='Copiar apresentação' %}
+      {% if page.sections or page.common_prayer or page.texts or page.count %}
+        {% include devotional-sequence.html document=page content=content anchor='roteiro-geral' heading_id='devotion-sequence-title' progress_id='devotion-sequence-progress-title' kicker='Orações comuns' heading=page.sequence_title %}
+      {% else %}
+        <div class="prose prose--wide prayer-text devotion-introduction" data-prayer-text>{{ content }}</div>
+      {% endif %}
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
+    </div>
+
+    <section class="devotion-dashboard" id="progresso" aria-labelledby="progress-title">
+      <div class="devotion-dashboard__heading">
+        <div>
+          <p class="eyebrow">Acompanhamento local</p>
+          <h2 id="progress-title">Progresso</h2>
+        </div>
+        <strong class="devotion-dashboard__percent" data-progress-percent>0%</strong>
       </div>
-      <div class="devotion-dashboard__content">
-        <p class="eyebrow">Seu acompanhamento</p>
-        <h2 id="progress-title">Progresso deste itinerário</h2>
+      <div class="progress-track progress-track--slim" role="progressbar" aria-label="Progresso deste itinerário" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-track>
+        <span data-progress-bar></span>
+      </div>
+      <div class="devotion-dashboard__meta">
         <p data-progress-label aria-live="polite">Nenhum dia concluído até o momento.</p>
         <p class="last-update">Última atualização: <time data-progress-updated>nenhuma</time></p>
-        <div class="devotion-dashboard__actions">
-          <button class="button button--tonal button--small" type="button" data-progress-export>
+      </div>
+
+      <div class="devotion-dashboard__actions devotion-dashboard__actions--desktop">
+        <button class="button button--tonal button--small" type="button" data-progress-export>
+          {% include icon.html name='download' %}
+          <span>Exportar progresso</span>
+        </button>
+        <button class="button button--text button--small" type="button" data-progress-import>
+          {% include icon.html name='upload' %}
+          <span>Importar progresso</span>
+        </button>
+        <button class="button button--text button--small" type="button" data-progress-reset>
+          {% include icon.html name='reset' %}
+          <span>Reiniciar dias</span>
+        </button>
+      </div>
+
+      <details class="devotion-progress-menu">
+        <summary>{% include icon.html name='more' %}<span>Gerenciar progresso</span></summary>
+        <div>
+          <button class="button button--text button--small" type="button" data-progress-export>
             {% include icon.html name='download' %}
             <span>Exportar progresso</span>
           </button>
@@ -83,14 +121,14 @@ layout: default
             {% include icon.html name='upload' %}
             <span>Importar progresso</span>
           </button>
-          <input type="file" accept=".json,application/json" data-progress-import-file hidden>
           <button class="button button--text button--small" type="button" data-progress-reset>
             {% include icon.html name='reset' %}
             <span>Reiniciar dias</span>
           </button>
         </div>
-        <p class="status-message" data-progress-status aria-live="polite"></p>
-      </div>
+      </details>
+      <input type="file" accept=".json,application/json" data-progress-import-file hidden>
+      <p class="status-message" data-progress-status aria-live="polite"></p>
     </section>
 
     <section class="devotion-calendar" id="calendario" aria-labelledby="calendar-title">
@@ -102,23 +140,26 @@ layout: default
           <p data-calendar-summary>O calendário oficial será calculado neste navegador.</p>
         </div>
       </div>
-      <form class="custom-date-form" data-custom-date-form>
-        <div class="field-group">
-          <label for="custom-start-{{ page.slug }}">Quero começar em outra data</label>
-          <input id="custom-start-{{ page.slug }}" type="date" data-custom-start>
+      <details class="calendar-settings">
+        <summary>Escolher outra data de início</summary>
+        <div class="calendar-settings__content">
+          <form class="custom-date-form" data-custom-date-form>
+            <div class="field-group">
+              <label for="custom-start-{{ page.slug }}">Data particular de início</label>
+              <input id="custom-start-{{ page.slug }}" type="date" data-custom-start>
+            </div>
+            <button class="button button--tonal button--small" type="submit">Usar esta data</button>
+            <button class="button button--text button--small" type="button" data-use-official-calendar>Voltar ao calendário oficial</button>
+          </form>
+          {% if calendar.skip_weekdays and calendar.skip_weekdays.size > 0 %}
+            <p class="calendar-exception"><strong>Exceção configurada:</strong> os dias indicados pelo arquivo da devoção não entram na contagem, tanto no calendário oficial quanto no particular.</p>
+          {% endif %}
+          <p class="status-message" data-calendar-status aria-live="polite"></p>
         </div>
-        <button class="button button--primary button--small" type="submit">Usar esta data</button>
-        <button class="button button--text button--small" type="button" data-use-official-calendar>Voltar ao calendário oficial</button>
-      </form>
-      {% if calendar.skip_weekdays and calendar.skip_weekdays.size > 0 %}
-        <p class="calendar-exception"><strong>Exceção configurada:</strong> os dias indicados pelo arquivo da devoção não entram na contagem, tanto no calendário oficial quanto no particular.</p>
-      {% endif %}
-      <p class="status-message" data-calendar-status aria-live="polite"></p>
+      </details>
     </section>
 
-    <div class="prose prose--wide devotion-introduction">{{ content }}</div>
-
-    <section class="novena-index" aria-labelledby="devotion-days-title">
+    <section class="novena-index" id="dias" aria-labelledby="devotion-days-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Roteiro de oração</p>
@@ -148,7 +189,7 @@ layout: default
       {% endif %}
     </section>
 
-    {% include prayer-intentions.html key=intention_key %}
+    {% include prayer-intentions.html key=intention_key anchor='intencoes' %}
     {% include share-buttons.html %}
   </article>
   {% include app-download-banner.html title='Reze este itinerário no Oratio' %}
