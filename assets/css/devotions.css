@@ -217,9 +217,12 @@
   color: var(--oratio-success);
 }
 .devotional-section__meditation {
+  --prayer-font-size: 1rem;
   border-left: 2px solid var(--oratio-gold);
   color: var(--oratio-text-secondary);
   font-family: var(--font-heading);
+  font-size: var(--prayer-font-size);
+  line-height: 1.7;
   padding-left: var(--space-4);
 }
 .devotional-section__meditation > * + * { margin-top: 0.8em; }
@@ -257,11 +260,24 @@
   color: var(--oratio-text-muted);
   font-size: 0.8rem;
 }
-.prayer-unit__count {
-  color: var(--oratio-primary);
+.prayer-unit__repetition {
+  display: grid;
   flex: 0 0 auto;
-  font-size: 0.76rem;
-  font-weight: 800;
+  gap: 0.08rem;
+  justify-items: end;
+  text-align: right;
+  white-space: nowrap;
+}
+.prayer-unit__count {
+  color: var(--oratio-gold);
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+.prayer-unit__count-progress {
+  color: var(--oratio-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 .prayer-unit__text {
   background: var(--oratio-surface);
