@@ -1,0 +1,133 @@
+---
+layout: default
+---
+{% assign saints = site.santos | where_exp: 'item', 'item.published != false' | sort_natural: 'title' %}
+{% assign saint_types = saints | map: 'saint_type' | compact | uniq | sort_natural %}
+<div class="container container--wide page-shell saints-archive"
+  data-saints-archive
+  data-saints-endpoint="{{ '/santos/dados.json' | relative_url }}">
+  {% include breadcrumb.html %}
+
+  <header class="saints-hero">
+    <div class="saints-hero__copy">
+      <p class="eyebrow">Comunhão dos Santos</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+      <div class="saints-hero__actions">
+        <a class="button button--primary" href="#acervo-dos-santos">Explorar o acervo</a>
+        <a class="button button--tonal" href="#calendario-dos-santos" data-open-saints-view="calendar">Abrir calendário</a>
+      </div>
+    </div>
+    <div class="saints-hero__summary" aria-label="Resumo do acervo">
+      <strong>{{ saints.size }}</strong>
+      <span>{% if saints.size == 1 %}história disponível{% else %}histórias disponíveis{% endif %}</span>
+      <p>O calendário admite memórias fixas, celebrações móveis, vários santos na mesma data e conteúdos ainda sem data litúrgica cadastrada.</p>
+    </div>
+  </header>
+
+  {% include saint-of-day.html mode='featured' %}
+
+  <section class="saints-library" id="acervo-dos-santos" aria-labelledby="saints-library-title">
+    <div class="section-heading saints-library__heading">
+      <div>
+        <p class="eyebrow">Biblioteca hagiográfica</p>
+        <h2 id="saints-library-title">Encontre uma história</h2>
+      </div>
+      <p>Pesquise pelo nome, navegue pelo calendário, consulte o índice alfabético ou filtre por tipo de testemunho cristão.</p>
+    </div>
+
+    <div class="saints-toolbar" aria-label="Controles do acervo">
+      <label class="field-group saints-toolbar__search">
+        <span>Pesquisar santos e celebrações</span>
+        <input type="search" data-saints-search placeholder="Nome, título, ordem religiosa, virtude ou patronato" autocomplete="off">
+      </label>
+      <label class="field-group">
+        <span>Tipo</span>
+        <select data-saints-type-filter>
+          <option value="">Todos os tipos</option>
+          {% for saint_type in saint_types %}{% if saint_type %}<option value="{{ saint_type | escape }}">{{ saint_type }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+      <label class="field-group">
+        <span>Mês litúrgico</span>
+        <select data-saints-month-filter>
+          <option value="">Todos os meses</option>
+          <option value="1">Janeiro</option><option value="2">Fevereiro</option><option value="3">Março</option>
+          <option value="4">Abril</option><option value="5">Maio</option><option value="6">Junho</option>
+          <option value="7">Julho</option><option value="8">Agosto</option><option value="9">Setembro</option>
+          <option value="10">Outubro</option><option value="11">Novembro</option><option value="12">Dezembro</option>
+        </select>
+      </label>
+      <label class="field-group">
+        <span>Ordenar</span>
+        <select data-saints-sort>
+          <option value="alphabetical">Ordem alfabética</option>
+          <option value="date">Data litúrgica</option>
+          <option value="type">Tipo de santo</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="saints-view-tabs" role="tablist" aria-label="Formas de organização do acervo">
+      <button type="button" role="tab" aria-selected="true" aria-controls="saints-panel-all" id="saints-tab-all" data-saints-view-button="all">Todos</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="saints-panel-calendar" id="saints-tab-calendar" data-saints-view-button="calendar">Por data</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="saints-panel-alpha" id="saints-tab-alpha" data-saints-view-button="alpha">A a Z</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="saints-panel-undated" id="saints-tab-undated" data-saints-view-button="undated">Sem data</button>
+    </div>
+
+    <section class="saints-panel" id="saints-panel-all" role="tabpanel" aria-labelledby="saints-tab-all" data-saints-panel="all">
+      <div class="saints-results-header">
+        <p data-saints-count>{{ saints.size }} {% if saints.size == 1 %}conteúdo encontrado{% else %}conteúdos encontrados{% endif %}</p>
+        <button class="button button--text button--small" type="button" data-saints-clear>Limpar filtros</button>
+      </div>
+      <div class="saints-grid" data-saints-grid>
+        {% for saint in saints %}{% include saint-card.html item=saint %}{% endfor %}
+      </div>
+      <div class="saints-load-more" data-saints-load-more-wrapper hidden>
+        <button class="button button--tonal" type="button" data-saints-load-more>Mostrar mais histórias</button>
+      </div>
+      <div class="empty-state" data-saints-empty hidden>
+        <span class="empty-state__symbol">✢</span>
+        <h3>Nenhuma história encontrada</h3>
+        <p>Tente remover algum filtro ou pesquisar usando outra palavra.</p>
+      </div>
+    </section>
+
+    <section class="saints-panel" id="saints-panel-calendar" role="tabpanel" aria-labelledby="saints-tab-calendar" data-saints-panel="calendar" hidden>
+      <div class="saints-calendar" id="calendario-dos-santos">
+        <div class="saints-calendar__toolbar">
+          <button class="icon-button" type="button" data-calendar-previous aria-label="Mês anterior">←</button>
+          <h3 data-calendar-title>Calendário dos santos</h3>
+          <button class="icon-button" type="button" data-calendar-next aria-label="Próximo mês">→</button>
+        </div>
+        <div class="saints-calendar__weekdays" aria-hidden="true"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+        <div class="saints-calendar__grid" data-calendar-grid></div>
+        <div class="saints-calendar__selection" data-calendar-selection>
+          <p>Selecione uma data para ver as histórias disponíveis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="saints-panel" id="saints-panel-alpha" role="tabpanel" aria-labelledby="saints-tab-alpha" data-saints-panel="alpha" hidden>
+      <nav class="saints-alphabet" data-saints-alphabet aria-label="Índice alfabético"></nav>
+      <div class="saints-alpha-groups" data-saints-alpha-groups></div>
+    </section>
+
+    <section class="saints-panel" id="saints-panel-undated" role="tabpanel" aria-labelledby="saints-tab-undated" data-saints-panel="undated" hidden>
+      <div class="saints-undated-intro">
+        <h3>Histórias sem data litúrgica definida</h3>
+        <p>Estes conteúdos permanecem acessíveis no acervo mesmo quando não possuem memória, festa ou solenidade associada a um dia específico.</p>
+      </div>
+      <div class="saints-grid" data-saints-undated-grid></div>
+      <div class="empty-state" data-saints-undated-empty hidden>
+        <span class="empty-state__symbol">✢</span>
+        <h3>Nenhum conteúdo sem data</h3>
+        <p>Todos os itens cadastrados atualmente possuem uma regra litúrgica.</p>
+      </div>
+    </section>
+
+    <noscript><p class="notice">Sem JavaScript, todas as histórias continuam disponíveis na primeira organização. O calendário, o santo do dia e os filtros avançados exigem JavaScript.</p></noscript>
+  </section>
+
+  {% if content != '' %}<div class="saints-editorial-note prose">{{ content }}</div>{% endif %}
+</div>

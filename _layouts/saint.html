@@ -1,15 +1,192 @@
 ---
 layout: default
 ---
-<div class="container container--medium page-shell">
+{% assign saint_slug = page.slug | default: page.basename_without_ext %}
+{% assign saint_image_width = page.image_width | default: 1200 %}
+{% assign saint_image_height = page.image_height | default: 675 %}
+<div class="container container--wide page-shell saint-page"
+  data-saint-page
+  data-saint-slug="{{ saint_slug | escape }}"
+  data-saints-endpoint="{{ '/santos/dados.json' | relative_url }}">
   {% include breadcrumb.html %}
-  {% if page.demo %}{% include alert-message.html type='warning' title='Biografia demonstrativa' text='Datas, títulos e demais informações devem ser conferidos em fontes seguras antes da publicação.' %}{% endif %}
-  <header class="saint-header">
-    <div class="image-shell image-shell--portrait" data-image-shell>{% if page.image %}<img src="{{ page.image | relative_url }}" alt="Representação de {{ page.title }}" width="560" height="700" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Santo</small></span>{% else %}<span class="image-placeholder"><span>✢</span><small>Santo</small></span>{% endif %}</div>
-    <div><span class="chip">{{ page.category | default: 'História dos Santos' }}</span><h1>{{ page.title }}</h1>{% if page.subtitle %}<p class="saint-subtitle">{{ page.subtitle }}</p>{% endif %}<dl class="content-facts">{% if page.dates %}<div><dt>Datas</dt><dd>{{ page.dates }}</dd></div>{% endif %}{% if page.liturgical_memorial %}<div><dt>Memória litúrgica</dt><dd>{{ page.liturgical_memorial }}</dd></div>{% endif %}</dl></div>
-  </header>
-  <article class="prose">{{ content }}</article>
-  {% include share-buttons.html %}
-  {% include related-content.html %}
+  {% if page.demo %}{% include alert-message.html type='warning' title='Biografia demonstrativa' text='Datas, títulos, fontes e demais informações devem ser conferidos antes da publicação definitiva.' %}{% endif %}
+
+  <article>
+    <header class="saint-profile-hero">
+      <div class="saint-profile-hero__media image-shell">
+        {% if page.image %}
+          <img src="{{ page.image | relative_url }}"
+            alt="{{ page.image_alt | default: page.title | escape }}"
+            width="{{ saint_image_width }}"
+            height="{{ saint_image_height }}"
+            decoding="async"
+            fetchpriority="high"
+            style="object-position: {{ page.image_position | default: 'center' | escape }}"
+            data-fallback-image>
+          <span class="image-placeholder" hidden><span>✢</span><small>{{ page.entry_type | default: 'Santo' }}</small></span>
+        {% else %}
+          <span class="image-placeholder"><span>✢</span><small>{{ page.entry_type | default: 'Santo' }}</small></span>
+        {% endif %}
+      </div>
+      <div class="saint-profile-hero__content">
+        <div class="saint-profile-hero__chips">
+          <span class="chip">{{ page.entry_type | default: 'Santo' }}</span>
+          {% if page.liturgical_rank %}<span class="chip chip--gold">{{ page.liturgical_rank }}</span>{% endif %}
+        </div>
+        <h1>{{ page.title }}</h1>
+        {% if page.subtitle %}<p class="saint-subtitle">{{ page.subtitle }}</p>{% endif %}
+        {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+        <dl class="saint-facts">
+          <div>
+            <dt>Data litúrgica</dt>
+            <dd data-saint-date-label
+              data-date-rule="{{ page.liturgical_date | jsonify | escape }}"
+              data-memorial-month="{{ page.memorial_month }}"
+              data-memorial-day="{{ page.memorial_day }}"
+              data-date-fallback="{{ page.liturgical_date.label | default: page.liturgical_memorial | default: 'Sem data litúrgica definida' | escape }}">
+              {{ page.liturgical_date.label | default: page.liturgical_memorial | default: 'Sem data litúrgica definida' }}
+            </dd>
+          </div>
+          {% if page.life_dates or page.dates %}<div><dt>Vida</dt><dd>{{ page.life_dates | default: page.dates }}</dd></div>{% endif %}
+          {% if page.saint_type %}<div><dt>Estado de vida</dt><dd>{{ page.saint_type }}</dd></div>{% endif %}
+          {% if page.religious_family %}<div><dt>Família espiritual</dt><dd>{{ page.religious_family }}</dd></div>{% endif %}
+        </dl>
+        {% if page.patronages and page.patronages.size > 0 %}
+        <div class="saint-inline-list"><strong>Patronatos</strong><span>{{ page.patronages | join: ', ' }}</span></div>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if page.summary %}
+    <section class="saint-summary" aria-labelledby="saint-summary-title">
+      <p class="eyebrow">Em poucas palavras</p>
+      {% capture default_summary_heading %}Sobre {{ page.short_title | default: page.title }}{% endcapture %}
+      <h2 id="saint-summary-title">{{ page.summary_heading | default: default_summary_heading }}</h2>
+      <div class="prose">{{ page.summary | markdownify }}</div>
+    </section>
+    {% endif %}
+
+    {% if page.virtues and page.virtues.size > 0 %}
+    <section class="saint-virtues" aria-labelledby="saint-virtues-title">
+      <div><p class="eyebrow">Caminho espiritual</p><h2 id="saint-virtues-title">Virtudes em destaque</h2></div>
+      <ul>{% for virtue in page.virtues %}<li>{{ virtue }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+
+    <div class="saint-reading-layout">
+      <aside class="saint-toc" data-saint-toc hidden>
+        <strong>Nesta história</strong>
+        <nav aria-label="Sumário da biografia"><ol data-saint-toc-list></ol></nav>
+      </aside>
+      <div class="saint-reading-layout__main">
+        <div class="prose saint-article" data-saint-article>{{ content }}</div>
+
+        {% if page.prayer %}
+        <section class="saint-prayer" aria-labelledby="saint-prayer-title">
+          <p class="eyebrow">Para rezar</p>
+          <h2 id="saint-prayer-title">Oração</h2>
+          <div class="prose">{{ page.prayer | markdownify }}</div>
+        </section>
+        {% endif %}
+
+        {% if page.sources and page.sources.size > 0 %}
+        <section class="saint-sources" aria-labelledby="saint-sources-title">
+          <details>
+            <summary id="saint-sources-title">Fontes e referências editoriais</summary>
+            <ol>
+              {% for source in page.sources %}
+              <li>
+                {% if source.url %}<a href="{{ source.url }}" rel="noopener noreferrer">{{ source.title | default: source.url }}</a>{% else %}{{ source.title | default: source }}{% endif %}
+                {% if source.author %}<span> — {{ source.author }}</span>{% endif %}
+              </li>
+              {% endfor %}
+            </ol>
+          </details>
+        </section>
+        {% endif %}
+
+        {% include share-buttons.html %}
+      </div>
+    </div>
+  </article>
+
+  <section class="saint-related" aria-labelledby="saint-related-title" data-saint-related>
+    <div class="section-heading">
+      <div><p class="eyebrow">Continue explorando</p><h2 id="saint-related-title">Conteúdos relacionados</h2></div>
+      <p>As sugestões consideram relações explícitas, temas em comum, proximidade no calendário e menções ao santo em orações, devoções, formações e artigos.</p>
+    </div>
+
+    <div class="saint-related__group" data-related-saints-section>
+      <h3>Outros santos e celebrações</h3>
+      <div class="saints-grid saints-grid--related" data-related-saints-grid>
+        {% assign rendered_related = '|' | append: saint_slug | append: '|' %}
+        {% assign related_count = 0 %}
+        {% if page.related_saints %}
+          {% for related_slug in page.related_saints %}
+            {% assign related_saint = site.santos | where: 'slug', related_slug | first %}
+            {% if related_saint and related_count < 4 %}
+              {% capture related_token %}|{{ related_saint.slug }}|{% endcapture %}
+              {% unless rendered_related contains related_token %}
+                {% include saint-card.html item=related_saint %}
+                {% assign rendered_related = rendered_related | append: related_saint.slug | append: '|' %}
+                {% assign related_count = related_count | plus: 1 %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if page.tags %}
+          {% for candidate in site.santos %}
+            {% if related_count < 4 and candidate.slug != saint_slug %}
+              {% assign shared_tag = false %}
+              {% for tag in page.tags %}{% if candidate.tags contains tag %}{% assign shared_tag = true %}{% endif %}{% endfor %}
+              {% capture candidate_token %}|{{ candidate.slug }}|{% endcapture %}
+              {% if shared_tag %}
+                {% unless rendered_related contains candidate_token %}
+                  {% include saint-card.html item=candidate %}
+                  {% assign rendered_related = rendered_related | append: candidate.slug | append: '|' %}
+                  {% assign related_count = related_count | plus: 1 %}
+                {% endunless %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <p class="saint-related__status" data-related-saints-status{% if related_count > 0 %} hidden{% endif %}>Buscando relações no acervo...</p>
+    </div>
+
+    <div class="saint-related__group" data-related-content-section>
+      <h3>Orações, devoções, formações e artigos</h3>
+      <div class="saint-related-content-grid" data-related-content-grid>
+        {% if page.related %}
+          {% assign related_pool = site.oracoes | concat: site.novenas | concat: site.quaresmas | concat: site.trintenas | concat: site.devocoes_mensais | concat: site.trezenas | concat: site.triduos | concat: site.tercos | concat: site.rosarios | concat: site.coroas | concat: site.devocionarios | concat: site.formacoes | concat: site.posts %}
+          {% for related_slug in page.related limit: 6 %}
+            {% assign related_item = related_pool | where: 'slug', related_slug | first %}
+            {% if related_item %}{% include content-card.html item=related_item type='Relacionado' %}{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <p class="saint-related__status" data-related-content-status{% if page.related and page.related.size > 0 %} hidden{% endif %}>Buscando conteúdos que mencionam este santo...</p>
+    </div>
+  </section>
 </div>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "mainEntityOfPage": {{ page.url | absolute_url | jsonify }},
+  {% if page.image %}"image": {{ page.image | absolute_url | jsonify }},{% endif %}
+  "about": {
+    "@type": {{ page.subject_schema_type | default: 'Person' | jsonify }},
+    "name": {{ page.title | jsonify }}{% if page.aliases and page.aliases.size > 0 %},
+    "alternateName": {{ page.aliases | jsonify }}{% endif %}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.organization.name | default: site.title | jsonify }}{% if site.organization.logo %},
+    "logo": {"@type": "ImageObject", "url": {{ site.organization.logo | absolute_url | jsonify }}}{% endif %}
+  }
+}
+</script>
