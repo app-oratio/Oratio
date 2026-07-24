@@ -99,6 +99,45 @@ def validate_text_variants(value: object, path: Path, context: str) -> None:
             )
 
 
+def first_value(data: dict, *keys: str) -> object:
+    for key in keys:
+        value = data.get(key)
+        if value is not None:
+            return value
+    return None
+
+
+def validate_optional_fallback_text(
+    data: dict,
+    keys: tuple[str, ...],
+    path: Path,
+    context: str,
+) -> None:
+    value = first_value(data, *keys)
+    if value is not None and not isinstance(value, str):
+        error(
+            f"{context} deve ser texto, ainda que vazio para acionar o fallback, "
+            f"em {path.relative_to(ROOT)}"
+        )
+
+
+def common_reference(data: dict, common_prayers: dict) -> object:
+    explicit = first_value(data, "common_prayer", "common-prayer")
+    if explicit:
+        return explicit
+    legacy = data.get("prayer")
+    if isinstance(legacy, str) and legacy in common_prayers:
+        return legacy
+    return None
+
+
+def direct_portuguese_prayer(data: dict, common_prayers: dict) -> object:
+    value = data.get("prayer")
+    if value and common_reference(data, common_prayers) == value:
+        return None
+    return value
+
+
 def validate_prayer_structure(
     data: dict,
     path: Path,
@@ -106,10 +145,26 @@ def validate_prayer_structure(
     *,
     require_sections: bool = False,
 ) -> None:
-    validate_language(data.get("default_language"), path, "Documento")
+    validate_language(
+        first_value(data, "default_language", "default-language"),
+        path,
+        "Documento",
+    )
     validate_text_variants(data.get("texts"), path, "Documento")
+    validate_optional_fallback_text(
+        data,
+        ("label-latin", "label_latin"),
+        path,
+        "Campo label-latin do documento",
+    )
+    validate_optional_fallback_text(
+        data,
+        ("prayer-latin", "prayer_latin"),
+        path,
+        "Campo prayer-latin do documento",
+    )
 
-    common_key = data.get("common_prayer")
+    common_key = common_reference(data, common_prayers)
     if common_key and common_key not in common_prayers:
         error(
             f"Oração comum inexistente em {path.relative_to(ROOT)}: "
@@ -186,15 +241,20 @@ def validate_prayer_structure(
                     f"em {path.relative_to(ROOT)}: {item_id}"
                 )
             used_items.add(item_id)
+            if "id" not in item:
+                error(
+                    f"Oração {item_index} da seção {section_id} precisa declarar id "
+                    f"em {path.relative_to(ROOT)}"
+                )
 
-            prayer_key = item.get("prayer") or item.get("common_prayer")
+            prayer_key = common_reference(item, common_prayers)
             if prayer_key and prayer_key not in common_prayers:
                 error(
                     f"Oração comum inexistente na seção {section_id} "
                     f"em {path.relative_to(ROOT)}: {prayer_key}"
                 )
             validate_language(
-                item.get("default_language"),
+                first_value(item, "default_language", "default-language"),
                 path,
                 f"Oração {item_id} da seção {section_id}",
             )
@@ -202,6 +262,18 @@ def validate_prayer_structure(
                 item.get("texts"),
                 path,
                 f"Oração {item_id} da seção {section_id}",
+            )
+            validate_optional_fallback_text(
+                item,
+                ("label-latin", "label_latin"),
+                path,
+                f"Campo label-latin da oração {item_id}",
+            )
+            validate_optional_fallback_text(
+                item,
+                ("prayer-latin", "prayer_latin"),
+                path,
+                f"Campo prayer-latin da oração {item_id}",
             )
             if "count" in item and (
                 not isinstance(item["count"], int)
@@ -212,11 +284,22 @@ def validate_prayer_structure(
                     f"Oração {item_id} possui count inválido na seção "
                     f"{section_id} em {path.relative_to(ROOT)}"
                 )
+            direct_prayer = direct_portuguese_prayer(item, common_prayers)
+            latin_prayer = first_value(item, "prayer-latin", "prayer_latin")
+            if direct_prayer is not None and (
+                not isinstance(direct_prayer, str) or not direct_prayer.strip()
+            ):
+                error(
+                    f"Oração {item_id} possui prayer vazio ou inválido na seção "
+                    f"{section_id} em {path.relative_to(ROOT)}"
+                )
             has_text = bool(
                 prayer_key
+                or direct_prayer
+                or (isinstance(latin_prayer, str) and latin_prayer.strip())
                 or item.get("texts")
                 or item.get("text")
-                or item.get("prayer_url")
+                or first_value(item, "prayer_url", "prayer-url")
             )
             if not item.get("label") and not prayer_key:
                 error(
@@ -224,7 +307,7 @@ def validate_prayer_structure(
                     f"em {path.relative_to(ROOT)}"
                 )
             if not has_text:
-                WARNINGS.append(
+                error(
                     f"Oração {item_id} sem texto incorporado na seção "
                     f"{section_id} em {path.relative_to(ROOT)}"
                 )
@@ -258,9 +341,21 @@ def validate_documents() -> None:
         if not common_prayer.get("title"):
             error(f"Oração comum sem title: {common_key}")
         validate_language(
-            common_prayer.get("default_language"),
+            first_value(common_prayer, "default_language", "default-language"),
             common_path,
             f"Oração comum {common_key}",
+        )
+        validate_optional_fallback_text(
+            common_prayer,
+            ("label-latin", "label_latin"),
+            common_path,
+            f"Campo label-latin da oração comum {common_key}",
+        )
+        validate_optional_fallback_text(
+            common_prayer,
+            ("prayer-latin", "prayer_latin"),
+            common_path,
+            f"Campo prayer-latin da oração comum {common_key}",
         )
         validate_text_variants(
             common_prayer.get("texts"),
@@ -281,7 +376,6 @@ def validate_documents() -> None:
         "_trezenas",
         "_triduos",
         "_dias_novena",
-        "_dias_devocao",
         "_tercos",
         "_rosarios",
         "_coroas",
@@ -291,17 +385,23 @@ def validate_documents() -> None:
         "pages",
     ]
     for folder in content_roots:
-        for path in sorted((ROOT / folder).glob("*.md")):
+        for path in sorted((ROOT / folder).rglob("*.md")):
             data = front_matter(path)
             if not data:
                 error(f"Documento sem front matter: {path.relative_to(ROOT)}")
                 continue
             if not data.get("title"):
                 error(f"Documento sem title: {path.relative_to(ROOT)}")
-            if folder not in {"_dias_novena", "_dias_devocao"} and not data.get("description"):
+            if folder != "_dias_novena" and not data.get("description"):
                 WARNINGS.append(f"Documento sem description: {path.relative_to(ROOT)}")
             if folder in {
                 "_oracoes",
+                "_novenas",
+                "_quaresmas",
+                "_trintenas",
+                "_devocoes_mensais",
+                "_trezenas",
+                "_triduos",
                 "_tercos",
                 "_rosarios",
                 "_coroas",
@@ -363,6 +463,30 @@ def validate_documents() -> None:
             if slug in series:
                 error(f"Slug de itinerário duplicado: {slug}")
             series[slug] = data
+            forbidden_main_fields = {
+                "sections",
+                "sequence_title",
+                "count",
+                "common_prayer",
+                "common-prayer",
+                "texts",
+                "text",
+                "prayer",
+                "prayer-latin",
+                "prayer_latin",
+                "label",
+                "label-latin",
+                "label_latin",
+            }
+            present_forbidden = sorted(
+                field for field in forbidden_main_fields if field in data
+            )
+            if present_forbidden:
+                error(
+                    f"Página principal de itinerário contém campos de oração "
+                    f"{present_forbidden} em {path.relative_to(ROOT)}; transfira "
+                    "toda oração para os arquivos dos dias."
+                )
             if not isinstance(data.get("days"), int) or data["days"] < 1:
                 error(f"Campo days deve ser inteiro positivo: {path.relative_to(ROOT)}")
             calendar = data.get("calendar")
@@ -393,24 +517,42 @@ def validate_documents() -> None:
                         error(f"Dia da semana inválido em {path.relative_to(ROOT)}: {value!r}")
 
     day_numbers: dict[str, list[int]] = {slug: [] for slug in series}
-    for path in (ROOT / "_dias_novena").glob("*.md"):
+    days_root = ROOT / "_dias_novena"
+    for path in days_root.rglob("*.md"):
         data = front_matter(path)
-        if data.get("novena") not in series:
-            error(f"Dia aponta para novena inexistente: {path.relative_to(ROOT)}")
-        if not isinstance(data.get("day"), int):
-            error(f"Campo day deve ser inteiro: {path.relative_to(ROOT)}")
-        elif data.get("novena") in day_numbers:
-            day_numbers[data["novena"]].append(data["day"])
-    for path in (ROOT / "_dias_devocao").glob("*.md"):
-        data = front_matter(path)
-        if data.get("devotion") not in series:
+        devotion_slug = data.get("devotion")
+        if data.get("novena"):
+            error(
+                f"Dia usa a chave legada novena em {path.relative_to(ROOT)}; "
+                "use devotion."
+            )
+        if devotion_slug not in series:
             error(f"Dia aponta para itinerário inexistente: {path.relative_to(ROOT)}")
         if not isinstance(data.get("day"), int):
             error(f"Campo day deve ser inteiro: {path.relative_to(ROOT)}")
-        elif data.get("devotion") in day_numbers:
-            day_numbers[data["devotion"]].append(data["day"])
+        elif devotion_slug in day_numbers:
+            day_numbers[devotion_slug].append(data["day"])
+            expected_relative = Path(devotion_slug) / f"dia-{data['day']}.md"
+            if path.relative_to(days_root) != expected_relative:
+                error(
+                    f"Dia fora da pasta ou com nome incorreto: "
+                    f"{path.relative_to(ROOT)}; esperado "
+                    f"_dias_novena/{expected_relative.as_posix()}"
+                )
         if not data.get("permalink"):
             error(f"Dia devocional sem permalink explícito: {path.relative_to(ROOT)}")
+        if "image" in data or "image_alt" in data:
+            error(
+                f"O dia não deve repetir nem substituir a capa em "
+                f"{path.relative_to(ROOT)}; ela é herdada da página principal."
+            )
+
+    legacy_days_root = ROOT / "_dias_devocao"
+    if legacy_days_root.exists() and any(legacy_days_root.rglob("*")):
+        error(
+            "A pasta _dias_devocao não deve mais conter arquivos; mova todos os "
+            "dias para _dias_novena/{slug}/dia-N.md."
+        )
 
     for slug, data in series.items():
         expected = list(range(1, data["days"] + 1))
