@@ -1,3 +1,48 @@
 {% assign saint = include.item %}
-{% include content-card.html item=saint type='Santo' meta=saint.liturgical_memorial %}
-
+{% assign saint_slug = saint.slug | default: saint.basename_without_ext %}
+{% assign saint_image_width = saint.image_width | default: 1200 %}
+{% assign saint_image_height = saint.image_height | default: 675 %}
+<article class="saint-card"
+  data-saint-card
+  data-saint-slug="{{ saint_slug | escape }}"
+  data-saint-title="{{ saint.title | escape }}"
+  data-saint-type="{{ saint.saint_type | default: saint.entry_type | default: 'Santo' | escape }}"
+  data-saint-tags="{{ saint.tags | join: '|' | escape }}"
+  data-saint-aliases="{{ saint.aliases | join: '|' | escape }}"
+  data-saint-date-rule="{{ saint.liturgical_date | jsonify | escape }}"
+  data-saint-memorial-month="{{ saint.memorial_month }}"
+  data-saint-memorial-day="{{ saint.memorial_day }}">
+  <a class="saint-card__media image-shell" href="{{ saint.url | relative_url }}" aria-label="Abrir a história de {{ saint.title | escape }}">
+    {% if saint.image %}
+      <img src="{{ saint.image | relative_url }}"
+        alt="{{ saint.image_alt | default: saint.title | escape }}"
+        width="{{ saint_image_width }}"
+        height="{{ saint_image_height }}"
+        loading="lazy"
+        decoding="async"
+        style="object-position: {{ saint.image_position | default: 'center' | escape }}"
+        data-fallback-image>
+      <span class="image-placeholder" hidden><span>✢</span><small>{{ saint.entry_type | default: 'Santo' }}</small></span>
+    {% else %}
+      <span class="image-placeholder"><span>✢</span><small>{{ saint.entry_type | default: 'Santo' }}</small></span>
+    {% endif %}
+  </a>
+  <div class="saint-card__body">
+    <div class="saint-card__meta">
+      <span class="chip">{{ saint.entry_type | default: 'Santo' }}</span>
+      {% if saint.liturgical_rank %}<span>{{ saint.liturgical_rank }}</span>{% endif %}
+    </div>
+    <h3><a href="{{ saint.url | relative_url }}">{{ saint.title }}</a></h3>
+    {% if saint.subtitle %}<p class="saint-card__subtitle">{{ saint.subtitle }}</p>{% endif %}
+    <p class="saint-card__date"
+      data-saint-date-label
+      data-date-rule="{{ saint.liturgical_date | jsonify | escape }}"
+      data-memorial-month="{{ saint.memorial_month }}"
+      data-memorial-day="{{ saint.memorial_day }}"
+      data-date-fallback="{{ saint.liturgical_date.label | default: saint.liturgical_memorial | default: 'Sem data litúrgica definida' | escape }}">
+      {{ saint.liturgical_date.label | default: saint.liturgical_memorial | default: 'Sem data litúrgica definida' }}
+    </p>
+    {% if saint.description %}<p class="saint-card__description">{{ saint.description | strip_html | truncate: 170 }}</p>{% endif %}
+    <a class="saint-card__link" href="{{ saint.url | relative_url }}">Conhecer esta história <span aria-hidden="true">→</span></a>
+  </div>
+</article>

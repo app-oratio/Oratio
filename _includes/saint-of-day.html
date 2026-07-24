@@ -1,0 +1,28 @@
+{% assign saint_today_mode = include.mode | default: 'compact' %}
+<section class="saint-today saint-today--{{ saint_today_mode }}"
+  data-saint-of-day
+  data-saints-endpoint="{{ '/santos/dados.json' | relative_url }}"
+  {% if include.date %}data-saint-date="{{ include.date | escape }}"{% endif %}
+  aria-label="{{ include.title | default: 'Santo do dia' | escape }}">
+  <div class="saint-today__heading">
+    <div>
+      <p class="eyebrow">Memória e testemunho</p>
+      <h2>{{ include.title | default: 'Santo do dia' }}</h2>
+      <p data-saint-of-day-date>Consultando o calendário...</p>
+    </div>
+    {% if saint_today_mode == 'featured' %}
+    <div class="saint-today__navigation" aria-label="Navegar entre as datas">
+      <button class="icon-button" type="button" data-saint-day-previous aria-label="Dia anterior">←</button>
+      <label class="saint-today__date-picker">
+        <span>Escolher data</span>
+        <input type="date" data-saint-date-input>
+      </label>
+      <button class="icon-button" type="button" data-saint-day-next aria-label="Próximo dia">→</button>
+    </div>
+    {% endif %}
+  </div>
+  <div class="saint-today__content" data-saint-of-day-content aria-live="polite">
+    <p class="saint-today__status">Carregando as celebrações desta data...</p>
+  </div>
+  <noscript><p class="notice">Ative o JavaScript para consultar automaticamente o santo do dia e as celebrações de datas móveis.</p></noscript>
+</section>
