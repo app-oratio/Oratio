@@ -1,109 +1,164 @@
 ---
 layout: legal
-title: "Política de Privacidade do App Android"
-description: "Esta política descreve o tratamento de informações relacionado à instalação e ao uso do aplicativo Oratio para Android."
+title: "Política de Privacidade do Oratio App"
+description: "Informações sobre a coleta, o tratamento, o armazenamento, o compartilhamento e a proteção dos dados pessoais utilizados no aplicativo Oratio."
 permalink: /privacidade/app/
 legal_kind: privacy
 legal_environment: app
 legal_environment_label: "App Android"
 legal_status: current
-version: "2026.07.24"
-effective_date: "24 de julho de 2026"
-last_updated: "24 de julho de 2026"
-toc:
-  - id: identificacao-e-escopo
-    label: "Identificação e escopo"
-  - id: funcionamento-sem-conta
-    label: "Funcionamento sem conta"
-  - id: dados-no-dispositivo
-    label: "Dados no dispositivo"
-  - id: permissoes-e-notificacoes
-    label: "Permissões e notificações"
-  - id: conexao-e-servicos-externos
-    label: "Conexão e serviços externos"
-  - id: suporte
-    label: "Suporte"
-  - id: compartilhamento-e-publicidade
-    label: "Compartilhamento e publicidade"
-  - id: retencao-e-exclusao
-    label: "Retenção e exclusão"
-  - id: seguranca
-    label: "Segurança"
-  - id: direitos
-    label: "Direitos do usuário"
-  - id: atualizacoes-e-contato
-    label: "Atualizações e contato"
+version: "2025.07.20"
+effective_date: "20 de julho de 2025"
+last_updated: "20 de julho de 2025"
+preserve_document_title: true
 ---
-## Identificação e escopo {#identificacao-e-escopo}
+<h1>Política de Privacidade do Oratio App</h1>
+<p><strong>Última atualização: 20 de julho de 2025</strong></p>
 
-Esta Política de Privacidade aplica-se ao aplicativo **Oratio | App Católico**, disponibilizado para Android sob o identificador de pacote **com.apostoladoimc.oratio**, e mantido pelo apostolado **Immaculata Mater Christi**.
+<p>Esta Política de Privacidade detalhada tem por finalidade esclarecer de forma transparente, completa e acessível como o aplicativo móvel Oratio (“Oratio”, “nós”, “nosso”) realiza o tratamento de dados pessoais dos usuários (“usuário”, “você”), de acordo com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).</p>
 
-O documento trata somente do aplicativo Android. A navegação no portal, o formulário de contato e os recursos web são regulados pela [Política de Privacidade do Site]({{ '/privacidade/site/' | relative_url }}).
+<h2>1. Dados Pessoais Coletados</h2>
+<p>Os seguintes dados podem ser coletados, armazenados e tratados, conforme sua interação com o aplicativo:</p>
 
-A declaração de Segurança dos dados exibida na Google Play deve permanecer coerente com esta política e com o comportamento efetivo de todas as versões do aplicativo que continuem distribuídas.
+<h3>1.1. Dados de cadastro obrigatórios:</h3>
+<ul>
+  <li>Nome completo</li>
+  <li>Endereço de e-mail</li>
+</ul>
 
-## Funcionamento sem conta {#funcionamento-sem-conta}
+<h3>1.2. Dados opcionais fornecidos voluntariamente pelo usuário:</h3>
+<ul>
+  <li>Foto de perfil</li>
+  <li>Cidade e Estado</li>
+  <li>Paróquia</li>
+  <li>Ocupação</li>
+  <li>Links para redes sociais</li>
+</ul>
 
-O acesso aos conteúdos principais do Oratio não exige criação de conta, nome de usuário ou perfil público. O aplicativo não mantém uma rede social própria e não utiliza dados pessoais para formar perfis de publicidade comportamental.
+<h3>1.3. Dados gerados durante o uso:</h3>
+<ul>
+  <li>Sessões de oração acessadas</li>
+  <li>Frequência de uso e horários de atividade</li>
+  <li>Lembretes criados</li>
+  <li>Orações salvas como favoritas</li>
+</ul>
 
-Caso uma versão futura passe a oferecer conta, sincronização em nuvem, envio comunitário de conteúdo ou outro recurso que transmita dados pessoais para infraestrutura controlada pelo Oratio, esta política deverá ser atualizada antes da disponibilização do recurso, com indicação clara dos dados, finalidades, compartilhamentos e mecanismos de exclusão.
+<h3>1.4. Dados técnicos e do dispositivo:</h3>
+<ul>
+  <li>ID de Publicidade do dispositivo (Google Ad ID)</li>
+  <li>Tipo e modelo do aparelho</li>
+  <li>Versão do sistema operacional</li>
+  <li>Idioma e fuso horário configurados</li>
+</ul>
 
-## Dados no dispositivo {#dados-no-dispositivo}
+<h3>1.5. Dados de integração com terceiros:</h3>
+<ul>
+  <li>Dados de apoio do Apoia.se (apenas mediante ação do usuário)</li>
+  <li>Nome e email enviados a Brave e MailerSend para comunicações obrigatórias</li>
+</ul>
 
-Conforme os recursos utilizados, o aplicativo pode armazenar localmente preferências de aparência e leitura, favoritos, progresso de novenas e outros itinerários, lembretes, configurações de notificação, conteúdo baixado e informações necessárias para restaurar a experiência do usuário.
+<p><strong>Importante:</strong> o Oratio não coleta automaticamente dados sensíveis como opiniões religiosas, mas reconhece que os dados fornecidos voluntariamente podem refletir convicções pessoais. Tais dados são tratados com a mais alta proteção.</p>
 
-O armazenamento local permanece no aparelho e não representa, por si só, envio de dados ao Oratio. Essas informações podem ser removidas pelas opções internas disponíveis, pela limpeza dos dados do aplicativo nas configurações do Android ou pela desinstalação.
+<h2>2. Finalidade do Tratamento dos Dados</h2>
+<p>Os dados são tratados com as seguintes finalidades:</p>
 
-A limpeza ou desinstalação pode apagar preferências, progressos e conteúdos que não tenham sido preservados por outro mecanismo.
+<h3>2.1. Dados de cadastro</h3>
+<ul>
+  <li>Criar e autenticar a conta do usuário</li>
+  <li>Permitir o acesso às funcionalidades do aplicativo</li>
+</ul>
 
-## Permissões e notificações {#permissoes-e-notificacoes}
+<h3>2.2. Dados de uso</h3>
+<ul>
+  <li>Personalizar a experiência do usuário</li>
+  <li>Exibir conteúdo relevante e lembretes de oração</li>
+  <li>Monitorar e melhorar a qualidade e estabilidade do aplicativo</li>
+</ul>
 
-O aplicativo somente deve solicitar permissões do Android quando elas forem necessárias para uma função escolhida pelo usuário. Dependendo da versão do sistema e dos recursos ativados, isso pode incluir autorização para exibir notificações, acessar conexão de rede ou utilizar armazenamento permitido pelo Android.
+<h3>2.3. Dados de comunicação</h3>
+<ul>
+  <li>Enviar notificações locais programadas pelo próprio usuário</li>
+  <li>Enviar emails com conteúdo espiritual, informativo ou técnico, conforme consentimento</li>
+  <li>Garantir o envio de comunicados obrigatórios, mesmo sem consentimento promocional</li>
+</ul>
 
-O usuário pode negar ou revogar permissões nas configurações do aparelho. A recusa pode impedir apenas a função que depende daquela autorização, sem bloquear desnecessariamente o acesso aos demais conteúdos.
+<h3>2.4. Dados do Apoia.se</h3>
+<ul>
+  <li>Verificar o status de apoio do usuário</li>
+  <li>Liberar recompensas virtuais vinculadas ao apoio</li>
+</ul>
 
-Lembretes e notificações podem ser programados no próprio dispositivo. Quando houver qualquer serviço remoto de mensagens, ele deverá ser identificado nesta política e na declaração de Segurança dos dados da Google Play.
+<h2>3. Base Legal para o Tratamento</h2>
+<p>O tratamento de dados pessoais pelo Oratio fundamenta-se nas seguintes bases legais:</p>
+<ul>
+  <li><strong>Consentimento:</strong> para envio de emails promocionais, exibição de dados opcionais e coleta voluntária de informações de perfil.</li>
+  <li><strong>Execução de contrato:</strong> para permitir o uso funcional do app, como login, lembretes e favoritos.</li>
+  <li><strong>Legítimo interesse:</strong> para segurança da informação, prevenção de fraudes e melhorias técnicas.</li>
+  <li><strong>Cumprimento de obrigação legal:</strong> quando exigido por autoridade competente.</li>
+</ul>
 
-## Conexão e serviços externos {#conexao-e-servicos-externos}
+<h2>4. Compartilhamento de Dados com Terceiros</h2>
+<p>Os dados dos usuários não são vendidos nem repassados para terceiros com fins comerciais. O compartilhamento ocorre apenas com:</p>
+<ul>
+  <li><strong>Firebase (Google):</strong> para autenticação, banco de dados e armazenamento em nuvem.</li>
+  <li><strong>Google AdMob:</strong> para exibição de anúncios contextuais (ID de Publicidade).</li>
+  <li><strong>MailerSend e Brave:</strong> para envio de comunicações por email.</li>
+  <li><strong>Apoia.se:</strong> apenas quando o usuário aciona a verificação de apoio (via API).</li>
+</ul>
 
-O aplicativo pode utilizar conexão com a internet para abrir páginas oficiais, acessar a Google Play, verificar conteúdos ou atualizações e utilizar funções que dependam de recursos externos. Ao abrir um link em navegador ou em outro aplicativo, passam a ser aplicáveis as políticas do serviço acessado.
+<h2>5. Transferência Internacional de Dados</h2>
+<p>Os dados são processados em servidores localizados fora do Brasil, especialmente nos Estados Unidos, por serviços como Firebase, MailerSend e Brave. Garantimos que:</p>
+<ul>
+  <li>Os prestadores são compatíveis com padrões internacionais de segurança.</li>
+  <li>Adotamos medidas técnicas e administrativas para proteger os dados transferidos.</li>
+</ul>
 
-A distribuição, instalação, atualização e diagnóstico básico do aplicativo envolvem a **Google Play** e componentes do sistema Android, que podem processar dados técnicos do dispositivo, informações de instalação, desempenho, segurança e conta Google conforme as políticas próprias da plataforma.
+<h2>6. Retenção e Exclusão de Dados</h2>
+<p>Os dados pessoais serão retidos apenas pelo tempo necessário para cumprir as finalidades previstas nesta política. Ao excluir sua conta no aplicativo:</p>
+<ul>
+  <li>Todos os dados vinculados serão permanentemente excluídos</li>
+  <li>A exclusão é irreversível e abrange imagem, favoritos, lembretes, apoio, etc.</li>
+</ul>
 
-Qualquer biblioteca ou SDK de terceiros incorporado ao aplicativo deve ser previamente verificado e refletido de forma consistente nesta política e no formulário de Segurança dos dados.
+<h2>7. Direitos do Titular dos Dados (Usuário)</h2>
+<p>Nos termos da LGPD e do GDPR, você pode:</p>
+<ul>
+  <li>Confirmar a existência do tratamento de dados</li>
+  <li>Acessar, corrigir ou atualizar seus dados</li>
+  <li>Revogar consentimentos dados</li>
+  <li>Solicitar a exclusão de sua conta e dados associados</li>
+  <li>Solicitar anonimização ou portabilidade</li>
+</ul>
+<p>Para exercê-los, envie um email para: <strong>privacidade@oratioapp.com.br</strong></p>
 
-## Suporte {#suporte}
+<h2>8. Proteção de Dados Pessoais</h2>
+<p>Adotamos as seguintes medidas de segurança:</p>
+<ul>
+  <li>Acesso restrito aos dados via autenticação segura</li>
+  <li>Criptografia de dados em trânsito e em repouso (via Firebase)</li>
+  <li>Servidores monitorados por terceiros confiáveis (Google Cloud)</li>
+  <li>Auditorias internas e controle de acesso</li>
+</ul>
 
-Quando o usuário entra em contato por e-mail ou pelo portal, podem ser tratados nome, endereço de e-mail, conteúdo da mensagem e informações técnicas voluntariamente fornecidas para investigar o problema, como versão do aplicativo, modelo do aparelho e versão do Android.
+<h2>9. Uso por Crianças e Adolescentes</h2>
+<p>O aplicativo não é destinado a menores de 13 anos. Se for identificado o uso indevido, a conta poderá ser encerrada ou limitada. Pais e responsáveis devem supervisionar o acesso.</p>
 
-O envio dessas informações é voluntário e deve limitar-se ao necessário. O usuário não deve encaminhar senhas, códigos de acesso, dados bancários, documentos completos ou informações sensíveis sem necessidade. O tratamento realizado pelo formulário web segue a [Política de Privacidade do Site]({{ '/privacidade/site/' | relative_url }}).
+<h2>10. Alterações nesta Política</h2>
+<p>Reservamo-nos o direito de modificar esta Política a qualquer momento. As mudanças serão notificadas dentro do aplicativo e/ou por email. O uso contínuo do app indica aceitação das atualizações.</p>
 
-## Compartilhamento e publicidade {#compartilhamento-e-publicidade}
+<h2>11. Usuários da União Europeia (GDPR)</h2>
+<p>Se você estiver localizado na União Europeia, o tratamento de seus dados segue também as disposições do GDPR. Você tem os direitos de:</p>
+<ul>
+  <li>Acesso e retificação</li>
+  <li>Portabilidade</li>
+  <li>Oposição e restrição ao tratamento</li>
+  <li>Exclusão definitiva dos dados</li>
+</ul>
+<p>O tratamento é feito com base nos Artigos 6(1)(a), 6(1)(b) e 6(1)(f) do GDPR. A transferência internacional está respaldada nos Artigos 44 a 49 do mesmo regulamento.</p>
 
-O Oratio não vende dados pessoais e não utiliza informações do aplicativo para publicidade comportamental. Dados podem ser processados por fornecedores de plataforma, distribuição, segurança ou suporte somente na medida necessária para oferecer os respectivos serviços.
-
-Se uma versão futura incorporar anúncios, análise de uso, relatórios automáticos de falha, sincronização ou qualquer SDK que transmita dados para terceiros, a mudança deverá ser informada nesta política e declarada corretamente na Google Play antes da publicação.
-
-## Retenção e exclusão {#retencao-e-exclusao}
-
-Dados armazenados apenas no aparelho permanecem até que o usuário os apague, limpe os dados do aplicativo ou desinstale o Oratio. Como o aplicativo não exige conta para os conteúdos principais, não existe conta remota a ser encerrada nesse fluxo.
-
-Mensagens de suporte são conservadas somente pelo período necessário para atendimento, acompanhamento, segurança e cumprimento de obrigações legítimas, conforme explicado na política do Site. Quando cabível, o usuário pode solicitar a eliminação de registros sob controle direto do Oratio.
-
-## Segurança {#seguranca}
-
-O Oratio procura reduzir o tratamento de dados, utilizar os mecanismos de segurança oferecidos pelo Android e limitar permissões ao necessário. O usuário também deve manter o sistema atualizado, instalar o aplicativo apenas por fonte oficial e proteger o próprio aparelho com os recursos de segurança disponíveis.
-
-Nenhum software ou serviço conectado pode garantir segurança absoluta. Informações excessivas ou sensíveis não devem ser enviadas pelos canais de suporte.
-
-## Direitos do usuário {#direitos}
-
-Nos limites da legislação aplicável, o usuário pode solicitar informações sobre dados que estejam sob controle do Oratio, correção de registros, eliminação quando cabível, esclarecimentos sobre compartilhamentos e outras providências legalmente previstas.
-
-Dados mantidos exclusivamente no aparelho devem ser administrados pelo próprio usuário por meio das opções do aplicativo ou das configurações do Android. O Oratio não consegue recuperar nem excluir remotamente informações às quais não possui acesso.
-
-## Atualizações e contato {#atualizacoes-e-contato}
-
-Esta política poderá ser atualizada quando o aplicativo receber novas funções, permissões, serviços externos ou práticas de tratamento. A versão vigente indicará número, data de atualização e início de vigência, enquanto as versões substituídas serão mantidas no [histórico público]({{ '/documentos-legais/historico/' | relative_url }}).
-
-Dúvidas e solicitações podem ser encaminhadas para **{{ site.data.site.email }}**, preferencialmente com o assunto **“Privacidade do App Android”**.
+<h2>12. Contato e Responsável pelo Tratamento</h2>
+<p>Se você tiver dúvidas, solicitações ou reclamações sobre esta Política de Privacidade ou sobre o uso dos seus dados, entre em contato:</p>
+<ul>
+  <li>📧 Email de contato: <strong>privacidade@oratioapp.com.br</strong></li>
+  <li>🛡️ Responsável: Apostolado Immaculata Mater Christi</li>
+</ul>

@@ -1,101 +1,126 @@
 ---
 layout: legal
-title: "Termos de Uso do App Android"
-description: "Estes termos estabelecem as condições para instalar e utilizar o aplicativo Oratio em dispositivos Android."
+title: "Termos de Uso do Oratio App"
+description: "Condições aplicáveis ao acesso e ao uso do aplicativo móvel Oratio."
 permalink: /termos/app/
 legal_kind: terms
 legal_environment: app
 legal_environment_label: "App Android"
 legal_status: current
-version: "2026.07.24"
-effective_date: "24 de julho de 2026"
-last_updated: "24 de julho de 2026"
-toc:
-  - id: identificacao-e-aceitacao
-    label: "Identificação e aceitação"
-  - id: finalidade-do-aplicativo
-    label: "Finalidade do aplicativo"
-  - id: licenca-de-uso
-    label: "Licença de uso"
-  - id: conteudos-e-orientacao
-    label: "Conteúdos e orientação"
-  - id: funcionamento-local
-    label: "Funcionamento local"
-  - id: atualizacoes-e-compatibilidade
-    label: "Atualizações e compatibilidade"
-  - id: uso-adequado
-    label: "Uso adequado"
-  - id: servicos-externos
-    label: "Serviços externos"
-  - id: disponibilidade-e-responsabilidade
-    label: "Disponibilidade e responsabilidade"
-  - id: privacidade
-    label: "Privacidade"
-  - id: alteracoes-e-contato
-    label: "Alterações e contato"
+version: "2025.07.20"
+effective_date: "20 de julho de 2025"
+last_updated: "20 de julho de 2025"
+preserve_document_title: true
 ---
-## Identificação e aceitação {#identificacao-e-aceitacao}
+<h1>Termos de Uso do Oratio App</h1>
+<p><strong>Última atualização: 20 de julho de 2025</strong></p>
 
-Estes Termos de Uso regulam a instalação e o uso do aplicativo **Oratio | App Católico** para Android, identificado pelo pacote **com.apostoladoimc.oratio** e mantido pelo apostolado **Immaculata Mater Christi**.
+<p>Esses Termos de Uso entrarão em vigor no dia 20 de julho de 2025. Para acessar os Termos anteriores a esta data, <a href="#">clique aqui</a>.</p>
 
-Ao instalar ou utilizar o aplicativo, o usuário declara ter lido e compreendido estas condições. O portal web possui [Termos de Uso próprios]({{ '/termos/site/' | relative_url }}).
+<p>Estes Termos de Uso (“Termos”) regem o uso do aplicativo móvel Oratio (“Aplicativo”), desenvolvido e mantido pelo Apostolado Immaculata Mater Christi. Ao utilizar o Aplicativo, você concorda integralmente com estes Termos. Caso não concorde, recomendamos que não utilize o serviço.</p>
 
-## Finalidade do aplicativo {#finalidade-do-aplicativo}
+<h2>1. Objetivo e Natureza do Aplicativo</h2>
+<p>O Oratio é um aplicativo católico gratuito, sem anúncios, criado com a missão de promover a fé, a oração e a espiritualidade no ambiente digital. Ele oferece:</p>
+<ul>
+  <li>Orações tradicionais e devocionais</li>
+  <li>Liturgia diária e Liturgia das Horas</li>
+  <li>Bíblia e outros livros católicos</li>
+  <li>Recursos como pedidos de oração, notificações, favoritos, lembretes e funcionalidades sociais</li>
+</ul>
+<p>Todo o conteúdo busca seguir a doutrina da Igreja Católica Apostólica Romana, conforme o Magistério e a Tradição.</p>
 
-O Oratio reúne recursos de oração, devoção, liturgia, Sagradas Escrituras, formação espiritual, santos e outros conteúdos católicos em uma experiência organizada para dispositivos Android.
+<h2>2. Cadastro e Acesso</h2>
+<p>Para utilizar as funcionalidades completas do aplicativo, é necessário criar uma conta com:</p>
+<ul>
+  <li>Nome</li>
+  <li>Email válido</li>
+  <li>Senha pessoal</li>
+</ul>
+<p>Opcionalmente, o usuário pode fornecer:</p>
+<ul>
+  <li>Foto de perfil</li>
+  <li>Cidade/Estado</li>
+  <li>Paróquia</li>
+  <li>Ocupação</li>
+  <li>Links para redes sociais</li>
+</ul>
+<p>Esses dados são tratados conforme a Política de Privacidade e servem para personalizar a experiência e permitir interação com a comunidade.</p>
 
-O aplicativo é oferecido gratuitamente, sem prejuízo de custos de internet, energia, equipamento ou serviços externos que sejam de responsabilidade do usuário.
+<h2>3. Coleta e Tratamento de Dados</h2>
+<p>Ao utilizar o aplicativo, você autoriza o tratamento de seus dados conforme a Política de Privacidade, incluindo:</p>
+<ul>
+  <li>Armazenamento seguro no Firebase (Google)</li>
+  <li>Processamento técnico para notificações, lembretes, sessões de oração, entre outros</li>
+  <li>Envio de emails obrigatórios, mesmo sem autorização para comunicações promocionais</li>
+</ul>
+<p>O tratamento está fundamentado na LGPD (Lei nº 13.709/2018) e, para usuários da União Europeia, no GDPR (Regulamento EU 2016/679).</p>
 
-## Licença de uso {#licenca-de-uso}
+<h2>4. Comunicações e Emails</h2>
+<p>Ao criar uma conta, você autoriza o envio de:</p>
+<ul>
+  <li>Comunicados obrigatórios, como mudanças técnicas e alertas importantes</li>
+  <li>Mensagens promocionais e espirituais, apenas se houver consentimento explícito</li>
+</ul>
+<p>O Oratio utiliza os serviços Brave e MailerSend para o envio desses emails, conforme descrito na Política de Privacidade.</p>
 
-O usuário recebe uma licença pessoal, limitada, revogável, não exclusiva e intransferível para instalar e utilizar o aplicativo em dispositivos compatíveis, conforme estes termos e as regras da Google Play.
+<h2>5. Integração com Apoia.se</h2>
+<p>O aplicativo permite, de forma opcional, a conexão com a plataforma Apoia.se, para que usuários apoiadores possam resgatar recompensas virtuais (ex: maior tempo de pedidos de oração).</p>
+<p>Essa integração ocorre somente mediante ação do usuário, por meio de autenticação via API oficial do Apoia.se. O aplicativo armazena permanentemente os dados obtidos dessa integração, como o valor e duração do apoio.</p>
 
-Essa licença não autoriza vender, sublicenciar, apresentar cópias modificadas como oficiais, remover avisos de autoria, utilizar a marca de forma enganosa, contornar mecanismos de segurança ou redistribuir materiais protegidos em desacordo com suas licenças.
+<h2>6. Propriedade Intelectual e Conteúdos</h2>
+<p>Todo o conteúdo do aplicativo (textos, layout, imagens, código, gráficos) pertence ao Apostolado Immaculata Mater Christi, salvo quando indicado o contrário.</p>
+<p><strong>Direitos autorais específicos:</strong></p>
+<ul>
+  <li>Textos litúrgicos: pertencem à CNBB (Conferência Nacional dos Bispos do Brasil)</li>
+  <li>Bíblia Ave Maria: propriedade da Editora Ave Maria</li>
+</ul>
+<p>Qualquer uso indevido, reprodução, cópia ou distribuição sem autorização é proibido.</p>
 
-A licença MIT eventualmente associada ao código-fonte indicado pelo projeto não transfere direitos sobre a marca Oratio, a identidade visual, os textos editoriais, imagens ou materiais de terceiros.
+<h2>7. Conteúdos Gerados por Usuários</h2>
+<p>Usuários podem publicar conteúdos dentro do aplicativo, como pedidos de oração, comentários ou dados no perfil público. É proibido postar:</p>
+<ul>
+  <li>Conteúdos contrários à fé e moral católica</li>
+  <li>Críticas ofensivas à Igreja, à doutrina, aos sacramentos ou figuras sagradas</li>
+  <li>Conteúdos políticos desvinculados dos princípios católicos</li>
+  <li>Linguagem ofensiva, discurso de ódio ou material discriminatório</li>
+</ul>
+<p>A moderação é realizada pela equipe do Oratio. Violações podem levar à remoção do conteúdo ou ao bloqueio da conta.</p>
 
-## Conteúdos e orientação {#conteudos-e-orientacao}
+<h2>8. Responsabilidades do Usuário</h2>
+<p>O usuário compromete-se a:</p>
+<ul>
+  <li>Fornecer informações verdadeiras em seu cadastro</li>
+  <li>Não compartilhar sua senha com terceiros</li>
+  <li>Respeitar os demais usuários e a doutrina da Igreja Católica Apostólica Romana dentro dos limites do aplicativo</li>
+  <li>Não utilizar o aplicativo para fins ilícitos, comerciais ou fraudulentos</li>
+</ul>
 
-Os conteúdos possuem finalidade espiritual, informativa e formativa. O aplicativo não substitui os livros litúrgicos vigentes, edições oficialmente aprovadas das Sagradas Escrituras, documentos da Igreja, orientação de autoridade eclesiástica competente, acompanhamento pastoral ou atendimento profissional quando necessário.
+<h2>9. Limitação de Responsabilidade</h2>
+<p>O Apostolado Immaculata Mater Christi não se responsabiliza por:</p>
+<ul>
+  <li>Perdas decorrentes de uso indevido do aplicativo</li>
+  <li>Conteúdos gerados por terceiros (inclusive usuários)</li>
+  <li>Interrupções, falhas técnicas ou perda de dados por causas alheias à sua vontade</li>
+</ul>
+<p>O aplicativo pode sofrer alterações a qualquer momento.</p>
 
-Datas, celebrações, traduções e roteiros podem variar conforme calendário, território, rito, edição ou atualização. Quando a precisão normativa ou litúrgica for essencial, o usuário deve consultar as fontes oficiais aplicáveis.
+<h2>10. Moderação e Remoção de Acesso</h2>
+<p>O Oratio reserva-se o direito de:</p>
+<ul>
+  <li>Remover conteúdos que infrinjam estes Termos</li>
+  <li>Suspender ou excluir contas que reiterem violações</li>
+  <li>Bloquear funcionalidades a usuários que usem o app de forma indevida</li>
+</ul>
 
-## Funcionamento local {#funcionamento-local}
+<h2>11. Alterações nos Termos</h2>
+<p>Estes Termos de Uso podem ser atualizados periodicamente. Os usuários serão notificados via aplicativo e/ou email. O uso contínuo do aplicativo após tais mudanças implicará aceitação dos novos termos.</p>
 
-O aplicativo pode guardar no aparelho preferências, favoritos, progresso, lembretes, configurações e conteúdos necessários aos recursos escolhidos. O usuário é responsável por manter cópias de informações que considere importantes quando não houver sincronização ou exportação disponível.
+<h2>12. Legislação e Foro</h2>
+<p>Estes Termos são regidos pelas leis da República Federativa do Brasil. Qualquer controvérsia será resolvida no foro da comarca onde está sediado o controlador dos dados.</p>
 
-A limpeza dos dados, a troca do aparelho, a redefinição do sistema ou a desinstalação podem remover informações armazenadas localmente, sem possibilidade de recuperação pelo Oratio.
-
-## Atualizações e compatibilidade {#atualizacoes-e-compatibilidade}
-
-O Oratio pode receber atualizações para corrigir erros, melhorar desempenho, adaptar-se a novas versões do Android, revisar conteúdos ou acrescentar e remover recursos. Algumas funções podem depender de versão mínima do sistema, conexão com a internet, componentes da Google Play ou permissões concedidas pelo usuário.
-
-Versões antigas podem deixar de receber suporte ou tornar-se incompatíveis por motivos técnicos, de segurança ou de plataforma. O usuário deve instalar atualizações por fonte oficial e manter o aparelho protegido.
-
-## Uso adequado {#uso-adequado}
-
-O aplicativo deve ser utilizado de forma lícita, respeitosa e compatível com sua finalidade. Não é permitido explorar vulnerabilidades, adulterar o aplicativo para enganar terceiros, distribuir versões não autorizadas como oficiais, tentar acessar recursos protegidos ou utilizar conteúdos e identidade visual em violação de direitos.
-
-Problemas de segurança devem ser comunicados de maneira responsável pelo canal oficial, sem divulgação que aumente riscos para outros usuários antes que a situação possa ser analisada.
-
-## Serviços externos {#servicos-externos}
-
-O aplicativo pode abrir links, páginas, lojas e recursos mantidos por terceiros, incluindo Google Play e serviços acessados pelo navegador. Esses serviços possuem disponibilidade, regras, políticas e práticas próprias.
-
-O Oratio não controla integralmente alterações realizadas por plataformas externas e não pode garantir que todos os links permaneçam disponíveis de forma contínua.
-
-## Disponibilidade e responsabilidade {#disponibilidade-e-responsabilidade}
-
-O aplicativo é fornecido como auxílio para a vida espiritual e pode apresentar interrupções, erros, incompatibilidades ou diferenças de conteúdo. O Oratio procurará corrigir problemas relevantes dentro de suas possibilidades, mas não garante funcionamento ininterrupto em todos os aparelhos, versões do Android ou condições de rede.
-
-Nada nestes termos exclui direitos que não possam ser afastados pela legislação aplicável. Dentro dos limites legais, o usuário permanece responsável pelas decisões tomadas a partir do uso do aplicativo e pela proteção do próprio dispositivo.
-
-## Privacidade {#privacidade}
-
-As práticas relacionadas a dados locais, permissões, serviços da plataforma, suporte e direitos do usuário são explicadas na [Política de Privacidade do App Android]({{ '/privacidade/app/' | relative_url }}), que integra estes termos no que se refere à proteção de dados.
-
-## Alterações e contato {#alteracoes-e-contato}
-
-Estes termos poderão ser atualizados quando houver mudanças relevantes no aplicativo, na plataforma, nas licenças ou nas obrigações aplicáveis. A versão vigente apresentará número e datas, e as versões substituídas permanecerão disponíveis no [histórico público]({{ '/documentos-legais/historico/' | relative_url }}).
-
-Dúvidas e comunicações relacionadas ao aplicativo podem ser encaminhadas para **{{ site.data.site.email }}**.
+<h2>13. Contato</h2>
+<p>Em caso de dúvidas ou sugestões sobre estes Termos de Uso, entre em contato:</p>
+<ul>
+  <li>📧 Email: <strong>contato@oratioapp.com.br</strong></li>
+  <li>🛡️ Responsável: Apostolado Immaculata Mater Christi</li>
+</ul>
