@@ -1,0 +1,60 @@
+---
+layout: default
+---
+<main id="main-content" class="page-shell legal-center-page">
+  <div class="container container--large">
+    {% include breadcrumb.html %}
+
+    <header class="page-header legal-center-header">
+      <p class="eyebrow">Transparência e responsabilidade</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+    </header>
+
+    <section class="legal-center-intro" aria-label="Como os documentos estão organizados">
+      <div>
+        <span class="legal-center-intro__number">2</span>
+        <p><strong>Ambientes independentes</strong><br>Site e aplicativo Android possuem documentos próprios.</p>
+      </div>
+      <div>
+        <span class="legal-center-intro__number">4</span>
+        <p><strong>Documentos vigentes</strong><br>Uma política e um termo para cada ambiente.</p>
+      </div>
+      <div>
+        <span class="legal-center-intro__number">1</span>
+        <p><strong>Histórico permanente</strong><br>Versões substituídas continuam disponíveis para consulta.</p>
+      </div>
+    </section>
+
+    {% for environment_entry in site.data.legal.environments %}
+      {% assign environment_key = environment_entry[0] %}
+      {% assign environment = environment_entry[1] %}
+      {% assign privacy = site.data.legal.current.privacy[environment_key] %}
+      {% assign terms = site.data.legal.current.terms[environment_key] %}
+
+      <section class="legal-environment-section" aria-labelledby="legal-environment-{{ environment_key }}">
+        <header class="legal-environment-section__header">
+          <div>
+            <p class="eyebrow">{{ environment.eyebrow }}</p>
+            <h2 id="legal-environment-{{ environment_key }}">{{ environment.label }}</h2>
+            <p>{{ environment.description }}</p>
+          </div>
+        </header>
+
+        <div class="legal-environment-grid">
+          {% include legal-document-card.html document=privacy environment=environment %}
+          {% include legal-document-card.html document=terms environment=environment %}
+        </div>
+      </section>
+    {% endfor %}
+
+    <section class="legal-history-callout">
+      <div>
+        <p class="eyebrow">Arquivo jurídico</p>
+        <h2>Versões anteriores permanecem acessíveis</h2>
+        <p>Quando um documento é atualizado, sua versão anterior não é apagada. Ela recebe identificação de versão substituída, conserva a data em que esteve vigente e passa a integrar o histórico público do Oratio.</p>
+      </div>
+      <a class="button button--primary" href="{{ '/documentos-legais/historico/' | relative_url }}">Consultar o histórico</a>
+    </section>
+  </div>
+</main>

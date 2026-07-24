@@ -1,11 +1,101 @@
 ---
 layout: default
 ---
-<div class="container container--large page-shell">
-  {% include breadcrumb.html %}
-  <header class="page-header"><p class="eyebrow">Documento institucional</p><h1>{{ page.title }}</h1><p class="page-lead">{{ page.description }}</p>{% if page.last_updated %}<p class="content-byline">Última atualização: {{ page.last_updated }}</p>{% endif %}</header>
-  <div class="legal-layout">
-    {% if page.toc %}<nav class="legal-toc" aria-label="Sumário"><strong>Nesta página</strong><ol>{% for item in page.toc %}<li><a href="#{{ item.id }}">{{ item.label }}</a></li>{% endfor %}</ol></nav>{% endif %}
-    <article class="prose legal-content">{{ content }}</article>
+{% assign environment_data = site.data.legal.environments[page.legal_environment] %}
+{% assign current_privacy = site.data.legal.current.privacy[page.legal_environment] %}
+{% assign current_terms = site.data.legal.current.terms[page.legal_environment] %}
+
+<main id="main-content" class="page-shell legal-page">
+  <div class="container container--large">
+    {% include breadcrumb.html %}
+
+    <header class="legal-header">
+      <div class="legal-header__badges">
+        <span class="chip">{{ page.legal_environment_label | default: environment_data.label }}</span>
+        {% if page.legal_status == 'archived' %}
+          <span class="legal-status legal-status--archived">Versão substituída</span>
+        {% else %}
+          <span class="legal-status legal-status--current">Documento vigente</span>
+        {% endif %}
+      </div>
+
+      <div class="legal-header__copy">
+        <p class="eyebrow">Documento institucional</p>
+        <h1>{{ page.title }}</h1>
+        <p class="page-lead">{{ page.description }}</p>
+      </div>
+
+      <dl class="legal-metadata">
+        {% if page.version %}
+          <div>
+            <dt>Versão</dt>
+            <dd>{{ page.version }}</dd>
+          </div>
+        {% endif %}
+        {% if page.effective_date %}
+          <div>
+            <dt>Vigência</dt>
+            <dd>{{ page.effective_date }}</dd>
+          </div>
+        {% endif %}
+        {% if page.last_updated %}
+          <div>
+            <dt>Última atualização</dt>
+            <dd>{{ page.last_updated }}</dd>
+          </div>
+        {% endif %}
+        {% if page.superseded_at %}
+          <div>
+            <dt>Substituída em</dt>
+            <dd>{{ page.superseded_at }}</dd>
+          </div>
+        {% endif %}
+      </dl>
+    </header>
+
+    {% if page.legal_status == 'archived' %}
+      <aside class="notice notice--warning legal-archive-notice" aria-label="Aviso sobre versão anterior">
+        <strong>Esta versão permanece disponível apenas para consulta histórica.</strong>
+        <p>Ela não representa os documentos atualmente vigentes. Consulte as políticas e os termos atuais antes de utilizar o Site ou o aplicativo Android.</p>
+        <div class="legal-inline-actions">
+          <a class="button button--primary button--small" href="{{ '/documentos-legais/' | relative_url }}">Ver documentos vigentes</a>
+          <a class="button button--text button--small" href="{{ '/documentos-legais/historico/' | relative_url }}">Voltar ao histórico</a>
+        </div>
+      </aside>
+    {% endif %}
+
+    <div class="legal-layout">
+      {% if page.toc %}
+        <aside class="legal-toc" aria-label="Índice do documento">
+          <strong>Neste documento</strong>
+          <ol>
+            {% for item in page.toc %}
+              <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+            {% endfor %}
+          </ol>
+        </aside>
+      {% endif %}
+
+      <article class="prose legal-document">
+        {{ content }}
+      </article>
+    </div>
+
+    {% if page.legal_status != 'archived' %}
+      <section class="legal-related" aria-labelledby="legal-related-title">
+        <div>
+          <p class="eyebrow">Documentos relacionados</p>
+          <h2 id="legal-related-title">Consulte também</h2>
+        </div>
+        <div class="legal-related__links">
+          {% if page.legal_kind == 'privacy' and current_terms %}
+            <a class="button button--tonal" href="{{ current_terms.url | relative_url }}">Termos de Uso deste ambiente</a>
+          {% elsif page.legal_kind == 'terms' and current_privacy %}
+            <a class="button button--tonal" href="{{ current_privacy.url | relative_url }}">Política de Privacidade deste ambiente</a>
+          {% endif %}
+          <a class="button button--text" href="{{ '/documentos-legais/historico/' | relative_url }}">Consultar versões anteriores</a>
+        </div>
+      </section>
+    {% endif %}
   </div>
-</div>
+</main>

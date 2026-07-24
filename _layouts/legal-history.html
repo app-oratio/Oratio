@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<main id="main-content" class="page-shell legal-history-page">
+  <div class="container container--large">
+    {% include breadcrumb.html %}
+
+    <header class="page-header legal-history-header">
+      <p class="eyebrow">Arquivo jurídico</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+    </header>
+
+    <aside class="notice legal-history-notice">
+      <strong>Os documentos listados nesta página não estão mais em vigor.</strong>
+      <p>Eles são preservados para transparência, comparação e comprovação do texto aplicável em períodos anteriores.</p>
+    </aside>
+
+    <section class="legal-history-list" aria-label="Versões anteriores">
+      {% for document in site.data.legal.archive %}
+        <article class="legal-history-item">
+          <div class="legal-history-item__main">
+            <div class="legal-history-item__badges">
+              <span class="chip">{{ document.environment_label }}</span>
+              <span class="legal-status legal-status--archived">Substituída</span>
+            </div>
+            <h2>{{ document.title }}</h2>
+            <p>{{ document.summary }}</p>
+          </div>
+          <dl class="legal-history-item__meta">
+            <div>
+              <dt>Versão</dt>
+              <dd>{{ document.version }}</dd>
+            </div>
+            <div>
+              <dt>Publicada em</dt>
+              <dd>{{ document.published_at }}</dd>
+            </div>
+            <div>
+              <dt>Substituída em</dt>
+              <dd>{{ document.superseded_at }}</dd>
+            </div>
+          </dl>
+          <a class="button button--tonal button--small" href="{{ document.url | relative_url }}">Consultar esta versão</a>
+        </article>
+      {% endfor %}
+    </section>
+
+    <div class="legal-history-footer">
+      <a class="button button--primary" href="{{ '/documentos-legais/' | relative_url }}">Voltar aos documentos vigentes</a>
+    </div>
+  </div>
+</main>

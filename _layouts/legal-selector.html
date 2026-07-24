@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{% assign labels = site.data.legal.labels[page.legal_kind] %}
+{% assign documents = site.data.legal.current[page.legal_kind] %}
+
+<main id="main-content" class="page-shell legal-selector-page">
+  <div class="container container--large">
+    {% include breadcrumb.html %}
+
+    <header class="page-header legal-selector-header">
+      <p class="eyebrow">Documentos legais do Oratio</p>
+      <h1>{{ labels.selector_title }}</h1>
+      <p class="page-lead">{{ labels.selector_description }}</p>
+    </header>
+
+    <section class="legal-environment-grid" aria-label="Ambientes disponíveis">
+      {% for environment_entry in site.data.legal.environments %}
+        {% assign environment_key = environment_entry[0] %}
+        {% assign environment = environment_entry[1] %}
+        {% assign document = documents[environment_key] %}
+        {% if document %}
+          {% include legal-document-card.html document=document environment=environment %}
+        {% endif %}
+      {% endfor %}
+    </section>
+
+    <aside class="legal-selector-help">
+      <div>
+        <p class="eyebrow">Por que existem documentos separados?</p>
+        <h2>Cada ambiente trata informações e oferece recursos diferentes</h2>
+        <p>O Site utiliza tecnologias próprias da navegação web e do formulário de contato, enquanto o aplicativo funciona dentro do Android e pode utilizar armazenamento local, permissões, notificações e serviços da plataforma. A separação evita que informações de um ambiente sejam apresentadas como se também se aplicassem ao outro.</p>
+      </div>
+      <div class="legal-inline-actions">
+        <a class="button button--primary" href="{{ '/documentos-legais/' | relative_url }}">Abrir o centro jurídico</a>
+        <a class="button button--text" href="{{ '/documentos-legais/historico/' | relative_url }}">Ver versões anteriores</a>
+      </div>
+    </aside>
+  </div>
+</main>
