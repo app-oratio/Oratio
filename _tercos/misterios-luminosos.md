@@ -5,7 +5,7 @@ description: "Contemplamos os mistérios da vida de Jesus Cristo por meio desta 
 category: "Mistérios do Rosário"
 prayer_beads_type: "Terço"
 sequence_title: "Santo Terço - Mistérios Luminosos"
-image: "https://imcimage.weebly.com/uploads/1/4/4/8/144864775/5-mist-rio-luminoso-20240806-143231-0017_orig.png"
+image: "/assets/images/tercos/misterios-luminosos.png"
 image_alt: "Santo Terço - Mistérios Luminosos"
 default_language: "pt"
 language_toggle: false
