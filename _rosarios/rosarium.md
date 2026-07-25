@@ -5,7 +5,7 @@ description: "O Santo Rosário, especialmente rezado em latim, nos une profundam
 category: "Rosários completos"
 prayer_beads_type: "Rosário"
 sequence_title: "Rosarium"
-image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPGjyTEbATNM80Yak_DBEE9hBTyyRGC2Ewuw&usqp=CAU"
+image: "assets/images/rosarios/rosarium.png"
 image_alt: "Rosarium"
 default_language: "la"
 language_toggle: false
