@@ -5,7 +5,7 @@ description: "O Santo Rosário, especialmente rezado em latim, nos une profundam
 category: "Mistérios do Rosário"
 prayer_beads_type: "Terço"
 sequence_title: "Mysteria Gaudiosa"
-image: "https://imcimage.weebly.com/uploads/1/4/4/8/144864775/1-mist-rio-gozoso-20240806-143230-0008_orig.png"
+image: "/assets/images/tercos/mysteria-gauriosa.png"
 image_alt: "Mysteria Gaudiosa"
 default_language: "la"
 language_toggle: false
