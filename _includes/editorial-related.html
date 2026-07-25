@@ -1,0 +1,52 @@
+{% assign related_type = include.type | default: 'Conteúdo' %}
+{% assign related_items = empty %}
+{% if page.related and page.related.size > 0 %}
+  {% if page.layout == 'post' %}
+    {% assign related_pool = site.posts %}
+  {% else %}
+    {% assign related_pool = site.formacoes %}
+  {% endif %}
+  {% capture explicit_cards %}
+    {% assign explicit_count = 0 %}
+    {% for related_slug in page.related %}
+      {% if explicit_count < 3 %}
+        {% assign related_item = related_pool | where: 'slug', related_slug | first %}
+        {% if related_item and related_item.url != page.url %}
+          {% include editorial-card.html item=related_item type=related_type %}
+          {% assign explicit_count = explicit_count | plus: 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  {% if explicit_count > 0 %}
+  <section class="editorial-related" aria-labelledby="editorial-related-title">
+    <div class="section-heading"><div><p class="eyebrow">Continue explorando</p><h2 id="editorial-related-title">Conteúdos relacionados</h2></div></div>
+    <div class="card-grid card-grid--3">{{ explicit_cards }}</div>
+  </section>
+  {% endif %}
+{% else %}
+  {% assign current_category = page.category %}
+  {% if current_category == nil or current_category == empty %}{% assign current_category = page.categories | first %}{% endif %}
+  {% if current_category %}
+    {% if page.layout == 'post' %}
+      {% assign related_items = site.categories[current_category] %}
+    {% else %}
+      {% assign related_items = site.formacoes | where: 'category', current_category | sort: 'date' | reverse %}
+    {% endif %}
+    {% assign fallback_count = 0 %}
+    {% capture fallback_cards %}
+      {% for related_item in related_items %}
+        {% if related_item.url != page.url and fallback_count < 3 %}
+          {% include editorial-card.html item=related_item type=related_type %}
+          {% assign fallback_count = fallback_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% if fallback_count > 0 %}
+    <section class="editorial-related" aria-labelledby="editorial-related-title">
+      <div class="section-heading"><div><p class="eyebrow">No mesmo assunto</p><h2 id="editorial-related-title">Outras leituras</h2></div></div>
+      <div class="card-grid card-grid--3">{{ fallback_cards }}</div>
+    </section>
+    {% endif %}
+  {% endif %}
+{% endif %}

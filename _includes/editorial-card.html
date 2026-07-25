@@ -1,0 +1,43 @@
+{% assign card = include.item %}
+{% assign card_category = card.category %}
+{% if card_category == nil or card_category == empty %}{% assign card_category = card.categories | first %}{% endif %}
+{% assign card_type = include.type | default: 'Conteúdo' %}
+{% assign card_description = card.description | default: card.excerpt %}
+{% assign card_image_alt = card.image_alt | default: card.title %}
+{% assign card_words = card.content | number_of_words %}
+{% assign card_reading_time = card_words | divided_by: 200 | plus: 1 %}
+
+<article class="editorial-card{% if include.featured %} editorial-card--featured{% endif %}{% if card.demo %} editorial-card--demo{% endif %}">
+  <a class="editorial-card__media image-shell" href="{{ card.url | relative_url }}" tabindex="-1" aria-hidden="true" data-image-shell>
+    {% if card.image %}
+      <img src="{{ card.image | relative_url }}" alt="" width="720" height="450" {% unless include.featured %}loading="lazy"{% endunless %} decoding="async" data-fallback-image>
+      <span class="image-placeholder" hidden><span aria-hidden="true">✢</span><small>{{ card_type }}</small></span>
+    {% else %}
+      <span class="image-placeholder"><span aria-hidden="true">✢</span><small>{{ card_type }}</small></span>
+    {% endif %}
+  </a>
+
+  <div class="editorial-card__body">
+    <div class="editorial-card__topline">
+      <span class="chip">{{ card_category | default: card_type }}</span>
+      {% if card.demo %}<span class="editorial-card__status">Exemplo</span>{% endif %}
+    </div>
+
+    <h3><a href="{{ card.url | relative_url }}">{{ card.title }}</a></h3>
+    {% if card_description %}<p>{{ card_description | strip_html | truncate: 165 }}</p>{% endif %}
+
+    <div class="editorial-card__meta">
+      {% if card.date %}<time datetime="{{ card.date | date_to_xmlschema }}">{{ card.date | date: '%d/%m/%Y' }}</time>{% endif %}
+      <span>{{ card_reading_time }} min de leitura</span>
+      {% if card.author %}<span>{{ card.author }}</span>{% endif %}
+    </div>
+
+    {% if card.tags and card.tags.size > 0 %}
+    <ul class="editorial-card__tags" aria-label="Temas">
+      {% for tag in card.tags limit: 2 %}<li>{{ tag }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    <a class="card-link" href="{{ card.url | relative_url }}" aria-label="Abrir {{ card.title | escape }}">Ler conteúdo <span aria-hidden="true">→</span></a>
+  </div>
+</article>

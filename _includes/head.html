@@ -5,14 +5,9 @@
 
 <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-
-{% if page.layout == 'app-page' %}
-<link rel="stylesheet" href="{{ '/assets/css/app-page.css' | relative_url }}">
-{% endif %}
-
-{% if page.layout == 'resources-page' %}
-<link rel="stylesheet" href="{{ '/assets/css/resources-page.css' | relative_url }}">
-{% endif %}
+{% if page.layout == 'app-page' %}<link rel="stylesheet" href="{{ '/assets/css/app-page.css' | relative_url }}">{% endif %}
+{% if page.layout == 'resources-page' %}<link rel="stylesheet" href="{{ '/assets/css/resources-page.css' | relative_url }}">{% endif %}
+{% if page.editorial or page.layout == 'post' or page.layout == 'formation' or page.layout == 'editorial-archive' %}<link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">{% endif %}
 
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
@@ -31,7 +26,6 @@
 {% endif %}
 
 {% seo %}
-
 {% if inherited_social_image %}
 <meta property="og:image" content="{{ inherited_social_image | absolute_url }}">
 <meta property="og:image:secure_url" content="{{ inherited_social_image | absolute_url }}">
@@ -52,17 +46,23 @@
 }
 </script>
 
-{% if page.layout == 'post' %}
+{% if page.layout == 'post' or page.layout == 'formation' %}
+{% assign schema_type = 'Article' %}
+{% if page.layout == 'post' %}{% assign schema_type = 'BlogPosting' %}{% endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": {{ schema_type | jsonify }},
   "headline": {{ page.title | jsonify }},
   "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
-  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
   "author": {"@type": "Organization", "name": {{ page.author | default: site.author.name | jsonify }}},
+  "publisher": {"@type": "Organization", "name": {{ site.data.site.organization_name | default: site.title | jsonify }}, "logo": {"@type": "ImageObject", "url": {{ '/assets/images/branding/oratio-logo.png' | absolute_url | jsonify }}}},
   "mainEntityOfPage": {{ page.url | absolute_url | jsonify }},
-  "image": {{ page.image | default: '/assets/images/social/og-default.webp' | absolute_url | jsonify }}
+  "image": {{ page.image | default: '/assets/images/social/og-default.webp' | absolute_url | jsonify }}{% if page.date %},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }}{% endif %}{% if page.tags and page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ', ' | jsonify }}{% elsif page.keywords and page.keywords.size > 0 %},
+  "keywords": {{ page.keywords | join: ', ' | jsonify }}{% endif %}
 }
 </script>
 {% endif %}
