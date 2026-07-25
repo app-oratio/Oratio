@@ -5,7 +5,7 @@ description: "O Rosário é uma poderosa arma espiritual e uma verdadeira escola
 category: "Mistérios do Rosário"
 prayer_beads_type: "Terço"
 sequence_title: "Santo Terço - Mistérios Gozosos"
-image: "https://imcimage.weebly.com/uploads/1/4/4/8/144864775/1-mist-rio-gozoso-20240806-143230-0008_orig.png"
+image: "/assets/images/tercos/misterios-gozosos.png"
 image_alt: "Santo Terço - Mistérios Gozosos"
 default_language: "pt"
 language_toggle: false
