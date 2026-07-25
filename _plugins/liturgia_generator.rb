@@ -267,12 +267,14 @@ module Oratio
         days.each_with_index do |day, index|
           previous = index.positive? ? days[index - 1] : nil
           following = index < days.length - 1 ? days[index + 1] : nil
-          day["previous_day"] = previous
-          day["next_day"] = following
+          day["previous_day"] = compact_day_link(previous)
+          day["next_day"] = compact_day_link(following)
 
           day["hours"].each_with_index do |hour, hour_index|
-            hour["previous_hour"] = hour_index.positive? ? day["hours"][hour_index - 1] : nil
-            hour["next_hour"] = hour_index < day["hours"].length - 1 ? day["hours"][hour_index + 1] : nil
+            previous_hour = hour_index.positive? ? day["hours"][hour_index - 1] : nil
+            next_hour = hour_index < day["hours"].length - 1 ? day["hours"][hour_index + 1] : nil
+            hour["previous_hour"] = compact_hour_link(previous_hour)
+            hour["next_hour"] = compact_hour_link(next_hour)
           end
         end
       end
@@ -298,7 +300,7 @@ module Oratio
           "description" => "Leituras e orações da liturgia diária de #{day['date_long']}, com informações do calendário litúrgico e acesso à Liturgia das Horas.",
           "search_type" => "Liturgia diária",
           "mass_sections" => day["mass_sections"],
-          "hours" => day["hours"],
+          "hours" => public_hours(day["hours"]),
           "hours_day_url" => day["hours_url"],
           "breadcrumb_parent" => { "label" => "Liturgia diária", "url" => "/liturgia/" }
         )
@@ -312,7 +314,7 @@ module Oratio
           "title" => "Liturgia das Horas: #{day['celebration']}",
           "description" => "Ofício das Leituras, Laudes, Horas Menores, Vésperas e Completas de #{day['date_long']}.",
           "search_type" => "Liturgia das Horas",
-          "hours" => day["hours"],
+          "hours" => public_hours(day["hours"]),
           "daily_page_url" => day["daily_url"],
           "invitatory_url" => day["invitatory_exists"] ? invitatory_url(day["date"]) : nil,
           "breadcrumb_parent" => { "label" => "Liturgia das Horas", "url" => "/liturgia-das-horas/" }
@@ -332,7 +334,7 @@ module Oratio
             "search_type" => "Liturgia das Horas",
             "image" => hour["cover"],
             "image_alt" => hour["image_alt"],
-            "hour" => hour,
+            "hour" => public_hour(hour),
             "hour_slug" => hour["slug"],
             "hour_short_title" => hour["short_title"],
             "previous_hour" => hour["previous_hour"],
@@ -400,8 +402,8 @@ module Oratio
           "celebration" => day["celebration"],
           "liturgical" => day["liturgical"],
           "available_days" => available_days,
-          "previous_day" => compact_day_link(day["previous_day"]),
-          "next_day" => compact_day_link(day["next_day"]),
+          "previous_day" => day["previous_day"],
+          "next_day" => day["next_day"],
           "image" => day["liturgical"]["color_image"],
           "image_alt" => "Cor litúrgica #{day['liturgical']['color_label']}",
           "search" => true,
@@ -417,6 +419,32 @@ module Oratio
           "date_short" => day["date_short"],
           "daily_url" => day["daily_url"],
           "hours_url" => day["hours_url"]
+        }
+      end
+
+      def compact_hour_link(hour)
+        return nil unless hour
+
+        {
+          "slug" => hour["slug"],
+          "short_title" => hour["short_title"],
+          "title" => hour["title"],
+          "url" => hour["url"]
+        }
+      end
+
+      def public_hours(hours)
+        hours.map { |hour| public_hour(hour) }
+      end
+
+      def public_hour(hour)
+        {
+          "slug" => hour["slug"],
+          "short_title" => hour["short_title"],
+          "title" => hour["title"],
+          "cover" => hour["cover"],
+          "image_alt" => hour["image_alt"],
+          "url" => hour["url"]
         }
       end
 
