@@ -1,23 +1,24 @@
 ---
-title: "Mysteria Dolorosa"
-slug: "mysteria-dolorosa"
-description: "O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja."
-category: "Mistérios do Rosário"
-prayer_beads_type: "Terço"
-sequence_title: "Mysteria Dolorosa"
-image: "https://imcimage.weebly.com/uploads/1/4/4/8/144864775/4-mist-rio-doloroso-20240806-143232-0021_orig.png"
-image_alt: "Mysteria Dolorosa"
-default_language: "la"
+title: Mysteria Dolorosa
+slug: mysteria-dolorosa
+description: O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja. O latim exprime a unidade e a universalidade da fé, permitindo que nossa oração alcance o Céu com a mesma beleza e reverência que por séculos marcaram a vida espiritual dos santos da Igreja.
+category: Mistérios do Rosário
+prayer_beads_type: Terço
+sequence_title: Mistérios e orações
+image: /assets/images/tercos/mysteria-dolorosa.png
+image_alt: Capa de Mysteria Dolorosa
+default_language: la
 language_toggle: false
 search: true
 sections:
 - id: orationes-initiales
   title: Orationes initiales
   prayers:
-  - id: orationes-initiales-signum-crucis-1
+  - id: orationes-initiales-signum-crucis
     label: Signum Crucis
     common_prayer: sinal-da-cruz
-  - id: orationes-initiales-credo-2
+    default_language: la
+  - id: orationes-initiales-credo
     label: Credo
     prayer: |-
       Credo in Deum Patrem omnipoténtem,
@@ -40,271 +41,278 @@ sections:
       carnis resurrectiónem,
       vitam ætérnam.
       Amen.
-  - id: orationes-initiales-pater-noster-3
+  - id: orationes-initiales-pater-noster
     label: Pater Noster
     common_prayer: pai-nosso
-  - id: orationes-initiales-ave-maria-1-4
-    label: Ave Maria - 1
+    default_language: la
+  - id: orationes-initiales-ave-maria
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: orationes-initiales-ave-maria-2-5
-    label: Ave Maria - 2
+  - id: orationes-initiales-ave-maria-2
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: orationes-initiales-ave-maria-3-6
-    label: Ave Maria - 3
+  - id: orationes-initiales-ave-maria-3
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: orationes-initiales-gloria-patri-7
+  - id: orationes-initiales-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: orationes-initiales-oratio-8
+    default_language: la
+  - id: orationes-initiales-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: orationes-initiales-oratio-9
+  - id: orationes-initiales-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat
+- id: primum-mysterium-iesus-in-horto-gethsemani-orat
+  kicker: Evangelium secundum Lucam 22,39-45
   title: 'Primum mysterium: Iesus in horto Gethsémani orat'
-  kicker: Mysteria Dolorosa
-  theme: Evangelium secundum Lucam 22,39-45
   prayers:
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-evangelium-secundum-lucam-22-39-45-1
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-evangelium-secundum-lucam-22-39-45
     label: Evangelium secundum Lucam 22,39-45
     prayer: |-
-      39. Conforme o seu costume, Jesus saiu dali e dirigiu-se para o monte das Oliveiras, seguido dos seus discípulos.
-      40. Ao chegar àquele lugar, disse-lhes: “Orai para que não caiais em tentação”.
-      41. Depois se afastou deles à distância de um tiro de pedra e, ajoelhando-se, orava:
-      42. “Pai, se é de teu agrado, afasta de mim este cálice! Não se faça, todavia, a minha vontade, mas sim a tua”.
-      43. Apareceu-lhe então um anjo do céu para confortá-lo.
-      44. Ele entrou em agonia e orava ainda com mais instância, e seu suor tornou-se como gotas de sangue a escorrer pela terra.
-      45. Depois de ter rezado, levantou-se, foi ter com os discípulos e achou-os adormecidos de tristeza.
+      39\. Conforme o seu costume, Jesus saiu dali e dirigiu-se para o monte das Oliveiras, seguido dos seus discípulos.
+      40\. Ao chegar àquele lugar, disse-lhes: “Orai para que não caiais em tentação”.
+      41\. Depois se afastou deles à distância de um tiro de pedra e, ajoelhando-se, orava:
+      42\. “Pai, se é de teu agrado, afasta de mim este cálice! Não se faça, todavia, a minha vontade, mas sim a tua”.
+      43\. Apareceu-lhe então um anjo do céu para confortá-lo.
+      44\. Ele entrou em agonia e orava ain­da com mais instância, e seu suor tornou-se como gotas de sangue a escorrer pela terra.
+      45\. Depois de ter rezado, levantou-se, foi ter com os discípulos e achou-os adormecidos de tristeza.
     prayer-latin: |-
-      39. Et egressus ibat secundum consuetudinem in montem Olivarum; secuti sunt autem illum et discipuli.
-      40. Et cum pervenisset ad locum, dixit illis: “Orate, ne intretis in tentationem”.
-      41. Et ipse avulsus est ab eis, quantum iactus est lapidis, et, positis genibus, orabat
-      42. dicens: “Pater, si vis, transfer calicem istum a me; verumtamen non mea voluntas sed tua fiat”.
-      43. Apparuit autem illi angelus de caelo confortans eum. Et factus in agonia prolixius orabat.
-      44. Et factus est sudor eius sicut guttae sanguinis decurrentis in terram.
-      45. Et cum surrexisset ab oratione et venisset ad discipulos, invenit eos dormientes prae tristitia.
+      39\. Et egressus ibat secundum consuetudinem in montem Olivarum; secuti sunt autem illum et discipuli.
+      40\. Et cum pervenisset ad locum, dixit illis: “Orate, ne intretis in tentationem”.
+      41\. Et ipse avulsus est ab eis, quantum iactus est lapidis, et, positis genibus, orabat
+      42\. dicens: “Pater, si vis, transfer calicem istum a me; verumtamen non mea voluntas sed tua fiat”.
+      43\. Apparuit autem illi angelus de caelo confortans eum. Et factus in agonia prolixius orabat.
+      44\. Et factus est sudor eius sicut guttae sanguinis decurrentis in terram.
+      45\. Et cum surrexisset ab oratione et venisset ad discipulos, invenit eos dormientes prae tristitia.
     language_toggle: true
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-pai-nosso-2
-    label: Pai-Nosso
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-iesus-in-horto-gethsemani-orat
+    label: Iesus in horto Gethsémani orat
     common_prayer: pai-nosso
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-iesus-in-horto-gethsemani-orat-3
+    default_language: la
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-iesus-in-horto-gethsemani-orat-2
     label: Iesus in horto Gethsémani orat
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-gloria-patri-4
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-oratio-5
+    default_language: la
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: 1-primum-mysterium-iesus-in-horto-gethsemani-orat-oratio-6
+  - id: primum-mysterium-iesus-in-horto-gethsemani-orat-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: 2-secundum-mysterium-iesus-flagellis-caeditur
+- id: secundum-mysterium-iesus-flagellis-caeditur
+  kicker: Evangelium secundum Ioannem 18,37 - 19,3
   title: 'Secundum mysterium: Iesus flagéllis caeditur'
-  kicker: Mysteria Dolorosa
-  theme: Evangelium secundum Ioannem 18,37 - 19,3
   prayers:
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-evangelium-secundum-ioannem-18-37-19-3-1
+  - id: secundum-mysterium-iesus-flagellis-caeditur-evangelium-secundum-ioannem-18-37-19-3
     label: Evangelium secundum Ioannem 18,37 - 19,3
     prayer: |-
-      18,37. Perguntou-lhe então Pilatos: “És, portanto, rei?” Respondeu Jesus: “Sim, eu sou rei. É para dar testemunho da verdade que nasci e vim ao mundo. Todo o que é da verdade ouve a minha voz”.
-      38. Disse-lhe Pilatos: “Que é a verdade?...”. Falando isso, saiu de novo, foi ter com os judeus e disse-lhes: “Não acho nele crime algum.
-      39. Mas é costume entre vós que pela Páscoa vos solte um preso. Quereis, pois, que vos solte o rei dos judeus?”.
-      40. Então todos gritaram novamente e disseram: “Não! A este não! Mas a Barrabás!”. (Barrabás era um salteador.)
+      18,37\. Perguntou-lhe então Pilatos: “És, portanto, rei?” Respondeu Jesus: “Sim, eu sou rei. É para dar testemunho da verdade que nasci e vim ao mundo. Todo o que é da verdade ouve a minha voz”.
+      38\. Disse-lhe Pilatos: “Que é a verdade?...”. Falando isso, saiu de novo, foi ter com os judeus e disse-lhes: “Não acho nele crime algum.
+      39\. Mas é costume entre vós que pela Páscoa vos solte um preso. Quereis, pois, que vos solte o rei dos judeus?”.
+      40\. Então todos gritaram novamente e disseram: “Não! A este não! Mas a Barrabás!”. (Barrabás era um saltea­dor.)
 
-      19,1. Pilatos mandou então flagelar Jesus.
-      2. Os soldados teceram de espinhos uma coroa e puseram-lha sobre a cabeça e cobriram-no com um manto de púrpura.
-      3. Aproximavam-se dele e diziam: “Salve, rei dos judeus!”. E davam-lhe bofetadas.
+      19,1\. Pilatos mandou então flagelar Jesus.
+      2\. Os soldados teceram de espinhos uma coroa e puseram-lha sobre a cabeça e cobriram-no com um manto de púrpura.
+      3\. Aproximavam-se dele e diziam: “Salve, rei dos judeus!”. E davam-lhe bofetadas.
     prayer-latin: |-
-      18,37. Dixit itaque ei Pilatus: “Ergo rex es tu?”. Respondit Iesus: “Tu dicis quia rex sum. Ego in hoc natus sum et ad hoc veni in mundum, ut testimonium perhibeam veritati; omnis, qui est ex veritate, audit meam vocem”.
-      38. Dicit ei Pilatus: “Quid est veritas?”. Et cum hoc dixisset, iterum exivit ad Iudaeos et dicit eis: “Ego nullam invenio in eo causam.
-      39. Est autem consuetudo vobis, ut unum dimittam vobis in Pascha; vultis ergo dimittam vobis regem Iudaeorum?”.
-      40. Clamaverunt ergo rursum dicentes: “Non hunc sed Barabbam!”. Erat autem Barabbas latro.
+      18,37\. Dixit itaque ei Pilatus: “Ergo rex es tu?”. Respondit Iesus: “Tu dicis quia rex sum. Ego in hoc natus sum et ad hoc veni in mundum, ut testimonium perhibeam veritati; omnis, qui est ex veritate, audit meam vocem”.
+      38\. Dicit ei Pilatus: “Quid est veritas?”. Et cum hoc dixisset, iterum exivit ad Iudaeos et dicit eis: “Ego nullam invenio in eo causam.
+      39\. Est autem consuetudo vobis, ut unum dimittam vobis in Pascha; vultis ergo dimittam vobis regem Iudaeorum?”.
+      40\. Clamaverunt ergo rursum dicentes: “Non hunc sed Barabbam!”. Erat autem Barabbas latro.
 
-      19,1. Tunc ergo apprehendit Pi latus Iesum et flagellavit.
-      2. Et milites, plectentes coronam de spinis, imposuerunt capiti eius et veste purpurea circumdederunt eum;
+      19,1\. Tunc ergo apprehendit Pi latus Iesum et flagellavit.
+      2\. Et milites, plectentes coronam de spinis, imposuerunt capiti eius et veste purpurea circumdederunt eum;
       3 .et veniebant ad eum et dicebant: “Ave, rex Iudaeorum!”, et dabant ei alapas.
     language_toggle: true
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-pai-nosso-2
-    label: Pai-Nosso
+  - id: secundum-mysterium-iesus-flagellis-caeditur-iesus-flagellis-caeditur
+    label: Iesus flagéllis caeditur
     common_prayer: pai-nosso
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-iesus-flagellis-caeditur-3
+    default_language: la
+  - id: secundum-mysterium-iesus-flagellis-caeditur-iesus-flagellis-caeditur-2
     label: Iesus flagéllis caeditur
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-gloria-patri-4
+  - id: secundum-mysterium-iesus-flagellis-caeditur-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-oratio-5
+    default_language: la
+  - id: secundum-mysterium-iesus-flagellis-caeditur-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: 2-secundum-mysterium-iesus-flagellis-caeditur-oratio-6
+  - id: secundum-mysterium-iesus-flagellis-caeditur-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: 3-tertium-mysterium-iesus-spinis-coronatur
+- id: tertium-mysterium-iesus-spinis-coronatur
+  kicker: Evangelium secundum Matthaeum 27,27-31
   title: 'Tertium mysterium: Iesus spinis coronátur'
-  kicker: Mysteria Dolorosa
-  theme: Evangelium secundum Matthaeum 27,27-31
   prayers:
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-evangelium-secundum-matthaeum-27-27-31-1
+  - id: tertium-mysterium-iesus-spinis-coronatur-evangelium-secundum-matthaeum-27-27-31
     label: Evangelium secundum Matthaeum 27,27-31
     prayer: |-
-      27. Os soldados do governador conduziram Jesus para o pretório e rodearam-no com todo o pelotão.
-      28. Arrancaram-lhe as vestes e colocaram-lhe um manto escarlate.
-      29. Depois, trançaram uma coroa de espinhos, meteram-lha na cabeça e puseram-lhe na mão uma vara. Dobrando os joelhos diante dele, diziam com escárnio: “Salve, rei dos judeus!”.
-      30. Cuspiam-lhe no rosto e, tomando da vara, davam-lhe golpes na cabeça.
-      31. Depois de escarnecerem dele, tiraram-lhe o manto e entregaram-lhe as vestes. Em seguida, levaram-no para o crucificar.
+      27\. Os soldados do governador conduziram Jesus para o pretório e rodearam-no com todo o pelotão.
+      28\. Arrancaram-lhe as vestes e colocaram-lhe um manto escarlate.
+      29\. Depois, trançaram uma coroa de espinhos, meteram-lha na cabeça e puseram-lhe na mão uma vara. Dobrando os joelhos diante dele, diziam com escárnio: “Salve, rei dos judeus!”.
+      30\. Cuspiam-lhe no rosto e, tomando da vara, davam-lhe golpes na cabeça.
+      31\. Depois de escarnecerem dele, tiraram-lhe o manto e entregaram-lhe as vestes. Em seguida, levaram-no para o crucificar.
     prayer-latin: |-
-      27. Tunc milites praesidis suscipientes Iesum in praetorio congregaverunt ad eum universam cohortem.
-      28. Et exuentes eum, clamydem coccineam circumdederunt ei
-      29. et plectentes coronam de spinis posuerunt super caput eius et arundinem in dextera eius et, genu flexo ante eum, illudebant ei dicentes: “Ave, rex Iudaeorum!”.
-      30. Et exspuentes in eum acceperunt arundinem et percutiebant caput eius.
-      31. Et postquam illuserunt ei, exuerunt eum clamyde et induerunt eum vestimentis eius et duxerunt eum, ut crucifigerent.
+      27\. Tunc milites praesidis suscipientes Iesum in praetorio congregaverunt ad eum universam cohortem.
+      28\. Et exuentes eum, clamydem coccineam circumdederunt ei
+      29\. et plectentes coronam de spinis posuerunt super caput eius et arundinem in dextera eius et, genu flexo ante eum, illudebant ei dicentes: “Ave, rex Iudaeorum!”.
+      30\. Et exspuentes in eum acceperunt arundinem et percutiebant caput eius.
+      31\. Et postquam illuserunt ei, exuerunt eum clamyde et induerunt eum vestimentis eius et duxerunt eum, ut crucifigerent.
     language_toggle: true
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-pai-nosso-2
-    label: Pai-Nosso
+  - id: tertium-mysterium-iesus-spinis-coronatur-iesus-spinis-coronatur
+    label: Iesus spinis coronátur
     common_prayer: pai-nosso
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-iesus-spinis-coronatur-3
+    default_language: la
+  - id: tertium-mysterium-iesus-spinis-coronatur-iesus-spinis-coronatur-2
     label: Iesus spinis coronátur
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-gloria-patri-4
+  - id: tertium-mysterium-iesus-spinis-coronatur-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-oratio-5
+    default_language: la
+  - id: tertium-mysterium-iesus-spinis-coronatur-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: 3-tertium-mysterium-iesus-spinis-coronatur-oratio-6
+  - id: tertium-mysterium-iesus-spinis-coronatur-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit
+- id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit
+  kicker: Evangelium secundum Ioannem 19,17-22
   title: 'Quartum mysterium: Iesus cruce oneratus Cálvarie locum adit'
-  kicker: Mysteria Dolorosa
-  theme: Evangelium secundum Ioannem 19,17-22
   prayers:
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-evangelium-secundum-ioannem-19-17-22-1
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-evangelium-secundum-ioannem-19-17-22
     label: Evangelium secundum Ioannem 19,17-22
     prayer: |-
-      17. Levaram então consigo Jesus. Ele próprio carregava a sua cruz para fora da cidade, em direção ao lugar chamado Calvário, em hebraico Gólgota.*
-      18. Ali o crucificaram, e com ele outros dois, um de cada lado, e Jesus no meio.
-      19. Pilatos redigiu também uma inscrição e a fixou por cima da cruz. Nela estava escrito: “Jesus de Nazaré, rei dos judeus”.
-      20. Muitos dos judeus leram essa inscrição, porque Jesus foi crucificado perto da cidade e a inscrição era redigida em hebraico, em latim e em grego.
-      21. Os sumos sacerdotes dos judeus disseram a Pilatos: “Não escrevas: Rei dos judeus, mas sim: Este homem disse ser o rei dos judeus”.
-      22. Respondeu Pilatos: “O que escrevi, escrevi”.
+      17\. Levaram então consigo Jesus. Ele próprio carregava a sua cruz para fora da cidade, em direção ao lugar chamado Calvário, em hebraico Gólgota.*
+      18\. Ali o crucificaram, e com ele outros dois, um de cada lado, e Jesus no meio.
+      19\. Pilatos redigiu também uma inscrição e a fixou por cima da cruz. Nela estava escrito: “Jesus de Nazaré, rei dos judeus”.
+      20\. Muitos dos judeus leram essa inscrição, porque Jesus foi crucificado perto da cidade e a inscrição era redigida em hebraico, em latim e em grego.
+      21\. Os sumos sacerdotes dos judeus disseram a Pilatos: “Não escrevas: Rei dos judeus, mas sim: Este homem disse ser o rei dos judeus”.
+      22\. Respondeu Pilatos: “O que escrevi, escrevi”.
     prayer-latin: |-
-      17. Et baiulans sibi crucem exivit in eum, qui dicitur Calvariae locum, quod Hebraice dicitur Golgotha,
-      18. ubi eum crucifixerunt et cum eo alios duos hinc et hinc, medium autem Iesum.
-      19. Scripsit autem et titulum Pilatus et posuit super crucem; erat autem scriptum: “Iesus Nazarenus Rex Iudaeorum”.
-      20. Hunc ergo titulum multi legerunt Iudaeorum, quia prope civitatem erat locus, ubi crucifixus est Iesus; et erat scriptum Hebraice, Latine, Graece.
-      21. Dicebant ergo Pilato pontifices Iudaeorum: “Noli scribere: Rex Iudaeorum, sed: Ipse dixit: “Rex sum Iudaeorum””.
-      22. Respondit Pilatus: “Quod scripsi, scripsi!”.""
+      17\. Et baiulans sibi crucem exivit in eum, qui dicitur Calvariae locum, quod Hebraice dicitur Golgotha,
+      18\. ubi eum crucifixerunt et cum eo alios duos hinc et hinc, medium autem Iesum.
+      19\. Scripsit autem et titulum Pilatus et posuit super crucem; erat autem scriptum: “Iesus Nazarenus Rex Iudaeorum”.
+      20\. Hunc ergo titulum multi legerunt Iudaeorum, quia prope civitatem erat locus, ubi crucifixus est Iesus; et erat scriptum Hebraice, Latine, Graece.
+      21\. Dicebant ergo Pilato pontifices Iudaeorum: “Noli scribere: Rex Iudaeorum, sed: Ipse dixit: “Rex sum Iudaeorum””.
+      22\. Respondit Pilatus: “Quod scripsi, scripsi!”.""
     language_toggle: true
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-pai-nosso-2
-    label: Pai-Nosso
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-iesus-cruce-oneratus-calvarie-locum-adit
+    label: Iesus cruce oneratus Cálvarie locum adit
     common_prayer: pai-nosso
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-iesus-cruce-oneratus-calvarie-locum-adit-3
+    default_language: la
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-iesus-cruce-oneratus-calvarie-locum-adit-2
     label: Iesus cruce oneratus Cálvarie locum adit
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-gloria-patri-4
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-oratio-5
+    default_language: la
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: 4-quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-oratio-6
+  - id: quartum-mysterium-iesus-cruce-oneratus-calvarie-locum-adit-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: 5-quintum-mysterium-iesus-in-cruce-moritur
+- id: quintum-mysterium-iesus-in-cruce-moritur
+  kicker: Evangelium secundum Marcum 15,23-27
   title: 'Quintum mysterium: Iesus in cruce móritur'
-  kicker: Mysteria Dolorosa
-  theme: Evangelium secundum Marcum 15,23-27
   prayers:
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-evangelium-secundum-marcum-15-23-27-1
+  - id: quintum-mysterium-iesus-in-cruce-moritur-evangelium-secundum-marcum-15-23-27
     label: Evangelium secundum Marcum 15,23-27
     prayer: |-
-      23. Deram-lhe de beber vinho misturado com mirra, mas ele não o aceitou.
-      24. Depois de o terem crucificado, repartiram as suas vestes, tirando à sorte sobre elas, para ver o que tocaria a cada um.
-      25. Era a hora terceira quando o crucificaram.
-      26. A inscrição que motivava a sua condenação dizia: “O rei dos judeus”.
-      27. Crucificaram com ele dois bandidos: um à sua direita e outro à esquerda.
+      23\. Deram-lhe de beber vinho misturado com mirra, mas ele não o aceitou.
+      24\. Depois de o terem crucificado, repartiram as suas vestes, tirando à sorte sobre elas, para ver o que tocaria a cada um.
+      25\. Era a hora terceira quando o crucificaram.
+      26\. A inscrição que motivava a sua condenação dizia: “O rei dos judeus”.
+      27\. Crucificaram com ele dois bandidos: um à sua direita e outro à esquerda.
     prayer-latin: |-
-      23. Et dabant ei myrrhatum vinum; ille autem non accepit.
-      24. Et crucifigunt eum et dividunt vestimenta eius, mittentes sortem super eis, quis quid tolleret.
-      25. Erat autem hora tertia, et crucifixerunt eum.
-      26. Et erat titulus causae eius inscriptus: “Rex Iudaeorum”.
-      27. Et cum eo crucifigunt duos latrones, unum a dextris et alium a sinistris eius.
+      23\. Et dabant ei myrrhatum vinum; ille autem non accepit.
+      24\. Et crucifigunt eum et dividunt vestimenta eius, mittentes sortem super eis, quis quid tolleret.
+      25\. Erat autem hora tertia, et crucifixerunt eum.
+      26\. Et erat titulus causae eius inscriptus: “Rex Iudaeorum”.
+      27\. Et cum eo crucifigunt duos latrones, unum a dextris et alium a sinistris eius.
     language_toggle: true
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-pai-nosso-2
-    label: Pai-Nosso
+  - id: quintum-mysterium-iesus-in-cruce-moritur-iesus-in-cruce-moritur
+    label: Iesus in cruce móritur
     common_prayer: pai-nosso
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-iesus-in-cruce-moritur-3
+    default_language: la
+  - id: quintum-mysterium-iesus-in-cruce-moritur-iesus-in-cruce-moritur-2
     label: Iesus in cruce móritur
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-gloria-patri-4
+  - id: quintum-mysterium-iesus-in-cruce-moritur-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-oratio-5
+    default_language: la
+  - id: quintum-mysterium-iesus-in-cruce-moritur-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: 5-quintum-mysterium-iesus-in-cruce-moritur-oratio-6
+  - id: quintum-mysterium-iesus-in-cruce-moritur-oratio-2
     label: Oratio
     prayer: |-
       Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
 - id: conclusio
   title: Conclusio
   prayers:
-  - id: conclusio-salve-regina-1
+  - id: conclusio-salve-regina
     label: Salve Regina
     prayer: |-
       Salve, Regína,
@@ -324,7 +332,7 @@ sections:
 
       Ora pro nobis sancta Dei Génetrix.
       Ut digni efficiámur promissiónibus Christi. Amen.
-  - id: conclusio-oratio-2
+  - id: conclusio-oratio
     label: Oratio
     prayer: |-
       Orémus.
@@ -335,7 +343,7 @@ sections:
       et imitémur quod cóntinent,
       et quod promíttunt assequámur.
       Per eúndem Christum Dóminum nostrum. Amen.
-  - id: conclusio-litanie-lauretane-3
+  - id: conclusio-litanie-lauretane
     label: Litanie Lauretane
     prayer: |-
       V. Kýrie, eléison.
@@ -434,15 +442,16 @@ sections:
 
       V. Ora pro nobis, sancta Dei Génitrix,
       R. ut digni efficiámur promissiónibus Christi.
-  - id: conclusio-oremus-4
+  - id: conclusio-oremus
     label: Oremus
     prayer: |-
       V. Orémus.
       Concéde nos fámulos tuos, quǽsumus, Dómine Deus, perpétua mentis et corporis sanitáte gaudére, et, gloriósa beátæ Maríæ semper vírginis intercessióne, a præsénti liberári tristítia et ætérna pérfrui lætítia. Per Christum Dóminum nostrum.
       R. Amen.
-  - id: conclusio-signum-crucis-5
+  - id: conclusio-signum-crucis
     label: Signum Crucis
     common_prayer: sinal-da-cruz
+    default_language: la
 ---
 
 O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja. O latim exprime a unidade e a universalidade da fé, permitindo que nossa oração alcance o Céu com a mesma beleza e reverência que por séculos marcaram a vida espiritual dos santos da Igreja.

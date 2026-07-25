@@ -1,21 +1,24 @@
 ---
 title: Mysteria Gloriosa
 slug: mysteria-gloriosa
-description: O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja.
-image: /assets/images/tercos/mysteria-gloriosa.png
-image_alt: Mysteria Gloriosa
-category: Terços
+description: O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja. O latim exprime a unidade e a universalidade da fé, permitindo que nossa oração alcance o Céu com a mesma beleza e reverência que por séculos marcaram a vida espiritual dos santos da Igreja.
+category: Mistérios do Rosário
 prayer_beads_type: Terço
+sequence_title: Mistérios e orações
+image: /assets/images/tercos/mysteria-gloriosa.png
+image_alt: Capa de Mysteria Gloriosa
 default_language: la
+language_toggle: false
 search: true
 sections:
 - id: orationes-initiales
   title: Orationes initiales
   prayers:
-  - id: signum-crucis
+  - id: orationes-initiales-signum-crucis
     label: Signum Crucis
     common_prayer: sinal-da-cruz
-  - id: credo
+    default_language: la
+  - id: orationes-initiales-credo
     label: Credo
     prayer: |-
       Credo in Deum Patrem omnipoténtem,
@@ -38,263 +41,266 @@ sections:
       carnis resurrectiónem,
       vitam ætérnam.
       Amen.
-  - id: pater-noster
+  - id: orationes-initiales-pater-noster
     label: Pater Noster
     common_prayer: pai-nosso
-  - id: ave-maria-1
-    label: Ave Maria - 1
+    default_language: la
+  - id: orationes-initiales-ave-maria
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: ave-maria-2
-    label: Ave Maria - 2
+  - id: orationes-initiales-ave-maria-2
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: ave-maria-3
-    label: Ave Maria - 3
+  - id: orationes-initiales-ave-maria-3
+    label: Ave Maria
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
-  - id: gloria-patri
+  - id: orationes-initiales-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: orationes-initiales-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: orationes-initiales-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: mysterium-1-evangelium
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: primum-mysterium-iesus-a-mortuis-resurgit
+  kicker: Evangelium secundum Marcum 16,1-8
   title: 'Primum mysterium: Iesus a mórtuis resúrgit'
-  theme: Evangelium secundum Marcum 16,1-8
   prayers:
-  - id: evangelium-secundum-marcum-16-1-8
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-evangelium-secundum-marcum-16-1-8
     label: Evangelium secundum Marcum 16,1-8
     prayer: |-
-      1. Passado o sábado, Maria Madalena, Maria, mãe de Tiago, e Salomé compraram aromas para ungir Jesus.
-      2. E no primeiro dia da semana, foram muito cedo ao sepulcro, mal o sol havia despontado.*
-      3. E diziam entre si: “Quem removerá a pedra do sepulcro para nós?”.
-      4. Levantando os olhos, elas viram removida a pedra, que era muito grande.
-      5. Entrando no sepulcro, viram, sentado do lado direito, um jovem, vestido de roupas brancas, e assustaram-se.
-      6. Ele lhes falou: “Não tenhais medo. Buscais Jesus de Naza­ré, que foi crucificado. Ele ressuscitou, já não está aqui. Eis o lugar onde o depositaram.
-      7. Mas ide, dizei a seus discípulos e a Pedro que ele vos precede na Galileia. Lá o vereis como vos disse”.
-      8. Elas saíram do sepulcro e fugiram trêmulas e amedrontadas. E a ninguém disseram coisa alguma por causa do medo.
+      1\. Passado o sábado, Maria Madalena, Maria, mãe de Tiago, e Salomé compraram aromas para ungir Jesus.
+      2\. E no primeiro dia da semana, foram muito cedo ao sepulcro, mal o sol havia despontado.*
+      3\. E diziam entre si: “Quem removerá a pedra do sepulcro para nós?”.
+      4\. Levantando os olhos, elas viram removida a pedra, que era muito grande.
+      5\. Entrando no sepulcro, viram, sentado do lado direito, um jovem, vestido de roupas brancas, e assustaram-se.
+      6\. Ele lhes falou: “Não tenhais medo. Buscais Jesus de Naza­ré, que foi crucificado. Ele ressuscitou, já não está aqui. Eis o lugar onde o depositaram.
+      7\. Mas ide, dizei a seus discípulos e a Pedro que ele vos precede na Galileia. Lá o vereis como vos disse”.
+      8\. Elas saíram do sepulcro e fugiram trêmulas e amedrontadas. E a ninguém disseram coisa alguma por causa do medo.
     prayer-latin: |-
-      1. Et cum transisset sabbatum, Maria Magdalene et Maria Iacobi et Salome emerunt aromata, ut venientes ungerent eum.
-      2. Et valde mane, prima sabbatorum, veniunt ad monumentum, orto iam sole.
-      3. Et dicebant ad invicem: “Quis revolvet nobis lapidem ab ostio monumenti?”.
-      4. Et respicientes vident revolutum lapidem; erat quippe magnus valde.
-      5. Et introeuntes in monumentum viderunt iuvenem sedentem in dextris, coopertum stola candida, et obstupuerunt.
-      6. Qui dicit illis: “Nolite expavescere! Iesum quaeritis Nazarenum crucifixum. Surrexit, non est hic; ecce locus, ubi posuerunt eum.
-      7. Sed ite, dicite discipulis eius et Petro: “Praecedit vos in Galilaeam. Ibi eum videbitis, sicut dixit vobis””.
-      8. Et exeuntes fugerunt de monumento; invaserat enim eas tremor et pavor, et nemini quidquam dixerunt, timebant enim.
-- id: mysterium-1-orationes
-  title: Primum mysterium
-  theme: Iesus a mórtuis resúrgit
-  prayers:
-  - id: pater-noster
-    label: Pater Noster
+      1\. Et cum transisset sabbatum, Maria Magdalene et Maria Iacobi et Salome emerunt aromata, ut venientes ungerent eum.
+      2\. Et valde mane, prima sabbatorum, veniunt ad monumentum, orto iam sole.
+      3\. Et dicebant ad invicem: “Quis revolvet nobis lapidem ab ostio monumenti?”.
+      4\. Et respicientes vident revolutum lapidem; erat quippe magnus valde.
+      5\. Et introeuntes in monumentum viderunt iuvenem sedentem in dextris, coopertum stola candida, et obstupuerunt.
+      6\. Qui dicit illis: “Nolite expavescere! Iesum quaeritis Nazarenum crucifixum. Surrexit, non est hic; ecce locus, ubi posuerunt eum.
+      7\. Sed ite, dicite discipulis eius et Petro: “Praecedit vos in Galilaeam. Ibi eum videbitis, sicut dixit vobis””.
+      8\. Et exeuntes fugerunt de monumento; invaserat enim eas tremor et pavor, et nemini quidquam dixerunt, timebant enim.
+    language_toggle: true
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-iesus-a-mortuis-resurgit
+    label: Iesus a mórtuis resúrgit
     common_prayer: pai-nosso
-  - id: ave-maria
-    label: Ave Maria
+    default_language: la
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-iesus-a-mortuis-resurgit-2
+    label: Iesus a mórtuis resúrgit
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: gloria-patri
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: primum-mysterium-iesus-a-mortuis-resurgit-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: mysterium-2-evangelium
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit
+  kicker: Evangelium secundum Marcum - 16,15-20
   title: 'Secundum mysterium: Iesus caelos ad Patris glóriam ascéndit.'
-  theme: Evangelium secundum Marcum - 16,15-20
   prayers:
-  - id: evangelium-secundum-marcum-16-15-20
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-evangelium-secundum-marcum-16-15-20
     label: Evangelium secundum Marcum - 16,15-20
     prayer: |-
-      15. E disse-lhes: “Ide por todo o mundo e pregai o Evangelho a toda criatura.
-      16. Quem crer e for batizado será salvo, mas quem não crer será condenado.
-      17. Estes milagres acompanharão os que crerem: expulsarão os demônios em meu nome, falarão novas línguas,
-      18. manusearão serpentes e, se beberem algum veneno mortal, não lhes fará mal; imporão as mãos aos enfermos e eles ficarão curados”.
-      19. Depois que o Senhor Jesus lhes falou, foi levado ao céu e está sentado à direita de Deus.
-      20. Os discípulos partiram e pregaram por toda parte. O Senhor cooperava com eles e confirmava a sua palavra com os milagres que a acompanha­vam.
+      15\. E disse-lhes: “Ide por todo o mundo e pregai o Evangelho a toda criatura.
+      16\. Quem crer e for batizado será salvo, mas quem não crer será condenado.
+      17\. Estes milagres acompanharão os que crerem: expulsarão os demônios em meu nome, falarão novas línguas,
+      18\. manusearão serpentes e, se beberem algum veneno mortal, não lhes fará mal; imporão as mãos aos enfermos e eles ficarão curados”.
+      19\. Depois que o Senhor Jesus lhes falou, foi levado ao céu e está sentado à direita de Deus.
+      20\. Os discípulos partiram e pregaram por toda parte. O Senhor cooperava com eles e confirmava a sua palavra com os milagres que a acompanha­vam.
     prayer-latin: |-
-      15. Et dixit eis: “Euntes in mundum universum praedicate evangelium omni creaturae.
-      16. Qui crediderit et baptizatus fuerit, salvus erit; qui vero non crediderit, condemnabitur.
-      17. Signa autem eos, qui crediderint, haec sequentur: in nomine meo daemonia eicient, linguis loquentur novis,
-      18. serpentes tollent, et, si mortiferum quid biberint, non eos nocebit, super aegrotos manus imponent, et bene habebunt”.
-      19. Et Dominus quidem Iesus, postquam locutus est eis, assumptus est in caelum et sedit a dextris Dei.
-      20. Illi autem profecti praedicaverunt ubique, Domino cooperante et sermonem confirmante, sequentibus signis.
-- id: mysterium-2-orationes
-  title: Secundum mysterium
-  theme: Iesus caelos ad Patris glóriam ascéndit.
-  prayers:
-  - id: pater-noster
-    label: Pater Noster
+      15\. Et dixit eis: “Euntes in mundum universum praedicate evangelium omni creaturae.
+      16\. Qui crediderit et baptizatus fuerit, salvus erit; qui vero non crediderit, condemnabitur.
+      17\. Signa autem eos, qui crediderint, haec sequentur: in nomine meo daemonia eicient, linguis loquentur novis,
+      18\. serpentes tollent, et, si mortiferum quid biberint, non eos nocebit, super aegrotos manus imponent, et bene habebunt”.
+      19\. Et Dominus quidem Iesus, postquam locutus est eis, assumptus est in caelum et sedit a dextris Dei.
+      20\. Illi autem profecti praedicaverunt ubique, Domino cooperante et sermonem confirmante, sequentibus signis.
+    language_toggle: true
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-iesus-caelos-ad-patris-gloriam-ascendit
+    label: Iesus caelos ad Patris glóriam ascéndit.
     common_prayer: pai-nosso
-  - id: ave-maria
-    label: Ave Maria
+    default_language: la
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-iesus-caelos-ad-patris-gloriam-ascendit-2
+    label: Iesus caelos ad Patris glóriam ascéndit
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: gloria-patri
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: secundum-mysterium-iesus-caelos-ad-patris-gloriam-ascendit-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: mysterium-3-evangelium
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit
+  kicker: Actus Apostolorum 2,1-4
   title: 'Tertium mysterium: Spíritus Paráclitus supra discípulos descéndit'
-  theme: Actus Apostolorum 2,1-4
   prayers:
-  - id: actus-apostolorum-2-1-4
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-actus-apostolorum-2-1-4
     label: Actus Apostolorum 2,1-4
     prayer: |-
-      1. Chegando o dia de Pentecostes, estavam todos reu­nidos no mesmo lugar.
-      2. De repente, veio do céu um ruído, como se soprasse um vento impetuoso, e encheu toda a casa onde estavam sentados.
-      3. Apareceu-lhes então uma espécie de línguas de fogo, que se repartiram e pousaram sobre cada um deles.
-      4. Ficaram todos cheios do Espírito Santo e começaram a falar em outras línguas, conforme o Espírito Santo lhes concedia que falassem.
+      1\. Chegando o dia de Pentecostes, estavam todos reu­nidos no mesmo lugar.
+      2\. De repente, veio do céu um ruído, como se soprasse um vento impetuoso, e encheu toda a casa onde estavam sentados.
+      3\. Apareceu-lhes então uma espécie de línguas de fogo, que se repartiram e pousaram sobre cada um deles.
+      4\. Ficaram todos cheios do Espírito Santo e começaram a falar em outras línguas, conforme o Espírito Santo lhes concedia que falassem.
     prayer-latin: |-
-      1. Et cum compleretur dies Pen tecostes, erant omnes pariter in eodem loco.
-      2. Et factus est repente de caelo sonus tamquam advenientis spiritus vehementis et replevit totam domum, ubi erant sedentes.
-      3. Et apparuerunt illis dispertitae linguae tamquam ignis, seditque supra singulos eorum;
-      4. et repleti sunt omnes Spiritu Sancto et coeperunt loqui aliis linguis, prout Spiritus dabat eloqui illis.
-- id: mysterium-3-orationes
-  title: Tertium mysterium
-  theme: Spíritus Paráclitus supra discípulos descéndit
-  prayers:
-  - id: pater-noster
-    label: Pater Noster
+      1\. Et cum compleretur dies Pen tecostes, erant omnes pariter in eodem loco.
+      2\. Et factus est repente de caelo sonus tamquam advenientis spiritus vehementis et replevit totam domum, ubi erant sedentes.
+      3\. Et apparuerunt illis dispertitae linguae tamquam ignis, seditque supra singulos eorum;
+      4\. et repleti sunt omnes Spiritu Sancto et coeperunt loqui aliis linguis, prout Spiritus dabat eloqui illis.
+    language_toggle: true
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-spiritus-paraclitus-supra-discipulos-descendit
+    label: Spíritus Paráclitus supra discípulos descéndit
     common_prayer: pai-nosso
-  - id: ave-maria
-    label: Ave Maria
+    default_language: la
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-spiritus-paraclitus-supra-discipulos-descendit-2
+    label: Spíritus Paráclitus supra discípulos descéndit
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: gloria-patri
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: tertium-mysterium-spiritus-paraclitus-supra-discipulos-descendit-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: mysterium-4-evangelium
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est
+  kicker: Epistolae ad Colossenses 3,1-4
   title: 'Quartum mysterium: Maria Virgo in caelum assúmpta est'
-  theme: Epistolae ad Colossenses 3,1-4
   prayers:
-  - id: epistolae-ad-colossenses-3-1-4
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-epistolae-ad-colossenses-3-1-4
     label: Epistolae ad Colossenses 3,1-4
     prayer: |-
-      1. Se, portanto, ressuscitastes com Cristo, buscai as coisas lá do alto, onde Cristo está sentado à direita de Deus.
-      2. Afeiçoai-vos às coisas lá de cima, e não às da terra.
-      3. Porque estais mortos e a vossa vida está escondida com Cristo em Deus.*
-      4. Quando Cristo, vossa vida, aparecer, então também vós aparecereis com ele na glória.
+      1\. Se, portanto, ressuscitastes com Cristo, buscai as coisas lá do alto, onde Cristo está sentado à direita de Deus.
+      2\. Afeiçoai-vos às coisas lá de cima, e não às da terra.
+      3\. Porque estais mortos e a vossa vida está escondida com Cristo em Deus.*
+      4\. Quando Cristo, vossa vida, aparecer, então também vós aparecereis com ele na glória.
     prayer-latin: |-
-      1. Igitur, si conresurrexistis Chri sto, quae sursum sunt quaerite, ubi Christus est in dextera Dei sedens;
-      2. quae sursum sunt sapite, non quae supra terram.
-      3. Mortui enim estis, et vita vestra abscondita est cum Christo in Deo!
-      4. Cum Christus apparuerit, vita vestra, tunc et vos apparebitis cum ipso in gloria.
-- id: mysterium-4-orationes
-  title: Quartum mysterium
-  theme: Maria Virgo in caelum assúmpta est
-  prayers:
-  - id: pater-noster
-    label: Pater Noster
+      1\. Igitur, si conresurrexistis Chri sto, quae sursum sunt quaerite, ubi Christus est in dextera Dei sedens;
+      2\. quae sursum sunt sapite, non quae supra terram.
+      3\. Mortui enim estis, et vita vestra abscondita est cum Christo in Deo!
+      4\. Cum Christus apparuerit, vita vestra, tunc et vos apparebitis cum ipso in gloria.
+    language_toggle: true
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-maria-virgo-in-caelum-assumpta-est
+    label: Maria Virgo in caelum assúmpta est
     common_prayer: pai-nosso
-  - id: ave-maria
-    label: Ave Maria
+    default_language: la
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-maria-virgo-in-caelum-assumpta-est-2
+    label: Maria Virgo in caelum assúmpta est
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: gloria-patri
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: quartum-mysterium-maria-virgo-in-caelum-assumpta-est-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: mysterium-5-evangelium
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur
+  kicker: Apocalypsis 11,19 - 12,1
   title: 'Quintum mysterium: Maria Virgo in caelum regína coronátur'
-  theme: Apocalypsis 11,19 - 12,1
   prayers:
-  - id: apocalypsis-11-19-12-1
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-apocalypsis-11-19-12-1
     label: Apocalypsis 11,19 - 12,1
     prayer: |-
-      11,19. Abriu-se o Templo de Deus no céu e apareceu, no seu templo, a arca do seu testamento. Houve relâmpagos, vozes, trovões, terremotos e forte saraiva.
+      11,19\. Abriu-se o Templo de Deus no céu e apareceu, no seu templo, a arca do seu testamento. Houve relâmpagos, vozes, trovões, terremotos e forte saraiva.
 
-      12,1. Apareceu em seguida um grande sinal no céu: uma Mulher revestida do sol, a lua debaixo dos seus pés e na cabeça uma coroa de doze estrelas.*
+      12,1\. Apareceu em seguida um grande sinal no céu: uma Mulher revestida do sol, a lua debaixo dos seus pés e na cabeça uma coroa de doze estrelas.*
     prayer-latin: |-
       11, 19. Et apertum est templum Dei in caelo, et visa est arca testamenti eius in templo eius; et facta sunt fulgura et voces et terraemotus et grando magna.
 
-      12,1. Et signum magnum appa ruit in caelo: mulier amicta sole, et luna sub pedibus eius, et super caput eius corona stellarum duodecim;
-- id: mysterium-5-orationes
-  title: Quintum mysterium
-  theme: ''
-  prayers:
-  - id: pater-noster
-    label: Pater Noster
+      12,1\. Et signum magnum appa ruit in caelo: mulier amicta sole, et luna sub pedibus eius, et super caput eius corona stellarum duodecim;
+    language_toggle: true
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-quintum-mysterium
+    label: Quintum mysterium
     common_prayer: pai-nosso
-  - id: ave-maria
-    label: Ave Maria
+    default_language: la
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-quintum-mysterium-2
+    label: Quintum mysterium
     prayer: |-
       Ave Maria, gratia plena, Dominus tecum. Benedicta tu in mulieribus et benedictus fructus ventris tui Iesu.
       Sancta Maria, Mater Dei, ora pro nobis peccatoribus, nunc et in hora mortis nostrae.
       Amen.
     count: 10
-  - id: gloria-patri
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-gloria-patri
     label: Gloria Patri
     common_prayer: gloria-ao-pai
-  - id: oratio
+    default_language: la
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-oratio
     label: Oratio
     prayer: |-
       O pie Jesus, dimitte nobis debita nostra,
       libera nos ab igne inferni, perduc in caelum omnes animas, praesertim eas,
       quae misericordiae tuae maxime indigent.
-  - id: oratio-2
+  - id: quintum-mysterium-maria-virgo-in-caelum-regina-coronatur-oratio-2
     label: Oratio
-    prayer: Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
-- id: orationes-finales
-  title: Orationes finales
+    prayer: |-
+      Maria concépta sine peccáto, ora pro nobis qui ad te confúgimus.
+- id: conclusio
+  title: Conclusio
   prayers:
-  - id: salve-regina
+  - id: conclusio-salve-regina
     label: Salve Regina
     prayer: |-
       Salve, Regína,
@@ -314,7 +320,7 @@ sections:
 
       Ora pro nobis sancta Dei Génetrix.
       Ut digni efficiámur promissiónibus Christi. Amen.
-  - id: oratio
+  - id: conclusio-oratio
     label: Oratio
     prayer: |-
       Orémus.
@@ -325,7 +331,7 @@ sections:
       et imitémur quod cóntinent,
       et quod promíttunt assequámur.
       Per eúndem Christum Dóminum nostrum. Amen.
-  - id: litanie-lauretane
+  - id: conclusio-litanie-lauretane
     label: Litanie Lauretane
     prayer: |-
       V. Kýrie, eléison.
@@ -424,15 +430,16 @@ sections:
 
       V. Ora pro nobis, sancta Dei Génitrix,
       R. ut digni efficiámur promissiónibus Christi.
-  - id: oremus
+  - id: conclusio-oremus
     label: Oremus
     prayer: |-
       V. Orémus.
       Concéde nos fámulos tuos, quǽsumus, Dómine Deus, perpétua mentis et corporis sanitáte gaudére, et, gloriósa beátæ Maríæ semper vírginis intercessióne, a præsénti liberári tristítia et ætérna pérfrui lætítia. Per Christum Dóminum nostrum.
       R. Amen.
-  - id: signum-crucis
+  - id: conclusio-signum-crucis
     label: Signum Crucis
     common_prayer: sinal-da-cruz
+    default_language: la
 ---
 
 O Santo Rosário, especialmente rezado em latim, nos une profundamente à tradição da Igreja. O latim exprime a unidade e a universalidade da fé, permitindo que nossa oração alcance o Céu com a mesma beleza e reverência que por séculos marcaram a vida espiritual dos santos da Igreja.
