@@ -1,0 +1,23 @@
+<article class="liturgy-hour-card"
+  data-hour-card
+  data-hour-date="{{ include.day }}"
+  data-hour-slug="{{ include.hour.slug }}">
+  <a class="liturgy-hour-card__link" href="{{ include.hour.url | relative_url }}">
+    <div class="liturgy-hour-card__media">
+      {% if include.hour.cover contains '://' %}{% assign hour_cover = include.hour.cover %}{% else %}{% assign hour_cover = include.hour.cover | relative_url %}{% endif %}
+      <img src="{{ hour_cover }}"
+        alt="{{ include.hour.image_alt | escape }}"
+        width="720"
+        height="480"
+        loading="lazy"
+        data-liturgy-cover>
+      <span class="liturgy-hour-card__current" data-current-hour-badge hidden>Indicada agora</span>
+    </div>
+    <div class="liturgy-hour-card__body">
+      <p class="eyebrow">Liturgia das Horas</p>
+      <h3>{{ include.hour.short_title }}</h3>
+      <p>{{ include.hour.title }}</p>
+      <span class="liturgy-hour-card__action">Rezar esta Hora <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>
