@@ -740,37 +740,58 @@
   function initializeRelatedContent(page) {
     var slug = page.dataset.saintSlug;
     var endpoint = resolveEndpoint(page);
+    var relatedStatus = page.querySelector('[data-related-status]');
+    var saintsSection = page.querySelector('[data-related-saints-section]');
+    var contentSection = page.querySelector('[data-related-content-section]');
+
+    function updateRelatedVisibility(saintsGrid, contentGrid) {
+      var hasSaints = Boolean(saintsGrid && saintsGrid.children.length > 0);
+      var hasContent = Boolean(contentGrid && contentGrid.children.length > 0);
+      if (saintsSection) saintsSection.hidden = !hasSaints;
+      if (contentSection) contentSection.hidden = !hasContent;
+      if (relatedStatus) {
+        relatedStatus.hidden = hasSaints || hasContent;
+        if (!relatedStatus.hidden) {
+          relatedStatus.textContent = 'Ainda não há santos, celebrações, orações, devoções, formações ou artigos relacionados a esta história.';
+        }
+      }
+    }
+
     load(endpoint).then(function (data) {
       var current = data.saints.find(function (saint) { return saint.slug === slug; });
-      if (!current) return;
-      var year = todayInTimezone(data.timezone || DEFAULT_TIMEZONE).getUTCFullYear();
       var saintsGrid = page.querySelector('[data-related-saints-grid]');
-      var existingSaints = new Set(Array.from(saintsGrid.querySelectorAll('[data-saint-slug]')).map(function (node) { return node.dataset.saintSlug; }));
-      data.saints
-        .map(function (candidate) { return { saint: candidate, score: scoreRelatedSaint(current, candidate, year) }; })
-        .filter(function (entry) { return entry.score > 0 && !existingSaints.has(entry.saint.slug); })
-        .sort(function (first, second) { return second.score - first.score || String(first.saint.title).localeCompare(String(second.saint.title), DEFAULT_LOCALE); })
-        .slice(0, Math.max(0, 4 - existingSaints.size))
-        .forEach(function (entry) { saintsGrid.appendChild(createSaintCard(entry.saint, { year: year })); });
-      var saintsStatus = page.querySelector('[data-related-saints-status]');
-      saintsStatus.hidden = saintsGrid.children.length > 0;
-      if (!saintsStatus.hidden) saintsStatus.textContent = 'Ainda não há outros santos relacionados a esta história.';
-
       var contentGrid = page.querySelector('[data-related-content-grid]');
-      var existingContentUrls = new Set(Array.from(contentGrid.querySelectorAll('a[href]')).map(function (link) { return link.getAttribute('href'); }));
-      data.content
-        .map(function (item) { return { item: item, score: scoreRelatedContent(current, item) }; })
-        .filter(function (entry) { return entry.score > 0 && !existingContentUrls.has(entry.item.url); })
-        .sort(function (first, second) { return second.score - first.score || String(first.item.title).localeCompare(String(second.item.title), DEFAULT_LOCALE); })
-        .slice(0, Math.max(0, 6 - contentGrid.children.length))
-        .forEach(function (entry) { contentGrid.appendChild(createRelatedContentCard(entry.item)); });
-      var contentStatus = page.querySelector('[data-related-content-status]');
-      contentStatus.hidden = contentGrid.children.length > 0;
-      if (!contentStatus.hidden) contentStatus.textContent = 'Ainda não há orações, devoções, formações ou artigos relacionados a esta história.';
+      if (!current) {
+        updateRelatedVisibility(saintsGrid, contentGrid);
+        return;
+      }
+
+      var year = todayInTimezone(data.timezone || DEFAULT_TIMEZONE).getUTCFullYear();
+      if (saintsGrid) {
+        var existingSaints = new Set(Array.from(saintsGrid.querySelectorAll('[data-saint-slug]')).map(function (node) { return node.dataset.saintSlug; }));
+        data.saints
+          .map(function (candidate) { return { saint: candidate, score: scoreRelatedSaint(current, candidate, year) }; })
+          .filter(function (entry) { return entry.score > 0 && !existingSaints.has(entry.saint.slug); })
+          .sort(function (first, second) { return second.score - first.score || String(first.saint.title).localeCompare(String(second.saint.title), DEFAULT_LOCALE); })
+          .slice(0, Math.max(0, 4 - existingSaints.size))
+          .forEach(function (entry) { saintsGrid.appendChild(createSaintCard(entry.saint, { year: year })); });
+      }
+
+      if (contentGrid) {
+        var existingContentUrls = new Set(Array.from(contentGrid.querySelectorAll('a[href]')).map(function (link) { return link.getAttribute('href'); }));
+        data.content
+          .map(function (item) { return { item: item, score: scoreRelatedContent(current, item) }; })
+          .filter(function (entry) { return entry.score > 0 && !existingContentUrls.has(entry.item.url); })
+          .sort(function (first, second) { return second.score - first.score || String(first.item.title).localeCompare(String(second.item.title), DEFAULT_LOCALE); })
+          .slice(0, Math.max(0, 6 - contentGrid.children.length))
+          .forEach(function (entry) { contentGrid.appendChild(createRelatedContentCard(entry.item)); });
+      }
+
+      updateRelatedVisibility(saintsGrid, contentGrid);
     }).catch(function () {
-      page.querySelectorAll('.saint-related__status').forEach(function (status) {
-        if (!status.hidden) status.textContent = 'Não foi possível completar as sugestões automáticas.';
-      });
+      if (relatedStatus && !relatedStatus.hidden) {
+        relatedStatus.textContent = 'Não foi possível completar as sugestões automáticas.';
+      }
     });
   }
 
