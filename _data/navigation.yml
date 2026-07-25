@@ -1,6 +1,8 @@
 desktop:
   - label: "Aplicativo"
     url: "/aplicativo/"
+  - label: "Liturgia"
+    url: "/liturgia/"
   - label: "Orações"
     url: "/oracoes/"
   - label: "Novenas"
@@ -11,7 +13,6 @@ desktop:
     url: "/formacoes/"
   - label: "Blog"
     url: "/blog/"
-
 drawer_groups:
   - id: "oratio"
     title: "Oratio"
@@ -23,7 +24,13 @@ drawer_groups:
         url: "/aplicativo/"
       - label: "Recursos do Oratio"
         url: "/recursos/"
-
+  - id: "liturgia"
+    title: "Liturgia"
+    links:
+      - label: "Liturgia diária"
+        url: "/liturgia/"
+      - label: "Liturgia das Horas"
+        url: "/liturgia-das-horas/"
   - id: "oracoes-devocoes"
     title: "Orações e devoções"
     links:
@@ -43,7 +50,6 @@ drawer_groups:
         url: "/triduos/"
       - label: "Devocionários"
         url: "/devocionarios/"
-
   - id: "tercos-rosarios"
     title: "Terços e rosários"
     links:
@@ -63,7 +69,6 @@ drawer_groups:
         url: "/formacoes/"
       - label: "Blog"
         url: "/blog/"
-
   - id: "institucional"
     title: "Institucional"
     links:
