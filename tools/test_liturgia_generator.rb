@@ -79,6 +79,21 @@ class LiturgiaGeneratorTest < Minitest::Test
     FileUtils.remove_entry(@tmp)
   end
 
+
+  def assert_acyclic(value, ancestors = {})
+    return unless value.is_a?(Hash) || value.is_a?(Array)
+
+    object_id = value.object_id
+    refute ancestors.key?(object_id), "referência circular encontrada nos dados da página"
+
+    next_ancestors = ancestors.merge(object_id => true)
+    if value.is_a?(Hash)
+      value.each_value { |child| assert_acyclic(child, next_ancestors) }
+    else
+      value.each { |child| assert_acyclic(child, next_ancestors) }
+    end
+  end
+
   def test_generates_all_public_pages_and_normalizes_legacy_html
     site = FakeSite.new(@tmp, { "liturgia" => { "source" => "content/liturgia" } }, [], {})
     Oratio::Liturgia::Generator.new.generate(site)
@@ -98,5 +113,14 @@ class LiturgiaGeneratorTest < Minitest::Test
 
     invitatory_page = site.pages.find { |page| page.dir.end_with?("/invitatorio") }
     assert_equal "Vinde, adoremos o Senhor.", invitatory_page.data["invitatory_antiphon"]
+
+    site.pages.each { |page| assert_acyclic(page.data) }
+    refute daily_page.data.fetch("hours").first.key?("source_path")
+    assert_equal({
+      "slug" => "oficio-das-leituras",
+      "short_title" => "Ofício das Leituras",
+      "title" => "Ofício das Leituras da Festa de São Tiago",
+      "url" => "/liturgia-das-horas/2026/07/25/oficio-das-leituras/"
+    }, hour_page.data["previous_hour"])
   end
 end
