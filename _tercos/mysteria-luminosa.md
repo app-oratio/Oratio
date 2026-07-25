@@ -5,7 +5,7 @@ description: "O Santo Rosário, especialmente rezado em latim, nos une profundam
 category: "Mistérios do Rosário"
 prayer_beads_type: "Terço"
 sequence_title: "Mysteria Luminosa"
-image: "https://imcimage.weebly.com/uploads/1/4/4/8/144864775/5-mist-rio-luminoso-20240806-143231-0017_orig.png"
+image: "/assets/images/tercos/mysteria-luminosa.png"
 image_alt: "Mysteria Luminosa"
 default_language: "la"
 language_toggle: false
