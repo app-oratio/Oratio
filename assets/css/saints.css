@@ -1020,3 +1020,38 @@
     display: block;
   }
 }
+
+/* Ajustes da área unificada de conteúdos relacionados. */
+.saint-related__collections {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.saint-related__collection {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.saint-related__collection > h4 {
+  color: var(--oratio-text-primary);
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  margin: 0;
+}
+
+.saint-related__collection[hidden] {
+  display: none;
+}
+
+@media (max-width: 679px) {
+  .saint-related__heading {
+    align-items: start;
+    display: grid;
+    gap: var(--space-3);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .saint-related__heading > p {
+    max-width: none;
+  }
+}
