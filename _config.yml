@@ -23,6 +23,11 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 
+liturgia:
+  source: "content/liturgia"
+  timezone: "America/Sao_Paulo"
+  default_invitatory_psalm: "94"
+
 permalink: /blog/:year/:month/:title/
 
 collections:
@@ -173,6 +178,8 @@ exclude:
   - README.md
   - GUIA_DE_IMPLEMENTACAO.md
   - GUIA_SANTOS.md
+  - GUIA_LITURGIA.md
+  - content/liturgia
   - LICENSE
   - CNAME.example
   - tools

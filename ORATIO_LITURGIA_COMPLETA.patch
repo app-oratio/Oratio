@@ -1,0 +1,3079 @@
+diff --git a/GUIA_LITURGIA.md b/GUIA_LITURGIA.md
+new file mode 100644
+index 0000000..65e6eff
+--- /dev/null
++++ b/GUIA_LITURGIA.md
+@@ -0,0 +1,162 @@
++# Sistema de Liturgia do Oratio
++
++## Objetivo
++
++O sistema publica a Liturgia diária e a Liturgia das Horas a partir dos arquivos mantidos em `content/liturgia`. Os arquivos-fonte permanecem integrais no repositório. Durante o build, o plugin `_plugins/liturgia_generator.rb` lê, valida e normaliza uma cópia em memória para gerar as páginas públicas do site.
++
++## Estrutura de cada dia
++
++```text
++content/liturgia/AAAA/MM/DD/
++├── liturgia-info.json
++├── horas-info.json
++├── liturgy.json
++├── invitatorio.html
++├── oficio-das-leituras.html
++├── laudes.html
++├── hora-terca.html
++├── hora-sexta.html
++├── hora-nona.html
++├── vesperas.html
++└── completas.html
++```
++
++Os HTMLs não precisam de front matter, layout, `DOCTYPE`, `html`, `head` ou `body`.
++
++## Rotas públicas geradas
++
++```text
++/liturgia/
++/liturgia/AAAA/MM/DD/
++/liturgia-das-horas/
++/liturgia-das-horas/AAAA/MM/DD/
++/liturgia-das-horas/AAAA/MM/DD/invitatorio/
++/liturgia-das-horas/AAAA/MM/DD/oficio-das-leituras/
++/liturgia-das-horas/AAAA/MM/DD/laudes/
++/liturgia-das-horas/AAAA/MM/DD/hora-terca/
++/liturgia-das-horas/AAAA/MM/DD/hora-sexta/
++/liturgia-das-horas/AAAA/MM/DD/hora-nona/
++/liturgia-das-horas/AAAA/MM/DD/vesperas/
++/liturgia-das-horas/AAAA/MM/DD/completas/
++```
++
++## `liturgia-info.json`
++
++Campos reconhecidos:
++
++| Campo | Uso |
++|---|---|
++| `tempoLiturgico` | Tempo litúrgico |
++| `diaSemana` | Dia da semana |
++| `corLiturgica` | Código da cor e imagem correspondente |
++| `semanaSalterio` | Semana do Saltério |
++| `semana` | Semana do tempo litúrgico |
++| `anoABC` | Ciclo dominical |
++| `tipoMemoria` | Grau da celebração |
++| `primeirasVesp` | Indica primeiras Vésperas |
++| `isJejum` | Indica jejum |
++| `isAbstinencia` | Indica abstinência |
++| `isMemoria` | Informação complementar da celebração |
++
++Valores booleanos podem chegar como `true`, `false`, `T`, `S`, `1`, `sim` e equivalentes reconhecidos pelo normalizador.
++
++## Cores litúrgicas
++
++| Código | Nome apresentado | Imagem |
++|---|---|---|
++| `R` | Vermelho | `assets/images/liturgia/r.png` |
++| `P` | Roxo | `assets/images/liturgia/p.png` |
++| `PP` | Roxo ou rosa | `assets/images/liturgia/pp.png` |
++| `G` | Verde | `assets/images/liturgia/g.png` |
++| `W` | Branco | `assets/images/liturgia/w.png` |
++| `PWB` | Roxo, branco ou preto | `assets/images/liturgia/pwb.png` |
++
++Caso uma imagem não carregue, a interface usa a imagem social padrão como fallback e mantém a cor textual do código.
++
++## `horas-info.json`
++
++Cada item deve possuir:
++
++```json
++{
++  "hora": "laudes",
++  "hora-title": "Laudes",
++  "titulo": "Laudes da celebração do dia",
++  "capa": "/assets/images/capas/exemplo.webp"
++}
++```
++
++A ordem visual não depende da ordem do JSON. O sistema sempre usa a sequência canônica configurada no plugin.
++
++## `liturgy.json`
++
++Deve ser uma lista de seções da Missa:
++
++```json
++[
++  {
++    "title": "Primeira leitura",
++    "html": "<p>Texto completo...</p>"
++  }
++]
++```
++
++A Liturgia diária cria automaticamente o índice das partes na ordem fornecida.
++
++## Invitatório
++
++O Invitatório é gerado pelo layout do site com quatro salmos selecionáveis: 94, 23, 66 e 99. O Salmo 94 é aberto por padrão. A antífona diária é extraída de `invitatorio.html` e repetida entre as estrofes.
++
++O botão do Invitatório aparece no Ofício das Leituras e nas Laudes, além da página geral das Horas.
++
++## Hora destacada automaticamente
++
++O cálculo sempre usa `America/Sao_Paulo`:
++
++| Horário | Hora indicada |
++|---|---|
++| 00:00 até 02:59 | Completas do dia anterior |
++| 03:00 até 05:59 | Ofício das Leituras |
++| 06:00 até 08:29 | Laudes |
++| 08:30 até 10:59 | Hora Terça |
++| 11:00 até 13:29 | Hora Sexta |
++| 13:30 até 15:59 | Hora Nona |
++| 16:00 até 19:59 | Vésperas |
++| 20:00 até 23:59 | Completas do dia corrente |
++
++O destaque é recalculado a cada minuto. Se a data ou a Hora indicada não estiver disponível, nenhum link inválido é apresentado.
++
++## Compatibilidade com os HTMLs do aplicativo
++
++Na cópia publicada, o gerador:
++
++- remove scripts internos;
++- remove atributos de evento e URLs `javascript:`;
++- substitui cores literais pela variável litúrgica;
++- corrige `&nbsp;` usados indevidamente dentro de tags;
++- remove o `h1` duplicado e separadores iniciais;
++- neutraliza marcadores isolados conhecidos;
++- entrega ao JavaScript central os seletores português e latim;
++- substitui ações `Android.showDialog` e equivalentes por diálogos acessíveis do site.
++
++Nenhuma dessas transformações altera o arquivo original em `content/liturgia`.
++
++## Validação
++
++Antes de publicar, execute:
++
++```bash
++ruby tools/validate_liturgy.rb content/liturgia
++ruby tools/test_liturgia_generator.rb
++bundle exec jekyll build
++```
++
++O validador interrompe o processo para JSON inválido, datas inválidas, metadados duplicados e arquivos obrigatórios ausentes. Scripts legados, chamadas Android e pequenas irregularidades de HTML são apresentados como avisos porque o sistema já os normaliza durante a publicação.
++
++## Adição de uma nova data
++
++1. Crie `content/liturgia/AAAA/MM/DD/`.
++2. Coloque os três JSONs e os HTMLs disponíveis.
++3. Execute o validador.
++4. Faça o build do Jekyll.
++5. Confira a página diária, as capas, o Invitatório, os seletores de idioma e a navegação entre as datas.
+diff --git a/README_PATCH_LITURGIA.md b/README_PATCH_LITURGIA.md
+new file mode 100644
+index 0000000..871a7b1
+--- /dev/null
++++ b/README_PATCH_LITURGIA.md
+@@ -0,0 +1,45 @@
++# Reforma da Liturgia do Oratio
++
++Este pacote deve ser aplicado sobre a raiz do repositório Oratio no commit `b5a375bbed9121da4bee9219871fc8e46347fd6c` ou em uma versão posterior que mantenha a mesma estrutura dos arquivos globais modificados.
++
++## Aplicação por sobreposição
++
++Extraia o conteúdo do arquivo ZIP na raiz do repositório, permitindo a substituição dos arquivos existentes.
++
++## Aplicação por patch
++
++Na raiz do repositório:
++
++```bash
++git apply ORATIO_LITURGIA_COMPLETA.patch
++```
++
++## O que é criado
++
++- gerador Jekyll para `content/liturgia/AAAA/MM/DD`;
++- páginas da Liturgia diária e da Liturgia das Horas;
++- página diária e páginas individuais de cada Hora;
++- Invitatório com Salmos 94, 23, 66 e 99;
++- seletor de datas;
++- informações litúrgicas completas e resumidas;
++- cartões com as capas de `horas-info.json`;
++- destaque automático da Hora indicada em `America/Sao_Paulo`;
++- compatibilidade com HTML e JavaScript herdados do aplicativo;
++- índice de seções, controles de leitura, impressão e compartilhamento;
++- integração com navegação, busca, SEO e sitemap;
++- validador dos pacotes litúrgicos e testes automatizados.
++
++## Arquivos de conteúdo preservados
++
++O diretório `content/liturgia` não é alterado pelo gerador. Ele permanece no repositório como fonte integral e é excluído apenas da cópia pública bruta para evitar páginas duplicadas sem layout. As páginas públicas são criadas durante o build.
++
++## Verificações recomendadas
++
++```bash
++ruby tools/validate_liturgy.rb content/liturgia
++ruby tools/test_liturgia_generator.rb
++node tools/test_liturgy_schedule.js
++bundle exec jekyll build
++```
++
++Consulte `GUIA_LITURGIA.md` para a documentação completa do formato e das rotas.
+diff --git a/_config.yml b/_config.yml
+index 67d051e..94cea23 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -23,6 +23,11 @@ kramdown:
+   hard_wrap: false
+   syntax_highlighter: rouge
+ 
++liturgia:
++  source: "content/liturgia"
++  timezone: "America/Sao_Paulo"
++  default_invitatory_psalm: "94"
++
+ permalink: /blog/:year/:month/:title/
+ 
+ collections:
+@@ -173,6 +178,8 @@ exclude:
+   - README.md
+   - GUIA_DE_IMPLEMENTACAO.md
+   - GUIA_SANTOS.md
++  - GUIA_LITURGIA.md
++  - content/liturgia
+   - LICENSE
+   - CNAME.example
+   - tools
+diff --git a/_data/navigation.yml b/_data/navigation.yml
+index 10386c6..eb5225d 100644
+--- a/_data/navigation.yml
++++ b/_data/navigation.yml
+@@ -1,6 +1,8 @@
+ desktop:
+   - label: "Aplicativo"
+     url: "/aplicativo/"
++  - label: "Liturgia"
++    url: "/liturgia/"
+   - label: "Orações"
+     url: "/oracoes/"
+   - label: "Novenas"
+@@ -22,6 +24,13 @@ drawer_groups:
+         url: "/aplicativo/"
+       - label: "Recursos do Oratio"
+         url: "/recursos/"
++  - id: "liturgia"
++    title: "Liturgia"
++    links:
++      - label: "Liturgia diária"
++        url: "/liturgia/"
++      - label: "Liturgia das Horas"
++        url: "/liturgia-das-horas/"
+   - id: "oracoes-devocoes"
+     title: "Orações e devoções"
+     links:
+diff --git a/_includes/head.html b/_includes/head.html
+index 9b0f925..79072b5 100644
+--- a/_includes/head.html
++++ b/_includes/head.html
+@@ -7,6 +7,7 @@
+ {% if page.layout == 'app-page' %}<link rel="stylesheet" href="{{ '/assets/css/app-page.css' | relative_url }}">{% endif %}
+ {% if page.layout == 'resources-page' %}<link rel="stylesheet" href="{{ '/assets/css/resources-page.css' | relative_url }}">{% endif %}
+ {% if page.editorial or page.layout == 'post' or page.layout == 'formation' or page.layout == 'editorial-archive' %}<link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">{% endif %}
++{% if page.liturgia_page %}<link rel="stylesheet" href="{{ '/assets/css/liturgy.css' | relative_url }}">{% endif %}
+ <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
+ <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
+ <link rel="apple-touch-icon" href="{{ '/assets/icons/pwa/apple-touch-icon.png' | relative_url }}">
+@@ -60,7 +61,16 @@
+ }
+ </script>
+ {% endif %}
+-{% if page.date_iso %},
++{% if page.liturgia_page %}
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "WebPage",
++  "name": {{ page.title | jsonify }},
++  "description": {{ page.description | jsonify }},
++  "url": {{ page.url | absolute_url | jsonify }},
++  "inLanguage": "pt-BR"{% if page.image %},
++  "primaryImageOfPage": {"@type": "ImageObject", "url": {{ page.image | absolute_url | jsonify }}}{% endif %}{% if page.date_iso %},
+   "datePublished": {{ page.date_iso | append: 'T00:00:00-03:00' | jsonify }}{% endif %}
+ }
+ </script>
+diff --git a/_includes/liturgy/date-navigation.html b/_includes/liturgy/date-navigation.html
+new file mode 100644
+index 0000000..f7850d0
+--- /dev/null
++++ b/_includes/liturgy/date-navigation.html
+@@ -0,0 +1,28 @@
++<nav class="liturgy-date-navigation" aria-label="Navegação entre os dias litúrgicos">
++  <div class="liturgy-date-navigation__adjacent">
++    {% if page.previous_day %}
++      {% assign previous_url = page.previous_day.daily_url %}
++      {% if include.target == 'hours_url' %}{% assign previous_url = page.previous_day.hours_url %}{% endif %}
++      <a class="button button--text button--small" href="{{ previous_url | relative_url }}" rel="prev" aria-label="Dia anterior: {{ page.previous_day.date_short }}">← {{ page.previous_day.date_short }}</a>
++    {% else %}<span></span>{% endif %}
++    {% if page.next_day %}
++      {% assign next_url = page.next_day.daily_url %}
++      {% if include.target == 'hours_url' %}{% assign next_url = page.next_day.hours_url %}{% endif %}
++      <a class="button button--text button--small" href="{{ next_url | relative_url }}" rel="next" aria-label="Dia seguinte: {{ page.next_day.date_short }}">{{ page.next_day.date_short }} →</a>
++    {% endif %}
++  </div>
++  <form class="liturgy-date-picker" data-liturgy-date-form>
++    <label for="liturgy-date-{{ include.id | default: 'main' }}">Escolher outro dia</label>
++    <div class="liturgy-date-picker__controls">
++      <input id="liturgy-date-{{ include.id | default: 'main' }}"
++        type="date"
++        value="{{ page.date_iso }}"
++        min="{{ page.available_days.first.date }}"
++        max="{{ page.available_days.last.date }}"
++        data-liturgy-date-picker
++        data-date-target="{{ include.target | default: 'daily_url' }}">
++      <button class="button button--primary button--small" type="submit">Abrir</button>
++    </div>
++    <p class="status-message" data-liturgy-date-status aria-live="polite"></p>
++  </form>
++</nav>
+diff --git a/_includes/liturgy/dialogs.html b/_includes/liturgy/dialogs.html
+new file mode 100644
+index 0000000..e825c1a
+--- /dev/null
++++ b/_includes/liturgy/dialogs.html
+@@ -0,0 +1,23 @@
++<dialog class="liturgy-dialog" data-liturgy-dialog aria-labelledby="liturgy-dialog-title">
++  <div class="liturgy-dialog__header">
++    <h2 id="liturgy-dialog-title" data-liturgy-dialog-title></h2>
++    <button class="icon-button" type="button" data-liturgy-dialog-close aria-label="Fechar">×</button>
++  </div>
++  <div class="liturgy-dialog__content" data-liturgy-dialog-content></div>
++</dialog>
++
++<template data-liturgy-dialog-template="pai-nosso" data-title="Pai-Nosso">
++  <p>Pai nosso que estais nos céus, santificado seja o vosso nome; venha a nós o vosso reino, seja feita a vossa vontade, assim na terra como no céu.</p>
++  <p>O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p>
++</template>
++
++<template data-liturgy-dialog-template="exame-de-consciencia" data-title="Exame de consciência">
++  <p class="rub">Faça alguns instantes de silêncio diante de Deus, agradecendo o bem recebido e reconhecendo com sinceridade aquilo que precisa ser entregue à sua misericórdia.</p>
++  <p>Recorde o seu dia à luz do amor a Deus e ao próximo, peça perdão pelas faltas cometidas e confie ao Senhor o propósito de recomeçar.</p>
++</template>
++
++<template data-liturgy-dialog-template="ato-penitencial" data-title="Ato penitencial">
++  <p>Confesso a Deus todo-poderoso e a vós, irmãos e irmãs, que pequei muitas vezes por pensamentos e palavras, atos e omissões, por minha culpa, minha culpa, minha tão grande culpa.</p>
++  <p>E peço à Virgem Maria, aos anjos e santos, e a vós, irmãos e irmãs, que rogueis por mim a Deus, nosso Senhor.</p>
++  <p class="rub">Deus todo-poderoso tenha compaixão de nós, perdoe os nossos pecados e nos conduza à vida eterna. Amém.</p>
++</template>
+diff --git a/_includes/liturgy/hour-card.html b/_includes/liturgy/hour-card.html
+new file mode 100644
+index 0000000..9fe192b
+--- /dev/null
++++ b/_includes/liturgy/hour-card.html
+@@ -0,0 +1,23 @@
++<article class="liturgy-hour-card"
++  data-hour-card
++  data-hour-date="{{ include.day }}"
++  data-hour-slug="{{ include.hour.slug }}">
++  <a class="liturgy-hour-card__link" href="{{ include.hour.url | relative_url }}">
++    <div class="liturgy-hour-card__media">
++      {% if include.hour.cover contains '://' %}{% assign hour_cover = include.hour.cover %}{% else %}{% assign hour_cover = include.hour.cover | relative_url %}{% endif %}
++      <img src="{{ hour_cover }}"
++        alt="{{ include.hour.image_alt | escape }}"
++        width="720"
++        height="480"
++        loading="lazy"
++        data-liturgy-cover>
++      <span class="liturgy-hour-card__current" data-current-hour-badge hidden>Indicada agora</span>
++    </div>
++    <div class="liturgy-hour-card__body">
++      <p class="eyebrow">Liturgia das Horas</p>
++      <h3>{{ include.hour.short_title }}</h3>
++      <p>{{ include.hour.title }}</p>
++      <span class="liturgy-hour-card__action">Rezar esta Hora <span aria-hidden="true">→</span></span>
++    </div>
++  </a>
++</article>
+diff --git a/_includes/liturgy/invitatory-psalms.html b/_includes/liturgy/invitatory-psalms.html
+new file mode 100644
+index 0000000..5903a36
+--- /dev/null
++++ b/_includes/liturgy/invitatory-psalms.html
+@@ -0,0 +1,91 @@
++<p class="rub">Quando se reza sozinho pode-se dizer a seguinte oração:</p>
++<p>Abri, Senhor, os meus lábios para bendizer o vosso santo nome. Purificai o meu coração de todos os pensamentos vãos, desordenados e estranhos. Iluminai o meu entendimento e inflamai minha vontade para que possa rezar digna, atenta e devotamente este Ofício, e mereça ser atendido na presença de vossa divina Majestade. Por Cristo, nosso Senhor. Amém.</p>
++<hr>
++<p class="rub">O Invitatório tem seu lugar no início da oração cotidiana, ou seja, antepõe-se ao Ofício das Leituras ou às Laudes, conforme se comece o dia por uma ou por outra ação litúrgica.</p>
++<p><span class="liturgy-rubric">℣.</span> Abri os meus lábios, ó Senhor.<br><span class="liturgy-rubric">℟.</span> E minha boca anunciará vosso louvor.</p>
++<p class="rub">Em seguida diz-se um dos salmos abaixo com sua antífona, em forma responsorial. Anuncia-se a antífona e imediatamente repete-se a mesma.</p>
++
++<div class="invitatory-psalm-switcher" role="tablist" aria-label="Escolher o salmo do Invitatório">
++  <span>Salmo:</span>
++  <button type="button" role="tab" aria-selected="true" data-invitatory-select="94">94</button>
++  <button type="button" role="tab" aria-selected="false" data-invitatory-select="23">23</button>
++  <button type="button" role="tab" aria-selected="false" data-invitatory-select="66">66</button>
++  <button type="button" role="tab" aria-selected="false" data-invitatory-select="99">99</button>
++</div>
++
++{% capture invitatory_antiphon %}<p class="liturgy-antiphon"><span class="liturgy-rubric">Ant.</span> {{ page.invitatory_antiphon }}</p>{% endcapture %}
++
++<section class="invitatory-psalm is-active" role="tabpanel" data-invitatory-psalm="94">
++  {{ invitatory_antiphon }}
++  <h2>Salmo 94(95)</h2>
++  <p><strong>Convite ao louvor de Deus</strong><br><em>Animai-vos uns aos outros, dia após dia, enquanto ainda se disser “hoje” (Hb 3,13).</em></p>
++  <p>–<sup>1</sup> Vinde, exultemos de alegria no Senhor, *<br>aclamemos o Rochedo que nos salva!<br>–<sup>2</sup> Ao seu encontro caminhemos com louvores, *<br>e com cantos de alegria o celebremos!</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>3</sup> Na verdade, o Senhor é o grande Deus, *<br>o grande Rei, muito maior que os deuses todos.<br>–<sup>4</sup> Tem nas mãos as profundezas dos abismos, *<br>e as alturas das montanhas lhe pertencem;<br>–<sup>5</sup> o mar é dele, pois foi ele quem o fez, *<br>e a terra firme suas mãos a modelaram.</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>6</sup> Vinde adoremos e prostremo-nos por terra, *<br>e ajoelhemos ante o Deus que nos criou!<br>=<sup>7</sup> Porque ele é o nosso Deus, nosso Pastor, †<br>e nós somos o seu povo e seu rebanho, *<br>as ovelhas que conduz com sua mão.</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>8</sup> Oxalá ouvísseis hoje a sua voz: †<br>“Não fecheis os corações como em Meriba, *<br><sup>9</sup> como em Massa, no deserto, aquele dia,<br>– em que outrora vossos pais me provocaram, *<br>apesar de terem visto as minhas obras”.</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>10</sup> Quarenta anos desgostou-me aquela raça †<br>e eu disse: “Eis um povo transviado, *<br><sup>11</sup> seu coração não conheceu os meus caminhos!”<br>– E por isso lhes jurei na minha ira: *<br>“Não entrarão no meu repouso prometido!”</p>
++  {{ invitatory_antiphon }}
++  <p>– Glória ao Pai e ao Filho e ao Espírito Santo. *<br>Como era no princípio, agora e sempre. Amém.</p>
++  <p><span class="rub">Quando o Salmo é cantado, se a melodia adotada for por estrofes, então se canta:</span><br>Demos glória a Deus Pai onipotente<br>e a seu Filho, Jesus Cristo, Senhor nosso, †<br>e ao Espírito que habita em nosso peito *<br>pelos séculos dos séculos. Amém.</p>
++  {{ invitatory_antiphon }}
++</section>
++
++<section class="invitatory-psalm" role="tabpanel" data-invitatory-psalm="23" hidden>
++  {{ invitatory_antiphon }}
++  <h2>Salmo 23(24)</h2>
++  <p><strong>Entrada do Senhor no templo</strong><br><em>Na ascensão, as portas do céu se abriram para o Cristo (Santo Irineu).</em></p>
++  <p>–<sup>1</sup> Ao Senhor pertence a terra e o que ela encerra, *<br>o mundo inteiro com os seres que o povoam;<br>–<sup>2</sup> porque ele a tornou firme sobre os mares, *<br>e sobre as águas a mantém inabalável.</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>3</sup> “Quem subirá até o monte do Senhor, *<br>quem ficará em sua santa habitação?”<br>=<sup>4</sup> “Quem tem mãos puras e inocente coração, †<br>quem não dirige sua mente para o crime, *<br>nem jura falso para o dano de seu próximo.</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>5</sup> Sobre este desce a bênção do Senhor *<br>e a recompensa de seu Deus e Salvador”.<br>–<sup>6</sup> “É assim a geração dos que o procuram, *<br>e do Deus de Israel buscam a face”.</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>7</sup> “Ó portas, levantai vossos frontões! †<br>Elevai-vos bem mais alto, antigas portas, *<br>a fim de que o Rei da glória possa entrar!”</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>8</sup> Dizei-nos: “Quem é este Rei da glória?” †<br>“É o Senhor, o valoroso, o onipotente, *<br>o Senhor, o poderoso nas batalhas!”</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>9</sup> “Ó portas, levantai vossos frontões! †<br>Elevai-vos bem mais alto, antigas portas, *<br>a fim de que o Rei da glória possa entrar!”</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>10</sup> Dizei-nos: “Quem é este Rei da glória?” †<br>“O Rei da glória é o Senhor onipotente, *<br>o Rei da glória é o Senhor Deus do universo!”</p>
++  {{ invitatory_antiphon }}
++  <p>– Glória ao Pai e ao Filho e ao Espírito Santo. *<br>Como era no princípio, agora e sempre. Amém.</p>
++  {{ invitatory_antiphon }}
++</section>
++
++<section class="invitatory-psalm" role="tabpanel" data-invitatory-psalm="66" hidden>
++  {{ invitatory_antiphon }}
++  <h2>Salmo 66(67)</h2>
++  <p><strong>Todos os povos celebrem o Senhor</strong><br><em>Sabei, pois, que esta salvação de Deus já foi comunicada aos pagãos! (At 28,28).</em></p>
++  <p>–<sup>2</sup> Que Deus nos dê a sua graça e sua bênção, *<br>e sua face resplandeça sobre nós!<br>–<sup>3</sup> Que na terra se conheça o seu caminho *<br>e a sua salvação por entre os povos.</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>4</sup> Que as nações vos glorifiquem, ó Senhor, *<br>que todas as nações vos glorifiquem!</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>5</sup> Exulte de alegria a terra inteira, *<br>pois julgais o universo com justiça;<br>– os povos governais com retidão, *<br>e guiais, em toda a terra, as nações.</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>6</sup> Que as nações vos glorifiquem, ó Senhor, *<br>que todas as nações vos glorifiquem!</p>
++  {{ invitatory_antiphon }}
++  <p>–<sup>7</sup> A terra produziu sua colheita: *<br>o Senhor e nosso Deus nos abençoa.<br>–<sup>8</sup> Que o Senhor e nosso Deus nos abençoe, *<br>e o respeitem os confins de toda terra!</p>
++  {{ invitatory_antiphon }}
++  <p>– Glória ao Pai e ao Filho e ao Espírito Santo. *<br>Como era no princípio, agora e sempre. Amém.</p>
++  {{ invitatory_antiphon }}
++</section>
++
++<section class="invitatory-psalm" role="tabpanel" data-invitatory-psalm="99" hidden>
++  {{ invitatory_antiphon }}
++  <h2>Salmo 99(100)</h2>
++  <p><strong>Alegria dos que entram no templo</strong><br><em>O Senhor ordena aos que foram salvos que cantem o hino de vitória (Santo Atanásio).</em></p>
++  <p>=<sup>2</sup> Aclamai o Senhor, ó terra inteira, †<br>servi ao Senhor com alegria, *<br>ide a ele cantando jubilosos!</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>3</sup> Sabei que o Senhor, só ele, é Deus †<br>Ele mesmo nos fez, e somos seus, *<br>nós somos seu povo e seu rebanho.</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>4</sup> Entrai por suas portas dando graças, †<br>e em seus átrios com hinos de louvor, *<br>dai-lhe graças, seu nome bendizei!</p>
++  {{ invitatory_antiphon }}
++  <p>=<sup>5</sup> Sim, é bom o Senhor e nosso Deus, †<br>sua bondade perdura para sempre, *<br>seu amor é fiel eternamente!</p>
++  {{ invitatory_antiphon }}
++  <p>– Glória ao Pai e ao Filho e ao Espírito Santo. *<br>Como era no princípio, agora e sempre. Amém.</p>
++  {{ invitatory_antiphon }}
++</section>
+diff --git a/_includes/liturgy/liturgical-summary.html b/_includes/liturgy/liturgical-summary.html
+new file mode 100644
+index 0000000..31a8a30
+--- /dev/null
++++ b/_includes/liturgy/liturgical-summary.html
+@@ -0,0 +1,30 @@
++<section class="liturgy-summary{% if include.compact %} liturgy-summary--compact{% endif %}"
++  style="--liturgical-accent: {{ page.liturgical.color_hex }}; --liturgical-on-accent: {{ page.liturgical.color_on }};"
++  aria-labelledby="liturgical-summary-title">
++  <div class="liturgy-summary__color" aria-hidden="true">
++    <img src="{{ page.liturgical.color_image | relative_url }}"
++      alt=""
++      width="112"
++      height="112"
++      loading="eager"
++      data-liturgical-color-image>
++  </div>
++  <div class="liturgy-summary__body">
++    <p class="eyebrow">Calendário litúrgico</p>
++    <h2 id="liturgical-summary-title">{{ page.celebration }}</h2>
++    <p class="liturgy-summary__date">{{ page.date_long }}</p>
++    <dl class="liturgy-facts">
++      {% if page.liturgical.season_label != empty %}<div><dt>Tempo</dt><dd>{{ page.liturgical.season_label }}</dd></div>{% endif %}
++      {% if page.liturgical.rank_label != empty %}<div><dt>Celebração</dt><dd>{{ page.liturgical.rank_label }}</dd></div>{% endif %}
++      <div><dt>Cor</dt><dd><span class="liturgy-color-dot" aria-hidden="true"></span>{{ page.liturgical.color_label }}</dd></div>
++      {% if page.liturgical.week_label %}<div><dt>Semana</dt><dd>{{ page.liturgical.week_label }}</dd></div>{% endif %}
++      {% if page.liturgical.psalter_label %}<div><dt>Saltério</dt><dd>{{ page.liturgical.psalter_label }}</dd></div>{% endif %}
++      {% if page.liturgical.year_cycle != empty %}<div><dt>Ciclo</dt><dd>{{ page.liturgical.year_cycle }}</dd></div>{% endif %}
++    </dl>
++    {% if page.liturgical.observances and page.liturgical.observances.size > 0 %}
++      <ul class="liturgy-observances" aria-label="Observações do dia">
++        {% for observation in page.liturgical.observances %}<li>{{ observation }}</li>{% endfor %}
++      </ul>
++    {% endif %}
++  </div>
++</section>
+diff --git a/_includes/scripts.html b/_includes/scripts.html
+index 1cf21b6..a94125f 100644
+--- a/_includes/scripts.html
++++ b/_includes/scripts.html
+@@ -13,3 +13,4 @@
+ {% if page.layout == 'resources-page' %}<script src="{{ '/assets/js/resources-page.js' | relative_url }}" defer></script>{% endif %}
+ {% if page.support_page %}<script src="{{ '/assets/js/support-page.js' | relative_url }}" defer></script>{% endif %}
+ {% if page.contact_form %}<script src="{{ '/assets/js/contact-page.js' | relative_url }}" defer></script>{% endif %}
++{% if page.liturgia_page %}<script src="{{ '/assets/js/liturgy.js' | relative_url }}" defer></script>{% endif %}
+diff --git a/_layouts/liturgy-day.html b/_layouts/liturgy-day.html
+new file mode 100644
+index 0000000..60eec95
+--- /dev/null
++++ b/_layouts/liturgy-day.html
+@@ -0,0 +1,58 @@
++---
++layout: default
++---
++<div class="container container--large page-shell liturgy-shell liturgy-day" data-liturgy-page data-page-date="{{ page.date_iso }}">
++  {% include breadcrumb.html %}
++  <header class="liturgy-page-heading">
++    <div>
++      <p class="eyebrow">Liturgia diária</p>
++      <h1>{{ page.celebration }}</h1>
++      <p class="page-lead">Leituras, orações e Liturgia das Horas de {{ page.date_long }}.</p>
++    </div>
++    <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Ver somente a Liturgia das Horas</a>
++  </header>
++
++  {% include liturgy/liturgical-summary.html %}
++  {% include liturgy/date-navigation.html target='daily_url' id='daily' %}
++  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
++
++  {% if page.mass_sections and page.mass_sections.size > 0 %}
++  <section class="liturgy-mass" aria-labelledby="mass-title">
++    <div class="section-heading">
++      <p class="eyebrow">Celebração eucarística</p>
++      <h2 id="mass-title">Liturgia do dia</h2>
++      <p>Os textos abaixo seguem a ordem em que foram fornecidos no arquivo litúrgico.</p>
++    </div>
++    <nav class="liturgy-section-nav" aria-label="Partes da liturgia do dia">
++      {% for section in page.mass_sections %}<a href="#{{ section.anchor }}">{{ section.title }}</a>{% endfor %}
++    </nav>
++    <div class="liturgy-mass__sections" data-reading-text data-reading-font-base="1.075">
++      {% for section in page.mass_sections %}
++      <article class="liturgy-mass-section" id="{{ section.anchor }}">
++        <h3>{{ section.title }}</h3>
++        <div class="liturgy-prose">{{ section.html }}</div>
++      </article>
++      {% endfor %}
++    </div>
++  </section>
++  {% else %}
++    {% include empty-state.html title='Liturgia do dia indisponível' text='O arquivo liturgy.json desta data não possui seções publicáveis.' %}
++  {% endif %}
++
++  <section class="liturgy-hours-section" aria-labelledby="daily-hours-title">
++    <div class="section-heading section-heading--split">
++      <div>
++        <p class="eyebrow">Santificação do dia</p>
++        <h2 id="daily-hours-title">Liturgia das Horas</h2>
++        <p>O sistema destaca automaticamente a Hora mais indicada no momento.</p>
++      </div>
++      <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Abrir a página das Horas</a>
++    </div>
++    <div class="liturgy-hours-grid">
++      {% for hour in page.hours %}{% include liturgy/hour-card.html hour=hour day=page.date_iso %}{% endfor %}
++    </div>
++  </section>
++
++  {% include share-buttons.html %}
++  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
++</div>
+diff --git a/_layouts/liturgy-hour.html b/_layouts/liturgy-hour.html
+new file mode 100644
+index 0000000..7fbf11d
+--- /dev/null
++++ b/_layouts/liturgy-hour.html
+@@ -0,0 +1,61 @@
++---
++layout: default
++---
++<div class="container container--large page-shell liturgy-shell liturgy-hour" data-liturgy-page data-page-date="{{ page.date_iso }}" data-page-hour="{{ page.hour_slug }}">
++  {% include breadcrumb.html %}
++  <article>
++    <header class="liturgy-hour-hero" style="--liturgical-accent: {{ page.liturgical.color_hex }}; --liturgical-on-accent: {{ page.liturgical.color_on }};">
++      <div class="liturgy-hour-hero__media">
++        {% if page.image contains '://' %}{% assign hour_image = page.image %}{% else %}{% assign hour_image = page.image | relative_url %}{% endif %}
++        <img src="{{ hour_image }}" alt="{{ page.image_alt | escape }}" width="960" height="640" loading="eager" data-liturgy-cover>
++      </div>
++      <div class="liturgy-hour-hero__content">
++        <p class="eyebrow">{{ page.hour_short_title }}</p>
++        <h1>{{ page.title }}</h1>
++        <p>{{ page.date_long }}</p>
++        <div class="liturgy-hour-hero__chips">
++          <span>{{ page.liturgical.season_label }}</span>
++          <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
++          {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
++          <span data-current-hour-badge hidden>Hora indicada agora</span>
++        </div>
++        <div class="liturgy-hour-hero__actions">
++          {% if page.invitatory_url %}<a class="button button--primary" href="{{ page.invitatory_url | relative_url }}">Começar pelo Invitatório</a>{% endif %}
++          <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Todas as Horas do dia</a>
++        </div>
++      </div>
++    </header>
++
++    <section class="liturgy-hour-summary" aria-label="Informações litúrgicas resumidas">
++      <strong>{{ page.celebration }}</strong>
++      <span>{{ page.liturgical.rank_label }}</span>
++      {% if page.liturgical.year_cycle != empty %}<span>{{ page.liturgical.year_cycle }}</span>{% endif %}
++      {% if page.liturgical.week_label %}<span>{{ page.liturgical.week_label }}</span>{% endif %}
++    </section>
++
++    <div class="liturgy-reading-shell" data-prayer-copy-source>
++      {% include reading-tools.html copy_label='Copiar esta Hora' %}
++      <div class="liturgy-reading-layout">
++        <aside class="liturgy-toc" data-liturgy-toc hidden>
++          <button type="button" class="liturgy-toc__toggle" data-liturgy-toc-toggle aria-expanded="false">Nesta Hora</button>
++          <nav data-liturgy-toc-list aria-label="Seções desta Hora"></nav>
++        </aside>
++        <div class="liturgy-reading__text liturgy-prose" data-reading-text data-reading-font-base="1.125">
++          {{ content }}
++        </div>
++      </div>
++      <p class="status-message" data-prayer-status aria-live="polite"></p>
++    </div>
++
++    <nav class="liturgy-hour-navigation" aria-label="Navegação entre as Horas">
++      {% if page.previous_hour %}<a href="{{ page.previous_hour.url | relative_url }}" rel="prev"><span>Hora anterior</span><strong>← {{ page.previous_hour.short_title }}</strong></a>{% else %}<span></span>{% endif %}
++      <a class="liturgy-hour-navigation__day" href="{{ page.daily_page_url | relative_url }}">Liturgia do dia</a>
++      {% if page.next_hour %}<a href="{{ page.next_hour.url | relative_url }}" rel="next"><span>Próxima Hora</span><strong>{{ page.next_hour.short_title }} →</strong></a>{% endif %}
++    </nav>
++
++    {% include share-buttons.html %}
++  </article>
++  {% include liturgy/dialogs.html %}
++  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
++  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
++</div>
+diff --git a/_layouts/liturgy-hours-day.html b/_layouts/liturgy-hours-day.html
+new file mode 100644
+index 0000000..8b83365
+--- /dev/null
++++ b/_layouts/liturgy-hours-day.html
+@@ -0,0 +1,41 @@
++---
++layout: default
++---
++<div class="container container--large page-shell liturgy-shell liturgy-hours-day" data-liturgy-page data-page-date="{{ page.date_iso }}">
++  {% include breadcrumb.html %}
++  <header class="liturgy-page-heading">
++    <div>
++      <p class="eyebrow">Liturgia das Horas</p>
++      <h1>{{ page.celebration }}</h1>
++      <p class="page-lead">Escolha a Hora litúrgica de {{ page.date_long }}.</p>
++    </div>
++    <a class="button button--text" href="{{ page.daily_page_url | relative_url }}">Ver a liturgia diária</a>
++  </header>
++
++  {% include liturgy/liturgical-summary.html compact=true %}
++  {% include liturgy/date-navigation.html target='hours_url' id='hours' %}
++  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
++
++  {% if page.invitatory_url %}
++  <section class="liturgy-invitatory-banner">
++    <div>
++      <p class="eyebrow">Início da oração cotidiana</p>
++      <h2>Invitatório</h2>
++      <p>Reze-o antes do Ofício das Leituras ou das Laudes, conforme a primeira Hora escolhida.</p>
++    </div>
++    <a class="button button--primary" href="{{ page.invitatory_url | relative_url }}">Rezar o Invitatório</a>
++  </section>
++  {% endif %}
++
++  <section aria-labelledby="hours-list-title">
++    <div class="section-heading">
++      <p class="eyebrow">Horas canônicas</p>
++      <h2 id="hours-list-title">Orações disponíveis</h2>
++    </div>
++    <div class="liturgy-hours-grid">
++      {% for hour in page.hours %}{% include liturgy/hour-card.html hour=hour day=page.date_iso %}{% endfor %}
++    </div>
++  </section>
++
++  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
++</div>
+diff --git a/_layouts/liturgy-index.html b/_layouts/liturgy-index.html
+new file mode 100644
+index 0000000..1086e8e
+--- /dev/null
++++ b/_layouts/liturgy-index.html
+@@ -0,0 +1,50 @@
++---
++layout: default
++---
++<div class="container container--large page-shell liturgy-shell liturgy-index" data-liturgy-page data-liturgy-index-kind="{{ page.liturgy_index_kind }}">
++  {% include breadcrumb.html %}
++  <header class="liturgy-index__hero">
++    <div>
++      <p class="eyebrow">Oração da Igreja</p>
++      <h1>{{ page.title }}</h1>
++      <p class="page-lead">{{ page.description }}</p>
++    </div>
++    <div class="liturgy-index__symbol" aria-hidden="true">☩</div>
++  </header>
++
++  <section class="liturgy-index__chooser" aria-labelledby="liturgy-index-date-title">
++    <div>
++      <p class="eyebrow">Calendário</p>
++      <h2 id="liturgy-index-date-title">Escolha o dia que deseja acompanhar</h2>
++      <p data-liturgy-today-description>A data de hoje será selecionada automaticamente quando estiver disponível.</p>
++    </div>
++    <form class="liturgy-date-picker liturgy-date-picker--large" data-liturgy-date-form>
++      <label for="liturgy-index-date">Data litúrgica</label>
++      <div class="liturgy-date-picker__controls">
++        <input id="liturgy-index-date"
++          type="date"
++          value="{{ page.featured_day.date }}"
++          min="{{ page.available_days.first.date }}"
++          max="{{ page.available_days.last.date }}"
++          data-liturgy-date-picker
++          data-date-target="{% if page.liturgy_index_kind == 'hours' %}hours_url{% else %}daily_url{% endif %}">
++        <button class="button button--primary" type="submit">Abrir</button>
++      </div>
++      <p class="status-message" data-liturgy-date-status aria-live="polite"></p>
++    </form>
++  </section>
++
++  <section class="liturgy-index__featured" aria-labelledby="featured-liturgy-title">
++    <div>
++      <p class="eyebrow">Dia em destaque</p>
++      <h2 id="featured-liturgy-title" data-selected-day-title>{{ page.featured_day.celebration }}</h2>
++      <p data-selected-day-label>{{ page.featured_day.label }}</p>
++    </div>
++    <a class="button button--primary" href="{% if page.liturgy_index_kind == 'hours' %}{{ page.featured_day.hours_url | relative_url }}{% else %}{{ page.featured_day.daily_url | relative_url }}{% endif %}" data-selected-day-link>
++      {% if page.liturgy_index_kind == 'hours' %}Ver as Horas deste dia{% else %}Ver a liturgia deste dia{% endif %}
++    </a>
++  </section>
++
++  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
++  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
++</div>
+diff --git a/_layouts/liturgy-invitatory.html b/_layouts/liturgy-invitatory.html
+new file mode 100644
+index 0000000..1579497
+--- /dev/null
++++ b/_layouts/liturgy-invitatory.html
+@@ -0,0 +1,49 @@
++---
++layout: default
++---
++<div class="container container--large page-shell liturgy-shell liturgy-invitatory" data-liturgy-page data-page-date="{{ page.date_iso }}" data-page-hour="invitatorio">
++  {% include breadcrumb.html %}
++  <article>
++    <header class="liturgy-hour-hero" style="--liturgical-accent: {{ page.liturgical.color_hex }}; --liturgical-on-accent: {{ page.liturgical.color_on }};">
++      <div class="liturgy-hour-hero__media">
++        {% if page.image contains '://' %}{% assign invitatory_image = page.image %}{% else %}{% assign invitatory_image = page.image | relative_url %}{% endif %}
++        <img src="{{ invitatory_image }}" alt="{{ page.image_alt | escape }}" width="960" height="640" loading="eager" data-liturgy-cover>
++      </div>
++      <div class="liturgy-hour-hero__content">
++        <p class="eyebrow">Início da oração cotidiana</p>
++        <h1>Invitatório</h1>
++        <p>{{ page.celebration }} · {{ page.date_long }}</p>
++        <div class="liturgy-hour-hero__chips">
++          <span>{{ page.liturgical.season_label }}</span>
++          <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
++          {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
++        </div>
++        <div class="liturgy-hour-hero__actions">
++          {% if page.oficio_url %}<a class="button button--text" href="{{ page.oficio_url | relative_url }}">Ir ao Ofício das Leituras</a>{% endif %}
++          {% if page.laudes_url %}<a class="button button--text" href="{{ page.laudes_url | relative_url }}">Ir às Laudes</a>{% endif %}
++        </div>
++      </div>
++    </header>
++
++    <div class="liturgy-reading-shell" data-prayer-copy-source>
++      {% include reading-tools.html copy_label='Copiar o Invitatório' %}
++      <div class="liturgy-reading__text liturgy-prose" data-reading-text data-reading-font-base="1.125">
++        {% include liturgy/invitatory-psalms.html %}
++      </div>
++      <p class="status-message" data-prayer-status aria-live="polite"></p>
++    </div>
++
++    <section class="liturgy-invitatory-next" aria-labelledby="continue-prayer-title">
++      <div>
++        <p class="eyebrow">Continuar a oração</p>
++        <h2 id="continue-prayer-title">Escolha a primeira Hora do dia</h2>
++      </div>
++      <div>
++        {% if page.oficio_url %}<a class="button button--primary" href="{{ page.oficio_url | relative_url }}">Ofício das Leituras</a>{% endif %}
++        {% if page.laudes_url %}<a class="button button--primary" href="{{ page.laudes_url | relative_url }}">Laudes</a>{% endif %}
++      </div>
++    </section>
++    {% include share-buttons.html %}
++  </article>
++  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
++</div>
+diff --git a/_plugins/liturgia_generator.rb b/_plugins/liturgia_generator.rb
+new file mode 100644
+index 0000000..b1dcbba
+--- /dev/null
++++ b/_plugins/liturgia_generator.rb
+@@ -0,0 +1,517 @@
++# frozen_string_literal: true
++
++require "cgi"
++require "date"
++require "json"
++
++module Oratio
++  module Liturgia
++    HOUR_ORDER = %w[
++      oficio-das-leituras
++      laudes
++      hora-terca
++      hora-sexta
++      hora-nona
++      vesperas
++      completas
++    ].freeze
++
++    HOUR_DEFAULTS = {
++      "oficio-das-leituras" => "Ofício das Leituras",
++      "laudes" => "Laudes",
++      "hora-terca" => "Hora Terça",
++      "hora-sexta" => "Hora Sexta",
++      "hora-nona" => "Hora Nona",
++      "vesperas" => "Vésperas",
++      "completas" => "Completas"
++    }.freeze
++
++    COLOR_MAP = {
++      "R" => { "label" => "Vermelho", "hex" => "#9D2020", "on" => "#FFFFFF" },
++      "P" => { "label" => "Roxo", "hex" => "#67507A", "on" => "#FFFFFF" },
++      "PP" => { "label" => "Roxo ou rosa", "hex" => "#67507A", "on" => "#FFFFFF" },
++      "G" => { "label" => "Verde", "hex" => "#287A45", "on" => "#FFFFFF" },
++      "W" => { "label" => "Branco", "hex" => "#F7F4EC", "on" => "#1C1B1F" },
++      "PWB" => { "label" => "Roxo, branco ou preto", "hex" => "#67507A", "on" => "#FFFFFF" }
++    }.freeze
++
++    SEASON_MAP = {
++      "TA" => "Tempo do Advento",
++      "ADV" => "Tempo do Advento",
++      "TN" => "Tempo do Natal",
++      "N" => "Tempo do Natal",
++      "TQ" => "Tempo da Quaresma",
++      "Q" => "Tempo da Quaresma",
++      "TP" => "Tempo Pascal",
++      "P" => "Tempo Pascal",
++      "TC" => "Tempo Comum"
++    }.freeze
++
++    WEEKDAY_MAP = {
++      "Dom" => "Domingo",
++      "Seg" => "Segunda-feira",
++      "Ter" => "Terça-feira",
++      "Qua" => "Quarta-feira",
++      "Qui" => "Quinta-feira",
++      "Sex" => "Sexta-feira",
++      "Sab" => "Sábado"
++    }.freeze
++
++    RANK_MAP = {
++      "S" => "Solenidade",
++      "F" => "Festa",
++      "M" => "Memória",
++      "MO" => "Memória obrigatória",
++      "ML" => "Memória facultativa",
++      "MF" => "Memória facultativa",
++      "FE" => "Féria"
++    }.freeze
++
++    MONTHS = %w[
++      janeiro fevereiro março abril maio junho
++      julho agosto setembro outubro novembro dezembro
++    ].freeze
++
++    WEEKDAYS = %w[
++      domingo segunda-feira terça-feira quarta-feira
++      quinta-feira sexta-feira sábado
++    ].freeze
++
++    class GeneratedPage < Jekyll::PageWithoutAFile
++      def initialize(site, dir, data, content = "")
++        super(site, site.source, dir, "index.html")
++        self.data = data
++        self.content = content
++      end
++    end
++
++    class Generator < Jekyll::Generator
++      safe true
++      priority :low
++
++      def generate(site)
++        config = site.config.fetch("liturgia", {})
++        source_dir = config.fetch("source", "content/liturgia")
++        root = File.join(site.source, source_dir)
++        return unless Dir.exist?(root)
++
++        days = discover_days(site, root)
++        return if days.empty?
++
++        connect_days(days)
++        available_days = build_available_days(days)
++        site.data["liturgia_days"] = available_days
++
++        days.each do |day|
++          generate_daily_page(site, day, available_days)
++          generate_hours_day_page(site, day, available_days)
++          generate_hour_pages(site, day, available_days)
++          generate_invitatory_page(site, day, available_days)
++        end
++
++        generate_index_page(site, days, available_days, "daily")
++        generate_index_page(site, days, available_days, "hours")
++      end
++
++      private
++
++      def discover_days(site, root)
++        pattern = File.join(root, "[0-9][0-9][0-9][0-9]", "[0-9][0-9]", "[0-9][0-9]")
++        Dir.glob(pattern).sort.filter_map do |directory|
++          parse_day(site, directory)
++        rescue StandardError => error
++          Jekyll.logger.warn("Liturgia:", "não foi possível processar #{directory}: #{error.message}")
++          nil
++        end
++      end
++
++      def parse_day(site, directory)
++        relative = directory.delete_prefix(File.join(site.source, site.config.dig("liturgia", "source") || "content/liturgia") + File::SEPARATOR)
++        year, month, day = relative.split(File::SEPARATOR).map(&:to_i)
++        date = Date.new(year, month, day)
++
++        info = read_json(File.join(directory, "liturgia-info.json"), {})
++        hour_metadata = read_json(File.join(directory, "horas-info.json"), [])
++        mass_sections = read_json(File.join(directory, "liturgy.json"), [])
++        return nil unless info.is_a?(Hash) && hour_metadata.is_a?(Array) && mass_sections.is_a?(Array)
++
++        normalized_info = normalize_liturgical_info(info)
++        hours = build_hours(directory, date, hour_metadata, normalized_info)
++        celebration = infer_celebration(hours)
++        invitatory_path = File.join(directory, "invitatorio.html")
++
++        {
++          "date" => date,
++          "date_iso" => date.iso8601,
++          "date_long" => format_long_date(date),
++          "date_short" => format_short_date(date),
++          "directory" => directory,
++          "celebration" => celebration,
++          "liturgical" => normalized_info,
++          "mass_sections" => normalize_mass_sections(mass_sections),
++          "hours" => hours,
++          "invitatory_exists" => File.file?(invitatory_path),
++          "invitatory_path" => invitatory_path,
++          "daily_url" => "/liturgia/#{date.strftime('%Y/%m/%d')}/",
++          "hours_url" => "/liturgia-das-horas/#{date.strftime('%Y/%m/%d')}/"
++        }
++      end
++
++      def read_json(path, fallback)
++        unless File.file?(path)
++          Jekyll.logger.warn("Liturgia:", "arquivo ausente: #{path}")
++          return fallback
++        end
++
++        JSON.parse(File.read(path, encoding: "UTF-8"))
++      rescue JSON::ParserError => error
++        Jekyll.logger.warn("Liturgia:", "JSON inválido em #{path}: #{error.message}")
++        fallback
++      end
++
++      def normalize_liturgical_info(info)
++        code = info.fetch("corLiturgica", "W").to_s.upcase
++        color = COLOR_MAP.fetch(code, COLOR_MAP["W"])
++        week_number = info["semana"].to_s.sub(/\.0\z/, "")
++        psalter_week = integer_or_nil(info["semanaSalterio"])
++        rank_code = info["tipoMemoria"].to_s.upcase
++
++        observances = []
++        observances << "Primeiras Vésperas" if truthy?(info["primeirasVesp"])
++        observances << "Dia de jejum" if truthy?(info["isJejum"])
++        observances << "Dia de abstinência" if truthy?(info["isAbstinencia"])
++
++        {
++          "color_code" => code,
++          "color_label" => color["label"],
++          "color_hex" => color["hex"],
++          "color_on" => color["on"],
++          "color_image" => "/assets/images/liturgia/#{code.downcase}.png",
++          "season_code" => info["tempoLiturgico"].to_s,
++          "season_label" => SEASON_MAP.fetch(info["tempoLiturgico"].to_s.upcase, info["tempoLiturgico"].to_s),
++          "weekday_label" => WEEKDAY_MAP.fetch(info["diaSemana"].to_s, info["diaSemana"].to_s),
++          "rank_code" => rank_code,
++          "rank_label" => RANK_MAP.fetch(rank_code, rank_code),
++          "is_memorial" => truthy?(info["isMemoria"]),
++          "year_cycle" => info["anoABC"].to_s,
++          "week_number" => week_number,
++          "week_label" => week_number.empty? ? nil : "#{ordinal(week_number)} semana",
++          "psalter_week" => psalter_week,
++          "psalter_label" => psalter_week ? "#{ordinal(psalter_week)} semana do Saltério" : nil,
++          "first_vespers" => truthy?(info["primeirasVesp"]),
++          "fast" => truthy?(info["isJejum"]),
++          "abstinence" => truthy?(info["isAbstinencia"]),
++          "observances" => observances,
++          "raw" => info
++        }
++      end
++
++      def build_hours(directory, date, metadata, liturgical)
++        metadata_by_slug = metadata.each_with_object({}) do |item, result|
++          next unless item.is_a?(Hash)
++
++          slug = item["hora"].to_s
++          result[slug] = item unless slug.empty?
++        end
++
++        HOUR_ORDER.filter_map do |slug|
++          path = File.join(directory, "#{slug}.html")
++          next unless File.file?(path)
++
++          raw = File.read(path, encoding: "UTF-8")
++          meta = metadata_by_slug.fetch(slug, {})
++          extracted_title = extract_title(raw)
++          title = presence(meta["titulo"]) || extracted_title || HOUR_DEFAULTS.fetch(slug)
++          short_title = presence(meta["hora-title"]) || HOUR_DEFAULTS.fetch(slug)
++          cover = presence(meta["capa"]) || liturgical["color_image"]
++
++          {
++            "slug" => slug,
++            "short_title" => short_title,
++            "title" => title,
++            "cover" => cover,
++            "image_alt" => "#{short_title}, #{title}",
++            "source_path" => path,
++            "url" => "/liturgia-das-horas/#{date.strftime('%Y/%m/%d')}/#{slug}/"
++          }
++        end
++      end
++
++      def normalize_mass_sections(sections)
++        sections.filter_map do |section|
++          next unless section.is_a?(Hash)
++
++          title = presence(section["title"])
++          html = presence(section["html"])
++          next unless title && html
++
++          {
++            "title" => title,
++            "anchor" => slugify(title),
++            "html" => normalize_fragment(html, strip_title: false)
++          }
++        end
++      end
++
++      def infer_celebration(hours)
++        preferred = hours.find { |hour| hour["slug"] == "laudes" } || hours.first
++        return "Liturgia do dia" unless preferred
++
++        preferred["title"].sub(
++          /\A(?:Ofício das Leituras|Laudes|Hora Terça|Hora Sexta|Hora Nona|Vésperas|Completas)\s+(?:d[aeo]|de)\s+/i,
++          ""
++        ).strip
++      end
++
++      def connect_days(days)
++        days.each_with_index do |day, index|
++          previous = index.positive? ? days[index - 1] : nil
++          following = index < days.length - 1 ? days[index + 1] : nil
++          day["previous_day"] = previous
++          day["next_day"] = following
++
++          day["hours"].each_with_index do |hour, hour_index|
++            hour["previous_hour"] = hour_index.positive? ? day["hours"][hour_index - 1] : nil
++            hour["next_hour"] = hour_index < day["hours"].length - 1 ? day["hours"][hour_index + 1] : nil
++          end
++        end
++      end
++
++      def build_available_days(days)
++        days.map do |day|
++          {
++            "date" => day["date_iso"],
++            "label" => day["date_long"],
++            "celebration" => day["celebration"],
++            "daily_url" => day["daily_url"],
++            "hours_url" => day["hours_url"],
++            "hours" => day["hours"].each_with_object({}) { |hour, result| result[hour["slug"]] = hour["url"] },
++            "invitatory_url" => day["invitatory_exists"] ? invitatory_url(day["date"]) : nil
++          }
++        end
++      end
++
++      def generate_daily_page(site, day, available_days)
++        page_data = common_page_data(day, available_days).merge(
++          "layout" => "liturgy-day",
++          "title" => "Liturgia diária: #{day['celebration']}",
++          "description" => "Leituras e orações da liturgia diária de #{day['date_long']}, com informações do calendário litúrgico e acesso à Liturgia das Horas.",
++          "search_type" => "Liturgia diária",
++          "mass_sections" => day["mass_sections"],
++          "hours" => day["hours"],
++          "hours_day_url" => day["hours_url"],
++          "breadcrumb_parent" => { "label" => "Liturgia diária", "url" => "/liturgia/" }
++        )
++        content = day["mass_sections"].map { |section| "#{section['title']} #{section['html']}" }.join("\n")
++        site.pages << GeneratedPage.new(site, day["daily_url"].delete_prefix("/").delete_suffix("/"), page_data, content)
++      end
++
++      def generate_hours_day_page(site, day, available_days)
++        page_data = common_page_data(day, available_days).merge(
++          "layout" => "liturgy-hours-day",
++          "title" => "Liturgia das Horas: #{day['celebration']}",
++          "description" => "Ofício das Leituras, Laudes, Horas Menores, Vésperas e Completas de #{day['date_long']}.",
++          "search_type" => "Liturgia das Horas",
++          "hours" => day["hours"],
++          "daily_page_url" => day["daily_url"],
++          "invitatory_url" => day["invitatory_exists"] ? invitatory_url(day["date"]) : nil,
++          "breadcrumb_parent" => { "label" => "Liturgia das Horas", "url" => "/liturgia-das-horas/" }
++        )
++        content = day["hours"].map { |hour| "#{hour['short_title']} #{hour['title']}" }.join("\n")
++        site.pages << GeneratedPage.new(site, day["hours_url"].delete_prefix("/").delete_suffix("/"), page_data, content)
++      end
++
++      def generate_hour_pages(site, day, available_days)
++        day["hours"].each do |hour|
++          raw = File.read(hour["source_path"], encoding: "UTF-8")
++          normalized = normalize_fragment(raw, strip_title: true)
++          page_data = common_page_data(day, available_days).merge(
++            "layout" => "liturgy-hour",
++            "title" => hour["title"],
++            "description" => "Reze #{hour['short_title']} de #{day['date_long']}: #{day['celebration']}.",
++            "search_type" => "Liturgia das Horas",
++            "image" => hour["cover"],
++            "image_alt" => hour["image_alt"],
++            "hour" => hour,
++            "hour_slug" => hour["slug"],
++            "hour_short_title" => hour["short_title"],
++            "previous_hour" => hour["previous_hour"],
++            "next_hour" => hour["next_hour"],
++            "daily_page_url" => day["daily_url"],
++            "hours_day_url" => day["hours_url"],
++            "invitatory_url" => %w[oficio-das-leituras laudes].include?(hour["slug"]) && day["invitatory_exists"] ? invitatory_url(day["date"]) : nil,
++            "breadcrumb_parent" => { "label" => "Liturgia das Horas", "url" => day["hours_url"] }
++          )
++          site.pages << GeneratedPage.new(site, hour["url"].delete_prefix("/").delete_suffix("/"), page_data, normalized)
++        end
++      end
++
++      def generate_invitatory_page(site, day, available_days)
++        return unless day["invitatory_exists"]
++
++        raw = File.read(day["invitatory_path"], encoding: "UTF-8")
++        antiphon = extract_invitatory_antiphon(raw)
++        cover_hour = day["hours"].find { |hour| hour["slug"] == "oficio-das-leituras" } || day["hours"].find { |hour| hour["slug"] == "laudes" } || day["hours"].first
++        page_data = common_page_data(day, available_days).merge(
++          "layout" => "liturgy-invitatory",
++          "title" => "Invitatório: #{day['celebration']}",
++          "description" => "Invitatório de #{day['date_long']}, com os Salmos 94, 23, 66 e 99.",
++          "search_type" => "Liturgia das Horas",
++          "image" => cover_hour ? cover_hour["cover"] : day["liturgical"]["color_image"],
++          "image_alt" => "Invitatório, #{day['celebration']}",
++          "invitatory_antiphon" => antiphon,
++          "oficio_url" => hour_url(day, "oficio-das-leituras"),
++          "laudes_url" => hour_url(day, "laudes"),
++          "hours_day_url" => day["hours_url"],
++          "daily_page_url" => day["daily_url"],
++          "breadcrumb_parent" => { "label" => "Liturgia das Horas", "url" => day["hours_url"] }
++        )
++        site.pages << GeneratedPage.new(site, invitatory_url(day["date"]).delete_prefix("/").delete_suffix("/"), page_data, normalize_fragment(raw, strip_title: true))
++      end
++
++      def generate_index_page(site, days, available_days, kind)
++        featured = featured_day(days)
++        daily = kind == "daily"
++        data = {
++          "layout" => "liturgy-index",
++          "title" => daily ? "Liturgia diária" : "Liturgia das Horas",
++          "description" => daily ? "Acompanhe a liturgia diária, as leituras da Missa e a Liturgia das Horas." : "Reze a Liturgia das Horas conforme o dia do calendário litúrgico.",
++          "search_type" => daily ? "Liturgia diária" : "Liturgia das Horas",
++          "liturgia_page" => true,
++          "liturgy_index_kind" => kind,
++          "featured_day" => available_days.find { |item| item["date"] == featured["date_iso"] },
++          "available_days" => available_days,
++          "image" => featured["liturgical"]["color_image"],
++          "image_alt" => featured["liturgical"]["color_label"],
++          "search" => true,
++          "sitemap" => true
++        }
++        dir = daily ? "liturgia" : "liturgia-das-horas"
++        site.pages << GeneratedPage.new(site, dir, data)
++      end
++
++      def common_page_data(day, available_days)
++        {
++          "liturgia_page" => true,
++          "date" => day["date"],
++          "date_iso" => day["date_iso"],
++          "date_long" => day["date_long"],
++          "date_short" => day["date_short"],
++          "celebration" => day["celebration"],
++          "liturgical" => day["liturgical"],
++          "available_days" => available_days,
++          "previous_day" => compact_day_link(day["previous_day"]),
++          "next_day" => compact_day_link(day["next_day"]),
++          "image" => day["liturgical"]["color_image"],
++          "image_alt" => "Cor litúrgica #{day['liturgical']['color_label']}",
++          "search" => true,
++          "sitemap" => true
++        }
++      end
++
++      def compact_day_link(day)
++        return nil unless day
++
++        {
++          "date_iso" => day["date_iso"],
++          "date_short" => day["date_short"],
++          "daily_url" => day["daily_url"],
++          "hours_url" => day["hours_url"]
++        }
++      end
++
++      def featured_day(days)
++        configured = ENV["ORATIO_TODAY"]
++        today = configured ? Date.iso8601(configured) : Date.today
++        days.find { |day| day["date"] == today } || days.reverse.find { |day| day["date"] <= today } || days.first
++      rescue Date::Error
++        days.last
++      end
++
++      def extract_title(raw)
++        match = raw.match(/<h1\b[^>]*>(.*?)<\/h1\s*>/mi)
++        match ? strip_html(match[1]) : nil
++      end
++
++      def extract_invitatory_antiphon(raw)
++        clean = normalize_fragment(raw, strip_title: false)
++        match = clean.match(/<span\b[^>]*>\s*Ant(?:\.|ífona)?\s*<\/span>\s*(.*?)<\/p\s*>/mi)
++        return match[1].strip if match && !strip_html(match[1]).empty?
++
++        match = clean.match(/<p\b[^>]*class=["'][^"']*ant[^"']*["'][^>]*>(.*?)<\/p\s*>/mi)
++        return match[1].strip if match && !strip_html(match[1]).empty?
++
++        match = clean.match(/<p\b[^>]*>\s*<span\b[^>]*>\s*[℟R]\.?\s*<\/span>\s*(.*?)<\/p\s*>/mi)
++        return match[1].strip if match && !strip_html(match[1]).empty?
++
++        Jekyll.logger.warn("Liturgia:", "antífona do Invitatório não identificada; verifique o arquivo do dia")
++        "Antífona do dia não identificada no arquivo-fonte."
++      end
++
++      def normalize_fragment(raw, strip_title: false)
++        html = raw.to_s.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
++        html.gsub!(/<script\b[^>]*>.*?<\/script\s*>/mi, "")
++        html.gsub!(/<h3\b[^>]*>.*?id=["']clickCompletasLatim["'].*?<\/h3\s*>\s*<hr\b[^>]*>/mi, "")
++        html.gsub!(/\s+on\w+=(['"]).*?\1/mi, "")
++        html.gsub!(/(?:href|src)=(['"])\s*javascript:.*?\1/mi, "")
++        html.gsub!(/<[^>]+>/) { |tag| tag.gsub("&nbsp;", " ") }
++        html.gsub!(/color\s*:\s*red\b/i, "color: var(--liturgical-red)")
++        html.gsub!(/color\s*:\s*black\b/i, "color: var(--oratio-text-primary)")
++        html.gsub!(/var\(--text-main\)/i, "var(--oratio-text-primary)")
++        html.gsub!(/<(h[2-4])([^>]*)>\s*(?:<br\s*\/?\s*>\s*)+/i, '<\1\2>')
++        html.gsub!(/>\s*-(?:i|ii)\s*</i, "><")
++        html.gsub!(/\A\s*<h1\b[^>]*>.*?<\/h1\s*>\s*(?:<hr\b[^>]*>\s*){0,2}/mi, "") if strip_title
++        html.strip
++      end
++
++      def hour_url(day, slug)
++        hour = day["hours"].find { |item| item["slug"] == slug }
++        hour && hour["url"]
++      end
++
++      def invitatory_url(date)
++        "/liturgia-das-horas/#{date.strftime('%Y/%m/%d')}/invitatorio/"
++      end
++
++      def format_long_date(date)
++        "#{WEEKDAYS[date.wday].capitalize}, #{date.day} de #{MONTHS[date.month - 1]} de #{date.year}"
++      end
++
++      def format_short_date(date)
++        "#{date.day} de #{MONTHS[date.month - 1]}"
++      end
++
++      def truthy?(value)
++        value == true || %w[true t sim s 1].include?(value.to_s.strip.downcase)
++      end
++
++      def integer_or_nil(value)
++        Integer(value)
++      rescue ArgumentError, TypeError
++        nil
++      end
++
++      def ordinal(value)
++        "#{value}ª"
++      end
++
++      def presence(value)
++        text = value.to_s.strip
++        text.empty? ? nil : text
++      end
++
++      def strip_html(value)
++        CGI.unescapeHTML(value.to_s.gsub(/<[^>]*>/, " ").gsub(/\s+/, " ").strip)
++      end
++
++      def slugify(value)
++        value.to_s
++             .downcase
++             .unicode_normalize(:nfkd)
++             .gsub(/\p{Mn}/, "")
++             .gsub(/[^a-z0-9]+/, "-")
++             .gsub(/\A-|\z-/, "")
++      end
++    end
++  end
++end
+diff --git a/assets/css/liturgy.css b/assets/css/liturgy.css
+new file mode 100644
+index 0000000..5b81e4f
+--- /dev/null
++++ b/assets/css/liturgy.css
+@@ -0,0 +1,1000 @@
++/* Área litúrgica isolada. Não altera os componentes das demais coleções. */
++.liturgy-shell {
++  --liturgical-red: #9d2020;
++  --liturgical-accent: var(--oratio-primary);
++  --liturgical-on-accent: #ffffff;
++  display: grid;
++  gap: var(--space-8);
++}
++
++.liturgy-shell .eyebrow {
++  margin: 0 0 var(--space-2);
++  color: var(--oratio-primary);
++  font-size: 0.75rem;
++  font-weight: 800;
++  letter-spacing: 0.11em;
++  text-transform: uppercase;
++}
++
++.liturgy-page-heading,
++.liturgy-index__hero {
++  display: flex;
++  align-items: flex-end;
++  justify-content: space-between;
++  gap: var(--space-8);
++  padding: var(--space-8) 0 var(--space-4);
++}
++
++.liturgy-page-heading h1,
++.liturgy-index__hero h1 {
++  max-width: 18ch;
++  margin: 0;
++}
++
++.liturgy-page-heading .page-lead,
++.liturgy-index__hero .page-lead {
++  max-width: 68ch;
++  margin-bottom: 0;
++}
++
++.liturgy-index__symbol {
++  display: grid;
++  width: 7rem;
++  height: 7rem;
++  flex: 0 0 auto;
++  place-items: center;
++  border: 1px solid var(--oratio-divider);
++  border-radius: 50%;
++  background: linear-gradient(145deg, var(--oratio-primary-container), var(--oratio-surface));
++  color: var(--oratio-primary);
++  font-family: var(--font-heading);
++  font-size: 3.4rem;
++  box-shadow: 0 18px 45px var(--oratio-shadow);
++}
++
++.liturgy-index__chooser,
++.liturgy-index__featured,
++.liturgy-invitatory-banner,
++.liturgy-invitatory-next {
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  gap: var(--space-8);
++  padding: clamp(1.5rem, 3vw, 2.5rem);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  box-shadow: 0 14px 38px var(--oratio-shadow);
++}
++
++.liturgy-index__chooser h2,
++.liturgy-index__featured h2,
++.liturgy-invitatory-banner h2,
++.liturgy-invitatory-next h2 {
++  margin: 0 0 var(--space-2);
++}
++
++.liturgy-index__featured {
++  background: linear-gradient(135deg, var(--oratio-primary-container), var(--oratio-surface));
++}
++
++.liturgy-summary {
++  display: grid;
++  grid-template-columns: minmax(7rem, 10rem) 1fr;
++  gap: clamp(1.25rem, 4vw, 3rem);
++  align-items: center;
++  padding: clamp(1.5rem, 4vw, 3rem);
++  overflow: hidden;
++  border: 1px solid color-mix(in srgb, var(--liturgical-accent) 34%, var(--oratio-divider));
++  border-radius: var(--radius-large);
++  background:
++    radial-gradient(circle at 8% 20%, color-mix(in srgb, var(--liturgical-accent) 15%, transparent), transparent 36%),
++    var(--oratio-surface);
++  box-shadow: 0 18px 48px var(--oratio-shadow);
++}
++
++.liturgy-summary--compact {
++  padding-block: var(--space-6);
++}
++
++.liturgy-summary__color {
++  position: relative;
++  display: grid;
++  aspect-ratio: 1;
++  place-items: center;
++  overflow: hidden;
++  border: 1px solid color-mix(in srgb, var(--liturgical-accent) 45%, var(--oratio-divider));
++  border-radius: 50%;
++  background: color-mix(in srgb, var(--liturgical-accent) 14%, var(--oratio-surface));
++}
++
++.liturgy-summary__color::after {
++  position: absolute;
++  inset: 18%;
++  border-radius: 50%;
++  background: var(--liturgical-accent);
++  content: "";
++  opacity: 0;
++}
++
++.liturgy-summary__color.is-fallback::after {
++  opacity: 1;
++}
++
++.liturgy-summary__color img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++}
++
++.liturgy-summary__body h2 {
++  margin: 0;
++  color: var(--oratio-text-primary);
++}
++
++.liturgy-summary__date {
++  margin: var(--space-2) 0 var(--space-5);
++  color: var(--oratio-text-secondary);
++}
++
++.liturgy-facts {
++  display: grid;
++  grid-template-columns: repeat(3, minmax(0, 1fr));
++  gap: var(--space-3);
++  margin: 0;
++}
++
++.liturgy-facts > div {
++  min-width: 0;
++  padding: var(--space-3) var(--space-4);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-medium);
++  background: color-mix(in srgb, var(--liturgical-accent) 5%, var(--oratio-surface));
++}
++
++.liturgy-facts dt {
++  margin-bottom: 0.18rem;
++  color: var(--oratio-text-muted);
++  font-size: 0.75rem;
++  font-weight: 750;
++  letter-spacing: 0.06em;
++  text-transform: uppercase;
++}
++
++.liturgy-facts dd {
++  display: flex;
++  align-items: center;
++  gap: var(--space-2);
++  margin: 0;
++  color: var(--oratio-text-primary);
++  font-weight: 700;
++}
++
++.liturgy-color-dot {
++  display: inline-block;
++  width: 0.72rem;
++  height: 0.72rem;
++  flex: 0 0 auto;
++  border: 1px solid color-mix(in srgb, var(--liturgical-accent) 65%, #000000);
++  border-radius: 50%;
++  background: var(--liturgical-accent);
++  vertical-align: middle;
++}
++
++.liturgy-observances {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-2);
++  margin: var(--space-4) 0 0;
++  padding: 0;
++  list-style: none;
++}
++
++.liturgy-observances li {
++  padding: 0.4rem 0.7rem;
++  border-radius: var(--radius-pill);
++  background: color-mix(in srgb, var(--liturgical-accent) 12%, var(--oratio-surface-secondary));
++  color: var(--oratio-text-secondary);
++  font-size: 0.85rem;
++  font-weight: 650;
++}
++
++.liturgy-date-navigation {
++  display: grid;
++  gap: var(--space-4);
++  padding: var(--space-5);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface-secondary);
++}
++
++.liturgy-date-navigation__adjacent {
++  display: grid;
++  grid-template-columns: 1fr 1fr;
++  gap: var(--space-4);
++}
++
++.liturgy-date-navigation__adjacent > :last-child {
++  justify-self: end;
++}
++
++.liturgy-date-picker {
++  display: grid;
++  gap: var(--space-2);
++}
++
++.liturgy-date-picker > label {
++  color: var(--oratio-text-secondary);
++  font-size: 0.875rem;
++  font-weight: 700;
++}
++
++.liturgy-date-picker__controls {
++  display: flex;
++  gap: var(--space-3);
++}
++
++.liturgy-date-picker input {
++  min-width: 12.5rem;
++  min-height: 2.75rem;
++  padding: 0.55rem 0.75rem;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-small);
++  background: var(--oratio-surface);
++  color: var(--oratio-text-primary);
++  font: inherit;
++}
++
++.liturgy-date-picker--large {
++  min-width: min(100%, 24rem);
++}
++
++.liturgy-date-picker--large input {
++  flex: 1;
++  min-height: 3rem;
++}
++
++.liturgy-current-callout {
++  padding: var(--space-4) var(--space-5);
++  border: 1px solid color-mix(in srgb, var(--oratio-gold) 45%, var(--oratio-divider));
++  border-radius: var(--radius-medium);
++  background: var(--oratio-gold-container);
++  color: var(--oratio-text-primary);
++}
++
++.liturgy-current-callout a {
++  font-weight: 800;
++}
++
++.section-heading {
++  margin-bottom: var(--space-5);
++}
++
++.section-heading h2 {
++  margin: 0 0 var(--space-2);
++}
++
++.section-heading p:last-child {
++  max-width: 68ch;
++  margin-bottom: 0;
++}
++
++.section-heading--split {
++  display: flex;
++  align-items: end;
++  justify-content: space-between;
++  gap: var(--space-6);
++}
++
++.liturgy-mass,
++.liturgy-hours-section {
++  padding-top: var(--space-4);
++}
++
++.liturgy-section-nav {
++  display: flex;
++  gap: var(--space-2);
++  margin: 0 0 var(--space-6);
++  padding: 0 0 var(--space-2);
++  overflow-x: auto;
++  scrollbar-width: thin;
++}
++
++.liturgy-section-nav a {
++  flex: 0 0 auto;
++  padding: 0.58rem 0.85rem;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-pill);
++  background: var(--oratio-surface);
++  color: var(--oratio-text-secondary);
++  font-size: 0.875rem;
++  font-weight: 700;
++  text-decoration: none;
++}
++
++.liturgy-section-nav a:hover,
++.liturgy-section-nav a:focus-visible {
++  border-color: var(--oratio-primary);
++  color: var(--oratio-primary);
++}
++
++.liturgy-mass__sections {
++  display: grid;
++  gap: var(--space-5);
++  font-size: var(--prayer-font-size, 1.075rem);
++}
++
++.liturgy-mass-section {
++  scroll-margin-top: calc(var(--header-height) + var(--space-6));
++  padding: clamp(1.25rem, 3vw, 2rem);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  box-shadow: 0 10px 28px var(--oratio-shadow);
++}
++
++.liturgy-mass-section h3 {
++  margin: 0 0 var(--space-5);
++  padding-bottom: var(--space-3);
++  border-bottom: 1px solid var(--oratio-divider);
++  color: var(--liturgical-red);
++}
++
++.liturgy-hours-grid {
++  display: grid;
++  grid-template-columns: repeat(3, minmax(0, 1fr));
++  gap: var(--space-5);
++}
++
++.liturgy-hour-card {
++  min-width: 0;
++  overflow: hidden;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  box-shadow: 0 10px 30px var(--oratio-shadow);
++  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
++}
++
++.liturgy-hour-card:hover,
++.liturgy-hour-card:focus-within {
++  transform: translateY(-4px);
++  border-color: color-mix(in srgb, var(--oratio-primary) 45%, var(--oratio-divider));
++  box-shadow: 0 18px 42px var(--oratio-shadow);
++}
++
++.liturgy-hour-card.is-current {
++  border: 2px solid var(--oratio-gold);
++  box-shadow: 0 0 0 4px color-mix(in srgb, var(--oratio-gold) 18%, transparent), 0 18px 42px var(--oratio-shadow);
++}
++
++.liturgy-hour-card__link {
++  display: block;
++  height: 100%;
++  color: inherit;
++  text-decoration: none;
++}
++
++.liturgy-hour-card__media {
++  position: relative;
++  aspect-ratio: 3 / 2;
++  overflow: hidden;
++  background: linear-gradient(135deg, var(--oratio-primary-container), var(--oratio-surface-tertiary));
++}
++
++.liturgy-hour-card__media.is-fallback::after,
++.liturgy-hour-hero__media.is-fallback::after {
++  position: absolute;
++  inset: 0;
++  display: grid;
++  place-items: center;
++  color: var(--oratio-primary);
++  content: "☩";
++  font-family: var(--font-heading);
++  font-size: 3rem;
++}
++
++.liturgy-hour-card__media img,
++.liturgy-hour-hero__media img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++  transition: transform 500ms ease;
++}
++
++.liturgy-hour-card:hover img {
++  transform: scale(1.035);
++}
++
++.liturgy-hour-card__current {
++  position: absolute;
++  top: var(--space-3);
++  left: var(--space-3);
++  padding: 0.42rem 0.7rem;
++  border-radius: var(--radius-pill);
++  background: var(--oratio-gold-container);
++  color: #4f3900;
++  font-size: 0.78rem;
++  font-weight: 850;
++  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
++}
++
++.liturgy-hour-card__body {
++  display: grid;
++  gap: var(--space-2);
++  padding: var(--space-5);
++}
++
++.liturgy-hour-card__body h3 {
++  margin: 0;
++  color: var(--oratio-text-primary);
++}
++
++.liturgy-hour-card__body p {
++  margin: 0;
++  color: var(--oratio-text-secondary);
++}
++
++.liturgy-hour-card__action {
++  margin-top: var(--space-2);
++  color: var(--oratio-primary);
++  font-weight: 800;
++}
++
++.liturgy-hour-hero {
++  display: grid;
++  grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
++  min-height: 25rem;
++  overflow: hidden;
++  border: 1px solid color-mix(in srgb, var(--liturgical-accent) 35%, var(--oratio-divider));
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  box-shadow: 0 20px 55px var(--oratio-shadow);
++}
++
++.liturgy-hour-hero__media {
++  position: relative;
++  min-height: 20rem;
++  overflow: hidden;
++  background: color-mix(in srgb, var(--liturgical-accent) 12%, var(--oratio-surface-secondary));
++}
++
++.liturgy-hour-hero__media::after {
++  position: absolute;
++  inset: 0;
++  background: linear-gradient(90deg, transparent 65%, color-mix(in srgb, var(--oratio-surface) 80%, transparent));
++  content: "";
++  pointer-events: none;
++}
++
++.liturgy-hour-hero__content {
++  display: flex;
++  flex-direction: column;
++  justify-content: center;
++  padding: clamp(1.75rem, 5vw, 4rem);
++}
++
++.liturgy-hour-hero__content h1 {
++  max-width: 20ch;
++  margin: 0;
++}
++
++.liturgy-hour-hero__content > p:not(.eyebrow) {
++  color: var(--oratio-text-secondary);
++}
++
++.liturgy-hour-hero__chips {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-2);
++  margin-top: var(--space-4);
++}
++
++.liturgy-hour-hero__chips > span {
++  display: inline-flex;
++  align-items: center;
++  gap: var(--space-2);
++  padding: 0.45rem 0.7rem;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-pill);
++  background: var(--oratio-surface-secondary);
++  color: var(--oratio-text-secondary);
++  font-size: 0.82rem;
++  font-weight: 700;
++}
++
++.liturgy-hour-hero__chips > span[data-current-hour-badge] {
++  border-color: var(--oratio-gold);
++  background: var(--oratio-gold-container);
++  color: #4f3900;
++}
++
++.liturgy-hour-hero__actions {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-3);
++  margin-top: var(--space-6);
++}
++
++.liturgy-hour-summary {
++  display: flex;
++  flex-wrap: wrap;
++  align-items: center;
++  gap: var(--space-2) var(--space-5);
++  padding: var(--space-4) var(--space-5);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-medium);
++  background: var(--oratio-surface-secondary);
++  color: var(--oratio-text-secondary);
++}
++
++.liturgy-hour-summary strong {
++  color: var(--oratio-text-primary);
++}
++
++.liturgy-reading-shell {
++  padding: clamp(1rem, 3vw, 2rem);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  box-shadow: 0 16px 45px var(--oratio-shadow);
++}
++
++.liturgy-reading-shell .reading-toolbar {
++  margin-bottom: var(--space-6);
++}
++
++.liturgy-reading-layout {
++  display: grid;
++  grid-template-columns: minmax(11rem, 15rem) minmax(0, var(--content-reading-width));
++  justify-content: center;
++  gap: clamp(1.5rem, 4vw, 3rem);
++}
++
++.liturgy-toc {
++  align-self: start;
++  position: sticky;
++  top: calc(var(--header-height) + var(--space-4));
++  max-height: calc(100vh - var(--header-height) - var(--space-8));
++  overflow: auto;
++  padding: var(--space-4);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-medium);
++  background: var(--oratio-surface-secondary);
++}
++
++.liturgy-toc__toggle {
++  width: 100%;
++  margin: 0 0 var(--space-3);
++  padding: 0;
++  border: 0;
++  background: transparent;
++  color: var(--oratio-text-primary);
++  font: inherit;
++  font-weight: 800;
++  text-align: left;
++}
++
++.liturgy-toc nav {
++  display: grid;
++  gap: var(--space-1);
++}
++
++.liturgy-toc a {
++  padding: 0.38rem 0.45rem;
++  border-radius: var(--radius-small);
++  color: var(--oratio-text-secondary);
++  font-size: 0.82rem;
++  line-height: 1.35;
++  text-decoration: none;
++}
++
++.liturgy-toc a[data-level="3"] {
++  padding-left: var(--space-5);
++  color: var(--oratio-text-muted);
++}
++
++.liturgy-toc a:hover,
++.liturgy-toc a:focus-visible {
++  background: var(--oratio-primary-container);
++  color: var(--oratio-on-primary-container);
++}
++
++.liturgy-reading__text {
++  min-width: 0;
++  width: 100%;
++  max-width: var(--content-reading-width);
++  font-size: var(--prayer-font-size, 1.125rem);
++}
++
++.liturgy-prose {
++  color: var(--oratio-text-primary);
++  line-height: 1.82;
++}
++
++.liturgy-prose > :first-child {
++  margin-top: 0;
++}
++
++.liturgy-prose h2,
++.liturgy-prose h3,
++.liturgy-prose h4 {
++  scroll-margin-top: calc(var(--header-height) + var(--space-5));
++  color: var(--liturgical-red) !important;
++}
++
++.liturgy-prose h2 {
++  margin: 2.75rem 0 1.1rem;
++  padding-top: var(--space-3);
++  border-top: 1px solid var(--oratio-divider);
++}
++
++.liturgy-prose h3 {
++  margin: 2rem 0 0.85rem;
++}
++
++.liturgy-prose h4 {
++  margin: 1.5rem 0 0.75rem;
++}
++
++.liturgy-prose p {
++  margin: 0 0 1.15em;
++}
++
++.liturgy-prose .rub,
++.liturgy-prose [class~="rub"] {
++  color: var(--liturgical-red);
++  font-size: 0.9em;
++  font-style: italic;
++  line-height: 1.65;
++}
++
++.liturgy-prose sup {
++  position: relative;
++  top: -0.22em;
++  color: var(--liturgical-red) !important;
++  font-size: 0.7em;
++  font-weight: 750;
++}
++
++.liturgy-prose hr {
++  width: min(100%, 10rem);
++  height: 1px;
++  margin: var(--space-8) auto;
++  border: 0;
++  background: var(--oratio-divider);
++}
++
++.liturgy-prose span[style*="cursor: pointer"],
++.liturgy-prose #paiNosso {
++  display: inline-flex;
++  padding: 0.35rem 0.55rem;
++  border-radius: var(--radius-small);
++  color: var(--liturgical-red) !important;
++  font-weight: 750;
++  cursor: pointer;
++}
++
++.liturgy-prose span[style*="cursor: pointer"]:focus-visible,
++.liturgy-prose #paiNosso:focus-visible {
++  outline: 3px solid var(--oratio-primary-container);
++  outline-offset: 2px;
++}
++
++.liturgy-prose [id="btnPt"],
++.liturgy-prose [id="btnLat"],
++.liturgy-prose [id="cantEvangBtnPt"],
++.liturgy-prose [id="cantEvangBtnLat"] {
++  color: var(--oratio-primary) !important;
++  text-decoration: none !important;
++}
++
++.liturgy-prose [data-language-select].is-active {
++  color: var(--oratio-text-primary) !important;
++  text-decoration: underline !important;
++  text-decoration-color: var(--liturgical-red) !important;
++  text-decoration-thickness: 2px !important;
++  text-underline-offset: 0.22em;
++}
++
++.liturgy-special-actions {
++  display: flex;
++  flex-wrap: wrap;
++  gap: var(--space-3);
++  margin: var(--space-4) 0 var(--space-6);
++}
++
++.liturgy-special-actions button,
++.invitatory-psalm-switcher button {
++  min-height: 2.65rem;
++  padding: 0.55rem 0.85rem;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-pill);
++  background: var(--oratio-surface-secondary);
++  color: var(--oratio-text-primary);
++  font: inherit;
++  font-weight: 750;
++  cursor: pointer;
++}
++
++.liturgy-special-actions button:hover,
++.liturgy-special-actions button:focus-visible,
++.invitatory-psalm-switcher button:hover,
++.invitatory-psalm-switcher button:focus-visible {
++  border-color: var(--oratio-primary);
++  color: var(--oratio-primary);
++}
++
++.liturgy-hour-navigation {
++  display: grid;
++  grid-template-columns: 1fr auto 1fr;
++  gap: var(--space-4);
++  align-items: center;
++  margin-top: var(--space-6);
++  padding: var(--space-5);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface-secondary);
++}
++
++.liturgy-hour-navigation > a:not(.liturgy-hour-navigation__day) {
++  display: grid;
++  color: var(--oratio-text-secondary);
++  text-decoration: none;
++}
++
++.liturgy-hour-navigation > a:last-child {
++  justify-items: end;
++  text-align: right;
++}
++
++.liturgy-hour-navigation span {
++  font-size: 0.78rem;
++  text-transform: uppercase;
++}
++
++.liturgy-hour-navigation strong {
++  color: var(--oratio-primary);
++}
++
++.liturgy-hour-navigation__day {
++  padding: 0.55rem 0.8rem;
++  border-radius: var(--radius-pill);
++  background: var(--oratio-primary-container);
++  color: var(--oratio-on-primary-container);
++  font-weight: 750;
++  text-decoration: none;
++}
++
++.invitatory-psalm-switcher {
++  display: flex;
++  flex-wrap: wrap;
++  align-items: center;
++  gap: var(--space-2);
++  margin: var(--space-6) 0;
++  padding: var(--space-4);
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-medium);
++  background: var(--oratio-surface-secondary);
++}
++
++.invitatory-psalm-switcher > span {
++  margin-right: var(--space-2);
++  font-weight: 800;
++}
++
++.invitatory-psalm-switcher button[aria-selected="true"] {
++  border-color: var(--liturgical-red);
++  background: var(--liturgical-red);
++  color: #ffffff;
++}
++
++.invitatory-psalm {
++  animation: liturgy-fade-in 220ms ease;
++}
++
++.liturgy-antiphon {
++  padding: var(--space-3) var(--space-4);
++  border-left: 3px solid var(--liturgical-red);
++  background: color-mix(in srgb, var(--liturgical-red) 7%, var(--oratio-surface));
++}
++
++.liturgy-rubric {
++  color: var(--liturgical-red);
++  font-weight: 800;
++}
++
++.liturgy-dialog {
++  width: min(90vw, 42rem);
++  max-height: min(85vh, 46rem);
++  padding: 0;
++  overflow: hidden;
++  border: 1px solid var(--oratio-divider);
++  border-radius: var(--radius-large);
++  background: var(--oratio-surface);
++  color: var(--oratio-text-primary);
++  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
++}
++
++.liturgy-dialog::backdrop {
++  background: var(--oratio-overlay);
++  backdrop-filter: blur(3px);
++}
++
++.liturgy-dialog__header {
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  gap: var(--space-4);
++  padding: var(--space-4) var(--space-5);
++  border-bottom: 1px solid var(--oratio-divider);
++}
++
++.liturgy-dialog__header h2 {
++  margin: 0;
++}
++
++.liturgy-dialog__content {
++  padding: var(--space-5);
++  overflow: auto;
++  line-height: 1.75;
++}
++
++@keyframes liturgy-fade-in {
++  from { opacity: 0; transform: translateY(4px); }
++  to { opacity: 1; transform: translateY(0); }
++}
++
++@media (max-width: 960px) {
++  .liturgy-hours-grid {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++  }
++
++  .liturgy-facts {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++  }
++
++  .liturgy-hour-hero {
++    grid-template-columns: 1fr;
++  }
++
++  .liturgy-hour-hero__media {
++    max-height: 27rem;
++  }
++
++  .liturgy-hour-hero__media::after {
++    background: linear-gradient(0deg, color-mix(in srgb, var(--oratio-surface) 72%, transparent), transparent 45%);
++  }
++
++  .liturgy-reading-layout {
++    grid-template-columns: 1fr;
++  }
++
++  .liturgy-toc {
++    position: static;
++    max-height: none;
++  }
++
++  .liturgy-toc nav {
++    display: none;
++    margin-top: var(--space-3);
++  }
++
++  .liturgy-toc.is-open nav {
++    display: grid;
++  }
++
++  .liturgy-toc__toggle {
++    margin: 0;
++  }
++}
++
++@media (max-width: 720px) {
++  .liturgy-page-heading,
++  .liturgy-index__hero,
++  .liturgy-index__chooser,
++  .liturgy-index__featured,
++  .liturgy-invitatory-banner,
++  .liturgy-invitatory-next,
++  .section-heading--split {
++    align-items: stretch;
++    flex-direction: column;
++  }
++
++  .liturgy-index__symbol {
++    display: none;
++  }
++
++  .liturgy-summary {
++    grid-template-columns: 1fr;
++  }
++
++  .liturgy-summary__color {
++    width: 5.5rem;
++  }
++
++  .liturgy-hours-grid,
++  .liturgy-facts {
++    grid-template-columns: 1fr;
++  }
++
++  .liturgy-date-picker__controls {
++    flex-direction: column;
++  }
++
++  .liturgy-date-picker input {
++    width: 100%;
++    min-width: 0;
++  }
++
++  .liturgy-hour-navigation {
++    grid-template-columns: 1fr 1fr;
++  }
++
++  .liturgy-hour-navigation__day {
++    grid-column: 1 / -1;
++    grid-row: 1;
++    justify-self: center;
++  }
++
++  .liturgy-reading-shell {
++    padding-inline: var(--space-4);
++  }
++}
++
++[data-theme="dark"] .liturgy-shell {
++  --liturgical-red: #ef8c86;
++}
++
++[data-theme="dark"] .liturgy-hour-card__current,
++[data-theme="dark"] .liturgy-hour-hero__chips > span[data-current-hour-badge] {
++  color: #3e2b00;
++}
++
++[data-theme="dark"] .liturgy-prose .rub,
++[data-theme="dark"] .liturgy-prose [class~="rub"] {
++  color: #efaaa5;
++}
++
++@media print {
++  .liturgy-date-navigation,
++  .liturgy-current-callout,
++  .liturgy-hours-section,
++  .liturgy-section-nav,
++  .liturgy-hour-hero__actions,
++  .liturgy-hour-navigation,
++  .liturgy-toc,
++  .liturgy-invitatory-next,
++  .liturgy-index__chooser,
++  .liturgy-index__featured,
++  .liturgy-hour-card__current {
++    display: none !important;
++  }
++
++  .liturgy-hour-hero {
++    min-height: 0;
++    border: 0;
++    box-shadow: none;
++  }
++
++  .liturgy-hour-hero__media {
++    display: none;
++  }
++
++  .liturgy-reading-shell,
++  .liturgy-mass-section,
++  .liturgy-summary {
++    border: 0;
++    box-shadow: none;
++  }
++
++  .liturgy-reading-layout {
++    display: block;
++  }
++
++  .liturgy-reading__text,
++  .liturgy-mass__sections {
++    max-width: none;
++    font-size: 12pt !important;
++  }
++}
+diff --git a/assets/js/liturgy.js b/assets/js/liturgy.js
+new file mode 100644
+index 0000000..933fe86
+--- /dev/null
++++ b/assets/js/liturgy.js
+@@ -0,0 +1,402 @@
++(function () {
++  'use strict';
++
++  var SAO_PAULO_TIME_ZONE = 'America/Sao_Paulo';
++  var HOUR_LABELS = {
++    'oficio-das-leituras': 'Ofício das Leituras',
++    'laudes': 'Laudes',
++    'hora-terca': 'Hora Terça',
++    'hora-sexta': 'Hora Sexta',
++    'hora-nona': 'Hora Nona',
++    'vesperas': 'Vésperas',
++    'completas': 'Completas'
++  };
++
++  function readDaysData() {
++    var element = document.querySelector('[data-liturgy-days-json]');
++    if (!element) return { days: [], baseurl: '' };
++
++    try {
++      var value = JSON.parse(element.textContent || '[]');
++      return {
++        days: Array.isArray(value) ? value : [],
++        baseurl: normalizeBaseurl(element.getAttribute('data-baseurl') || '')
++      };
++    } catch (error) {
++      return { days: [], baseurl: '' };
++    }
++  }
++
++  function normalizeBaseurl(value) {
++    if (!value || value === '/') return '';
++    return '/' + String(value).replace(/^\/+|\/+$/g, '');
++  }
++
++  function localUrl(url, baseurl) {
++    if (!url || /^(?:[a-z]+:)?\/\//i.test(url) || url.charAt(0) === '#') return url;
++    var normalized = '/' + String(url).replace(/^\/+/, '');
++    if (baseurl && normalized.indexOf(baseurl + '/') !== 0 && normalized !== baseurl) {
++      return baseurl + normalized;
++    }
++    return normalized;
++  }
++
++  function saoPauloParts(now) {
++    var formatter = new Intl.DateTimeFormat('en-CA', {
++      timeZone: SAO_PAULO_TIME_ZONE,
++      year: 'numeric',
++      month: '2-digit',
++      day: '2-digit',
++      hour: '2-digit',
++      minute: '2-digit',
++      hourCycle: 'h23'
++    });
++    var result = {};
++    formatter.formatToParts(now || new Date()).forEach(function (part) {
++      if (part.type !== 'literal') result[part.type] = part.value;
++    });
++    return result;
++  }
++
++  function previousIsoDate(isoDate) {
++    var pieces = String(isoDate).split('-').map(Number);
++    var date = new Date(Date.UTC(pieces[0], pieces[1] - 1, pieces[2]));
++    date.setUTCDate(date.getUTCDate() - 1);
++    return date.toISOString().slice(0, 10);
++  }
++
++  function currentLiturgyTarget(now) {
++    var parts = saoPauloParts(now);
++    var date = [parts.year, parts.month, parts.day].join('-');
++    var minutes = Number(parts.hour) * 60 + Number(parts.minute);
++    var slug;
++
++    if (minutes < 180) {
++      date = previousIsoDate(date);
++      slug = 'completas';
++    } else if (minutes < 360) {
++      slug = 'oficio-das-leituras';
++    } else if (minutes < 510) {
++      slug = 'laudes';
++    } else if (minutes < 660) {
++      slug = 'hora-terca';
++    } else if (minutes < 810) {
++      slug = 'hora-sexta';
++    } else if (minutes < 960) {
++      slug = 'hora-nona';
++    } else if (minutes < 1200) {
++      slug = 'vesperas';
++    } else {
++      slug = 'completas';
++    }
++
++    return { date: date, slug: slug, label: HOUR_LABELS[slug] || slug };
++  }
++
++  function findDay(days, date) {
++    return days.find(function (item) { return item.date === date; }) || null;
++  }
++
++  function markCurrentHour(days, baseurl) {
++    if (!days.length) return;
++    var current = currentLiturgyTarget();
++    var currentDay = findDay(days, current.date);
++    var currentUrl = currentDay && currentDay.hours ? currentDay.hours[current.slug] : null;
++
++    document.querySelectorAll('[data-hour-card]').forEach(function (card) {
++      var isCurrent = card.getAttribute('data-hour-date') === current.date
++        && card.getAttribute('data-hour-slug') === current.slug;
++      card.classList.toggle('is-current', isCurrent);
++      var badge = card.querySelector('[data-current-hour-badge]');
++      if (badge) badge.hidden = !isCurrent;
++    });
++
++    var page = document.querySelector('[data-liturgy-page]');
++    if (page) {
++      var pageMatches = page.getAttribute('data-page-date') === current.date
++        && page.getAttribute('data-page-hour') === current.slug;
++      page.querySelectorAll('[data-current-hour-badge]').forEach(function (badge) {
++        if (!badge.closest('[data-hour-card]')) badge.hidden = !pageMatches;
++      });
++    }
++
++    document.querySelectorAll('[data-current-hour-callout]').forEach(function (callout) {
++      if (!currentDay || !currentUrl || (page && page.getAttribute('data-page-hour') && pageMatches)) {
++        callout.hidden = true;
++        return;
++      }
++
++      var pageDate = page ? page.getAttribute('data-page-date') : null;
++      var previousDayNotice = pageDate && current.date !== pageDate
++        ? 'Neste horário, a oração indicada pertence ao dia litúrgico anterior.'
++        : 'De acordo com o horário atual, esta é a Hora mais indicada.';
++      callout.innerHTML = '<div><p class="eyebrow">Indicada agora</p><strong>'
++        + escapeHtml(current.label) + '</strong><p>' + previousDayNotice
++        + '</p></div><a class="button button--primary" href="'
++        + escapeAttribute(localUrl(currentUrl, baseurl)) + '">Rezar agora</a>';
++      callout.hidden = false;
++    });
++  }
++
++  function initDatePickers(days, baseurl) {
++    document.querySelectorAll('[data-liturgy-date-form]').forEach(function (form) {
++      var input = form.querySelector('[data-liturgy-date-picker]');
++      var status = form.querySelector('[data-liturgy-date-status]');
++      if (!input) return;
++
++      function selectedDay() {
++        return findDay(days, input.value);
++      }
++
++      function updateIndexPreview() {
++        var day = selectedDay();
++        var title = document.querySelector('[data-selected-day-title]');
++        var label = document.querySelector('[data-selected-day-label]');
++        var link = document.querySelector('[data-selected-day-link]');
++        if (!title || !label || !link || !day) return;
++        var target = input.getAttribute('data-date-target') || 'daily_url';
++        title.textContent = day.celebration || 'Liturgia do dia';
++        label.textContent = day.label || day.date;
++        link.href = localUrl(day[target], baseurl);
++      }
++
++      input.addEventListener('change', function () {
++        var day = selectedDay();
++        if (status) status.textContent = day ? '' : 'Ainda não há conteúdo disponível para esta data.';
++        updateIndexPreview();
++      });
++
++      form.addEventListener('submit', function (event) {
++        event.preventDefault();
++        var day = selectedDay();
++        var target = input.getAttribute('data-date-target') || 'daily_url';
++        if (!day || !day[target]) {
++          if (status) status.textContent = 'Ainda não há conteúdo disponível para esta data.';
++          return;
++        }
++        window.location.assign(localUrl(day[target], baseurl));
++      });
++
++      updateIndexPreview();
++    });
++  }
++
++  function selectBestIndexDay(days) {
++    if (!days.length) return;
++    var target = currentLiturgyTarget();
++    var parts = saoPauloParts();
++    var civilDate = [parts.year, parts.month, parts.day].join('-');
++    var index = document.querySelector('.liturgy-index[data-liturgy-index-kind]');
++    var selectedDate = index && index.getAttribute('data-liturgy-index-kind') === 'hours' ? target.date : civilDate;
++    var today = findDay(days, selectedDate);
++    if (!today) return;
++    document.querySelectorAll('.liturgy-index [data-liturgy-date-picker]').forEach(function (input) {
++      input.value = today.date;
++      input.dispatchEvent(new Event('change', { bubbles: true }));
++    });
++    var description = document.querySelector('[data-liturgy-today-description]');
++    if (description) description.textContent = 'A data litúrgica correspondente ao horário atual foi selecionada.';
++  }
++
++  function setupImageFallbacks(baseurl) {
++    var fallback = localUrl('/assets/images/social/og-default.webp', baseurl);
++    document.querySelectorAll('[data-liturgy-cover], [data-liturgical-color-image]').forEach(function (image) {
++      image.addEventListener('error', function onError() {
++        image.removeEventListener('error', onError);
++        image.src = fallback;
++        image.classList.add('has-fallback');
++        var colorContainer = image.closest('.liturgy-summary__color');
++        if (colorContainer) colorContainer.classList.add('is-fallback');
++      });
++    });
++  }
++
++  function setTabState(buttons, panels, activeKey, buttonKeyAttribute, panelKeyAttribute) {
++    buttons.forEach(function (button) {
++      var selected = button.getAttribute(buttonKeyAttribute) === activeKey;
++      button.setAttribute('aria-selected', selected ? 'true' : 'false');
++      button.classList.toggle('is-active', selected);
++      button.tabIndex = selected ? 0 : -1;
++    });
++    panels.forEach(function (panel) {
++      var selected = panel.getAttribute(panelKeyAttribute) === activeKey;
++      panel.hidden = !selected;
++      panel.classList.toggle('is-active', selected);
++    });
++  }
++
++  function initInvitatoryPsalms() {
++    var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-invitatory-select]'));
++    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-invitatory-psalm]'));
++    if (!buttons.length || !panels.length) return;
++
++    buttons.forEach(function (button, index) {
++      button.addEventListener('click', function () {
++        setTabState(buttons, panels, button.getAttribute('data-invitatory-select'), 'data-invitatory-select', 'data-invitatory-psalm');
++      });
++      button.addEventListener('keydown', function (event) {
++        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
++        event.preventDefault();
++        var direction = event.key === 'ArrowRight' ? 1 : -1;
++        var next = buttons[(index + direction + buttons.length) % buttons.length];
++        next.focus();
++        next.click();
++      });
++    });
++    setTabState(buttons, panels, '94', 'data-invitatory-select', 'data-invitatory-psalm');
++  }
++
++  function makeInteractive(element, handler) {
++    if (!element) return;
++    if (!element.hasAttribute('role')) element.setAttribute('role', 'button');
++    element.setAttribute('tabindex', '0');
++    element.addEventListener('click', handler);
++    element.addEventListener('keydown', function (event) {
++      if (event.key === 'Enter' || event.key === ' ') {
++        event.preventDefault();
++        handler(event);
++      }
++    });
++  }
++
++  function initLegacyLanguageSwitches() {
++    var root = document.querySelector('.liturgy-reading__text');
++    if (!root) return;
++    var groups = [
++      { ptButton: 'btnPt', latButton: 'btnLat', ptPanel: 'pt', latPanel: 'lat' },
++      { ptButton: 'cantEvangBtnPt', latButton: 'cantEvangBtnLat', ptPanel: 'cantEvangPt', latPanel: 'cantEvangLat' }
++    ];
++
++    groups.forEach(function (group) {
++      var ptButton = root.querySelector('#' + group.ptButton);
++      var latButton = root.querySelector('#' + group.latButton);
++      var ptPanel = root.querySelector('#' + group.ptPanel);
++      var latPanel = root.querySelector('#' + group.latPanel);
++      if (!ptButton || !latButton || !ptPanel || !latPanel) return;
++
++      var buttons = [ptButton, latButton];
++      var panels = [ptPanel, latPanel];
++      ptButton.setAttribute('data-language-select', 'pt');
++      latButton.setAttribute('data-language-select', 'lat');
++      ptPanel.setAttribute('data-language-panel', 'pt');
++      latPanel.setAttribute('data-language-panel', 'lat');
++      buttons.forEach(function (button) { button.setAttribute('role', 'tab'); });
++      ptPanel.setAttribute('role', 'tabpanel');
++      latPanel.setAttribute('role', 'tabpanel');
++
++      makeInteractive(ptButton, function () {
++        setTabState(buttons, panels, 'pt', 'data-language-select', 'data-language-panel');
++      });
++      makeInteractive(latButton, function () {
++        setTabState(buttons, panels, 'lat', 'data-language-select', 'data-language-panel');
++      });
++      setTabState(buttons, panels, ptPanel.style.display === 'none' ? 'lat' : 'pt', 'data-language-select', 'data-language-panel');
++    });
++  }
++
++  function initDialogs() {
++    var dialog = document.querySelector('[data-liturgy-dialog]');
++    if (!dialog) return;
++    var title = dialog.querySelector('[data-liturgy-dialog-title]');
++    var content = dialog.querySelector('[data-liturgy-dialog-content]');
++    var close = dialog.querySelector('[data-liturgy-dialog-close]');
++
++    function openDialog(action) {
++      var template = document.querySelector('[data-liturgy-dialog-template="' + cssEscape(action) + '"]');
++      if (!template) return;
++      title.textContent = template.getAttribute('data-title') || 'Oração';
++      content.replaceChildren(template.content.cloneNode(true));
++      if (typeof dialog.showModal === 'function') dialog.showModal();
++      else dialog.setAttribute('open', '');
++    }
++
++    document.querySelectorAll('[data-liturgy-action]').forEach(function (trigger) {
++      makeInteractive(trigger, function () { openDialog(trigger.getAttribute('data-liturgy-action')); });
++    });
++
++    var paiNosso = document.querySelector('.liturgy-reading__text #paiNosso');
++    if (paiNosso && !paiNosso.hasAttribute('data-liturgy-action')) {
++      paiNosso.setAttribute('data-liturgy-action', 'pai-nosso');
++      makeInteractive(paiNosso, function () { openDialog('pai-nosso'); });
++    }
++
++    if (close) close.addEventListener('click', function () { dialog.close(); });
++    dialog.addEventListener('click', function (event) {
++      if (event.target === dialog) dialog.close();
++    });
++  }
++
++  function slugify(text) {
++    return String(text || '')
++      .normalize('NFD')
++      .replace(/[\u0300-\u036f]/g, '')
++      .toLowerCase()
++      .replace(/[^a-z0-9]+/g, '-')
++      .replace(/^-+|-+$/g, '');
++  }
++
++  function initToc() {
++    var toc = document.querySelector('[data-liturgy-toc]');
++    var prose = document.querySelector('.liturgy-reading__text');
++    if (!toc || !prose) return;
++    var list = toc.querySelector('[data-liturgy-toc-list]');
++    var headings = Array.prototype.slice.call(prose.querySelectorAll('h2, h3'))
++      .filter(function (heading) { return heading.textContent.trim().length > 0; });
++    if (headings.length < 2 || !list) return;
++
++    var used = {};
++    headings.forEach(function (heading) {
++      var base = heading.id || slugify(heading.textContent) || 'secao';
++      used[base] = (used[base] || 0) + 1;
++      heading.id = used[base] > 1 ? base + '-' + used[base] : base;
++      var link = document.createElement('a');
++      link.href = '#' + heading.id;
++      link.textContent = heading.textContent.trim();
++      if (heading.tagName === 'H3') link.classList.add('is-subsection');
++      list.appendChild(link);
++    });
++    toc.hidden = false;
++
++    var toggle = toc.querySelector('[data-liturgy-toc-toggle]');
++    if (toggle) {
++      toggle.addEventListener('click', function () {
++        var expanded = toggle.getAttribute('aria-expanded') === 'true';
++        toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
++        toc.classList.toggle('is-open', !expanded);
++      });
++    }
++  }
++
++  function cssEscape(value) {
++    if (window.CSS && typeof window.CSS.escape === 'function') return window.CSS.escape(value);
++    return String(value).replace(/["\\]/g, '\\$&');
++  }
++
++  function escapeHtml(value) {
++    var node = document.createElement('div');
++    node.textContent = value == null ? '' : String(value);
++    return node.innerHTML;
++  }
++
++  function escapeAttribute(value) {
++    return escapeHtml(value).replace(/`/g, '&#96;');
++  }
++
++  function init() {
++    var data = readDaysData();
++    setupImageFallbacks(data.baseurl);
++    initDatePickers(data.days, data.baseurl);
++    selectBestIndexDay(data.days);
++    markCurrentHour(data.days, data.baseurl);
++    window.setInterval(function () { markCurrentHour(data.days, data.baseurl); }, 60000);
++    initInvitatoryPsalms();
++    initLegacyLanguageSwitches();
++    initDialogs();
++    initToc();
++  }
++
++  window.OratioLiturgia = Object.freeze({ currentTarget: currentLiturgyTarget });
++
++  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
++  else init();
++}());
+diff --git a/search/index.json b/search/index.json
+index 2f08e32..f2479e4 100644
+--- a/search/index.json
++++ b/search/index.json
+@@ -50,11 +50,12 @@ sitemap: false
+           {% endfor %}
+       {% endcase %}
+     {% endcapture %}
++    {% capture item_type %}{% case item.collection %}{% when 'posts' %}Blog{% when 'oracoes' %}Oração{% when 'novenas' %}Novena{% when 'quaresmas' %}Quaresma{% when 'trintenas' %}Trintena{% when 'devocoes_mensais' %}Devoção mensal{% when 'trezenas' %}Trezena{% when 'triduos' %}Tríduo{% when 'tercos' %}Terço{% when 'rosarios' %}Rosário{% when 'coroas' %}Coroa{% when 'santos' %}Santo{% when 'devocionarios' %}Devocionário{% when 'formacoes' %}Formação{% else %}Página{% endcase %}{% endcapture %}
+     {
+       "title": {{ item.title | default: site.title | jsonify }},
+       "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
+       "url": {{ item.url | relative_url | jsonify }},
+-      "type": {% case item.collection %}{% when 'posts' %}"Blog"{% when 'oracoes' %}"Oração"{% when 'novenas' %}"Novena"{% when 'quaresmas' %}"Quaresma"{% when 'trintenas' %}"Trintena"{% when 'devocoes_mensais' %}"Devoção mensal"{% when 'trezenas' %}"Trezena"{% when 'triduos' %}"Tríduo"{% when 'tercos' %}"Terço"{% when 'rosarios' %}"Rosário"{% when 'coroas' %}"Coroa"{% when 'santos' %}"Santo"{% when 'devocionarios' %}"Devocionário"{% when 'formacoes' %}"Formação"{% else %}"Página"{% endcase %},
++      "type": {{ item.search_type | default: item_type | strip | jsonify }},
+       "category": {{ item.category | default: item.categories.first | jsonify }},
+       "tags": {{ item.tags | default: empty | jsonify }},
+       "keywords": {{ item.keywords | default: empty | jsonify }},
+diff --git a/tools/test_liturgia_generator.rb b/tools/test_liturgia_generator.rb
+new file mode 100755
+index 0000000..29acda1
+--- /dev/null
++++ b/tools/test_liturgia_generator.rb
+@@ -0,0 +1,102 @@
++#!/usr/bin/env ruby
++# frozen_string_literal: true
++
++require "fileutils"
++require "json"
++require "minitest/autorun"
++require "tmpdir"
++
++module Jekyll
++  class PageWithoutAFile
++    attr_accessor :data, :content, :dir, :name
++
++    def initialize(_site, _base, dir, name)
++      @dir = dir
++      @name = name
++      @data = {}
++      @content = ""
++    end
++  end
++
++  class Generator
++    def self.safe(*) = nil
++    def self.priority(*) = nil
++  end
++
++  class NullLogger
++    def warn(*) = nil
++  end
++
++  def self.logger = (@logger ||= NullLogger.new)
++end
++
++require_relative "../_plugins/liturgia_generator"
++
++class LiturgiaGeneratorTest < Minitest::Test
++  FakeSite = Struct.new(:source, :config, :pages, :data)
++
++  def setup
++    @tmp = Dir.mktmpdir("oratio-liturgia")
++    @day = File.join(@tmp, "content/liturgia/2026/07/25")
++    FileUtils.mkdir_p(@day)
++
++    File.write(File.join(@day, "liturgia-info.json"), JSON.pretty_generate({
++      "tempoLiturgico" => "TC",
++      "diaSemana" => "Sab",
++      "corLiturgica" => "R",
++      "semanaSalterio" => 4,
++      "semana" => "16.0",
++      "anoABC" => "Ano A",
++      "primeirasVesp" => "T",
++      "tipoMemoria" => "F"
++    }))
++
++    metadata = Oratio::Liturgia::HOUR_ORDER.map do |slug|
++      {
++        "hora" => slug,
++        "hora-title" => Oratio::Liturgia::HOUR_DEFAULTS.fetch(slug),
++        "titulo" => "#{Oratio::Liturgia::HOUR_DEFAULTS.fetch(slug)} da Festa de São Tiago",
++        "capa" => "/assets/images/liturgia/r.png"
++      }
++    end
++    File.write(File.join(@day, "horas-info.json"), JSON.pretty_generate(metadata))
++    File.write(File.join(@day, "liturgy.json"), JSON.pretty_generate([
++      { "title" => "Primeira leitura", "html" => "<p>Texto da leitura.</p>" }
++    ]))
++
++    Oratio::Liturgia::HOUR_ORDER.each do |slug|
++      File.write(File.join(@day, "#{slug}.html"), <<~HTML)
++        <h1>#{Oratio::Liturgia::HOUR_DEFAULTS.fetch(slug)} da Festa de São Tiago</h1><hr><hr>
++        <h2><br>Hino</h2>
++        <p onclick="Android.showDialog('Pai Nosso')">Texto</p>
++        <script>Android.atualizarLatim();</script>
++      HTML
++    end
++    File.write(File.join(@day, "invitatorio.html"), '<p><span style="color: red">℟.</span> Vinde, adoremos o Senhor.</p>')
++  end
++
++  def teardown
++    FileUtils.remove_entry(@tmp)
++  end
++
++  def test_generates_all_public_pages_and_normalizes_legacy_html
++    site = FakeSite.new(@tmp, { "liturgia" => { "source" => "content/liturgia" } }, [], {})
++    Oratio::Liturgia::Generator.new.generate(site)
++
++    assert_equal 12, site.pages.length
++    hour_page = site.pages.find { |page| page.dir.end_with?("/laudes") }
++    refute_nil hour_page
++    refute_includes hour_page.content, "<script"
++    refute_includes hour_page.content, "Android."
++    refute_includes hour_page.content, "<h1"
++    assert_equal "Liturgia das Horas", hour_page.data.dig("breadcrumb_parent", "label")
++    assert_equal "/assets/images/liturgia/r.png", hour_page.data["image"]
++
++    daily_page = site.pages.find { |page| page.dir == "liturgia/2026/07/25" }
++    assert_equal "Vermelho", daily_page.data.dig("liturgical", "color_label")
++    assert_equal "4ª semana do Saltério", daily_page.data.dig("liturgical", "psalter_label")
++
++    invitatory_page = site.pages.find { |page| page.dir.end_with?("/invitatorio") }
++    assert_equal "Vinde, adoremos o Senhor.", invitatory_page.data["invitatory_antiphon"]
++  end
++end
+diff --git a/tools/test_liturgy_schedule.js b/tools/test_liturgy_schedule.js
+new file mode 100644
+index 0000000..8b6a24a
+--- /dev/null
++++ b/tools/test_liturgy_schedule.js
+@@ -0,0 +1,49 @@
++'use strict';
++
++const assert = require('node:assert/strict');
++const fs = require('node:fs');
++const vm = require('node:vm');
++
++const source = fs.readFileSync(require('node:path').join(__dirname, '../assets/js/liturgy.js'), 'utf8');
++const sandbox = {
++  console,
++  Date,
++  Event: function Event() {},
++  Intl,
++  Object,
++  window: {
++    setInterval: function () {},
++    CSS: { escape: function (value) { return value; } }
++  },
++  document: {
++    readyState: 'loading',
++    addEventListener: function () {},
++    querySelector: function () { return null; },
++    querySelectorAll: function () { return []; },
++    createElement: function () { return { textContent: '', innerHTML: '' }; }
++  }
++};
++sandbox.window.window = sandbox.window;
++vm.createContext(sandbox);
++vm.runInContext(source, sandbox);
++
++const currentTarget = sandbox.window.OratioLiturgia.currentTarget;
++function atLocal(hour, minute, date = '2026-07-25') {
++  const [year, month, day] = date.split('-').map(Number);
++  return new Date(Date.UTC(year, month - 1, day, hour + 3, minute));
++}
++
++assert.equal(JSON.stringify(currentTarget(atLocal(0, 0))), JSON.stringify({ date: '2026-07-24', slug: 'completas', label: 'Completas' }));
++assert.equal(JSON.stringify(currentTarget(atLocal(2, 59))), JSON.stringify({ date: '2026-07-24', slug: 'completas', label: 'Completas' }));
++assert.equal(currentTarget(atLocal(3, 0)).slug, 'oficio-das-leituras');
++assert.equal(currentTarget(atLocal(5, 59)).slug, 'oficio-das-leituras');
++assert.equal(currentTarget(atLocal(6, 0)).slug, 'laudes');
++assert.equal(currentTarget(atLocal(8, 29)).slug, 'laudes');
++assert.equal(currentTarget(atLocal(8, 30)).slug, 'hora-terca');
++assert.equal(currentTarget(atLocal(11, 0)).slug, 'hora-sexta');
++assert.equal(currentTarget(atLocal(13, 30)).slug, 'hora-nona');
++assert.equal(currentTarget(atLocal(16, 0)).slug, 'vesperas');
++assert.equal(currentTarget(atLocal(20, 0)).slug, 'completas');
++assert.equal(currentTarget(atLocal(23, 59)).date, '2026-07-25');
++
++console.log('12 verificações de horário concluídas com sucesso.');
+diff --git a/tools/validate_liturgy.rb b/tools/validate_liturgy.rb
+new file mode 100755
+index 0000000..a451146
+--- /dev/null
++++ b/tools/validate_liturgy.rb
+@@ -0,0 +1,131 @@
++#!/usr/bin/env ruby
++# frozen_string_literal: true
++
++require "date"
++require "json"
++require "pathname"
++
++ROOT = Pathname.new(ARGV[0] || "content/liturgia")
++HOURS = %w[
++  oficio-das-leituras
++  laudes
++  hora-terca
++  hora-sexta
++  hora-nona
++  vesperas
++  completas
++].freeze
++COLORS = %w[R P PP G W PWB].freeze
++
++errors = []
++warnings = []
++
++def read_json(path, errors)
++  JSON.parse(path.read(encoding: "UTF-8"))
++rescue JSON::ParserError => error
++  errors << "#{path}: JSON inválido: #{error.message}"
++  nil
++rescue Errno::ENOENT
++  errors << "#{path}: arquivo obrigatório ausente"
++  nil
++end
++
++unless ROOT.directory?
++  warn "Diretório não encontrado: #{ROOT}"
++  exit 1
++end
++
++directories = ROOT.glob("[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]").select(&:directory?).sort
++if directories.empty?
++  warn "Nenhum pacote diário encontrado em #{ROOT}"
++  exit 1
++end
++
++directories.each do |directory|
++  relative = directory.relative_path_from(ROOT).to_s
++  begin
++    Date.strptime(relative, "%Y/%m/%d")
++  rescue Date::Error
++    errors << "#{relative}: caminho não representa uma data válida"
++    next
++  end
++
++  info = read_json(directory.join("liturgia-info.json"), errors)
++  hours_info = read_json(directory.join("horas-info.json"), errors)
++  mass = read_json(directory.join("liturgy.json"), errors)
++
++  if info.is_a?(Hash)
++    color = info["corLiturgica"].to_s.upcase
++    errors << "#{relative}: corLiturgica ausente" if color.empty?
++    warnings << "#{relative}: código de cor desconhecido #{color.inspect}" unless color.empty? || COLORS.include?(color)
++    warnings << "#{relative}: tempoLiturgico ausente" if info["tempoLiturgico"].to_s.strip.empty?
++    warnings << "#{relative}: diaSemana ausente" if info["diaSemana"].to_s.strip.empty?
++  elsif !info.nil?
++    errors << "#{relative}: liturgia-info.json precisa conter um objeto JSON"
++  end
++
++  metadata = {}
++  if hours_info.is_a?(Array)
++    hours_info.each_with_index do |entry, index|
++      unless entry.is_a?(Hash)
++        errors << "#{relative}: horas-info.json[#{index}] não é um objeto"
++        next
++      end
++      slug = entry["hora"].to_s.strip
++      if slug.empty?
++        errors << "#{relative}: horas-info.json[#{index}] não possui o campo hora"
++        next
++      end
++      warnings << "#{relative}: Hora desconhecida no JSON: #{slug}" unless HOURS.include?(slug)
++      errors << "#{relative}: metadados duplicados para #{slug}" if metadata.key?(slug)
++      metadata[slug] = entry
++      warnings << "#{relative}: #{slug} sem hora-title" if entry["hora-title"].to_s.strip.empty?
++      warnings << "#{relative}: #{slug} sem titulo" if entry["titulo"].to_s.strip.empty?
++      warnings << "#{relative}: #{slug} sem capa, será usada a imagem da cor litúrgica" if entry["capa"].to_s.strip.empty?
++    end
++  elsif !hours_info.nil?
++    errors << "#{relative}: horas-info.json precisa conter uma lista"
++  end
++
++  HOURS.each do |slug|
++    path = directory.join("#{slug}.html")
++    if metadata.key?(slug) && !path.file?
++      errors << "#{relative}: #{slug} aparece no JSON, mas #{slug}.html está ausente"
++      next
++    end
++    next unless path.file?
++
++    html = path.read(encoding: "UTF-8")
++    warnings << "#{relative}/#{slug}.html: título h1 ausente" unless html.match?(/<h1\b/i)
++    warnings << "#{relative}/#{slug}.html: contém script legado, que será removido na publicação" if html.match?(/<script\b/i)
++    warnings << "#{relative}/#{slug}.html: contém chamada Android, que será substituída pelo site" if html.include?("Android.")
++    warnings << "#{relative}/#{slug}.html: contém &nbsp; dentro de tag" if html.match?(/<[^>]*&nbsp;[^>]*>/i)
++    warnings << "#{relative}/#{slug}.html: contém marcador isolado -i ou -ii" if html.match?(/>\s*-(?:i|ii)\s*</i)
++    warnings << "#{relative}/#{slug}.html: não possui metadados em horas-info.json" unless metadata.key?(slug)
++  end
++
++  invitatory = directory.join("invitatorio.html")
++  warnings << "#{relative}: invitatorio.html ausente" unless invitatory.file?
++
++  if mass.is_a?(Array)
++    mass.each_with_index do |section, index|
++      unless section.is_a?(Hash)
++        errors << "#{relative}: liturgy.json[#{index}] não é um objeto"
++        next
++      end
++      warnings << "#{relative}: liturgy.json[#{index}] sem title" if section["title"].to_s.strip.empty?
++      warnings << "#{relative}: liturgy.json[#{index}] sem html" if section["html"].to_s.strip.empty?
++    end
++  elsif !mass.nil?
++    errors << "#{relative}: liturgy.json precisa conter uma lista"
++  end
++end
++
++puts "Pacotes analisados: #{directories.length}"
++puts "Erros: #{errors.length}"
++puts "Avisos: #{warnings.length}"
++
++warnings.each { |message| puts "AVISO: #{message}" }
++errors.each { |message| warn "ERRO: #{message}" }
++
++exit(errors.empty? ? 0 : 1)
