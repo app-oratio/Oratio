@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<div class="container container--large page-shell liturgy-shell liturgy-day" data-liturgy-page data-page-date="{{ page.date_iso }}">
+  {% include breadcrumb.html %}
+  <header class="liturgy-page-heading">
+    <div>
+      <p class="eyebrow">Liturgia diária</p>
+      <h1>{{ page.celebration }}</h1>
+      <p class="page-lead">Leituras, orações e Liturgia das Horas de {{ page.date_long }}.</p>
+    </div>
+    <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Ver somente a Liturgia das Horas</a>
+  </header>
+
+  {% include liturgy/liturgical-summary.html %}
+  {% include liturgy/date-navigation.html target='daily_url' id='daily' %}
+  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
+
+  {% if page.mass_sections and page.mass_sections.size > 0 %}
+  <section class="liturgy-mass" aria-labelledby="mass-title">
+    <div class="section-heading">
+      <p class="eyebrow">Celebração eucarística</p>
+      <h2 id="mass-title">Liturgia do dia</h2>
+      <p>Os textos abaixo seguem a ordem em que foram fornecidos no arquivo litúrgico.</p>
+    </div>
+    <nav class="liturgy-section-nav" aria-label="Partes da liturgia do dia">
+      {% for section in page.mass_sections %}<a href="#{{ section.anchor }}">{{ section.title }}</a>{% endfor %}
+    </nav>
+    <div class="liturgy-mass__sections" data-reading-text data-reading-font-base="1.075">
+      {% for section in page.mass_sections %}
+      <article class="liturgy-mass-section" id="{{ section.anchor }}">
+        <h3>{{ section.title }}</h3>
+        <div class="liturgy-prose">{{ section.html }}</div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% else %}
+    {% include empty-state.html title='Liturgia do dia indisponível' text='O arquivo liturgy.json desta data não possui seções publicáveis.' %}
+  {% endif %}
+
+  <section class="liturgy-hours-section" aria-labelledby="daily-hours-title">
+    <div class="section-heading section-heading--split">
+      <div>
+        <p class="eyebrow">Santificação do dia</p>
+        <h2 id="daily-hours-title">Liturgia das Horas</h2>
+        <p>O sistema destaca automaticamente a Hora mais indicada no momento.</p>
+      </div>
+      <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Abrir a página das Horas</a>
+    </div>
+    <div class="liturgy-hours-grid">
+      {% for hour in page.hours %}{% include liturgy/hour-card.html hour=hour day=page.date_iso %}{% endfor %}
+    </div>
+  </section>
+
+  {% include share-buttons.html %}
+  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
+</div>

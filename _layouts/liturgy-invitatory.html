@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<div class="container container--large page-shell liturgy-shell liturgy-invitatory" data-liturgy-page data-page-date="{{ page.date_iso }}" data-page-hour="invitatorio">
+  {% include breadcrumb.html %}
+  <article>
+    <header class="liturgy-hour-hero" style="--liturgical-accent: {{ page.liturgical.color_hex }}; --liturgical-on-accent: {{ page.liturgical.color_on }};">
+      <div class="liturgy-hour-hero__media">
+        {% if page.image contains '://' %}{% assign invitatory_image = page.image %}{% else %}{% assign invitatory_image = page.image | relative_url %}{% endif %}
+        <img src="{{ invitatory_image }}" alt="{{ page.image_alt | escape }}" width="960" height="640" loading="eager" data-liturgy-cover>
+      </div>
+      <div class="liturgy-hour-hero__content">
+        <p class="eyebrow">Início da oração cotidiana</p>
+        <h1>Invitatório</h1>
+        <p>{{ page.celebration }} · {{ page.date_long }}</p>
+        <div class="liturgy-hour-hero__chips">
+          <span>{{ page.liturgical.season_label }}</span>
+          <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
+          {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
+        </div>
+        <div class="liturgy-hour-hero__actions">
+          {% if page.oficio_url %}<a class="button button--text" href="{{ page.oficio_url | relative_url }}">Ir ao Ofício das Leituras</a>{% endif %}
+          {% if page.laudes_url %}<a class="button button--text" href="{{ page.laudes_url | relative_url }}">Ir às Laudes</a>{% endif %}
+        </div>
+      </div>
+    </header>
+
+    <div class="liturgy-reading-shell" data-prayer-copy-source>
+      {% include reading-tools.html copy_label='Copiar o Invitatório' %}
+      <div class="liturgy-reading__text liturgy-prose" data-reading-text data-reading-font-base="1.125">
+        {% include liturgy/invitatory-psalms.html %}
+      </div>
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
+    </div>
+
+    <section class="liturgy-invitatory-next" aria-labelledby="continue-prayer-title">
+      <div>
+        <p class="eyebrow">Continuar a oração</p>
+        <h2 id="continue-prayer-title">Escolha a primeira Hora do dia</h2>
+      </div>
+      <div>
+        {% if page.oficio_url %}<a class="button button--primary" href="{{ page.oficio_url | relative_url }}">Ofício das Leituras</a>{% endif %}
+        {% if page.laudes_url %}<a class="button button--primary" href="{{ page.laudes_url | relative_url }}">Laudes</a>{% endif %}
+      </div>
+    </section>
+    {% include share-buttons.html %}
+  </article>
+  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
+</div>

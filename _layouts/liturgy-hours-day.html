@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="container container--large page-shell liturgy-shell liturgy-hours-day" data-liturgy-page data-page-date="{{ page.date_iso }}">
+  {% include breadcrumb.html %}
+  <header class="liturgy-page-heading">
+    <div>
+      <p class="eyebrow">Liturgia das Horas</p>
+      <h1>{{ page.celebration }}</h1>
+      <p class="page-lead">Escolha a Hora litúrgica de {{ page.date_long }}.</p>
+    </div>
+    <a class="button button--text" href="{{ page.daily_page_url | relative_url }}">Ver a liturgia diária</a>
+  </header>
+
+  {% include liturgy/liturgical-summary.html compact=true %}
+  {% include liturgy/date-navigation.html target='hours_url' id='hours' %}
+  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
+
+  {% if page.invitatory_url %}
+  <section class="liturgy-invitatory-banner">
+    <div>
+      <p class="eyebrow">Início da oração cotidiana</p>
+      <h2>Invitatório</h2>
+      <p>Reze-o antes do Ofício das Leituras ou das Laudes, conforme a primeira Hora escolhida.</p>
+    </div>
+    <a class="button button--primary" href="{{ page.invitatory_url | relative_url }}">Rezar o Invitatório</a>
+  </section>
+  {% endif %}
+
+  <section aria-labelledby="hours-list-title">
+    <div class="section-heading">
+      <p class="eyebrow">Horas canônicas</p>
+      <h2 id="hours-list-title">Orações disponíveis</h2>
+    </div>
+    <div class="liturgy-hours-grid">
+      {% for hour in page.hours %}{% include liturgy/hour-card.html hour=hour day=page.date_iso %}{% endfor %}
+    </div>
+  </section>
+
+  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
+</div>

@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<div class="container container--large page-shell liturgy-shell liturgy-hour" data-liturgy-page data-page-date="{{ page.date_iso }}" data-page-hour="{{ page.hour_slug }}">
+  {% include breadcrumb.html %}
+  <article>
+    <header class="liturgy-hour-hero" style="--liturgical-accent: {{ page.liturgical.color_hex }}; --liturgical-on-accent: {{ page.liturgical.color_on }};">
+      <div class="liturgy-hour-hero__media">
+        {% if page.image contains '://' %}{% assign hour_image = page.image %}{% else %}{% assign hour_image = page.image | relative_url %}{% endif %}
+        <img src="{{ hour_image }}" alt="{{ page.image_alt | escape }}" width="960" height="640" loading="eager" data-liturgy-cover>
+      </div>
+      <div class="liturgy-hour-hero__content">
+        <p class="eyebrow">{{ page.hour_short_title }}</p>
+        <h1>{{ page.title }}</h1>
+        <p>{{ page.date_long }}</p>
+        <div class="liturgy-hour-hero__chips">
+          <span>{{ page.liturgical.season_label }}</span>
+          <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
+          {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
+          <span data-current-hour-badge hidden>Hora indicada agora</span>
+        </div>
+        <div class="liturgy-hour-hero__actions">
+          {% if page.invitatory_url %}<a class="button button--primary" href="{{ page.invitatory_url | relative_url }}">Começar pelo Invitatório</a>{% endif %}
+          <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Todas as Horas do dia</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="liturgy-hour-summary" aria-label="Informações litúrgicas resumidas">
+      <strong>{{ page.celebration }}</strong>
+      <span>{{ page.liturgical.rank_label }}</span>
+      {% if page.liturgical.year_cycle != empty %}<span>{{ page.liturgical.year_cycle }}</span>{% endif %}
+      {% if page.liturgical.week_label %}<span>{{ page.liturgical.week_label }}</span>{% endif %}
+    </section>
+
+    <div class="liturgy-reading-shell" data-prayer-copy-source>
+      {% include reading-tools.html copy_label='Copiar esta Hora' %}
+      <div class="liturgy-reading-layout">
+        <aside class="liturgy-toc" data-liturgy-toc hidden>
+          <button type="button" class="liturgy-toc__toggle" data-liturgy-toc-toggle aria-expanded="false">Nesta Hora</button>
+          <nav data-liturgy-toc-list aria-label="Seções desta Hora"></nav>
+        </aside>
+        <div class="liturgy-reading__text liturgy-prose" data-reading-text data-reading-font-base="1.125">
+          {{ content }}
+        </div>
+      </div>
+      <p class="status-message" data-prayer-status aria-live="polite"></p>
+    </div>
+
+    <nav class="liturgy-hour-navigation" aria-label="Navegação entre as Horas">
+      {% if page.previous_hour %}<a href="{{ page.previous_hour.url | relative_url }}" rel="prev"><span>Hora anterior</span><strong>← {{ page.previous_hour.short_title }}</strong></a>{% else %}<span></span>{% endif %}
+      <a class="liturgy-hour-navigation__day" href="{{ page.daily_page_url | relative_url }}">Liturgia do dia</a>
+      {% if page.next_hour %}<a href="{{ page.next_hour.url | relative_url }}" rel="next"><span>Próxima Hora</span><strong>{{ page.next_hour.short_title }} →</strong></a>{% endif %}
+    </nav>
+
+    {% include share-buttons.html %}
+  </article>
+  {% include liturgy/dialogs.html %}
+  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
+  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
+</div>

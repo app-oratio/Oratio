@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<div class="container container--large page-shell liturgy-shell liturgy-index" data-liturgy-page data-liturgy-index-kind="{{ page.liturgy_index_kind }}">
+  {% include breadcrumb.html %}
+  <header class="liturgy-index__hero">
+    <div>
+      <p class="eyebrow">Oração da Igreja</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+    </div>
+    <div class="liturgy-index__symbol" aria-hidden="true">☩</div>
+  </header>
+
+  <section class="liturgy-index__chooser" aria-labelledby="liturgy-index-date-title">
+    <div>
+      <p class="eyebrow">Calendário</p>
+      <h2 id="liturgy-index-date-title">Escolha o dia que deseja acompanhar</h2>
+      <p data-liturgy-today-description>A data de hoje será selecionada automaticamente quando estiver disponível.</p>
+    </div>
+    <form class="liturgy-date-picker liturgy-date-picker--large" data-liturgy-date-form>
+      <label for="liturgy-index-date">Data litúrgica</label>
+      <div class="liturgy-date-picker__controls">
+        <input id="liturgy-index-date"
+          type="date"
+          value="{{ page.featured_day.date }}"
+          min="{{ page.available_days.first.date }}"
+          max="{{ page.available_days.last.date }}"
+          data-liturgy-date-picker
+          data-date-target="{% if page.liturgy_index_kind == 'hours' %}hours_url{% else %}daily_url{% endif %}">
+        <button class="button button--primary" type="submit">Abrir</button>
+      </div>
+      <p class="status-message" data-liturgy-date-status aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="liturgy-index__featured" aria-labelledby="featured-liturgy-title">
+    <div>
+      <p class="eyebrow">Dia em destaque</p>
+      <h2 id="featured-liturgy-title" data-selected-day-title>{{ page.featured_day.celebration }}</h2>
+      <p data-selected-day-label>{{ page.featured_day.label }}</p>
+    </div>
+    <a class="button button--primary" href="{% if page.liturgy_index_kind == 'hours' %}{{ page.featured_day.hours_url | relative_url }}{% else %}{{ page.featured_day.daily_url | relative_url }}{% endif %}" data-selected-day-link>
+      {% if page.liturgy_index_kind == 'hours' %}Ver as Horas deste dia{% else %}Ver a liturgia deste dia{% endif %}
+    </a>
+  </section>
+
+  <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
+  <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
+</div>
