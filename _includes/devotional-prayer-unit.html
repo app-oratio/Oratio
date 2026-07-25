@@ -34,6 +34,19 @@
     {% assign prayer_unit_has_latin = true %}
   {% endif %}
 {% endif %}
+{% assign prayer_unit_language_toggle = prayer_unit['language-toggle'] %}
+{% if prayer_unit_language_toggle == nil %}
+  {% assign prayer_unit_language_toggle = prayer_unit.language_toggle %}
+{% endif %}
+{% if prayer_unit_language_toggle == nil %}
+  {% assign prayer_unit_language_toggle = page['language-toggle'] %}
+{% endif %}
+{% if prayer_unit_language_toggle == nil %}
+  {% assign prayer_unit_language_toggle = page.language_toggle %}
+{% endif %}
+{% if prayer_unit_language_toggle == nil %}
+  {% assign prayer_unit_language_toggle = true %}
+{% endif %}
 {% assign prayer_unit_url = prayer_unit['prayer-url'] | default: prayer_unit.prayer_url | default: prayer_common.url %}
 {% assign prayer_unit_default_language = prayer_unit['default-language'] | default: prayer_unit.default_language | default: include.default_language | default: prayer_common['default-language'] | default: prayer_common.default_language | default: 'pt' %}
 {% assign prayer_unit_show_latin = false %}
@@ -85,13 +98,15 @@
   </header>
 
   {% if prayer_unit_text_pt or prayer_unit_text_la or include.fallback_content %}
-    <div class="language-switcher prayer-unit__language" data-unit-language-switcher aria-label="Idioma de {{ prayer_unit_title_pt | escape }}">
-      <span>Idioma</span>
-      <div role="group" aria-label="Selecionar o idioma desta oração">
-        <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
-        <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
+    {% if prayer_unit_language_toggle %}
+      <div class="language-switcher prayer-unit__language" data-unit-language-switcher aria-label="Idioma de {{ prayer_unit_title_pt | escape }}">
+        <span>Idioma</span>
+        <div role="group" aria-label="Selecionar o idioma desta oração">
+          <button type="button" data-language-option="pt" aria-pressed="false">Português</button>
+          <button type="button" data-language-option="la" aria-pressed="false">Latim</button>
+        </div>
       </div>
-    </div>
+    {% endif %}
     <div class="prayer-unit__text prayer-text" data-prayer-text>
       <div lang="pt-BR" data-language-panel data-language="pt"{% if prayer_unit_show_latin %} hidden{% endif %}>
         {% if prayer_unit_text_pt %}
@@ -100,7 +115,7 @@
           {{ include.fallback_content }}
         {% endif %}
       </div>
-      <div lang="{% if prayer_unit_has_latin %}la{% else %}pt-BR{% endif %}" data-language-panel data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>
+      <div lang="{% if prayer_unit_has_latin or prayer_unit_default_language == 'la' %}la{% else %}pt-BR{% endif %}" data-language-panel data-language="la"{% unless prayer_unit_show_latin %} hidden{% endunless %}>
         {% if prayer_unit_text_la %}
           {{ prayer_unit_text_la | markdownify }}
         {% else %}
