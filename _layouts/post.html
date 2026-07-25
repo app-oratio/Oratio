@@ -3,25 +3,62 @@ layout: default
 ---
 {% assign words = content | number_of_words %}
 {% assign reading_time = words | divided_by: 200 | plus: 1 %}
-<div class="container container--medium page-shell">
+{% assign article_category = page.categories | first %}
+
+<div class="editorial-reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+
+<div class="container container--large page-shell editorial-article-shell">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Publicação demonstrativa' text='Esta postagem serve apenas como exemplo e não representa um comunicado oficial.' %}{% endif %}
-  <article class="post-page">
-    <header class="content-header">
-      {% if page.categories.first %}<span class="chip">{{ page.categories.first }}</span>{% endif %}
+
+  <article class="editorial-article">
+    <header class="editorial-article__header">
+      <a class="editorial-back-link" href="{{ '/blog/' | relative_url }}">← Voltar ao blog</a>
+      <div class="editorial-article__labels">
+        {% if article_category %}<span class="chip">{{ article_category }}</span>{% endif %}
+        {% if page.demo %}<span class="editorial-card__status">Exemplo</span>{% endif %}
+      </div>
       <h1>{{ page.title }}</h1>
-      <p class="page-lead">{{ page.description }}</p>
-      <p class="post-meta"><span>{{ page.author | default: site.author.name }}</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d/%m/%Y' }}</time><span>{{ reading_time }} min de leitura</span></p>
+      {% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+      <div class="editorial-article__meta">
+        <span>{{ page.author | default: site.author.name }}</span>
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d/%m/%Y' }}</time>{% endif %}
+        <span>{{ reading_time }} min de leitura</span>
+      </div>
+      {% if page.tags and page.tags.size > 0 %}
+      <ul class="editorial-article__tags" aria-label="Temas da publicação">
+        {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+      {% endif %}
     </header>
-    {% if page.image %}<figure class="post-cover image-shell" data-image-shell><img src="{{ page.image | relative_url }}" width="1200" height="675" alt="" decoding="async" data-fallback-image><span class="image-placeholder" hidden><span>✢</span><small>Blog</small></span></figure>{% endif %}
-    <div class="prose">{{ content }}</div>
-    {% include share-buttons.html %}
+
+    {% if page.image %}
+    <figure class="editorial-cover image-shell" data-image-shell>
+      <img src="{{ page.image | relative_url }}" width="1200" height="675" alt="{{ page.image_alt | default: page.title | escape }}" decoding="async" data-fallback-image>
+      <span class="image-placeholder" hidden><span aria-hidden="true">✢</span><small>Blog</small></span>
+      {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+
+    <div class="editorial-article__layout">
+      <div class="editorial-article__main">
+        <div class="prose editorial-prose" data-editorial-content>{{ content }}</div>
+        {% include share-buttons.html %}
+      </div>
+
+      <aside class="editorial-toc" data-editorial-toc hidden aria-labelledby="editorial-toc-title">
+        <strong id="editorial-toc-title">Nesta publicação</strong>
+        <ol data-editorial-toc-list></ol>
+      </aside>
+    </div>
   </article>
-  {% include related-content.html %}
+
+  {% include editorial-related.html type='Blog' %}
+
   <nav class="post-navigation" aria-label="Publicações adjacentes">
     {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>Publicação anterior</span><strong>{{ page.previous.title }}</strong></a>{% endif %}
     {% if page.next %}<a href="{{ page.next.url | relative_url }}"><span>Próxima publicação</span><strong>{{ page.next.title }}</strong></a>{% endif %}
   </nav>
+
   {% include app-download-banner.html %}
 </div>
-

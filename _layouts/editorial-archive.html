@@ -1,0 +1,151 @@
+---
+layout: default
+---
+{% if page.editorial_source == 'posts' %}
+  {% assign editorial_items = site.posts | where_exp: 'item', 'item.draft != true' %}
+{% else %}
+  {% assign editorial_items = site[page.collection_name] | where_exp: 'item', 'item.draft != true' | sort: 'date' | reverse %}
+{% endif %}
+{% assign featured_items = editorial_items | where: 'featured', true %}
+{% assign archive_categories = editorial_items | map: 'category' | compact | uniq | sort %}
+
+<div class="container container--large page-shell editorial-hub" data-editorial-hub data-page-size="9">
+  {% include breadcrumb.html %}
+
+  <header class="editorial-hero">
+    <div class="editorial-hero__copy">
+      <p class="eyebrow">{{ page.eyebrow | default: 'Biblioteca editorial' }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+      <div class="editorial-hero__actions">
+        <a class="button button--primary" href="#todos-os-conteudos">Explorar conteúdos</a>
+        <button class="button button--tonal" type="button" data-search-open>{% include icon.html name='search' %}<span>Pesquisar em todo o site</span></button>
+      </div>
+    </div>
+
+    <dl class="editorial-stats" aria-label="Resumo do acervo">
+      <div><dt>Conteúdos</dt><dd>{{ editorial_items.size }}</dd></div>
+      {% if page.editorial_source == 'posts' %}
+        <div><dt>Categorias</dt><dd>{{ site.categories.size }}</dd></div>
+      {% else %}
+        <div><dt>Categorias</dt><dd>{{ archive_categories.size }}</dd></div>
+      {% endif %}
+      {% if editorial_items.first.date %}<div><dt>Atualização mais recente</dt><dd>{{ editorial_items.first.date | date: '%d/%m/%Y' }}</dd></div>{% endif %}
+    </dl>
+  </header>
+
+  {% if content and content != empty %}
+  <section class="editorial-intro prose prose--wide" aria-label="Apresentação">
+    {{ content }}
+  </section>
+  {% endif %}
+
+  {% if featured_items.size > 0 %}
+  <section class="editorial-featured" aria-labelledby="editorial-featured-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">Seleção editorial</p><h2 id="editorial-featured-title">Em destaque</h2></div>
+      <p>Conteúdos escolhidos para começar ou aprofundar a leitura.</p>
+    </div>
+    <div class="card-grid card-grid--3">
+      {% for item in featured_items limit: 3 %}
+        {% include editorial-card.html item=item type=page.item_type featured=true %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="editorial-categories" aria-labelledby="editorial-categories-title">
+    <div class="section-heading section-heading--compact">
+      <div><p class="eyebrow">Navegue por assunto</p><h2 id="editorial-categories-title">Categorias</h2></div>
+    </div>
+    <div class="editorial-category-list" data-editorial-category-list>
+      <button class="editorial-category-button is-active" type="button" data-editorial-category-chip="" aria-pressed="true">Todos <span>{{ editorial_items.size }}</span></button>
+      {% if page.editorial_source == 'posts' %}
+        {% for category in site.categories %}
+          <button class="editorial-category-button" type="button" data-editorial-category-chip="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] }} <span>{{ category[1].size }}</span></button>
+        {% endfor %}
+      {% else %}
+        {% for category in archive_categories %}
+          {% assign category_items = editorial_items | where: 'category', category %}
+          <button class="editorial-category-button" type="button" data-editorial-category-chip="{{ category | escape }}" aria-pressed="false">{{ category }} <span>{{ category_items.size }}</span></button>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="editorial-library" id="todos-os-conteudos" aria-labelledby="editorial-library-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">Acervo completo</p><h2 id="editorial-library-title">Todos os conteúdos</h2></div>
+      <p data-editorial-count aria-live="polite">{{ editorial_items.size }} conteúdos</p>
+    </div>
+
+    <div class="editorial-toolbar" role="search">
+      <div class="field-group editorial-toolbar__search">
+        <label for="editorial-filter-{{ page.editorial_source | default: page.collection_name }}">Buscar nesta página</label>
+        <input id="editorial-filter-{{ page.editorial_source | default: page.collection_name }}" type="search" data-editorial-filter placeholder="Digite título, descrição, autor ou tema" autocomplete="off">
+      </div>
+
+      <div class="field-group">
+        <label for="editorial-category-{{ page.editorial_source | default: page.collection_name }}">Categoria</label>
+        <select id="editorial-category-{{ page.editorial_source | default: page.collection_name }}" data-editorial-category>
+          <option value="">Todas as categorias</option>
+          {% if page.editorial_source == 'posts' %}
+            {% for category in site.categories %}<option value="{{ category[0] | escape }}">{{ category[0] }}</option>{% endfor %}
+          {% else %}
+            {% for category in archive_categories %}<option value="{{ category | escape }}">{{ category }}</option>{% endfor %}
+          {% endif %}
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="editorial-tag-{{ page.editorial_source | default: page.collection_name }}">Tema</label>
+        <select id="editorial-tag-{{ page.editorial_source | default: page.collection_name }}" data-editorial-tag>
+          <option value="">Todos os temas</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="editorial-sort-{{ page.editorial_source | default: page.collection_name }}">Ordenar</label>
+        <select id="editorial-sort-{{ page.editorial_source | default: page.collection_name }}" data-editorial-sort>
+          <option value="newest">Mais recentes</option>
+          <option value="oldest">Mais antigos</option>
+          <option value="title">Título de A a Z</option>
+        </select>
+      </div>
+
+      <button class="button button--text editorial-toolbar__reset" type="button" data-editorial-reset>Limpar filtros</button>
+    </div>
+
+    <div class="card-grid card-grid--3 editorial-grid" data-editorial-grid>
+      {% for item in editorial_items %}
+        {% assign item_category = item.category %}
+        {% if item_category == nil or item_category == empty %}{% assign item_category = item.categories | first %}{% endif %}
+        {% capture item_tags %}{% for tag in item.tags %}{{ tag }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
+        {% capture item_search %}{{ item.title }} {{ item.description }} {{ item_category }} {{ item.tags | join: ' ' }} {{ item.keywords | join: ' ' }} {{ item.author }}{% endcapture %}
+        <div
+          data-editorial-item
+          data-category="{{ item_category | escape }}"
+          data-tags="{{ item_tags | strip | escape }}"
+          data-date="{% if item.date %}{{ item.date | date_to_xmlschema }}{% endif %}"
+          data-title="{{ item.title | escape }}"
+          data-search-text="{{ item_search | strip_html | strip_newlines | escape }}"
+        >
+          {% include editorial-card.html item=item type=page.item_type %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="editorial-empty" data-editorial-empty{% if editorial_items.size > 0 %} hidden{% endif %}>
+      {% include empty-state.html title='Nenhum conteúdo corresponde aos filtros' text='Altere a busca, a categoria ou o tema para visualizar outros resultados.' %}
+    </div>
+
+    <nav class="pagination editorial-pagination" data-editorial-pagination aria-label="Paginação do acervo">
+      <button class="button button--text" type="button" data-editorial-previous>{% include icon.html name='arrow-left' %}<span>Anterior</span></button>
+      <span data-editorial-page-status aria-live="polite">Página 1</span>
+      <button class="button button--text" type="button" data-editorial-next><span>Próxima</span>{% include icon.html name='arrow-right' %}</button>
+    </nav>
+  </section>
+
+  {% if page.show_newsletter %}{% include newsletter-placeholder.html %}{% endif %}
+  {% include app-download-banner.html %}
+</div>
