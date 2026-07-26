@@ -65,6 +65,43 @@
     return date.toISOString().slice(0, 10);
   }
 
+  function currentCivilDate(now) {
+    var parts = saoPauloParts(now);
+    return [parts.year, parts.month, parts.day].join('-');
+  }
+
+  function findHourCard(day, slug) {
+    if (!day || !Array.isArray(day.hour_cards)) return null;
+    return day.hour_cards.find(function (hour) { return hour.slug === slug; }) || null;
+  }
+
+  function hourCardMarkup(hour, date, baseurl, options) {
+    options = options || {};
+    var cover = localUrl(hour.cover || '/assets/images/social/og-default.webp', baseurl);
+    var url = localUrl(hour.url || '', baseurl);
+    var title = hour.title || hour.short_title || 'Liturgia das Horas';
+    var shortTitle = hour.short_title || HOUR_LABELS[hour.slug] || title;
+    var classes = 'liturgy-hour-card';
+    if (options.current) classes += ' is-current';
+    if (options.recommended) classes += ' liturgy-hour-card--recommended';
+    var badge = options.current
+      ? '<span class="liturgy-hour-card__current" data-current-hour-badge>Indicada agora</span>'
+      : '<span class="liturgy-hour-card__current" data-current-hour-badge hidden>Indicada agora</span>';
+    var notice = options.notice
+      ? '<p class="liturgy-hour-card__notice">' + escapeHtml(options.notice) + '</p>'
+      : '';
+
+    return '<article class="' + classes + '" data-hour-card data-hour-date="'
+      + escapeAttribute(date || '') + '" data-hour-slug="' + escapeAttribute(hour.slug || '') + '">'
+      + '<a class="liturgy-hour-card__link" href="' + escapeAttribute(url) + '">'
+      + '<div class="liturgy-hour-card__media"><img src="' + escapeAttribute(cover) + '" alt="'
+      + escapeAttribute(hour.image_alt || title) + '" width="720" height="480" loading="lazy" data-liturgy-cover>'
+      + badge + '</div><div class="liturgy-hour-card__body"><p class="eyebrow">Liturgia das Horas</p><h3>'
+      + escapeHtml(shortTitle) + '</h3><p>' + escapeHtml(title) + '</p>' + notice
+      + '<span class="liturgy-hour-card__action">Rezar esta Hora <span aria-hidden="true">→</span></span>'
+      + '</div></a></article>';
+  }
+
   function currentLiturgyTarget(now) {
     var parts = saoPauloParts(now);
     var date = [parts.year, parts.month, parts.day].join('-');
@@ -102,6 +139,7 @@
     var current = currentLiturgyTarget();
     var currentDay = findDay(days, current.date);
     var currentUrl = currentDay && currentDay.hours ? currentDay.hours[current.slug] : null;
+    var currentHour = findHourCard(currentDay, current.slug);
 
     document.querySelectorAll('[data-hour-card]').forEach(function (card) {
       var isCurrent = card.getAttribute('data-hour-date') === current.date
@@ -112,8 +150,9 @@
     });
 
     var page = document.querySelector('[data-liturgy-page]');
+    var pageMatches = false;
     if (page) {
-      var pageMatches = page.getAttribute('data-page-date') === current.date
+      pageMatches = page.getAttribute('data-page-date') === current.date
         && page.getAttribute('data-page-hour') === current.slug;
       page.querySelectorAll('[data-current-hour-badge]').forEach(function (badge) {
         if (!badge.closest('[data-hour-card]')) badge.hidden = !pageMatches;
@@ -123,19 +162,63 @@
     document.querySelectorAll('[data-current-hour-callout]').forEach(function (callout) {
       if (!currentDay || !currentUrl || (page && page.getAttribute('data-page-hour') && pageMatches)) {
         callout.hidden = true;
+        callout.replaceChildren();
         return;
       }
 
       var pageDate = page ? page.getAttribute('data-page-date') : null;
       var previousDayNotice = pageDate && current.date !== pageDate
         ? 'Neste horário, a oração indicada pertence ao dia litúrgico anterior.'
-        : 'De acordo com o horário atual, esta é a Hora mais indicada.';
-      callout.innerHTML = '<div><p class="eyebrow">Indicada agora</p><strong>'
-        + escapeHtml(current.label) + '</strong><p>' + previousDayNotice
-        + '</p></div><a class="button button--primary" href="'
-        + escapeAttribute(localUrl(currentUrl, baseurl)) + '">Rezar agora</a>';
+        : 'Esta é a Hora mais apropriada para o momento atual.';
+      var hour = currentHour || {
+        slug: current.slug,
+        short_title: current.label,
+        title: current.label,
+        cover: '/assets/images/social/og-default.webp',
+        image_alt: current.label,
+        url: currentUrl
+      };
+      callout.innerHTML = hourCardMarkup(hour, current.date, baseurl, {
+        current: true,
+        recommended: true,
+        notice: previousDayNotice
+      });
       callout.hidden = false;
+      setupImageFallbacks(baseurl, callout);
     });
+  }
+
+  function renderSelectedHours(day, baseurl) {
+    var section = document.querySelector('[data-selected-hours-section]');
+    var list = document.querySelector('[data-selected-hours-list]');
+    var label = document.querySelector('[data-selected-hours-label]');
+    if (!section || !list) return;
+
+    var hours = day && Array.isArray(day.hour_cards) ? day.hour_cards : [];
+    if (!hours.length) {
+      section.hidden = true;
+      list.replaceChildren();
+      return;
+    }
+
+    section.hidden = false;
+    if (label) label.textContent = day.label || day.date;
+    list.innerHTML = hours.map(function (hour) {
+      return hourCardMarkup(hour, day.date, baseurl);
+    }).join('');
+    setupImageFallbacks(baseurl, list);
+  }
+
+  function redirectDailyIndex(days, baseurl) {
+    var index = document.querySelector('.liturgy-index[data-liturgy-index-kind="daily"]');
+    if (!index || !days.length) return false;
+    var today = findDay(days, currentCivilDate());
+    if (!today || !today.daily_url) return false;
+    var target = localUrl(today.daily_url, baseurl);
+    if (!window.location || window.location.pathname === target) return false;
+    if (typeof window.location.replace === 'function') window.location.replace(target);
+    else window.location.assign(target);
+    return true;
   }
 
   function initDatePickers(days, baseurl) {
@@ -153,17 +236,20 @@
         var title = document.querySelector('[data-selected-day-title]');
         var label = document.querySelector('[data-selected-day-label]');
         var link = document.querySelector('[data-selected-day-link]');
-        if (!title || !label || !link || !day) return;
-        var target = input.getAttribute('data-date-target') || 'daily_url';
-        title.textContent = day.celebration || 'Liturgia do dia';
-        label.textContent = day.label || day.date;
-        link.href = localUrl(day[target], baseurl);
+        if (title && label && link && day) {
+          var target = input.getAttribute('data-date-target') || 'daily_url';
+          title.textContent = day.celebration || 'Liturgia do dia';
+          label.textContent = day.label || day.date;
+          link.href = localUrl(day[target], baseurl);
+        }
+        renderSelectedHours(day, baseurl);
       }
 
       input.addEventListener('change', function () {
         var day = selectedDay();
         if (status) status.textContent = day ? '' : 'Ainda não há conteúdo disponível para esta data.';
         updateIndexPreview();
+        markCurrentHour(days, baseurl);
       });
 
       form.addEventListener('submit', function (event) {
@@ -183,24 +269,22 @@
 
   function selectBestIndexDay(days) {
     if (!days.length) return;
-    var target = currentLiturgyTarget();
-    var parts = saoPauloParts();
-    var civilDate = [parts.year, parts.month, parts.day].join('-');
-    var index = document.querySelector('.liturgy-index[data-liturgy-index-kind]');
-    var selectedDate = index && index.getAttribute('data-liturgy-index-kind') === 'hours' ? target.date : civilDate;
-    var today = findDay(days, selectedDate);
+    var today = findDay(days, currentCivilDate());
     if (!today) return;
     document.querySelectorAll('.liturgy-index [data-liturgy-date-picker]').forEach(function (input) {
       input.value = today.date;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
     var description = document.querySelector('[data-liturgy-today-description]');
-    if (description) description.textContent = 'A data litúrgica correspondente ao horário atual foi selecionada.';
+    if (description) description.textContent = 'A data atual foi selecionada.';
   }
 
-  function setupImageFallbacks(baseurl) {
+  function setupImageFallbacks(baseurl, root) {
     var fallback = localUrl('/assets/images/social/og-default.webp', baseurl);
-    document.querySelectorAll('[data-liturgy-cover], [data-liturgical-color-image]').forEach(function (image) {
+    var scope = root || document;
+    scope.querySelectorAll('[data-liturgy-cover], [data-liturgical-color-image]').forEach(function (image) {
+      if (image.getAttribute('data-fallback-ready') === 'true') return;
+      image.setAttribute('data-fallback-ready', 'true');
       image.addEventListener('error', function onError() {
         image.removeEventListener('error', onError);
         image.src = fallback;
@@ -220,8 +304,15 @@
     });
     panels.forEach(function (panel) {
       var selected = panel.getAttribute(panelKeyAttribute) === activeKey;
-      panel.hidden = !selected;
       panel.classList.toggle('is-active', selected);
+      panel.setAttribute('aria-hidden', selected ? 'false' : 'true');
+      if (selected) {
+        panel.style.removeProperty('display');
+        panel.hidden = false;
+      } else {
+        panel.hidden = true;
+        panel.style.setProperty('display', 'none');
+      }
     });
   }
 
@@ -290,7 +381,7 @@
       makeInteractive(latButton, function () {
         setTabState(buttons, panels, 'lat', 'data-language-select', 'data-language-panel');
       });
-      setTabState(buttons, panels, ptPanel.style.display === 'none' ? 'lat' : 'pt', 'data-language-select', 'data-language-panel');
+      setTabState(buttons, panels, 'pt', 'data-language-select', 'data-language-panel');
     });
   }
 
@@ -384,6 +475,7 @@
 
   function init() {
     var data = readDaysData();
+    if (redirectDailyIndex(data.days, data.baseurl)) return;
     setupImageFallbacks(data.baseurl);
     initDatePickers(data.days, data.baseurl);
     selectBestIndexDay(data.days);
@@ -395,7 +487,11 @@
     initToc();
   }
 
-  window.OratioLiturgia = Object.freeze({ currentTarget: currentLiturgyTarget });
+  window.OratioLiturgia = Object.freeze({
+    currentTarget: currentLiturgyTarget,
+    currentCivilDate: currentCivilDate,
+    setTabState: setTabState
+  });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
