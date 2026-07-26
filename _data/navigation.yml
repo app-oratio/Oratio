@@ -29,6 +29,8 @@ drawer_groups:
     links:
       - label: "Liturgia diária"
         url: "/liturgia/"
+      - label: "Calendário litúrgico"
+        url: "/calendario-liturgico/"
       - label: "Liturgia das Horas"
         url: "/liturgia-das-horas/"
   - id: "oracoes-devocoes"
