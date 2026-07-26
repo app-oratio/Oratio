@@ -16,6 +16,7 @@ layout: default
         <div class="liturgy-hour-hero__chips">
           <span>{{ page.liturgical.season_label }}</span>
           <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
+          {% if page.liturgical.rank_label != empty %}<span>{{ page.liturgical.rank_label }}</span>{% endif %}
           {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
         </div>
         <div class="liturgy-hour-hero__actions">

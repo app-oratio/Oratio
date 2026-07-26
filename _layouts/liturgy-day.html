@@ -18,10 +18,11 @@ layout: default
 
   {% if page.mass_sections and page.mass_sections.size > 0 %}
   <section class="liturgy-mass" aria-labelledby="mass-title">
-    <div class="section-heading">
-      <p class="eyebrow">Celebração eucarística</p>
-      <h2 id="mass-title">Liturgia do dia</h2>
-      <p>Os textos abaixo seguem a ordem em que foram fornecidos no arquivo litúrgico.</p>
+    <div class="section-heading liturgy-section-heading">
+      <div>
+        <p class="eyebrow">Celebração eucarística</p>
+        <h2 id="mass-title">Liturgia do dia</h2>
+      </div>
     </div>
     <nav class="liturgy-section-nav" aria-label="Partes da liturgia do dia">
       {% for section in page.mass_sections %}<a href="#{{ section.anchor }}">{{ section.title }}</a>{% endfor %}
@@ -36,7 +37,7 @@ layout: default
     </div>
   </section>
   {% else %}
-    {% include empty-state.html title='Liturgia do dia indisponível' text='O arquivo liturgy.json desta data não possui seções publicáveis.' %}
+    {% include empty-state.html title='Liturgia do dia indisponível' text='Os textos desta celebração ainda não estão disponíveis.' %}
   {% endif %}
 
   <section class="liturgy-hours-section" aria-labelledby="daily-hours-title">
@@ -44,7 +45,7 @@ layout: default
       <div>
         <p class="eyebrow">Santificação do dia</p>
         <h2 id="daily-hours-title">Liturgia das Horas</h2>
-        <p>O sistema destaca automaticamente a Hora mais indicada no momento.</p>
+        <p>A Hora mais apropriada ao momento recebe um destaque especial.</p>
       </div>
       <a class="button button--text" href="{{ page.hours_day_url | relative_url }}">Abrir a página das Horas</a>
     </div>

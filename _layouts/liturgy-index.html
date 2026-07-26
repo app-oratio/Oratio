@@ -16,7 +16,7 @@ layout: default
     <div>
       <p class="eyebrow">Calendário</p>
       <h2 id="liturgy-index-date-title">Escolha o dia que deseja acompanhar</h2>
-      <p data-liturgy-today-description>A data de hoje será selecionada automaticamente quando estiver disponível.</p>
+      <p data-liturgy-today-description>A data atual será selecionada quando houver conteúdo disponível.</p>
     </div>
     <form class="liturgy-date-picker liturgy-date-picker--large" data-liturgy-date-form>
       <label for="liturgy-index-date">Data litúrgica</label>
@@ -36,14 +36,29 @@ layout: default
 
   <section class="liturgy-index__featured" aria-labelledby="featured-liturgy-title">
     <div>
-      <p class="eyebrow">Dia em destaque</p>
+      <p class="eyebrow">Dia selecionado</p>
       <h2 id="featured-liturgy-title" data-selected-day-title>{{ page.featured_day.celebration }}</h2>
       <p data-selected-day-label>{{ page.featured_day.label }}</p>
     </div>
     <a class="button button--primary" href="{% if page.liturgy_index_kind == 'hours' %}{{ page.featured_day.hours_url | relative_url }}{% else %}{{ page.featured_day.daily_url | relative_url }}{% endif %}" data-selected-day-link>
-      {% if page.liturgy_index_kind == 'hours' %}Ver as Horas deste dia{% else %}Ver a liturgia deste dia{% endif %}
+      {% if page.liturgy_index_kind == 'hours' %}Ver todas as Horas deste dia{% else %}Ver a liturgia deste dia{% endif %}
     </a>
   </section>
+
+  {% if page.liturgy_index_kind == 'hours' %}
+  <section class="liturgy-index__hours" aria-labelledby="index-hours-title" data-selected-hours-section>
+    <div class="section-heading liturgy-section-heading">
+      <div>
+        <p class="eyebrow">Horas canônicas</p>
+        <h2 id="index-hours-title">Liturgia das Horas do dia</h2>
+        <p data-selected-hours-label>{{ page.featured_day.label }}</p>
+      </div>
+    </div>
+    <div class="liturgy-hours-grid" data-selected-hours-list>
+      {% for hour in page.featured_day.hour_cards %}{% include liturgy/hour-card.html hour=hour day=page.featured_day.date %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
   <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
   <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>

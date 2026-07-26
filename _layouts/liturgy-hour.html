@@ -16,6 +16,7 @@ layout: default
         <div class="liturgy-hour-hero__chips">
           <span>{{ page.liturgical.season_label }}</span>
           <span><i class="liturgy-color-dot" aria-hidden="true"></i>{{ page.liturgical.color_label }}</span>
+          {% if page.liturgical.rank_label != empty %}<span>{{ page.liturgical.rank_label }}</span>{% endif %}
           {% if page.liturgical.psalter_label %}<span>{{ page.liturgical.psalter_label }}</span>{% endif %}
           <span data-current-hour-badge hidden>Hora indicada agora</span>
         </div>
@@ -25,13 +26,6 @@ layout: default
         </div>
       </div>
     </header>
-
-    <section class="liturgy-hour-summary" aria-label="Informações litúrgicas resumidas">
-      <strong>{{ page.celebration }}</strong>
-      <span>{{ page.liturgical.rank_label }}</span>
-      {% if page.liturgical.year_cycle != empty %}<span>{{ page.liturgical.year_cycle }}</span>{% endif %}
-      {% if page.liturgical.week_label %}<span>{{ page.liturgical.week_label }}</span>{% endif %}
-    </section>
 
     <div class="liturgy-reading-shell" data-prayer-copy-source>
       {% include reading-tools.html copy_label='Copiar esta Hora' %}
