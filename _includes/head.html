@@ -23,6 +23,21 @@
   {% assign inherited_social_image_alt = social_devotion.image_alt | default: social_devotion.title | default: page.title %}
 {% endif %}
 {% seo %}
+{% if page.liturgia_page %}
+  {% assign liturgy_social_image = page.image | default: '/assets/images/social/og-default.webp' %}
+  {% assign liturgy_social_alt = page.image_alt | default: page.title %}
+<meta property="og:image" content="{{ liturgy_social_image | absolute_url }}">
+<meta property="og:image:secure_url" content="{{ liturgy_social_image | absolute_url }}">
+<meta property="og:image:alt" content="{{ liturgy_social_alt | escape }}">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | escape }}">
+<meta name="twitter:description" content="{{ page.description | escape }}">
+<meta name="twitter:image" content="{{ liturgy_social_image | absolute_url }}">
+<meta name="twitter:image:alt" content="{{ liturgy_social_alt | escape }}">
+<meta itemprop="image" content="{{ liturgy_social_image | absolute_url }}">
+<link rel="image_src" href="{{ liturgy_social_image | absolute_url }}">
+{% endif %}
 {% if inherited_social_image %}
 <meta property="og:image" content="{{ inherited_social_image | absolute_url }}">
 <meta property="og:image:secure_url" content="{{ inherited_social_image | absolute_url }}">
