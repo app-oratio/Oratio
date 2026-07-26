@@ -22,53 +22,16 @@
   ];
   var WEEKDAY_NAMES = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
 
-  var DATE_KEYS = ['date', 'data', 'datacivil', 'dataiso', 'iso', 'civildate'];
-  var TITLE_KEYS = [
-    'celebracao', 'celebration', 'nomecelebracao', 'nomedacelebracao', 'titulo',
-    'title', 'nome', 'name', 'memoria', 'festa', 'solenidade'
-  ];
-  var WEEK_KEYS = [
-    'semana', 'semanaliturgica', 'semanadotempo', 'week', 'weeklabel', 'feria',
-    'descricao', 'description', 'subtitulo', 'subtitle'
-  ];
-  var SEASON_KEYS = [
-    'tempo', 'tempoliturgico', 'periodoliturgico', 'season', 'liturgicalseason',
-    'periodo', 'period'
-  ];
-  var INDEX_KEYS = [
-    'indice', 'index', 'idx', 'indiceliturgico', 'tempoindice', 'seasonindex',
-    'liturgicalindex'
-  ];
-  var COLOR_KEYS = [
-    'cor', 'cores', 'color', 'colors', 'corliturgica', 'liturgicalcolor',
-    'liturgicalcolors'
-  ];
-  var GRADE_KEYS = [
-    'grau', 'grade', 'rank', 'classe', 'classificacao', 'classificacaocelebracao',
-    'tipocelebracao', 'celebrationtype', 'celebrationrank', 'degree'
-  ];
-  var CYCLE_KEYS = [
-    'ciclo', 'ciclodominical', 'anoliturigico', 'anoliturgico', 'yearcycle',
-    'liturgicalyear', 'cycle'
-  ];
-  var OPTIONAL_MEMORY_KEYS = [
-    'memoriasfacultativas', 'memoriafacultativa', 'memoriasopcionais',
-    'memoriaopcional', 'optionalmemories', 'optionalmemory',
-    'facultativememories', 'opcionais', 'memorias'
-  ];
+  function normalizeText(value) {
+    return String(value == null ? '' : value).replace(/\s+/g, ' ').trim();
+  }
 
   function canonicalKey(value) {
-    return String(value == null ? '' : value)
+    return normalizeText(value)
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '');
-  }
-
-  function normalizeText(value) {
-    return String(value == null ? '' : value)
-      .replace(/\s+/g, ' ')
-      .trim();
   }
 
   function isPlainObject(value) {
@@ -77,29 +40,14 @@
 
   function directValue(object, aliases) {
     if (!isPlainObject(object)) return undefined;
-    var keyMap = {};
+    var map = {};
     Object.keys(object).forEach(function (key) {
-      keyMap[canonicalKey(key)] = key;
+      map[canonicalKey(key)] = key;
     });
     for (var index = 0; index < aliases.length; index += 1) {
-      var actual = keyMap[canonicalKey(aliases[index])];
+      var actual = map[canonicalKey(aliases[index])];
       if (actual !== undefined && object[actual] !== null && object[actual] !== '') {
         return object[actual];
-      }
-    }
-    return undefined;
-  }
-
-  function readValue(object, aliases) {
-    var value = directValue(object, aliases);
-    if (value !== undefined) return value;
-
-    var containers = ['liturgia', 'celebracao', 'calendario', 'meta', 'info', 'dados', 'dia'];
-    for (var index = 0; index < containers.length; index += 1) {
-      var nested = directValue(object, [containers[index]]);
-      if (isPlainObject(nested)) {
-        value = directValue(nested, aliases);
-        if (value !== undefined) return value;
       }
     }
     return undefined;
@@ -108,11 +56,11 @@
   function scalarText(value) {
     if (value === null || value === undefined) return '';
     if (typeof value === 'string' || typeof value === 'number') return normalizeText(value);
-    if (Array.isArray(value)) {
-      return value.map(scalarText).filter(Boolean).join(', ');
-    }
+    if (Array.isArray(value)) return value.map(scalarText).filter(Boolean).join(', ');
     if (isPlainObject(value)) {
-      return scalarText(readValue(value, ['nome', 'name', 'titulo', 'title', 'valor', 'value', 'label']));
+      return scalarText(directValue(value, [
+        'nome', 'name', 'titulo', 'título', 'title', 'valor', 'value', 'label'
+      ]));
     }
     return '';
   }
@@ -131,160 +79,40 @@
     return [year, pad2(month), pad2(day)].join('-');
   }
 
-  function parseDateValue(value, yearHint) {
-    if (value === null || value === undefined || value === '') return '';
-
-    if (value instanceof Date && !Number.isNaN(value.getTime())) {
-      return value.toISOString().slice(0, 10);
-    }
-
-    if (typeof value === 'number' && Number.isFinite(value)) {
-      var timestamp = value < 100000000000 ? value * 1000 : value;
-      var timestampDate = new Date(timestamp);
-      if (!Number.isNaN(timestampDate.getTime())) return timestampDate.toISOString().slice(0, 10);
-    }
-
-    if (isPlainObject(value)) {
-      var objectYear = Number(directValue(value, ['ano', 'year']) || yearHint);
-      var objectMonth = Number(directValue(value, ['mes', 'month']));
-      var objectDay = Number(directValue(value, ['dia', 'day']));
-      if (objectYear && objectMonth && objectDay) return validIsoDate(objectYear, objectMonth, objectDay);
-      return parseDateValue(directValue(value, DATE_KEYS), yearHint);
-    }
-
+  function looksLikeSlug(value) {
     var text = normalizeText(value);
-    var match;
+    return /^\/?[a-z0-9][a-z0-9-]+\/?$/i.test(text) && text.indexOf('-') >= 0;
+  }
 
-    match = text.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
-    if (match) return validIsoDate(Number(match[1]), Number(match[2]), Number(match[3]));
+  function humanizeSlug(value) {
+    var text = normalizeText(value)
+      .replace(/^https?:\/\/[^/]+/i, '')
+      .replace(/^\/+|\/+$/g, '')
+      .split('/').filter(Boolean).pop() || '';
+    text = text.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
+  }
 
-    match = text.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
-    if (match) return validIsoDate(Number(match[3]), Number(match[2]), Number(match[1]));
-
-    match = text.match(/^(\d{4})(\d{2})(\d{2})$/);
-    if (match) return validIsoDate(Number(match[1]), Number(match[2]), Number(match[3]));
-
-    match = text.match(/^(\d{1,2})[-/.](\d{1,2})$/);
-    if (match && yearHint) {
-      var first = Number(match[1]);
-      var second = Number(match[2]);
-      var ddmm = validIsoDate(Number(yearHint), second, first);
-      var mmdd = validIsoDate(Number(yearHint), first, second);
-      return ddmm || mmdd;
+  function collectStrings(value, depth, output) {
+    if (depth > 5 || value === null || value === undefined) return;
+    if (typeof value === 'string' || typeof value === 'number') {
+      var text = normalizeText(value);
+      if (text) output.push(text);
+      return;
     }
-
-    return '';
-  }
-
-  function pathDate(path, yearHint) {
-    var fullDate = '';
-    path.forEach(function (part) {
-      if (!fullDate) fullDate = parseDateValue(part, yearHint);
-    });
-    if (fullDate) return fullDate;
-
-    var numeric = path
-      .map(function (part) { return /^\d{1,4}$/.test(String(part)) ? Number(part) : null; })
-      .filter(function (part) { return part !== null; });
-
-    var year = Number(yearHint);
-    var yearPosition = numeric.findIndex(function (part) { return part >= 1900 && part <= 2200; });
-    if (yearPosition >= 0) year = numeric[yearPosition];
-
-    if (!year) return '';
-    var remaining = numeric.filter(function (part, index) { return index !== yearPosition; });
-    if (remaining.length >= 2) {
-      var month = remaining[remaining.length - 2];
-      var day = remaining[remaining.length - 1];
-      return validIsoDate(year, month, day) || validIsoDate(year, day, month);
+    if (Array.isArray(value)) {
+      value.forEach(function (item) { collectStrings(item, depth + 1, output); });
+      return;
     }
-    return '';
-  }
-
-  function looksLikeDayRecord(object) {
-    if (!isPlainObject(object)) return false;
-    return [TITLE_KEYS, WEEK_KEYS, SEASON_KEYS, COLOR_KEYS, GRADE_KEYS, INDEX_KEYS].some(function (aliases) {
-      return directValue(object, aliases) !== undefined;
-    });
-  }
-
-  function collectDayCandidates(payload, year) {
-    var candidates = [];
-    var visited = new WeakSet();
-
-    function visit(value, path, depth) {
-      if (depth > 9 || value === null || value === undefined) return;
-
-      if (Array.isArray(value)) {
-        value.forEach(function (item, index) {
-          visit(item, path.concat(String(index)), depth + 1);
-        });
-        return;
-      }
-
-      if (!isPlainObject(value)) return;
-      if (visited.has(value)) return;
-      visited.add(value);
-
-      var explicitDate = parseDateValue(readValue(value, DATE_KEYS), year) || parseDateValue(value, year);
-      var inferredDate = explicitDate || pathDate(path, year);
-      if (inferredDate && looksLikeDayRecord(value)) {
-        candidates.push({ date: inferredDate, raw: value, path: path.slice() });
-      }
-
+    if (isPlainObject(value)) {
       Object.keys(value).forEach(function (key) {
-        var child = value[key];
-        var keyDate = parseDateValue(key, year);
-        if (keyDate && isPlainObject(child)) {
-          candidates.push({ date: keyDate, raw: child, path: path.concat(key) });
-        }
-        visit(child, path.concat(key), depth + 1);
+        collectStrings(value[key], depth + 1, output);
       });
     }
-
-    visit(payload, [], 0);
-
-    if (!candidates.length && Array.isArray(payload) && (payload.length === 365 || payload.length === 366)) {
-      payload.forEach(function (raw, index) {
-        var date = new Date(Date.UTC(Number(year), 0, index + 1));
-        candidates.push({ date: date.toISOString().slice(0, 10), raw: raw, path: [String(index)] });
-      });
-    }
-
-    return candidates;
-  }
-
-  function scoreRecord(record) {
-    if (!isPlainObject(record)) return 0;
-    var score = 0;
-    if (readValue(record, TITLE_KEYS) !== undefined) score += 7;
-    if (readValue(record, WEEK_KEYS) !== undefined) score += 4;
-    if (readValue(record, SEASON_KEYS) !== undefined) score += 3;
-    if (readValue(record, COLOR_KEYS) !== undefined) score += 3;
-    if (readValue(record, GRADE_KEYS) !== undefined) score += 2;
-    if (readValue(record, INDEX_KEYS) !== undefined) score += 2;
-    if (readValue(record, OPTIONAL_MEMORY_KEYS) !== undefined) score += 2;
-    score += Math.min(Object.keys(record).length, 12) / 12;
-    return score;
-  }
-
-  function deduplicateDayCandidates(candidates, year) {
-    var byDate = new Map();
-    candidates.forEach(function (candidate) {
-      if (!candidate.date || Number(candidate.date.slice(0, 4)) !== Number(year)) return;
-      var previous = byDate.get(candidate.date);
-      if (!previous || scoreRecord(candidate.raw) > scoreRecord(previous.raw)) {
-        byDate.set(candidate.date, candidate);
-      }
-    });
-    return Array.from(byDate.values()).sort(function (a, b) {
-      return a.date.localeCompare(b.date);
-    });
   }
 
   function colorTokens(value) {
-    var values = [];
-
+    var result = [];
     function append(item) {
       if (item === null || item === undefined || item === '') return;
       if (Array.isArray(item)) {
@@ -292,30 +120,36 @@
         return;
       }
       if (isPlainObject(item)) {
-        var nested = readValue(item, ['nome', 'name', 'cor', 'color', 'valor', 'value', 'label']);
+        var nested = directValue(item, ['nome', 'name', 'cor', 'color', 'valor', 'value', 'label']);
         if (nested !== undefined) append(nested);
         return;
       }
-      normalizeText(item).split(/[,;/|]+/).forEach(function (part) {
-        if (normalizeText(part)) values.push(normalizeText(part));
+      normalizeText(item).split(/[,;|/]+/).forEach(function (part) {
+        var normalized = canonicalKey(part);
+        var label = '';
+        if (/branco|white/.test(normalized)) label = 'Branco';
+        else if (/vermelho|red/.test(normalized)) label = 'Vermelho';
+        else if (/verde|green/.test(normalized)) label = 'Verde';
+        else if (/roxo|violeta|purple|violet/.test(normalized)) label = 'Roxo';
+        else if (/rosa|rose|pink/.test(normalized)) label = 'Rosa';
+        else if (/preto|black/.test(normalized)) label = 'Preto';
+        else if (/dourado|ouro|gold/.test(normalized)) label = 'Dourado';
+        if (label && result.indexOf(label) === -1) result.push(label);
       });
     }
-
     append(value);
-    return values.filter(function (value, index, list) {
-      return list.findIndex(function (item) { return canonicalKey(item) === canonicalKey(value); }) === index;
-    });
+    return result;
   }
 
   function colorClass(value) {
     var normalized = canonicalKey(value);
-    if (/(branco|white)/.test(normalized)) return 'white';
-    if (/(vermelho|red)/.test(normalized)) return 'red';
-    if (/(verde|green)/.test(normalized)) return 'green';
-    if (/(roxo|violeta|purple|violet)/.test(normalized)) return 'purple';
-    if (/(rosa|rose|pink)/.test(normalized)) return 'rose';
-    if (/(preto|black)/.test(normalized)) return 'black';
-    if (/(dourado|ouro|gold)/.test(normalized)) return 'gold';
+    if (/branco|white/.test(normalized)) return 'white';
+    if (/vermelho|red/.test(normalized)) return 'red';
+    if (/verde|green/.test(normalized)) return 'green';
+    if (/roxo|violeta|purple|violet/.test(normalized)) return 'purple';
+    if (/rosa|rose|pink/.test(normalized)) return 'rose';
+    if (/preto|black/.test(normalized)) return 'black';
+    if (/dourado|ouro|gold/.test(normalized)) return 'gold';
     return '';
   }
 
@@ -330,288 +164,396 @@
     if (raw === 'F' || normalized === 'f' || /festa|feast/.test(normalized)) {
       return { code: 'F', label: 'Festa', kind: 'feast' };
     }
-    if (raw === 'm' || /memoriafacultativa|optionalmemory|memorialfacultativo/.test(normalized)) {
+    if (raw === 'm' || /memoriafacultativa|facultativa|optionalmemory/.test(normalized)) {
       return { code: 'm', label: 'Memória facultativa', kind: 'optional-memory' };
     }
-    if (raw === 'M' || normalized === 'mo' || normalized === 'memoria' || /memoriaobrigatoria|obligatorymemory|memorial/.test(normalized)) {
+    if (raw === 'M' || normalized === 'memoria' || /memoriaobrigatoria|obrigatoria|memorial/.test(normalized)) {
       return { code: 'M', label: 'Memória obrigatória', kind: 'memory' };
     }
+    return { code: '', label: '', kind: 'ferial' };
+  }
 
-    if (/domingo|sunday/.test(normalized)) {
-      return { code: '', label: 'Domingo', kind: 'sunday' };
+  function bestHumanName(value) {
+    var strings = [];
+    collectStrings(value, 0, strings);
+    var ignored = /^(s|f|m|branco|vermelho|verde|roxo|violeta|rosa|preto|dourado|true|false|sim|nao|não)$/i;
+    var candidates = strings.filter(function (text) {
+      if (text.length < 5 || /^\d+$/.test(text) || ignored.test(text)) return false;
+      if (/^https?:\/\//i.test(text) || /^\/?[a-z0-9-]+\/?$/i.test(text) && text.indexOf('-') >= 0) return false;
+      if (/^\d{1,2}[\/-]\d{1,2}/.test(text)) return false;
+      return /[A-Za-zÀ-ÿ]/.test(text);
+    });
+    candidates.sort(function (a, b) { return b.length - a.length; });
+    return candidates[0] || '';
+  }
+
+  function composeMemoryName(record, fallbackValue) {
+    if (!isPlainObject(record)) return bestHumanName(fallbackValue);
+
+    var name = scalarText(directValue(record, [
+      'nome completo', 'nomecompleto', 'celebração', 'celebracao', 'nome', 'name',
+      'título completo', 'titulo completo', 'titulocompleto', 'título', 'titulo', 'title',
+      'memória', 'memoria', 'denominação', 'denominacao'
+    ]));
+    var complement = scalarText(directValue(record, [
+      'subtítulo', 'subtitulo', 'qualificação', 'qualificacao', 'complemento',
+      'designação', 'designacao', 'descrição breve', 'descricao breve', 'descricaobreve'
+    ]));
+
+    if (!name) name = bestHumanName(record);
+    if (!name) name = bestHumanName(fallbackValue);
+
+    if (
+      name && complement &&
+      canonicalKey(name).indexOf(canonicalKey(complement)) === -1 &&
+      complement.length <= 140
+    ) {
+      name += ', ' + complement.replace(/^[,;:\-\s]+/, '');
+    }
+    return normalizeText(name);
+  }
+
+  function memoryFromValue(value, keyHint) {
+    var record = isPlainObject(value) ? value : null;
+    var id = record ? scalarText(directValue(record, [
+      'id', 'slug', 'identificador', 'código', 'codigo', 'chave', 'key', 'caminho', 'path', 'url'
+    ])) : '';
+    if (!id && looksLikeSlug(keyHint)) id = keyHint;
+
+    var name = composeMemoryName(record, value);
+    if (!name && id) name = humanizeSlug(id);
+    if (!id || !name) return null;
+
+    var gradeValue = record ? directValue(record, [
+      'grau', 'grau litúrgico', 'grau liturgico', 'classificação', 'classificacao',
+      'classe', 'rank', 'celebration rank'
+    ]) : undefined;
+    if (gradeValue === undefined && Array.isArray(value)) {
+      gradeValue = value.find(function (item) {
+        return typeof item === 'string' && normalizeGrade(item).code;
+      });
     }
 
-    return { code: raw.length <= 3 ? raw : '', label: raw, kind: 'ferial' };
-  }
+    var colorValue = record ? directValue(record, [
+      'cor', 'cores', 'cor litúrgica', 'cor liturgica', 'color', 'colors'
+    ]) : undefined;
+    if (colorValue === undefined && Array.isArray(value)) colorValue = value;
 
-  function genericCelebration(text) {
-    var normalized = canonicalKey(text);
-    return !normalized || /^(feria|diaferial|ferial|semcelebracao)$/.test(normalized);
-  }
-
-  function deriveSeason(record, title, weekLabel, indexValue) {
-    var source = [scalarText(readValue(record, SEASON_KEYS)), title, weekLabel, scalarText(indexValue)]
-      .filter(Boolean)
-      .join(' ');
-    var normalized = canonicalKey(source);
-
-    if (/triduo|triduum/.test(normalized)) return { key: 'triduum', name: 'Tríduo Pascal' };
-    if (/quaresma|lent/.test(normalized)) return { key: 'lent', name: 'Quaresma' };
-    if (/advento|advent/.test(normalized)) return { key: 'advent', name: 'Advento' };
-    if (/tempopascal|pascoa|pascal|easter/.test(normalized)) return { key: 'easter', name: 'Tempo Pascal' };
-    if (/tempo(d[eo])?natal|oitavadonatal|depoisdaepifania|epifania|christmas/.test(normalized)) {
-      return { key: 'christmas', name: 'Tempo do Natal' };
-    }
-    if (/tempocomum|ordinary|comum/.test(normalized)) return { key: 'ordinary', name: 'Tempo Comum' };
-
-    var compactIndex = canonicalKey(indexValue);
-    if (/^(adv|advento)$/.test(compactIndex)) return { key: 'advent', name: 'Advento' };
-    if (/^(nat|natal|tn)$/.test(compactIndex)) return { key: 'christmas', name: 'Tempo do Natal' };
-    if (/^(qua|quaresma|lent)$/.test(compactIndex)) return { key: 'lent', name: 'Quaresma' };
-    if (/^(tri|triduo)$/.test(compactIndex)) return { key: 'triduum', name: 'Tríduo Pascal' };
-    if (/^(pas|pascal|tp)$/.test(compactIndex)) return { key: 'easter', name: 'Tempo Pascal' };
-    if (/^(tc|comum|ordinary)$/.test(compactIndex)) return { key: 'ordinary', name: 'Tempo Comum' };
-
-    return { key: '', name: '' };
-  }
-
-  function cycleFromValue(value) {
-    var text = scalarText(value).toUpperCase();
-    var match = text.match(/(?:ANO\s*)?([ABC])\b/);
-    return match ? match[1] : '';
-  }
-
-  function calculatedAdventCycle(isoDate) {
-    var year = Number(String(isoDate).slice(0, 4)) + 1;
-    var remainder = year % 3;
-    if (remainder === 1) return 'A';
-    if (remainder === 2) return 'B';
-    return 'C';
-  }
-
-  function normalizeDay(candidate) {
-    var record = candidate.raw;
-    var title = scalarText(readValue(record, TITLE_KEYS));
-    var weekLabel = scalarText(readValue(record, WEEK_KEYS));
-    var seasonValue = readValue(record, SEASON_KEYS);
-    var indexValue = readValue(record, INDEX_KEYS);
-
-    if (genericCelebration(title) && weekLabel) title = weekLabel;
-    if (!title) title = weekLabel || scalarText(seasonValue) || 'Dia ferial';
-
-    return {
-      date: candidate.date,
-      raw: record,
-      title: title,
-      weekLabel: weekLabel,
-      grade: normalizeGrade(readValue(record, GRADE_KEYS)),
-      colors: colorTokens(readValue(record, COLOR_KEYS)),
-      indexValue: scalarText(indexValue),
-      season: deriveSeason(record, title, weekLabel, indexValue),
-      cycle: cycleFromValue(readValue(record, CYCLE_KEYS)),
-      optionalSource: readValue(record, OPTIONAL_MEMORY_KEYS)
-    };
-  }
-
-  function partialDateKeys(value) {
-    var text = normalizeText(value);
-    if (!text) return [];
-
-    var full = parseDateValue(text, null);
-    if (full) return memoryDateKeys(full);
-
-    var match = text.match(/^(\d{1,2})[-/.](\d{1,2})$/);
-    if (!match) return [];
-
-    var first = Number(match[1]);
-    var second = Number(match[2]);
-    var keys = [];
-
-    function add(month, day) {
-      if (month < 1 || month > 12 || day < 1 || day > 31) return;
-      keys.push(pad2(month) + '-' + pad2(day));
-      keys.push(pad2(day) + '-' + pad2(month));
-      keys.push(pad2(month) + '/' + pad2(day));
-      keys.push(pad2(day) + '/' + pad2(month));
-    }
-
-    add(first, second);
-    add(second, first);
-    return keys.filter(function (key, index, list) { return list.indexOf(key) === index; });
-  }
-
-  function memoryDateKeys(date) {
-    if (!date) return [];
-    var parts = date.split('-');
-    if (parts.length !== 3) return [];
-    return [parts[1] + '-' + parts[2], parts[2] + '-' + parts[1], parts[1] + '/' + parts[2], parts[2] + '/' + parts[1]];
-  }
-
-  function isOptionalMemoryRecord(record, grade) {
-    var explicit = readValue(record, ['facultativa', 'facultativo', 'optional', 'opcional', 'isoptional']);
-    if (explicit === true || String(explicit).toLowerCase() === 'true' || Number(explicit) === 1) return true;
-    var text = canonicalKey([grade.label, grade.code, scalarText(readValue(record, GRADE_KEYS))].join(' '));
-    return grade.kind === 'optional-memory' || /memoriafacultativa|optionalmemory/.test(text);
-  }
-
-  function normalizeMemory(record, keyHint, dateHint) {
-    if (typeof record === 'string') {
-      var text = normalizeText(record);
-      return text ? { id: canonicalKey(keyHint || text), name: text, date: parseDateValue(dateHint, null) || '', dateKeys: partialDateKeys(dateHint).concat(partialDateKeys(keyHint)), optional: true } : null;
-    }
-    if (!isPlainObject(record)) return null;
-
-    var name = scalarText(readValue(record, TITLE_KEYS));
-    if (!name) name = scalarText(readValue(record, ['denominacao', 'label', 'texto']));
-    if (!name) return null;
-
-    var grade = normalizeGrade(readValue(record, GRADE_KEYS));
-    var dateValue = readValue(record, DATE_KEYS);
-    var date = parseDateValue(dateValue, null) || parseDateValue(record, null) || parseDateValue(dateHint, null) || '';
-    var dateKeys = []
-      .concat(partialDateKeys(dateValue))
-      .concat(partialDateKeys(dateHint))
-      .concat(partialDateKeys(keyHint));
-    var id = scalarText(readValue(record, ['id', 'slug', 'codigo', 'code', 'chave', 'key'])) || keyHint || name;
+    var grade = normalizeGrade(gradeValue);
+    var optionalValue = record ? directValue(record, [
+      'facultativa', 'facultativo', 'opcional', 'optional', 'is optional', 'isoptional'
+    ]) : undefined;
 
     return {
       id: canonicalKey(id),
+      rawId: id,
       name: name,
-      date: date,
-      dateKeys: dateKeys.filter(function (key, index, list) { return list.indexOf(key) === index; }),
-      optional: isOptionalMemoryRecord(record, grade),
       grade: grade,
-      colors: colorTokens(readValue(record, COLOR_KEYS))
+      colors: colorTokens(colorValue),
+      optional: grade.kind === 'optional-memory' || optionalValue === true || String(optionalValue).toLowerCase() === 'true'
     };
   }
 
   function createMemoryIndex(payload) {
     var byId = new Map();
-    var byDate = new Map();
-    var visited = new WeakSet();
+    var visited = typeof WeakSet === 'function' ? new WeakSet() : null;
 
     function add(memory) {
-      if (!memory) return;
-      if (memory.id) {
-        if (!byId.has(memory.id)) byId.set(memory.id, []);
-        byId.get(memory.id).push(memory);
-      }
-      memoryDateKeys(memory.date).concat(memory.dateKeys || []).forEach(function (key) {
-        var normalizedKey = canonicalKey(key);
-        if (!byDate.has(normalizedKey)) byDate.set(normalizedKey, []);
-        byDate.get(normalizedKey).push(memory);
+      if (!memory || !memory.id || !memory.name) return;
+      var keys = [memory.id];
+      var lastSegment = normalizeText(memory.rawId).replace(/^\/+|\/+$/g, '').split('/').filter(Boolean).pop();
+      if (lastSegment) keys.push(canonicalKey(lastSegment));
+      keys.forEach(function (key) {
+        if (key && !byId.has(key)) byId.set(key, memory);
       });
     }
 
-    function visit(value, path, depth) {
-      if (depth > 9 || value === null || value === undefined) return;
-      if (Array.isArray(value)) {
-        value.forEach(function (item, index) { visit(item, path.concat(String(index)), depth + 1); });
-        return;
+    function visit(value, keyHint, depth) {
+      if (depth > 10 || value === null || value === undefined) return;
+      if ((isPlainObject(value) || Array.isArray(value)) && visited) {
+        if (visited.has(value)) return;
+        visited.add(value);
       }
-      if (typeof value === 'string') {
-        var lastKey = path.length ? path[path.length - 1] : '';
-        var parentKey = path.length > 1 ? path[path.length - 2] : '';
-        var propertyKey = canonicalKey(lastKey);
-        var commonProperty = /^(nome|name|titulo|title|cor|color|grau|grade|rank|descricao|description|id|slug|codigo|code)$/.test(propertyKey);
-        if (!commonProperty && normalizeText(value).length >= 6 && (partialDateKeys(lastKey).length || /memoria|opcao|optional/.test(canonicalKey(parentKey)))) {
-          add(normalizeMemory(value, lastKey, lastKey));
-        }
-        return;
-      }
-      if (!isPlainObject(value) || visited.has(value)) return;
-      visited.add(value);
 
-      var hint = path.length ? path[path.length - 1] : '';
-      var dateHint = path.slice().reverse().find(function (part) { return partialDateKeys(part).length; }) || pathDate(path, null);
-      add(normalizeMemory(value, hint, dateHint));
+      if (looksLikeSlug(keyHint)) add(memoryFromValue(value, keyHint));
+
+      if (Array.isArray(value)) {
+        value.forEach(function (item) { visit(item, '', depth + 1); });
+        return;
+      }
+      if (!isPlainObject(value)) return;
+
+      var explicitId = directValue(value, [
+        'id', 'slug', 'identificador', 'código', 'codigo', 'chave', 'key', 'caminho', 'path', 'url'
+      ]);
+      if (explicitId !== undefined) add(memoryFromValue(value, keyHint));
 
       Object.keys(value).forEach(function (key) {
-        visit(value[key], path.concat(key), depth + 1);
+        visit(value[key], key, depth + 1);
       });
     }
 
-    visit(payload, [], 0);
-    return { byId: byId, byDate: byDate };
+    visit(payload, '', 0);
+    return { byId: byId };
   }
 
-  function flattenMemorySource(source) {
-    var values = [];
-    if (source === undefined || source === null || source === '') return values;
-    if (Array.isArray(source)) {
-      source.forEach(function (item) { values = values.concat(flattenMemorySource(item)); });
-      return values;
-    }
-    if (isPlainObject(source)) {
-      var normalized = normalizeMemory(source, '', '');
-      if (normalized) return [source];
-      Object.keys(source).forEach(function (key) {
-        var value = source[key];
-        if (typeof value === 'boolean' && value) values.push(key);
-        else values = values.concat(flattenMemorySource(value));
+  function resolveMemory(id, memoryIndex) {
+    var raw = normalizeText(id);
+    if (!raw) return null;
+    var key = canonicalKey(raw);
+    if (memoryIndex.byId.has(key)) return memoryIndex.byId.get(key);
+
+    var segment = raw.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean).pop() || raw;
+    var segmentKey = canonicalKey(segment);
+    if (memoryIndex.byId.has(segmentKey)) return memoryIndex.byId.get(segmentKey);
+
+    var found = null;
+    memoryIndex.byId.forEach(function (memory, storedKey) {
+      if (!found && (storedKey.endsWith(segmentKey) || segmentKey.endsWith(storedKey))) found = memory;
+    });
+    return found;
+  }
+
+  function splitIds(value) {
+    var result = [];
+    function append(item) {
+      if (item === null || item === undefined || item === '') return;
+      if (Array.isArray(item)) {
+        item.forEach(append);
+        return;
+      }
+      if (isPlainObject(item)) {
+        var nested = directValue(item, ['id', 'slug', 'código', 'codigo', 'chave', 'key', 'url', 'caminho']);
+        if (nested !== undefined) append(nested);
+        else Object.keys(item).forEach(function (key) { append(item[key]); });
+        return;
+      }
+      normalizeText(item).split(/[,;|]+/).forEach(function (part) {
+        var text = normalizeText(part);
+        if (text && result.indexOf(text) === -1) result.push(text);
       });
-      return values;
     }
-    return [source];
+    append(value);
+    return result;
   }
 
-  function displayMemoryName(name) {
-    var text = normalizeText(name);
-    if (!text) return '';
-    if (/\([mM]\)\s*$/.test(text)) return text.replace(/\(M\)\s*$/, '(m)');
-    return text + ' (m)';
+  function isCalendarDayRecord(value) {
+    if (!isPlainObject(value)) return false;
+    return directValue(value, ['Mês', 'Mes', 'month']) !== undefined &&
+      directValue(value, ['Dia', 'day']) !== undefined;
   }
 
-  function resolveOptionalMemories(day, memoryIndex) {
-    var memories = [];
+  function extractYearRecords(payload) {
+    var best = [];
+    var loose = [];
+    var visited = typeof WeakSet === 'function' ? new WeakSet() : null;
 
-    function add(memory, forceOptional) {
-      if (!memory || !memory.name) return;
-      if (!forceOptional && !memory.optional) return;
-      if (canonicalKey(memory.name) === canonicalKey(day.title)) return;
-      memories.push(memory);
-    }
+    function visit(value, depth) {
+      if (depth > 8 || value === null || value === undefined) return;
+      if ((isPlainObject(value) || Array.isArray(value)) && visited) {
+        if (visited.has(value)) return;
+        visited.add(value);
+      }
 
-    flattenMemorySource(day.optionalSource).forEach(function (source) {
-      if (isPlainObject(source)) {
-        add(normalizeMemory(source, '', day.date), true);
+      if (Array.isArray(value)) {
+        var records = value.filter(isCalendarDayRecord);
+        if (records.length > best.length) best = records;
+        value.forEach(function (item) { visit(item, depth + 1); });
         return;
       }
 
-      var value = normalizeText(source);
-      if (!value) return;
-      var matches = memoryIndex.byId.get(canonicalKey(value));
-      if (matches && matches.length) {
-        matches.forEach(function (memory) { add(memory, true); });
-      } else if (!/^\d+$/.test(value)) {
-        add({ name: value, optional: true }, true);
+      if (!isPlainObject(value)) return;
+      if (isCalendarDayRecord(value)) loose.push(value);
+      Object.keys(value).forEach(function (key) { visit(value[key], depth + 1); });
+    }
+
+    visit(payload, 0);
+    if (best.length) return best;
+    return loose;
+  }
+
+  function seasonFromData(code, text) {
+    var normalizedCode = canonicalKey(code);
+    var source = canonicalKey([code, text].filter(Boolean).join(' '));
+
+    if (/triduo|triduum/.test(source) || /^(tr|ttr|triduo)$/.test(normalizedCode)) {
+      return { key: 'triduum', name: 'Tríduo Pascal' };
+    }
+    if (/quaresma|lent/.test(source) || /^(tq|qua|quaresma)$/.test(normalizedCode)) {
+      return { key: 'lent', name: 'Quaresma' };
+    }
+    if (/advento|advent/.test(source) || /^(ta|adv|advento)$/.test(normalizedCode)) {
+      return { key: 'advent', name: 'Advento' };
+    }
+    if (/pascal|pascoa|easter/.test(source) || /^(tp|pas|pascal)$/.test(normalizedCode)) {
+      return { key: 'easter', name: 'Tempo Pascal' };
+    }
+    if (/natal|epifania|christmas/.test(source) || /^(tn|nat|natal)$/.test(normalizedCode)) {
+      return { key: 'christmas', name: 'Tempo do Natal' };
+    }
+    if (/tempocomum|ordinary/.test(source) || /^(tc|comum|ordinary)$/.test(normalizedCode)) {
+      return { key: 'ordinary', name: 'Tempo Comum' };
+    }
+    return { key: '', name: '' };
+  }
+
+  function seasonColor(season, context) {
+    var normalized = canonicalKey(context);
+    if (/gaudete|laetare/.test(normalized)) return ['Rosa'];
+    if (/pentecostes|ramos|paixaodos(enhor)?|sextafeiradapaixao/.test(normalized)) return ['Vermelho'];
+    if (season.key === 'ordinary') return ['Verde'];
+    if (season.key === 'advent' || season.key === 'lent') return ['Roxo'];
+    if (season.key === 'christmas' || season.key === 'easter') return ['Branco'];
+    if (season.key === 'triduum') return ['Dourado'];
+    return [];
+  }
+
+  function ordinal(value, feminine) {
+    var number = Number(value);
+    if (!Number.isFinite(number) || number <= 0) return '';
+    return String(number) + (feminine ? 'ª' : 'º');
+  }
+
+  function epiphanySunday(year) {
+    for (var day = 2; day <= 8; day += 1) {
+      var date = new Date(Date.UTC(year, 0, day));
+      if (date.getUTCDay() === 0) return day;
+    }
+    return 6;
+  }
+
+  function expandNote(note) {
+    var text = normalizeText(note);
+    if (!text) return '';
+    return text
+      .replace(/\bdo\s+TC\b/gi, 'do Tempo Comum')
+      .replace(/\bdo\s+TN\b/gi, 'do Tempo do Natal')
+      .replace(/\bdo\s+TA\b/gi, 'do Advento')
+      .replace(/\bda\s+TQ\b/gi, 'da Quaresma')
+      .replace(/\bda\s+TP\b/gi, 'da Páscoa')
+      .replace(/\bTC\b/g, 'Tempo Comum')
+      .replace(/\bTN\b/g, 'Tempo do Natal')
+      .replace(/\bTA\b/g, 'Advento')
+      .replace(/\bTQ\b/g, 'Quaresma')
+      .replace(/\bTP\b/g, 'Tempo Pascal');
+  }
+
+  function ferialTitle(record, isoDate, season, week, note) {
+    var parts = dateParts(isoDate);
+    var expandedNote = expandNote(note);
+    if (expandedNote && !/^[-–—.]$/.test(expandedNote)) return expandedNote;
+
+    if (season.key === 'ordinary') {
+      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Tempo Comum' : ' Semana do Tempo Comum');
+    }
+    if (season.key === 'advent') {
+      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Advento' : ' Semana do Advento');
+    }
+    if (season.key === 'lent') {
+      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Quaresma' : ' Semana da Quaresma');
+    }
+    if (season.key === 'easter') {
+      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Páscoa' : ' Semana da Páscoa');
+    }
+    if (season.key === 'triduum') return 'Tríduo Pascal';
+    if (season.key === 'christmas') {
+      if (parts.month === 1) {
+        var epiphany = epiphanySunday(parts.year);
+        if (parts.day > epiphany) return 'Depois da Epifania';
+        if (parts.day < epiphany && parts.day > 1) return 'Antes da Epifania';
       }
+      if (parts.month === 12 && parts.day >= 26) return 'Oitava do Natal';
+      return 'Tempo do Natal';
+    }
+    return 'Dia ferial';
+  }
+
+  function gradeFromText(text) {
+    var normalized = canonicalKey(text);
+    if (/solenidade/.test(normalized)) return normalizeGrade('S');
+    if (/festa/.test(normalized)) return normalizeGrade('F');
+    if (/memoriafacultativa/.test(normalized)) return normalizeGrade('m');
+    if (/memoria/.test(normalized)) return normalizeGrade('M');
+    return normalizeGrade('');
+  }
+
+  function displayOptionalMemory(memory, fallbackId) {
+    var name = memory && memory.name ? memory.name : humanizeSlug(fallbackId);
+    if (!name) return '';
+    if (/\([mM]\)\s*$/.test(name)) return name.replace(/\(M\)\s*$/, '(m)');
+    return name + ' (m)';
+  }
+
+  function displayCommemoration(memory, fallbackId) {
+    var name = memory && memory.name ? memory.name : humanizeSlug(fallbackId);
+    if (!name) return '';
+    if (/comemora[cç][aã]o/i.test(name)) return name;
+    return name + ' (comemoração)';
+  }
+
+  function normalizeDayRecord(record, year, memoryIndex) {
+    var month = Number(directValue(record, ['Mês', 'Mes', 'month']));
+    var dayNumber = Number(directValue(record, ['Dia', 'day']));
+    var date = validIsoDate(year, month, dayNumber);
+    if (!date) return null;
+
+    var week = Number(directValue(record, ['Semana', 'week'])) || 0;
+    var note = scalarText(directValue(record, ['Notas', 'Nota', 'notes', 'note']));
+    var tempo = scalarText(directValue(record, ['Tempo', 'tempo litúrgico', 'tempo liturgico', 'season']));
+    var mainIds = splitIds(directValue(record, ['ID Ferial', 'idferial', 'ID Celebração', 'idcelebracao']));
+    var commemorationIds = splitIds(directValue(record, ['ID Comemoração', 'idcomemoracao']));
+    var optionalIds = splitIds(directValue(record, [
+      'ID Memória Facultativa', 'idmemoriafacultativa', 'ID Memorias Facultativas', 'idmemoriasfacultativas'
+    ]));
+
+    var mainMemory = null;
+    for (var index = 0; index < mainIds.length && !mainMemory; index += 1) {
+      mainMemory = resolveMemory(mainIds[index], memoryIndex);
+    }
+
+    var noteExpanded = expandNote(note);
+    var season = seasonFromData(tempo, [noteExpanded, mainMemory ? mainMemory.name : ''].join(' '));
+    var title = mainMemory && mainMemory.name
+      ? mainMemory.name
+      : mainIds.length
+        ? humanizeSlug(mainIds[0])
+        : ferialTitle(record, date, season, week, noteExpanded);
+
+    var grade = mainMemory && mainMemory.grade.code
+      ? mainMemory.grade
+      : gradeFromText([title, noteExpanded].join(' '));
+
+    var colors = mainMemory && mainMemory.colors.length
+      ? mainMemory.colors.slice()
+      : seasonColor(season, [title, noteExpanded].join(' '));
+
+    var optionalMemories = [];
+    optionalIds.forEach(function (id) {
+      var label = displayOptionalMemory(resolveMemory(id, memoryIndex), id);
+      if (label && optionalMemories.indexOf(label) === -1) optionalMemories.push(label);
+    });
+    commemorationIds.forEach(function (id) {
+      var label = displayCommemoration(resolveMemory(id, memoryIndex), id);
+      if (label && optionalMemories.indexOf(label) === -1) optionalMemories.push(label);
     });
 
-    memoryDateKeys(day.date).forEach(function (key) {
-      var matches = memoryIndex.byDate.get(canonicalKey(key)) || [];
-      matches.forEach(function (memory) { add(memory, false); });
-    });
-
-    var unique = [];
-    memories.forEach(function (memory) {
-      if (!unique.some(function (item) { return canonicalKey(item.name) === canonicalKey(memory.name); })) {
-        unique.push(memory);
-      }
-    });
-
-    return unique.map(function (memory) {
-      return displayMemoryName(memory.name);
-    }).filter(Boolean);
+    return {
+      date: date,
+      title: title || 'Dia ferial',
+      grade: grade,
+      colors: colors,
+      season: season,
+      cycle: scalarText(directValue(record, ['Ano', 'ciclo', 'cycle'])).toUpperCase().match(/[ABC]/) ? scalarText(directValue(record, ['Ano', 'ciclo', 'cycle'])).toUpperCase().match(/[ABC]/)[0] : '',
+      optionalMemories: optionalMemories,
+      raw: record
+    };
   }
 
   function todayIsoInSaoPaulo() {
     var parts = {};
     new Intl.DateTimeFormat('en-CA', {
       timeZone: SAO_PAULO_TIME_ZONE,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
+      year: 'numeric', month: '2-digit', day: '2-digit'
     }).formatToParts(new Date()).forEach(function (part) {
       if (part.type !== 'literal') parts[part.type] = part.value;
     });
@@ -619,12 +561,10 @@
   }
 
   function dateParts(isoDate) {
-    var parts = isoDate.split('-').map(Number);
-    var date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+    var values = isoDate.split('-').map(Number);
+    var date = new Date(Date.UTC(values[0], values[1] - 1, values[2]));
     return {
-      year: parts[0],
-      month: parts[1],
-      day: parts[2],
+      year: values[0], month: values[1], day: values[2],
       weekday: WEEKDAY_NAMES[date.getUTCDay()],
       isSunday: date.getUTCDay() === 0
     };
@@ -637,10 +577,17 @@
     return node;
   }
 
+  function calculatedAdventCycle(isoDate) {
+    var liturgicalYear = Number(isoDate.slice(0, 4)) + 1;
+    var remainder = liturgicalYear % 3;
+    if (remainder === 1) return 'A';
+    if (remainder === 2) return 'B';
+    return 'C';
+  }
+
   function seasonTransition(previousDay, day) {
     if (!previousDay || !previousDay.season.key || !day.season.key) return null;
     if (previousDay.season.key === day.season.key) return null;
-
     var labels = {
       advent: 'Início do Advento',
       christmas: 'Início do Tempo do Natal',
@@ -651,11 +598,7 @@
     };
     var label = labels[day.season.key];
     if (!label) return null;
-
-    if (day.season.key === 'advent') {
-      label += ' · Ano ' + (day.cycle || calculatedAdventCycle(day.date));
-    }
-
+    if (day.season.key === 'advent') label += ' · Ano ' + (day.cycle || calculatedAdventCycle(day.date));
     return { key: day.season.key, label: label };
   }
 
@@ -671,13 +614,12 @@
     var wrapper = element('div', 'liturgical-calendar-color');
     var swatches = element('span', 'liturgical-calendar-color__swatches');
     var colors = day.colors.length ? day.colors : ['Não informada'];
-
     colors.forEach(function (color) {
-      var dot = element('span', 'liturgical-calendar-color-dot' + (colorClass(color) ? ' is-' + colorClass(color) : ''));
+      var cssClass = colorClass(color);
+      var dot = element('span', 'liturgical-calendar-color-dot' + (cssClass ? ' is-' + cssClass : ''));
       dot.setAttribute('aria-hidden', 'true');
       swatches.appendChild(dot);
     });
-
     var label = element('span', 'liturgical-calendar-color__label', colors.join(' e '));
     wrapper.setAttribute('title', 'Cor litúrgica: ' + colors.join(' e '));
     wrapper.setAttribute('aria-label', 'Cor litúrgica: ' + colors.join(' e '));
@@ -694,7 +636,6 @@
     var row = element('article', 'liturgical-calendar-day ' + importance);
     row.id = 'dia-' + day.date;
     row.setAttribute('role', 'listitem');
-
     if (options.today === day.date && Number(day.date.slice(0, 4)) === options.year) {
       row.classList.add('is-today');
       row.setAttribute('aria-current', 'date');
@@ -710,17 +651,12 @@
     grade.setAttribute('aria-label', day.grade.label || 'Sem grau litúrgico próprio');
 
     var celebration = element('div', 'liturgical-calendar-celebration');
-    if (row.classList.contains('is-today')) {
-      celebration.appendChild(element('span', 'liturgical-calendar-today-label', 'Hoje'));
-    }
+    if (row.classList.contains('is-today')) celebration.appendChild(element('span', 'liturgical-calendar-today-label', 'Hoje'));
     celebration.appendChild(element('h3', 'liturgical-calendar-celebration__title', day.title));
 
-    var optionalMemories = resolveOptionalMemories(day, options.memoryIndex);
-    if (optionalMemories.length) {
+    if (day.optionalMemories.length) {
       var list = element('ul', 'liturgical-calendar-option-list');
-      optionalMemories.forEach(function (memory) {
-        list.appendChild(element('li', '', memory));
-      });
+      day.optionalMemories.forEach(function (memory) { list.appendChild(element('li', '', memory)); });
       celebration.appendChild(list);
     }
 
@@ -744,7 +680,6 @@
 
     var list = element('div', 'liturgical-calendar-days');
     list.setAttribute('role', 'list');
-
     days.forEach(function (day) {
       var previousDay = options.previousByDate.get(day.date);
       var transition = seasonTransition(previousDay, day);
@@ -768,7 +703,7 @@
     nav.hidden = !months.length;
   }
 
-  function renderCalendar(content, nav, days, memoryIndex, year, today) {
+  function renderCalendar(content, nav, days, year, today) {
     content.replaceChildren();
     var previousByDate = new Map();
     days.forEach(function (day, index) {
@@ -783,11 +718,9 @@
       content.appendChild(renderMonth(month, monthDays, {
         year: year,
         today: today,
-        memoryIndex: memoryIndex,
         previousByDate: previousByDate
       }));
     }
-
     buildMonthNavigation(nav, months);
     content.setAttribute('aria-busy', 'false');
   }
@@ -810,15 +743,12 @@
   function fetchJson(url) {
     var controller = typeof AbortController === 'function' ? new AbortController() : null;
     var timeout = controller ? window.setTimeout(function () { controller.abort(); }, 18000) : null;
-
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-      cache: 'no-cache',
+      method: 'GET', credentials: 'same-origin', cache: 'no-cache',
       headers: { Accept: 'application/json' },
       signal: controller ? controller.signal : undefined
     }).then(function (response) {
-      if (!response.ok) throw new Error('Resposta HTTP ' + response.status);
+      if (!response.ok) throw new Error('Resposta HTTP ' + response.status + ' em ' + url);
       return response.json();
     }).finally(function () {
       if (timeout) window.clearTimeout(timeout);
@@ -852,6 +782,13 @@
     window.history.replaceState({}, '', url.toString());
   }
 
+  function yearUrlFor(root, year) {
+    var base = root.getAttribute('data-year-base-url') || '';
+    if (base) return base.replace(/\/?$/, '/') + String(year) + '.json';
+    var template = root.getAttribute('data-year-url-template') || '';
+    return template.replace('{year}', String(year));
+  }
+
   function initialize(root) {
     var content = root.querySelector('[data-calendar-content]');
     var status = root.querySelector('[data-calendar-status]');
@@ -861,11 +798,9 @@
     var previousButton = root.querySelector('[data-calendar-previous-year]');
     var nextButton = root.querySelector('[data-calendar-next-year]');
     var todayButton = root.querySelector('[data-calendar-today]');
-
     if (!content || !status || !nav || !form || !input) return;
 
     var defaultYear = validYear(root.getAttribute('data-default-year')) || new Date().getFullYear();
-    var yearBaseUrl = root.getAttribute('data-year-base-url') || '';
     var memoriesUrl = root.getAttribute('data-memories-url') || '';
     var availableYears = availableYearsFromRoot(root, defaultYear);
     var today = todayIsoInSaoPaulo();
@@ -880,11 +815,8 @@
     }
 
     function loadMemories() {
-      if (!memoriesUrl) return Promise.resolve({ index: createMemoryIndex([]), warning: true });
       if (!memoryPromise) {
-        memoryPromise = fetchJson(memoriesUrl)
-          .then(function (payload) { return { index: createMemoryIndex(payload), warning: false }; })
-          .catch(function () { return { index: createMemoryIndex([]), warning: true }; });
+        memoryPromise = fetchJson(memoriesUrl).then(createMemoryIndex);
       }
       return memoryPromise;
     }
@@ -903,41 +835,44 @@
       updateLocationYear(year);
       renderSkeleton(content);
       nav.hidden = true;
-      todayButton.hidden = Number(today.slice(0, 4)) !== year;
+      if (todayButton) todayButton.hidden = Number(today.slice(0, 4)) !== year;
       setStatus('Carregando o calendário de ' + year + '…');
 
-      var yearUrl = yearBaseUrl + String(year) + '.json';
-      previousButton.disabled = availableYears.indexOf(year) <= 0;
-      nextButton.disabled = availableYears.indexOf(year) >= availableYears.length - 1;
+      if (previousButton) previousButton.disabled = availableYears.indexOf(year) <= 0;
+      if (nextButton) nextButton.disabled = availableYears.indexOf(year) >= availableYears.length - 1;
 
-      Promise.all([fetchJson(yearUrl), loadMemories()])
+      Promise.all([fetchJson(yearUrlFor(root, year)), loadMemories()])
         .then(function (results) {
           if (currentToken !== loadToken) return;
-          var candidates = deduplicateDayCandidates(collectDayCandidates(results[0], year), year);
-          var days = candidates.map(normalizeDay);
+          var records = extractYearRecords(results[0]);
+          var days = records
+            .map(function (record) { return normalizeDayRecord(record, year, results[1]); })
+            .filter(Boolean)
+            .sort(function (a, b) { return a.date.localeCompare(b.date); });
 
-          if (!days.length) throw new Error('O arquivo não contém dias reconhecíveis para ' + year + '.');
+          var unique = [];
+          var dates = new Set();
+          days.forEach(function (day) {
+            if (!dates.has(day.date)) {
+              dates.add(day.date);
+              unique.push(day);
+            }
+          });
 
-          renderCalendar(content, nav, days, results[1].index, year, today);
-          if (scrollToTodayAfterLoad && Number(today.slice(0, 4)) === year) {
+          if (!unique.length) throw new Error('O arquivo anual não contém registros reconhecíveis.');
+          renderCalendar(content, nav, unique, year, today);
+          setStatus('Calendário de ' + year + ' carregado com ' + unique.length + ' dias.');
+
+          if (scrollToTodayAfterLoad) {
             scrollToTodayAfterLoad = false;
-            window.requestAnimationFrame(function () {
-              var todayTarget = document.getElementById('dia-' + today);
-              if (todayTarget) todayTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-          }
-          if (results[1].warning) {
-            setStatus('Calendário de ' + year + ' carregado. As memórias facultativas não puderam ser consultadas neste momento.', 'warning');
-          } else {
-            setStatus('Calendário de ' + year + ' carregado com ' + days.length + ' dias.');
+            var todayElement = document.getElementById('dia-' + today);
+            if (todayElement) todayElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         })
         .catch(function (error) {
           if (currentToken !== loadToken) return;
-          console.error('[Oratio Calendário Litúrgico]', error);
-          var message = error && error.name === 'AbortError'
-            ? 'O carregamento demorou mais do que o esperado. Atualize a página e tente novamente.'
-            : 'Não foi possível carregar o calendário de ' + year + '. A sincronização dos dados da publicação pode ter falhado.';
+          console.error('[Calendário Litúrgico]', error);
+          var message = 'Não foi possível montar o calendário. Verifique se os arquivos anuais e de memórias foram sincronizados corretamente.';
           setStatus(message, 'error');
           renderError(content, message);
           nav.hidden = true;
@@ -948,49 +883,40 @@
       event.preventDefault();
       var year = validYear(input.value);
       if (!year) {
-        setStatus('Informe um ano entre 1970 e 2100.', 'error');
-        input.focus();
+        setStatus('Informe um ano válido.', 'error');
         return;
       }
       loadYear(year);
     });
 
-    if (previousButton) {
-      previousButton.addEventListener('click', function () {
-        var year = validYear(input.value) || defaultYear;
-        var position = availableYears.indexOf(year);
-        if (position > 0) loadYear(availableYears[position - 1]);
-      });
-    }
+    if (previousButton) previousButton.addEventListener('click', function () {
+      var current = validYear(input.value) || defaultYear;
+      var position = availableYears.indexOf(current);
+      if (position > 0) loadYear(availableYears[position - 1]);
+    });
 
-    if (nextButton) {
-      nextButton.addEventListener('click', function () {
-        var year = validYear(input.value) || defaultYear;
-        var position = availableYears.indexOf(year);
-        if (position >= 0 && position < availableYears.length - 1) loadYear(availableYears[position + 1]);
-      });
-    }
+    if (nextButton) nextButton.addEventListener('click', function () {
+      var current = validYear(input.value) || defaultYear;
+      var position = availableYears.indexOf(current);
+      if (position >= 0 && position < availableYears.length - 1) loadYear(availableYears[position + 1]);
+    });
 
-    if (todayButton) {
-      todayButton.addEventListener('click', function () {
-        var currentYear = Number(today.slice(0, 4));
-        if (validYear(input.value) !== currentYear) {
-          scrollToTodayAfterLoad = true;
-          loadYear(currentYear);
-          return;
-        }
-        var target = document.getElementById('dia-' + today);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    }
+    if (todayButton) todayButton.addEventListener('click', function () {
+      var todayYear = Number(today.slice(0, 4));
+      if (availableYears.indexOf(todayYear) === -1) return;
+      if (validYear(input.value) !== todayYear) {
+        scrollToTodayAfterLoad = true;
+        loadYear(todayYear);
+        return;
+      }
+      var todayElement = document.getElementById('dia-' + today);
+      if (todayElement) todayElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
 
     loadYear(yearFromLocation(defaultYear));
   }
 
-  function start() {
+  document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-liturgical-calendar]').forEach(initialize);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
+  });
 }());
