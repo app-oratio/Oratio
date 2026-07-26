@@ -28,6 +28,8 @@ vm.createContext(sandbox);
 vm.runInContext(source, sandbox);
 
 const currentTarget = sandbox.window.OratioLiturgia.currentTarget;
+const currentCivilDate = sandbox.window.OratioLiturgia.currentCivilDate;
+const setTabState = sandbox.window.OratioLiturgia.setTabState;
 function atLocal(hour, minute, date = '2026-07-25') {
   const [year, month, day] = date.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, day, hour + 3, minute));
@@ -45,5 +47,43 @@ assert.equal(currentTarget(atLocal(13, 30)).slug, 'hora-nona');
 assert.equal(currentTarget(atLocal(16, 0)).slug, 'vesperas');
 assert.equal(currentTarget(atLocal(20, 0)).slug, 'completas');
 assert.equal(currentTarget(atLocal(23, 59)).date, '2026-07-25');
+assert.equal(currentCivilDate(atLocal(0, 0)), '2026-07-25');
 
-console.log('12 verificações de horário concluídas com sucesso.');
+function fakeClassList() {
+  const values = new Set();
+  return {
+    toggle(name, enabled) { if (enabled) values.add(name); else values.delete(name); },
+    contains(name) { return values.has(name); }
+  };
+}
+
+function fakeElement(attributes, inlineDisplay) {
+  const attrs = Object.assign({}, attributes);
+  const styleValues = inlineDisplay ? { display: inlineDisplay } : {};
+  return {
+    hidden: false,
+    tabIndex: 0,
+    classList: fakeClassList(),
+    style: {
+      removeProperty(name) { delete styleValues[name]; },
+      setProperty(name, value) { styleValues[name] = value; },
+      getPropertyValue(name) { return styleValues[name] || ''; }
+    },
+    getAttribute(name) { return attrs[name] || null; },
+    setAttribute(name, value) { attrs[name] = String(value); }
+  };
+}
+
+const ptButton = fakeElement({ 'data-language-select': 'pt' });
+const latButton = fakeElement({ 'data-language-select': 'lat' });
+const ptPanel = fakeElement({ 'data-language-panel': 'pt' });
+const latPanel = fakeElement({ 'data-language-panel': 'lat' }, 'none');
+setTabState([ptButton, latButton], [ptPanel, latPanel], 'lat', 'data-language-select', 'data-language-panel');
+assert.equal(latPanel.hidden, false);
+assert.equal(latPanel.style.getPropertyValue('display'), '');
+assert.equal(latPanel.getAttribute('aria-hidden'), 'false');
+assert.equal(latPanel.classList.contains('is-active'), true);
+assert.equal(ptPanel.hidden, true);
+assert.equal(ptPanel.style.getPropertyValue('display'), 'none');
+
+console.log('19 verificações de horário e alternância de idioma concluídas com sucesso.');
