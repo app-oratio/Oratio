@@ -11,7 +11,6 @@ layout: default
     </div>
     <div class="liturgy-index__symbol" aria-hidden="true">☩</div>
   </header>
-
   <section class="liturgy-index__chooser" aria-labelledby="liturgy-index-date-title">
     <div>
       <p class="eyebrow">Calendário</p>
@@ -33,7 +32,14 @@ layout: default
       <p class="status-message" data-liturgy-date-status aria-live="polite"></p>
     </form>
   </section>
-
+  <section class="liturgy-index__featured" aria-labelledby="liturgical-calendar-link-title">
+    <div>
+      <p class="eyebrow">Ano litúrgico</p>
+      <h2 id="liturgical-calendar-link-title">Calendário Litúrgico</h2>
+      <p>Consulte as celebrações, as semanas, os tempos, os graus e as cores litúrgicas de todo o ano.</p>
+    </div>
+    <a class="button button--secondary" href="{{ '/calendario-liturgico/' | relative_url }}">Abrir calendário</a>
+  </section>
   <section class="liturgy-index__featured" aria-labelledby="featured-liturgy-title">
     <div>
       <p class="eyebrow">Dia selecionado</p>
@@ -44,7 +50,6 @@ layout: default
       {% if page.liturgy_index_kind == 'hours' %}Ver todas as Horas deste dia{% else %}Ver a liturgia deste dia{% endif %}
     </a>
   </section>
-
   {% if page.liturgy_index_kind == 'hours' %}
   <section class="liturgy-index__hours" aria-labelledby="index-hours-title" data-selected-hours-section>
     <div class="section-heading liturgy-section-heading">
@@ -59,7 +64,6 @@ layout: default
     </div>
   </section>
   {% endif %}
-
   <aside class="liturgy-current-callout" data-current-hour-callout hidden aria-live="polite"></aside>
   <script type="application/json" data-liturgy-days-json data-baseurl="{{ site.baseurl }}">{{ page.available_days | jsonify }}</script>
 </div>
