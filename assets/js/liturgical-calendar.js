@@ -111,35 +111,51 @@
     }
   }
 
-  function colorTokens(value) {
-    var result = [];
-    function append(item) {
-      if (item === null || item === undefined || item === '') return;
-      if (Array.isArray(item)) {
-        item.forEach(append);
-        return;
-      }
-      if (isPlainObject(item)) {
-        var nested = directValue(item, ['nome', 'name', 'cor', 'color', 'valor', 'value', 'label']);
-        if (nested !== undefined) append(nested);
-        return;
-      }
-      normalizeText(item).split(/[,;|/]+/).forEach(function (part) {
-        var normalized = canonicalKey(part);
-        var label = '';
-        if (/branco|white/.test(normalized)) label = 'Branco';
-        else if (/vermelho|red/.test(normalized)) label = 'Vermelho';
-        else if (/verde|green/.test(normalized)) label = 'Verde';
-        else if (/roxo|violeta|purple|violet/.test(normalized)) label = 'Roxo';
-        else if (/rosa|rose|pink/.test(normalized)) label = 'Rosa';
-        else if (/preto|black/.test(normalized)) label = 'Preto';
-        else if (/dourado|ouro|gold/.test(normalized)) label = 'Dourado';
-        if (label && result.indexOf(label) === -1) result.push(label);
-      });
+
+function colorTokens(value) {
+  var result = [];
+  var visited = typeof WeakSet === 'function' ? new WeakSet() : null;
+
+  function append(item, depth) {
+    if (depth > 6 || item === null || item === undefined || item === '') return;
+
+    if ((Array.isArray(item) || isPlainObject(item)) && visited) {
+      if (visited.has(item)) return;
+      visited.add(item);
     }
-    append(value);
-    return result;
+
+    if (Array.isArray(item)) {
+      item.forEach(function (nested) { append(nested, depth + 1); });
+      return;
+    }
+
+    if (isPlainObject(item)) {
+      var nested = directValue(item, [
+        'nome', 'name', 'cor', 'cores', 'cor litúrgica', 'cor liturgica',
+        'color', 'colors', 'valor', 'value', 'label'
+      ]);
+      if (nested !== undefined) append(nested, depth + 1);
+      else Object.keys(item).forEach(function (key) { append(item[key], depth + 1); });
+      return;
+    }
+
+    normalizeText(item).split(/[,;|/]+/).forEach(function (part) {
+      var normalized = canonicalKey(part);
+      var label = '';
+      if (/branco|white/.test(normalized)) label = 'Branco';
+      else if (/vermelho|red/.test(normalized)) label = 'Vermelho';
+      else if (/verde|green/.test(normalized)) label = 'Verde';
+      else if (/roxo|violeta|purple|violet/.test(normalized)) label = 'Roxo';
+      else if (/rosa|rose|pink/.test(normalized)) label = 'Rosa';
+      else if (/preto|black/.test(normalized)) label = 'Preto';
+      else if (/dourado|ouro|gold/.test(normalized)) label = 'Dourado';
+      if (label && result.indexOf(label) === -1) result.push(label);
+    });
   }
+
+  append(value, 0);
+  return result;
+}
 
   function colorClass(value) {
     var normalized = canonicalKey(value);
@@ -153,25 +169,68 @@
     return '';
   }
 
-  function normalizeGrade(value) {
-    var raw = scalarText(value);
-    var normalized = canonicalKey(raw);
-    if (!normalized) return { code: '', label: '', kind: 'ferial' };
 
-    if (raw === 'S' || normalized === 's' || /solenidade|solemnity/.test(normalized)) {
-      return { code: 'S', label: 'Solenidade', kind: 'solemnity' };
-    }
-    if (raw === 'F' || normalized === 'f' || /festa|feast/.test(normalized)) {
-      return { code: 'F', label: 'Festa', kind: 'feast' };
-    }
-    if (raw === 'm' || /memoriafacultativa|facultativa|optionalmemory/.test(normalized)) {
-      return { code: 'm', label: 'Memória facultativa', kind: 'optional-memory' };
-    }
-    if (raw === 'M' || normalized === 'memoria' || /memoriaobrigatoria|obrigatoria|memorial/.test(normalized)) {
-      return { code: 'M', label: 'Memória obrigatória', kind: 'memory' };
-    }
-    return { code: '', label: '', kind: 'ferial' };
+function normalizeGrade(value) {
+  var raw = scalarText(value);
+  var normalized = canonicalKey(raw);
+  if (!normalized) return { code: '', label: '', kind: 'ferial' };
+
+  if (
+    raw === 'S' ||
+    /^(s|sol|solen)$/.test(normalized) ||
+    /solenidade|solemnity/.test(normalized)
+  ) {
+    return { code: 'S', label: 'Solenidade', kind: 'solemnity' };
   }
+
+  if (
+    raw === 'F' ||
+    /^(f|fest)$/.test(normalized) ||
+    /festa|feast/.test(normalized)
+  ) {
+    return { code: 'F', label: 'Festa', kind: 'feast' };
+  }
+
+  if (
+    raw === 'm' ||
+    /^(mf|mfac|memfac)$/.test(normalized) ||
+    /memoriafacultativa|facultativa|optionalmemory/.test(normalized)
+  ) {
+    return { code: 'm', label: 'Memória facultativa', kind: 'optional-memory' };
+  }
+
+  if (
+    raw === 'M' ||
+    /^(m|mem|memo|mobr)$/.test(normalized) ||
+    normalized === 'memoria' ||
+    /memoriaobrigatoria|obrigatoria|memorial/.test(normalized)
+  ) {
+    return { code: 'M', label: 'Memória obrigatória', kind: 'memory' };
+  }
+
+  return { code: '', label: '', kind: 'ferial' };
+}
+
+function inferGradeFromValue(value) {
+  var strings = [];
+  collectStrings(value, 0, strings);
+
+  for (var index = 0; index < strings.length; index += 1) {
+    var direct = normalizeGrade(strings[index]);
+    if (direct.code) return direct;
+  }
+
+  var combined = canonicalKey(strings.join(' '));
+  if (/solenidade|solemnity/.test(combined)) return normalizeGrade('S');
+  if (/festa|feast/.test(combined)) return normalizeGrade('F');
+  if (/memoriafacultativa|facultativa|optionalmemory/.test(combined)) return normalizeGrade('m');
+  if (/memoriaobrigatoria|obrigatoria|memorial/.test(combined)) return normalizeGrade('M');
+  return normalizeGrade('');
+}
+
+function isPrincipalGrade(grade) {
+  return Boolean(grade && (grade.code === 'S' || grade.code === 'F' || grade.code === 'M'));
+}
 
   function bestHumanName(value) {
     var strings = [];
@@ -213,46 +272,47 @@
     return normalizeText(name);
   }
 
-  function memoryFromValue(value, keyHint) {
-    var record = isPlainObject(value) ? value : null;
-    var id = record ? scalarText(directValue(record, [
-      'id', 'slug', 'identificador', 'código', 'codigo', 'chave', 'key', 'caminho', 'path', 'url'
-    ])) : '';
-    if (!id && looksLikeSlug(keyHint)) id = keyHint;
 
-    var name = composeMemoryName(record, value);
-    if (!name && id) name = humanizeSlug(id);
-    if (!id || !name) return null;
+function memoryFromValue(value, keyHint) {
+  var record = isPlainObject(value) ? value : null;
+  var id = record ? scalarText(directValue(record, [
+    'id', 'id memória', 'id memoria', 'id celebração', 'id celebracao',
+    'slug', 'identificador', 'código', 'codigo', 'chave', 'key', 'caminho', 'path', 'url'
+  ])) : '';
+  if (!id && looksLikeSlug(keyHint)) id = keyHint;
 
-    var gradeValue = record ? directValue(record, [
-      'grau', 'grau litúrgico', 'grau liturgico', 'classificação', 'classificacao',
-      'classe', 'rank', 'celebration rank'
-    ]) : undefined;
-    if (gradeValue === undefined && Array.isArray(value)) {
-      gradeValue = value.find(function (item) {
-        return typeof item === 'string' && normalizeGrade(item).code;
-      });
-    }
+  var name = composeMemoryName(record, value);
+  if (!name && id) name = humanizeSlug(id);
+  if (!id || !name) return null;
 
-    var colorValue = record ? directValue(record, [
-      'cor', 'cores', 'cor litúrgica', 'cor liturgica', 'color', 'colors'
-    ]) : undefined;
-    if (colorValue === undefined && Array.isArray(value)) colorValue = value;
+  var gradeValue = record ? directValue(record, [
+    'grau', 'grau litúrgico', 'grau liturgico', 'tipo', 'tipo de celebração',
+    'tipo de celebracao', 'categoria', 'classificação', 'classificacao',
+    'classe', 'classe litúrgica', 'classe liturgica', 'rank', 'celebration rank'
+  ]) : undefined;
 
-    var grade = normalizeGrade(gradeValue);
-    var optionalValue = record ? directValue(record, [
-      'facultativa', 'facultativo', 'opcional', 'optional', 'is optional', 'isoptional'
-    ]) : undefined;
+  var grade = normalizeGrade(gradeValue);
+  if (!grade.code) grade = inferGradeFromValue(value);
 
-    return {
-      id: canonicalKey(id),
-      rawId: id,
-      name: name,
-      grade: grade,
-      colors: colorTokens(colorValue),
-      optional: grade.kind === 'optional-memory' || optionalValue === true || String(optionalValue).toLowerCase() === 'true'
-    };
-  }
+  var colorValue = record ? directValue(record, [
+    'cor', 'cores', 'cor litúrgica', 'cor liturgica', 'color', 'colors'
+  ]) : undefined;
+  if (colorValue === undefined) colorValue = value;
+
+  var optionalValue = record ? directValue(record, [
+    'facultativa', 'facultativo', 'opcional', 'optional', 'is optional', 'isoptional'
+  ]) : undefined;
+
+  return {
+    id: canonicalKey(id),
+    rawId: id,
+    name: name,
+    grade: grade,
+    colors: colorTokens(colorValue),
+    optional: grade.kind === 'optional-memory' || optionalValue === true || String(optionalValue).toLowerCase() === 'true',
+    raw: value
+  };
+}
 
   function createMemoryIndex(payload) {
     var byId = new Map();
@@ -372,30 +432,31 @@
     return loose;
   }
 
-  function seasonFromData(code, text) {
-    var normalizedCode = canonicalKey(code);
-    var source = canonicalKey([code, text].filter(Boolean).join(' '));
 
-    if (/triduo|triduum/.test(source) || /^(tr|ttr|triduo)$/.test(normalizedCode)) {
-      return { key: 'triduum', name: 'Tríduo Pascal' };
-    }
-    if (/quaresma|lent/.test(source) || /^(tq|qua|quaresma)$/.test(normalizedCode)) {
-      return { key: 'lent', name: 'Quaresma' };
-    }
-    if (/advento|advent/.test(source) || /^(ta|adv|advento)$/.test(normalizedCode)) {
-      return { key: 'advent', name: 'Advento' };
-    }
-    if (/pascal|pascoa|easter/.test(source) || /^(tp|pas|pascal)$/.test(normalizedCode)) {
-      return { key: 'easter', name: 'Tempo Pascal' };
-    }
-    if (/natal|epifania|christmas/.test(source) || /^(tn|nat|natal)$/.test(normalizedCode)) {
-      return { key: 'christmas', name: 'Tempo do Natal' };
-    }
-    if (/tempocomum|ordinary/.test(source) || /^(tc|comum|ordinary)$/.test(normalizedCode)) {
-      return { key: 'ordinary', name: 'Tempo Comum' };
-    }
-    return { key: '', name: '' };
+function seasonFromData(code, text) {
+  var normalizedCode = canonicalKey(code);
+  var source = canonicalKey([code, text].filter(Boolean).join(' '));
+
+  if (/triduo|triduum/.test(source) || /^(tr|ttr|triduo)$/.test(normalizedCode)) {
+    return { key: 'triduum', name: 'Tríduo Pascal' };
   }
+  if (/quaresma|lent/.test(source) || /^(tq|qu|qua|quaresma)$/.test(normalizedCode)) {
+    return { key: 'lent', name: 'Quaresma' };
+  }
+  if (/advento|advent/.test(source) || /^(ta|ad|adv|advento)$/.test(normalizedCode)) {
+    return { key: 'advent', name: 'Advento' };
+  }
+  if (/pascal|pascoa|easter/.test(source) || /^(tp|pa|pas|pascal)$/.test(normalizedCode)) {
+    return { key: 'easter', name: 'Tempo Pascal' };
+  }
+  if (/natal|epifania|christmas/.test(source) || /^(tn|na|nat|natal)$/.test(normalizedCode)) {
+    return { key: 'christmas', name: 'Tempo do Natal' };
+  }
+  if (/tempocomum|ordinary/.test(source) || /^(tc|co|comum|ordinary)$/.test(normalizedCode)) {
+    return { key: 'ordinary', name: 'Tempo Comum' };
+  }
+  return { key: '', name: '' };
+}
 
   function seasonColor(season, context) {
     var normalized = canonicalKey(context);
@@ -422,51 +483,70 @@
     return 6;
   }
 
-  function expandNote(note) {
-    var text = normalizeText(note);
-    if (!text) return '';
-    return text
-      .replace(/\bdo\s+TC\b/gi, 'do Tempo Comum')
-      .replace(/\bdo\s+TN\b/gi, 'do Tempo do Natal')
-      .replace(/\bdo\s+TA\b/gi, 'do Advento')
-      .replace(/\bda\s+TQ\b/gi, 'da Quaresma')
-      .replace(/\bda\s+TP\b/gi, 'da Páscoa')
-      .replace(/\bTC\b/g, 'Tempo Comum')
-      .replace(/\bTN\b/g, 'Tempo do Natal')
-      .replace(/\bTA\b/g, 'Advento')
-      .replace(/\bTQ\b/g, 'Quaresma')
-      .replace(/\bTP\b/g, 'Tempo Pascal');
+
+function expandNote(note) {
+  var text = normalizeText(note);
+  if (!text) return '';
+
+  return text
+    .replace(/\bdo\s+(TC|Co)\b/gi, 'do Tempo Comum')
+    .replace(/\bdo\s+(TN|Na)\b/gi, 'do Tempo do Natal')
+    .replace(/\bdo\s+(TA|Ad)\b/gi, 'do Advento')
+    .replace(/\bda\s+(TQ|Qu)\b/gi, 'da Quaresma')
+    .replace(/\bda\s+(TP|Pa)\b/gi, 'do Tempo Pascal')
+    .replace(/\b(TC|Co)\b/g, 'Tempo Comum')
+    .replace(/\b(TN|Na)\b/g, 'Tempo do Natal')
+    .replace(/\b(TA|Ad)\b/g, 'Advento')
+    .replace(/\b(TQ|Qu)\b/g, 'Quaresma')
+    .replace(/\b(TP|Pa)\b/g, 'Tempo Pascal');
+}
+
+
+function ferialTitle(record, isoDate, season, week, note) {
+  var parts = dateParts(isoDate);
+  var expandedNote = expandNote(note);
+
+  if (season.key === 'christmas') {
+    if (week === 0) return 'Oitava de Natal';
+    if (week === 1) return 'Antes da Epifania';
+    if (week === 2) return 'Depois da Epifania';
   }
 
-  function ferialTitle(record, isoDate, season, week, note) {
-    var parts = dateParts(isoDate);
-    var expandedNote = expandNote(note);
-    if (expandedNote && !/^[-–—.]$/.test(expandedNote)) return expandedNote;
-
-    if (season.key === 'ordinary') {
-      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Tempo Comum' : ' Semana do Tempo Comum');
-    }
-    if (season.key === 'advent') {
-      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Advento' : ' Semana do Advento');
-    }
-    if (season.key === 'lent') {
-      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Quaresma' : ' Semana da Quaresma');
-    }
-    if (season.key === 'easter') {
-      return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Páscoa' : ' Semana da Páscoa');
-    }
-    if (season.key === 'triduum') return 'Tríduo Pascal';
-    if (season.key === 'christmas') {
-      if (parts.month === 1) {
-        var epiphany = epiphanySunday(parts.year);
-        if (parts.day > epiphany) return 'Depois da Epifania';
-        if (parts.day < epiphany && parts.day > 1) return 'Antes da Epifania';
-      }
-      if (parts.month === 12 && parts.day >= 26) return 'Oitava do Natal';
-      return 'Tempo do Natal';
-    }
-    return 'Dia ferial';
+  if (season.key === 'lent') {
+    if (week === 0) return 'Depois das Cinzas';
+    if (week === 6) return 'Semana Santa';
   }
+
+  if (season.key === 'easter' && week === 1) {
+    return 'Oitava de Páscoa';
+  }
+
+  if (expandedNote && !/^[-–—.]$/.test(expandedNote)) {
+    var noteKey = canonicalKey(expandedNote);
+    if (
+      /domingo|cinzas|semanasanta|oitava|epifania|natal|pascoa|pentecostes|ramos/.test(noteKey)
+    ) {
+      return expandedNote;
+    }
+  }
+
+  if (season.key === 'ordinary') {
+    return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Tempo Comum' : ' Semana do Tempo Comum');
+  }
+  if (season.key === 'advent') {
+    return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo do Advento' : ' Semana do Advento');
+  }
+  if (season.key === 'lent') {
+    return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Quaresma' : ' Semana da Quaresma');
+  }
+  if (season.key === 'easter') {
+    return ordinal(week, !parts.isSunday) + (parts.isSunday ? ' Domingo da Páscoa' : ' Semana do Tempo Pascal');
+  }
+  if (season.key === 'triduum') return 'Tríduo Pascal';
+  if (season.key === 'christmas') return 'Tempo do Natal';
+
+  return season.name || 'Tempo litúrgico não informado';
+}
 
   function gradeFromText(text) {
     var normalized = canonicalKey(text);
@@ -491,63 +571,124 @@
     return name + ' (comemoração)';
   }
 
-  function normalizeDayRecord(record, year, memoryIndex) {
-    var month = Number(directValue(record, ['Mês', 'Mes', 'month']));
-    var dayNumber = Number(directValue(record, ['Dia', 'day']));
-    var date = validIsoDate(year, month, dayNumber);
-    if (!date) return null;
 
-    var week = Number(directValue(record, ['Semana', 'week'])) || 0;
-    var note = scalarText(directValue(record, ['Notas', 'Nota', 'notes', 'note']));
-    var tempo = scalarText(directValue(record, ['Tempo', 'tempo litúrgico', 'tempo liturgico', 'season']));
-    var mainIds = splitIds(directValue(record, ['ID Ferial', 'idferial', 'ID Celebração', 'idcelebracao']));
-    var commemorationIds = splitIds(directValue(record, ['ID Comemoração', 'idcomemoracao']));
-    var optionalIds = splitIds(directValue(record, [
-      'ID Memória Facultativa', 'idmemoriafacultativa', 'ID Memorias Facultativas', 'idmemoriasfacultativas'
-    ]));
+function normalizeDayRecord(record, year, memoryIndex) {
+  var month = Number(directValue(record, ['Mês', 'Mes', 'month']));
+  var dayNumber = Number(directValue(record, ['Dia', 'day']));
+  var date = validIsoDate(year, month, dayNumber);
+  if (!date) return null;
 
-    var mainMemory = null;
-    for (var index = 0; index < mainIds.length && !mainMemory; index += 1) {
-      mainMemory = resolveMemory(mainIds[index], memoryIndex);
-    }
+  var week = Number(directValue(record, ['Semana', 'week']));
+  if (!Number.isFinite(week)) week = 0;
 
-    var noteExpanded = expandNote(note);
-    var season = seasonFromData(tempo, [noteExpanded, mainMemory ? mainMemory.name : ''].join(' '));
-    var title = mainMemory && mainMemory.name
-      ? mainMemory.name
-      : mainIds.length
-        ? humanizeSlug(mainIds[0])
-        : ferialTitle(record, date, season, week, noteExpanded);
+  var note = scalarText(directValue(record, ['Notas', 'Nota', 'notes', 'note']));
+  var tempo = scalarText(directValue(record, [
+    'Tempo', 'tempo litúrgico', 'tempo liturgico', 'season'
+  ]));
 
-    var grade = mainMemory && mainMemory.grade.code
-      ? mainMemory.grade
-      : gradeFromText([title, noteExpanded].join(' '));
+  var mainIds = splitIds(directValue(record, [
+    'ID Ferial', 'idferial', 'ID Celebração', 'idcelebracao', 'ID Principal', 'idprincipal'
+  ]));
+  var commemorationIds = splitIds(directValue(record, [
+    'ID Comemoração', 'idcomemoracao'
+  ]));
+  var optionalIds = splitIds(directValue(record, [
+    'ID Memória Facultativa', 'idmemoriafacultativa',
+    'ID Memorias Facultativas', 'idmemoriasfacultativas'
+  ]));
 
-    var colors = mainMemory && mainMemory.colors.length
-      ? mainMemory.colors.slice()
-      : seasonColor(season, [title, noteExpanded].join(' '));
-
-    var optionalMemories = [];
-    optionalIds.forEach(function (id) {
-      var label = displayOptionalMemory(resolveMemory(id, memoryIndex), id);
-      if (label && optionalMemories.indexOf(label) === -1) optionalMemories.push(label);
-    });
-    commemorationIds.forEach(function (id) {
-      var label = displayCommemoration(resolveMemory(id, memoryIndex), id);
-      if (label && optionalMemories.indexOf(label) === -1) optionalMemories.push(label);
-    });
-
-    return {
-      date: date,
-      title: title || 'Dia ferial',
-      grade: grade,
-      colors: colors,
-      season: season,
-      cycle: scalarText(directValue(record, ['Ano', 'ciclo', 'cycle'])).toUpperCase().match(/[ABC]/) ? scalarText(directValue(record, ['Ano', 'ciclo', 'cycle'])).toUpperCase().match(/[ABC]/)[0] : '',
-      optionalMemories: optionalMemories,
-      raw: record
-    };
+  var mainMemory = null;
+  for (var index = 0; index < mainIds.length && !mainMemory; index += 1) {
+    mainMemory = resolveMemory(mainIds[index], memoryIndex);
   }
+
+  var noteExpanded = expandNote(note);
+  var season = seasonFromData(tempo, [
+    noteExpanded,
+    mainMemory ? mainMemory.name : ''
+  ].join(' '));
+
+  var explicitGrade = normalizeGrade(directValue(record, [
+    'Grau', 'grau litúrgico', 'grau liturgico', 'Tipo', 'tipo de celebração',
+    'tipo de celebracao', 'Categoria', 'Classe'
+  ]));
+
+  var grade = explicitGrade.code
+    ? explicitGrade
+    : mainMemory && mainMemory.grade.code
+      ? mainMemory.grade
+      : gradeFromText([mainMemory ? mainMemory.name : '', noteExpanded].join(' '));
+
+  var fallbackTitle = ferialTitle(record, date, season, week, noteExpanded);
+  var parts = dateParts(date);
+  var mainName = mainMemory && mainMemory.name ? mainMemory.name : '';
+  var mainLooksLikeSunday = /domingo|ramos|pascoa|pentecostes|trindade|cristorei/.test(canonicalKey(mainName));
+
+  var title = isPrincipalGrade(grade)
+    ? mainName || fallbackTitle
+    : parts.isSunday && mainName && mainLooksLikeSunday
+      ? mainName
+      : fallbackTitle;
+
+  var colors = isPrincipalGrade(grade) && mainMemory && mainMemory.colors.length
+    ? mainMemory.colors.slice()
+    : seasonColor(season, [title, noteExpanded].join(' '));
+
+  if (!colors.length && mainMemory && mainMemory.colors.length) {
+    colors = mainMemory.colors.slice();
+  }
+
+  var optionalMemories = [];
+  optionalIds.forEach(function (id) {
+    var memory = resolveMemory(id, memoryIndex);
+    var label = displayOptionalMemory(memory, id);
+    if (!label) return;
+    if (optionalMemories.some(function (item) { return item.label === label; })) return;
+    optionalMemories.push({
+      id: id,
+      name: label.replace(/\s*\(m\)\s*$/i, ''),
+      label: label,
+      grade: normalizeGrade('m'),
+      colors: memory && memory.colors ? memory.colors : [],
+      raw: memory ? memory.raw : null
+    });
+  });
+
+  var commemorations = [];
+  commemorationIds.forEach(function (id) {
+    var memory = resolveMemory(id, memoryIndex);
+    var label = displayCommemoration(memory, id);
+    if (!label) return;
+    if (commemorations.some(function (item) { return item.label === label; })) return;
+    commemorations.push({
+      id: id,
+      name: memory && memory.name ? memory.name : humanizeSlug(id),
+      label: label,
+      colors: memory && memory.colors ? memory.colors : [],
+      raw: memory ? memory.raw : null
+    });
+  });
+
+  var cycleValue = scalarText(directValue(record, ['Ano', 'ciclo', 'cycle'])).toUpperCase();
+  var cycleMatch = cycleValue.match(/[ABC]/);
+
+  return {
+    date: date,
+    title: title || season.name || 'Tempo litúrgico não informado',
+    grade: grade,
+    colors: colors,
+    season: season,
+    seasonCode: tempo,
+    week: week,
+    weekTitle: fallbackTitle,
+    note: noteExpanded,
+    cycle: cycleMatch ? cycleMatch[0] : '',
+    optionalMemories: optionalMemories,
+    commemorations: commemorations,
+    mainMemory: mainMemory,
+    raw: record
+  };
+}
 
   function todayIsoInSaoPaulo() {
     var parts = {};
@@ -628,69 +769,209 @@
     return wrapper;
   }
 
-  function renderDay(day, options) {
-    var parts = dateParts(day.date);
-    var importance = day.grade.kind === 'solemnity' || parts.isSunday
-      ? 'is-major'
-      : day.grade.kind === 'feast' ? 'is-medium' : 'is-normal';
-    var row = element('article', 'liturgical-calendar-day ' + importance);
-    row.id = 'dia-' + day.date;
-    row.setAttribute('role', 'listitem');
-    if (options.today === day.date && Number(day.date.slice(0, 4)) === options.year) {
-      row.classList.add('is-today');
-      row.setAttribute('aria-current', 'date');
-    }
 
-    var dateBlock = element('time', 'liturgical-calendar-date');
-    dateBlock.dateTime = day.date;
-    dateBlock.appendChild(element('span', 'liturgical-calendar-date__day', String(parts.day)));
-    dateBlock.appendChild(element('span', 'liturgical-calendar-date__weekday', parts.weekday));
+function longDateLabel(isoDate) {
+  var values = isoDate.split('-').map(Number);
+  var date = new Date(Date.UTC(values[0], values[1] - 1, values[2]));
+  return new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'UTC',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+}
 
-    var grade = element('span', 'liturgical-calendar-grade' + (day.grade.code ? '' : ' is-empty'), day.grade.code || '·');
-    grade.setAttribute('title', day.grade.label || 'Dia ferial');
-    grade.setAttribute('aria-label', day.grade.label || 'Sem grau litúrgico próprio');
+function appendCelebrationTitle(node, day) {
+  node.appendChild(document.createTextNode(day.title));
 
-    var celebration = element('div', 'liturgical-calendar-celebration');
-    if (row.classList.contains('is-today')) celebration.appendChild(element('span', 'liturgical-calendar-today-label', 'Hoje'));
-    celebration.appendChild(element('h3', 'liturgical-calendar-celebration__title', day.title));
+  day.optionalMemories.forEach(function (memory) {
+    node.appendChild(document.createTextNode(' ou ' + memory.name + ' '));
+    node.appendChild(element('span', 'liturgical-calendar-inline-grade', '(m)'));
+  });
 
-    if (day.optionalMemories.length) {
-      var list = element('ul', 'liturgical-calendar-option-list');
-      day.optionalMemories.forEach(function (memory) { list.appendChild(element('li', '', memory)); });
-      celebration.appendChild(list);
-    }
+  day.commemorations.forEach(function (memory) {
+    node.appendChild(document.createTextNode(' ou ' + memory.label));
+  });
+}
 
-    row.appendChild(dateBlock);
-    row.appendChild(renderColor(day));
-    row.appendChild(grade);
-    row.appendChild(celebration);
-    return row;
+function addDetailRow(list, label, value) {
+  var text = normalizeText(value);
+  if (!text) return;
+
+  var wrapper = element('div', 'liturgical-calendar-detail-row');
+  wrapper.appendChild(element('dt', '', label));
+  wrapper.appendChild(element('dd', '', text));
+  list.appendChild(wrapper);
+}
+
+function detailValue(sources, aliases) {
+  for (var index = 0; index < sources.length; index += 1) {
+    var value = scalarText(directValue(sources[index], aliases));
+    if (value) return value;
+  }
+  return '';
+}
+
+function memoryDetailLabel(memory) {
+  if (!memory) return '';
+  var label = memory.label || memory.name || '';
+  if (memory.colors && memory.colors.length) label += ' · ' + memory.colors.join(' e ');
+  return label;
+}
+
+function renderDayDetails(day) {
+  var panel = element('div', 'liturgical-calendar-day__details');
+  var heading = element('h4', 'liturgical-calendar-day__details-title', 'Informações da liturgia');
+  panel.appendChild(heading);
+
+  var facts = element('dl', 'liturgical-calendar-day__facts');
+  var memorySource = day.mainMemory && isPlainObject(day.mainMemory.raw) ? day.mainMemory.raw : null;
+  var sources = [day.raw, memorySource].filter(Boolean);
+
+  addDetailRow(facts, 'Data', longDateLabel(day.date));
+  addDetailRow(facts, 'Tempo litúrgico', day.season.name);
+  addDetailRow(facts, 'Semana litúrgica', day.weekTitle);
+  addDetailRow(facts, 'Cor litúrgica', day.colors.join(' e '));
+  addDetailRow(facts, 'Grau litúrgico', day.grade.label || 'Sem grau litúrgico próprio');
+  addDetailRow(facts, 'Celebração ou semana', day.title);
+
+  if (day.optionalMemories.length) {
+    addDetailRow(
+      facts,
+      day.optionalMemories.length === 1 ? 'Memória facultativa' : 'Memórias facultativas',
+      day.optionalMemories.map(memoryDetailLabel).join('; ')
+    );
   }
 
-  function renderMonth(month, days, options) {
-    var section = element('section', 'liturgical-calendar-month');
-    section.id = 'mes-' + month;
-    section.setAttribute('aria-labelledby', 'mes-' + month + '-titulo');
-
-    var header = element('header', 'liturgical-calendar-month__header');
-    var title = element('h2', '', MONTH_NAMES[month - 1] + ' de ' + options.year);
-    title.id = 'mes-' + month + '-titulo';
-    header.appendChild(title);
-    header.appendChild(element('p', 'liturgical-calendar-month__devotion', MONTH_DEVOTIONS[month - 1]));
-
-    var list = element('div', 'liturgical-calendar-days');
-    list.setAttribute('role', 'list');
-    days.forEach(function (day) {
-      var previousDay = options.previousByDate.get(day.date);
-      var transition = seasonTransition(previousDay, day);
-      if (transition) list.appendChild(renderSeasonBanner(transition));
-      list.appendChild(renderDay(day, options));
-    });
-
-    section.appendChild(header);
-    section.appendChild(list);
-    return section;
+  if (day.commemorations.length) {
+    addDetailRow(
+      facts,
+      day.commemorations.length === 1 ? 'Comemoração' : 'Comemorações',
+      day.commemorations.map(memoryDetailLabel).join('; ')
+    );
   }
+
+  addDetailRow(facts, 'Ciclo dominical', day.cycle ? 'Ano ' + day.cycle : '');
+  addDetailRow(facts, 'Semana do Saltério', detailValue(sources, [
+    'Semana Saltério', 'Semana Salterio', 'Semana do Saltério', 'Semana do Salterio',
+    'Saltério', 'Salterio', 'psalter'
+  ]));
+  addDetailRow(facts, 'Próprio', detailValue(sources, [
+    'Próprio', 'Proprio', 'proper'
+  ]));
+  addDetailRow(facts, 'Comum', detailValue(sources, [
+    'Comum', 'common'
+  ]));
+  addDetailRow(facts, 'Ofício', detailValue(sources, [
+    'Ofício', 'Oficio', 'office'
+  ]));
+  addDetailRow(facts, 'Leituras próprias', detailValue(sources, [
+    'Leituras próprias', 'Leituras proprias', 'Leituras', 'readings'
+  ]));
+  addDetailRow(facts, 'Prefácio', detailValue(sources, [
+    'Prefácio', 'Prefacio', 'preface'
+  ]));
+  addDetailRow(facts, 'Referência', detailValue(sources, [
+    'Referência', 'Referencia', 'reference'
+  ]));
+  addDetailRow(facts, 'Observações', day.note);
+
+  panel.appendChild(facts);
+  panel.appendChild(element(
+    'p',
+    'liturgical-calendar-day__hint',
+    'Clique novamente no cabeçalho do dia para recolher estas informações.'
+  ));
+  return panel;
+}
+
+function renderDay(day, options) {
+  var parts = dateParts(day.date);
+  var importance = day.grade.kind === 'solemnity' || parts.isSunday
+    ? 'is-major'
+    : day.grade.kind === 'feast' ? 'is-medium' : 'is-normal';
+
+  var row = element('details', 'liturgical-calendar-day ' + importance);
+  row.id = 'dia-' + day.date;
+  row.setAttribute('role', 'listitem');
+
+  if (options.today === day.date && Number(day.date.slice(0, 4)) === options.year) {
+    row.classList.add('is-today');
+    row.setAttribute('aria-current', 'date');
+  }
+
+  var summary = element('summary', 'liturgical-calendar-day__summary');
+  summary.setAttribute('aria-label', 'Ver informações de ' + longDateLabel(day.date));
+
+  var dateBlock = element('time', 'liturgical-calendar-date');
+  dateBlock.dateTime = day.date;
+  dateBlock.appendChild(element('span', 'liturgical-calendar-date__day', String(parts.day)));
+  dateBlock.appendChild(element('span', 'liturgical-calendar-date__weekday', parts.weekday));
+
+  var grade = element(
+    'span',
+    'liturgical-calendar-grade' + (day.grade.code ? '' : ' is-empty'),
+    day.grade.code || '·'
+  );
+  grade.setAttribute('title', day.grade.label || 'Sem grau litúrgico próprio');
+  grade.setAttribute('aria-label', day.grade.label || 'Sem grau litúrgico próprio');
+
+  var celebration = element('div', 'liturgical-calendar-celebration');
+  if (row.classList.contains('is-today')) {
+    celebration.appendChild(element('span', 'liturgical-calendar-today-label', 'Hoje'));
+  }
+
+  var title = element('h3', 'liturgical-calendar-celebration__title');
+  appendCelebrationTitle(title, day);
+  celebration.appendChild(title);
+  celebration.appendChild(element(
+    'span',
+    'liturgical-calendar-accordion-label',
+    'Ver informações'
+  ));
+
+  summary.appendChild(dateBlock);
+  summary.appendChild(renderColor(day));
+  summary.appendChild(grade);
+  summary.appendChild(celebration);
+  summary.appendChild(element('span', 'liturgical-calendar-accordion-icon', ''));
+
+  row.appendChild(summary);
+  row.appendChild(renderDayDetails(day));
+  return row;
+}
+
+
+function renderMonth(month, days, options) {
+  var section = element('section', 'liturgical-calendar-month');
+  section.id = 'mes-' + month;
+  section.setAttribute('aria-labelledby', 'mes-' + month + '-titulo');
+
+  var header = element('header', 'liturgical-calendar-month__header');
+  var title = element('h2', '', MONTH_NAMES[month - 1]);
+  title.id = 'mes-' + month + '-titulo';
+  header.appendChild(title);
+  header.appendChild(element(
+    'p',
+    'liturgical-calendar-month__devotion',
+    MONTH_DEVOTIONS[month - 1]
+  ));
+
+  var list = element('div', 'liturgical-calendar-days');
+  list.setAttribute('role', 'list');
+
+  days.forEach(function (day) {
+    var previousDay = options.previousByDate.get(day.date);
+    var transition = seasonTransition(previousDay, day);
+    if (transition) list.appendChild(renderSeasonBanner(transition));
+    list.appendChild(renderDay(day, options));
+  });
+
+  section.appendChild(header);
+  section.appendChild(list);
+  return section;
+}
 
   function buildMonthNavigation(nav, months) {
     nav.replaceChildren();
