@@ -813,8 +813,8 @@
 
     return fetch(url, {
       method: 'GET',
-      mode: 'cors',
-      credentials: 'omit',
+      credentials: 'same-origin',
+      cache: 'no-cache',
       headers: { Accept: 'application/json' },
       signal: controller ? controller.signal : undefined
     }).then(function (response) {
@@ -828,6 +828,16 @@
   function validYear(value) {
     var year = Number(value);
     return Number.isInteger(year) && year >= 1970 && year <= 2100 ? year : null;
+  }
+
+  function availableYearsFromRoot(root, defaultYear) {
+    var years = String(root.getAttribute('data-available-years') || '')
+      .split(',')
+      .map(function (value) { return validYear(value.trim()); })
+      .filter(Boolean)
+      .filter(function (value, index, list) { return list.indexOf(value) === index; })
+      .sort(function (a, b) { return a - b; });
+    return years.length ? years : [defaultYear];
   }
 
   function yearFromLocation(defaultYear) {
@@ -857,6 +867,7 @@
     var defaultYear = validYear(root.getAttribute('data-default-year')) || new Date().getFullYear();
     var urlTemplate = root.getAttribute('data-year-url-template') || '';
     var memoriesUrl = root.getAttribute('data-memories-url') || '';
+    var availableYears = availableYearsFromRoot(root, defaultYear);
     var today = todayIsoInSaoPaulo();
     var memoryPromise = null;
     var loadToken = 0;
@@ -879,6 +890,14 @@
     }
 
     function loadYear(year) {
+      if (availableYears.indexOf(year) === -1) {
+        var unavailableMessage = 'O calendário de ' + year + ' ainda não foi publicado.';
+        setStatus(unavailableMessage, 'error');
+        renderError(content, unavailableMessage);
+        nav.hidden = true;
+        return;
+      }
+
       var currentToken = ++loadToken;
       input.value = String(year);
       updateLocationYear(year);
@@ -888,6 +907,9 @@
       setStatus('Carregando o calendário de ' + year + '…');
 
       var yearUrl = urlTemplate.replace('{year}', String(year));
+      previousButton.disabled = availableYears.indexOf(year) <= 0;
+      nextButton.disabled = availableYears.indexOf(year) >= availableYears.length - 1;
+
       Promise.all([fetchJson(yearUrl), loadMemories()])
         .then(function (results) {
           if (currentToken !== loadToken) return;
@@ -912,9 +934,10 @@
         })
         .catch(function (error) {
           if (currentToken !== loadToken) return;
+          console.error('[Oratio Calendário Litúrgico]', error);
           var message = error && error.name === 'AbortError'
-            ? 'O carregamento demorou mais do que o esperado. Verifique a conexão e tente novamente.'
-            : 'Não foi possível carregar o calendário de ' + year + '. Verifique se o arquivo anual está publicado no CDN.';
+            ? 'O carregamento demorou mais do que o esperado. Atualize a página e tente novamente.'
+            : 'Não foi possível carregar o calendário de ' + year + '. A sincronização dos dados da publicação pode ter falhado.';
           setStatus(message, 'error');
           renderError(content, message);
           nav.hidden = true;
@@ -935,14 +958,16 @@
     if (previousButton) {
       previousButton.addEventListener('click', function () {
         var year = validYear(input.value) || defaultYear;
-        if (year > 1970) loadYear(year - 1);
+        var position = availableYears.indexOf(year);
+        if (position > 0) loadYear(availableYears[position - 1]);
       });
     }
 
     if (nextButton) {
       nextButton.addEventListener('click', function () {
         var year = validYear(input.value) || defaultYear;
-        if (year < 2100) loadYear(year + 1);
+        var position = availableYears.indexOf(year);
+        if (position >= 0 && position < availableYears.length - 1) loadYear(availableYears[position + 1]);
       });
     }
 
