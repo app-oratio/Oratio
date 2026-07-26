@@ -6,7 +6,6 @@ permalink: /calendario-liturgico/
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/liturgical-calendar.css' | relative_url }}">
-
 <div
   class="liturgical-calendar-page"
   data-liturgical-calendar
@@ -51,6 +50,7 @@ permalink: /calendario-liturgico/
       <button class="button button--primary liturgical-calendar-load-button" type="submit">Carregar calendário</button>
       <button class="button button--secondary liturgical-calendar-today-button" type="button" data-calendar-today hidden>Ir para hoje</button>
     </form>
+
     <p id="calendar-year-help" class="liturgical-calendar-controls__help">
       Os dados litúrgicos são sincronizados com o CDN do Oratio durante a publicação do site.
     </p>
@@ -110,4 +110,4 @@ permalink: /calendario-liturgico/
   </footer>
 </div>
 
-<script src="{{ '/assets/js/liturgical-calendar.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/liturgical-calendar.js' | relative_url }}?v=20260726-4" defer></script>
