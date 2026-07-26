@@ -1,0 +1,705 @@
+.liturgical-calendar-page,
+.liturgical-calendar-page * {
+  box-sizing: border-box;
+}
+
+.liturgical-calendar-page {
+  width: min(100%, 1120px);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.liturgical-calendar-page > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.liturgical-calendar-hero {
+  position: relative;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  margin-block: 1rem 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 88% 10%, rgb(164 122 27 / 15%), transparent 34%),
+    linear-gradient(145deg, var(--oratio-primary-container, #d7e8ff), var(--oratio-surface, #fff));
+}
+
+.liturgical-calendar-hero::after {
+  content: "";
+  position: absolute;
+  right: clamp(-2rem, -3vw, -0.5rem);
+  bottom: clamp(-4rem, -7vw, -2.5rem);
+  width: clamp(8rem, 20vw, 14rem);
+  aspect-ratio: 1;
+  border: 1px solid rgb(164 122 27 / 24%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.liturgical-calendar-hero h1 {
+  max-width: 18ch;
+  margin: 0.2rem 0 0.75rem;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.liturgical-calendar-hero__description {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.liturgical-calendar-controls {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 1rem;
+  background: var(--oratio-surface, #fff);
+}
+
+.liturgical-calendar-year-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.7rem;
+}
+
+.liturgical-calendar-year-field {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 7.5rem;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.liturgical-calendar-year-field input {
+  width: 100%;
+  min-height: 2.8rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 0.75rem;
+  background: var(--oratio-background, #fffbfe);
+  color: var(--oratio-text-primary, #1c1b1f);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.liturgical-calendar-control-button {
+  display: inline-grid;
+  place-items: center;
+  width: 2.8rem;
+  min-width: 2.8rem;
+  height: 2.8rem;
+  padding: 0;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 50%;
+  background: var(--oratio-surface-secondary, #f3edf7);
+  color: var(--oratio-primary, #004a98);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.liturgical-calendar-control-button:hover,
+.liturgical-calendar-control-button:focus-visible {
+  border-color: var(--oratio-primary, #004a98);
+  outline: none;
+}
+
+.liturgical-calendar-load-button,
+.liturgical-calendar-today-button {
+  min-height: 2.8rem;
+}
+
+.liturgical-calendar-controls__help {
+  margin: 0.75rem 0 0;
+  color: var(--oratio-text-muted, #79747e);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.liturgical-calendar-status {
+  min-height: 1.5rem;
+  margin: 0.75rem 0;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.94rem;
+}
+
+.liturgical-calendar-status.is-error {
+  color: #8c1d18;
+  font-weight: 700;
+}
+
+.liturgical-calendar-status.is-warning {
+  color: #725600;
+}
+
+.liturgical-calendar-month-nav {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 100%;
+  padding: 0.2rem 0 0.8rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+
+.liturgical-calendar-month-nav[hidden] {
+  display: none;
+}
+
+.liturgical-calendar-month-nav a {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 999px;
+  background: var(--oratio-surface, #fff);
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.liturgical-calendar-month-nav a:hover,
+.liturgical-calendar-month-nav a:focus-visible {
+  border-color: var(--oratio-primary, #004a98);
+  color: var(--oratio-primary, #004a98);
+  outline: none;
+}
+
+.liturgical-calendar-content {
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 2.5rem);
+  min-width: 0;
+}
+
+.liturgical-calendar-month {
+  min-width: 0;
+  scroll-margin-top: 6rem;
+}
+
+.liturgical-calendar-month__header {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-bottom: 0;
+  border-radius: 1.2rem 1.2rem 0 0;
+  background: var(--oratio-surface-secondary, #f3edf7);
+}
+
+.liturgical-calendar-month__header h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.liturgical-calendar-month__devotion {
+  margin: 0.5rem 0 0;
+  color: var(--oratio-text-secondary, #49454f);
+  line-height: 1.6;
+}
+
+.liturgical-calendar-days {
+  min-width: 0;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 0 0 1.2rem 1.2rem;
+  background: var(--oratio-surface, #fff);
+  overflow: hidden;
+}
+
+.liturgical-calendar-day {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.25rem minmax(7.5rem, 0.85fr) 3.5rem minmax(0, 4fr);
+  align-items: center;
+  gap: clamp(0.65rem, 2vw, 1rem);
+  min-width: 0;
+  padding: 0.9rem clamp(0.75rem, 2vw, 1.2rem);
+  border-bottom: 1px solid var(--oratio-divider, #e7e0ec);
+  background: var(--oratio-surface, #fff);
+}
+
+.liturgical-calendar-day:last-child {
+  border-bottom: 0;
+}
+
+.liturgical-calendar-day > * {
+  min-width: 0;
+}
+
+.liturgical-calendar-day.is-major {
+  padding-block: 1.15rem;
+  border-left: 0.35rem solid #a47a1b;
+  background: linear-gradient(90deg, rgb(164 122 27 / 11%), transparent 48%);
+  box-shadow: inset 0 1px rgb(164 122 27 / 11%);
+}
+
+.liturgical-calendar-day.is-medium {
+  border-left: 0.25rem solid var(--oratio-primary, #004a98);
+  background: var(--oratio-primary-container, #d7e8ff);
+  background: color-mix(in srgb, var(--oratio-primary-container, #d7e8ff) 38%, var(--oratio-surface, #fff));
+}
+
+.liturgical-calendar-day.is-today {
+  z-index: 1;
+  outline: 0.18rem solid var(--oratio-primary, #004a98);
+  outline-offset: -0.18rem;
+  scroll-margin-top: 7rem;
+}
+
+.liturgical-calendar-date {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 3.7rem;
+  padding: 0.35rem;
+  border-radius: 0.85rem;
+  background: var(--oratio-surface-secondary, #f3edf7);
+  text-align: center;
+}
+
+.liturgical-calendar-date__day {
+  color: var(--oratio-text-primary, #1c1b1f);
+  font-size: 1.42rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.liturgical-calendar-date__weekday {
+  margin-top: 0.25rem;
+  color: var(--oratio-text-muted, #79747e);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.liturgical-calendar-color {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.liturgical-calendar-color__swatches {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.18rem;
+}
+
+.liturgical-calendar-color-dot {
+  display: inline-block;
+  width: 0.82rem;
+  height: 1.75rem;
+  border: 1px solid rgb(28 27 31 / 18%);
+  border-radius: 0.22rem;
+  background: #b8b3bb;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 22%);
+}
+
+.liturgical-calendar-color-dot.is-white {
+  background: #f7f4ec;
+}
+
+.liturgical-calendar-color-dot.is-red {
+  background: #9d2020;
+}
+
+.liturgical-calendar-color-dot.is-green {
+  background: #287a45;
+}
+
+.liturgical-calendar-color-dot.is-purple {
+  background: #67507a;
+}
+
+.liturgical-calendar-color-dot.is-rose {
+  background: #c77a8c;
+}
+
+.liturgical-calendar-color-dot.is-black {
+  background: #2c2b30;
+}
+
+.liturgical-calendar-color-dot.is-gold {
+  background: #a47a1b;
+}
+
+.liturgical-calendar-grade {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 50%;
+  background: var(--oratio-surface-secondary, #f3edf7);
+  color: var(--oratio-text-primary, #1c1b1f);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.liturgical-calendar-grade.is-empty {
+  visibility: hidden;
+}
+
+.liturgical-calendar-celebration {
+  min-width: 0;
+}
+
+.liturgical-calendar-celebration__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--oratio-text-primary, #1c1b1f);
+  font-size: 0.98rem;
+  font-weight: 560;
+  line-height: 1.48;
+}
+
+.is-major .liturgical-calendar-celebration__title {
+  font-size: clamp(1.03rem, 2vw, 1.14rem);
+  font-weight: 800;
+}
+
+.is-medium .liturgical-calendar-celebration__title {
+  font-weight: 720;
+}
+
+.liturgical-calendar-option-list {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0.45rem 0 0;
+  list-style: none;
+}
+
+.liturgical-calendar-option-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  overflow-wrap: anywhere;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.9rem;
+  line-height: 1.48;
+}
+
+.liturgical-calendar-option-list li::before {
+  content: "ou";
+  position: absolute;
+  left: 0;
+  color: var(--oratio-text-muted, #79747e);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.liturgical-calendar-today-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.35rem;
+  border-radius: 999px;
+  background: var(--oratio-primary, #004a98);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.liturgical-calendar-season-banner {
+  --season-color: #67507a;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  padding: 0.85rem clamp(0.8rem, 2vw, 1.2rem);
+  border-bottom: 1px solid var(--oratio-divider, #e7e0ec);
+  background: var(--oratio-surface-secondary, #f3edf7);
+  background: color-mix(in srgb, var(--season-color) 14%, var(--oratio-surface, #fff));
+  color: var(--oratio-text-primary, #1c1b1f);
+}
+
+.liturgical-calendar-season-banner::before {
+  content: "";
+  width: 0.45rem;
+  align-self: stretch;
+  border-radius: 999px;
+  background: var(--season-color);
+}
+
+.liturgical-calendar-season-banner strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
+.liturgical-calendar-season-banner.is-ordinary {
+  --season-color: #287a45;
+}
+
+.liturgical-calendar-season-banner.is-advent,
+.liturgical-calendar-season-banner.is-lent {
+  --season-color: #67507a;
+}
+
+.liturgical-calendar-season-banner.is-christmas,
+.liturgical-calendar-season-banner.is-easter {
+  --season-color: #d8c38d;
+}
+
+.liturgical-calendar-season-banner.is-triduum {
+  --season-color: #a47a1b;
+}
+
+.liturgical-calendar-message {
+  padding: 1rem;
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 1rem;
+  background: var(--oratio-surface, #fff);
+  color: var(--oratio-text-secondary, #49454f);
+  line-height: 1.6;
+}
+
+.liturgical-calendar-message--error {
+  border-color: rgb(140 29 24 / 35%);
+  background: rgb(140 29 24 / 7%);
+  color: #701814;
+}
+
+.liturgical-calendar-skeleton {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.liturgical-calendar-skeleton span {
+  display: block;
+  height: 4.8rem;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, var(--oratio-surface-secondary, #f3edf7), var(--oratio-surface, #fff), var(--oratio-surface-secondary, #f3edf7));
+  background-size: 220% 100%;
+  animation: liturgical-calendar-loading 1.2s linear infinite;
+}
+
+@keyframes liturgical-calendar-loading {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+.liturgical-calendar-legend {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  margin-top: clamp(1.8rem, 5vw, 3rem);
+  border: 1px solid var(--oratio-divider, #e7e0ec);
+  border-radius: 1.2rem;
+  background: var(--oratio-surface-secondary, #f3edf7);
+}
+
+.liturgical-calendar-legend__header h2 {
+  margin: 0.2rem 0 1rem;
+}
+
+.liturgical-calendar-legend__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.liturgical-calendar-legend__grid section {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--oratio-surface, #fff);
+}
+
+.liturgical-calendar-legend h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.liturgical-calendar-legend dl,
+.liturgical-calendar-legend dd {
+  margin: 0;
+}
+
+.liturgical-calendar-legend dl {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.liturgical-calendar-legend dl > div {
+  display: grid;
+  grid-template-columns: minmax(2rem, auto) minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+}
+
+.liturgical-calendar-legend dt {
+  font-weight: 850;
+}
+
+.liturgical-calendar-legend dd {
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.liturgical-calendar-color-legend {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.liturgical-calendar-color-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--oratio-text-secondary, #49454f);
+  font-size: 0.9rem;
+}
+
+.liturgical-calendar-color-legend .liturgical-calendar-color-dot {
+  width: 0.85rem;
+  height: 1.2rem;
+}
+
+@media (max-width: 800px) {
+  .liturgical-calendar-page {
+    padding-inline: max(0.8rem, env(safe-area-inset-left));
+  }
+
+  .liturgical-calendar-day {
+    grid-template-columns: 4rem 1.15rem 2.65rem minmax(0, 1fr);
+    gap: 0.55rem;
+    padding-inline: 0.65rem;
+  }
+
+  .liturgical-calendar-color {
+    justify-content: center;
+  }
+
+  .liturgical-calendar-color__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .liturgical-calendar-color-dot {
+    width: 0.72rem;
+    height: 1.8rem;
+  }
+
+  .liturgical-calendar-legend__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .liturgical-calendar-year-form {
+    display: grid;
+    grid-template-columns: 2.8rem minmax(0, 1fr) 2.8rem;
+  }
+
+  .liturgical-calendar-load-button,
+  .liturgical-calendar-today-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .liturgical-calendar-day {
+    grid-template-columns: 3.5rem 0.9rem 2.35rem minmax(0, 1fr);
+    gap: 0.45rem;
+    padding-block: 0.75rem;
+  }
+
+  .liturgical-calendar-date {
+    min-height: 3.35rem;
+    padding-inline: 0.2rem;
+  }
+
+  .liturgical-calendar-date__day {
+    font-size: 1.25rem;
+  }
+
+  .liturgical-calendar-date__weekday {
+    font-size: 0.63rem;
+  }
+
+  .liturgical-calendar-grade {
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+
+  .liturgical-calendar-celebration__title {
+    font-size: 0.92rem;
+    line-height: 1.43;
+  }
+
+  .liturgical-calendar-option-list li {
+    padding-left: 1.05rem;
+    font-size: 0.84rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liturgical-calendar-skeleton span {
+    animation: none;
+  }
+
+  .liturgical-calendar-page {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  .liturgical-calendar-controls,
+  .liturgical-calendar-month-nav,
+  .liturgical-calendar-status,
+  .liturgical-calendar-today-label {
+    display: none !important;
+  }
+
+  .liturgical-calendar-page {
+    width: 100%;
+    padding: 0;
+  }
+
+  .liturgical-calendar-hero,
+  .liturgical-calendar-month,
+  .liturgical-calendar-legend {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .liturgical-calendar-day {
+    grid-template-columns: 4.5rem 7rem 3rem minmax(0, 1fr);
+  }
+}
