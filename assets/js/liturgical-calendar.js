@@ -865,7 +865,7 @@
     if (!content || !status || !nav || !form || !input) return;
 
     var defaultYear = validYear(root.getAttribute('data-default-year')) || new Date().getFullYear();
-    var urlTemplate = root.getAttribute('data-year-url-template') || '';
+    var yearBaseUrl = root.getAttribute('data-year-base-url') || '';
     var memoriesUrl = root.getAttribute('data-memories-url') || '';
     var availableYears = availableYearsFromRoot(root, defaultYear);
     var today = todayIsoInSaoPaulo();
@@ -906,7 +906,7 @@
       todayButton.hidden = Number(today.slice(0, 4)) !== year;
       setStatus('Carregando o calendário de ' + year + '…');
 
-      var yearUrl = urlTemplate.replace('{year}', String(year));
+      var yearUrl = yearBaseUrl + String(year) + '.json';
       previousButton.disabled = availableYears.indexOf(year) <= 0;
       nextButton.disabled = availableYears.indexOf(year) >= availableYears.length - 1;
 
