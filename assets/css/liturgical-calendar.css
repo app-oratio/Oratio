@@ -119,6 +119,11 @@
   outline: none;
 }
 
+.liturgical-calendar-control-button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
 .liturgical-calendar-load-button,
 .liturgical-calendar-today-button {
   min-height: 2.8rem;
