@@ -11,8 +11,9 @@ permalink: /calendario-liturgico/
   class="liturgical-calendar-page"
   data-liturgical-calendar
   data-default-year="2026"
-  data-year-url-template="https://cdn.oratioapp.com.br/Liturgia/LH/calendario/anos/{year}.json"
-  data-memories-url="https://cdn.oratioapp.com.br/Liturgia/LH/calendario/memorias.json"
+  data-year-url-template="{{ '/assets/data/liturgia/calendario/anos/{year}.json' | relative_url }}"
+  data-memories-url="{{ '/assets/data/liturgia/calendario/memorias.json' | relative_url }}"
+  data-available-years="2026"
 >
   {% include breadcrumb.html %}
 
@@ -34,8 +35,8 @@ permalink: /calendario-liturgico/
         <span>Ano</span>
         <input
           type="number"
-          min="1970"
-          max="2100"
+          min="2026"
+          max="2026"
           inputmode="numeric"
           value="2026"
           data-calendar-year-input
@@ -51,7 +52,7 @@ permalink: /calendario-liturgico/
       <button class="button button--secondary liturgical-calendar-today-button" type="button" data-calendar-today hidden>Ir para hoje</button>
     </form>
     <p id="calendar-year-help" class="liturgical-calendar-controls__help">
-      O calendário utiliza os dados litúrgicos publicados pelo Oratio.
+      Os dados litúrgicos são sincronizados com o CDN do Oratio durante a publicação do site.
     </p>
   </section>
 
