@@ -4,8 +4,8 @@
   <div class="liturgy-summary__color" aria-hidden="true">
     <img src="{{ page.liturgical.color_image | relative_url }}"
       alt=""
-      width="112"
-      height="112"
+      width="58"
+      height="88"
       loading="eager"
       data-liturgical-color-image>
   </div>
@@ -15,7 +15,7 @@
     <p class="liturgy-summary__date">{{ page.date_long }}</p>
     <dl class="liturgy-facts">
       {% if page.liturgical.season_label != empty %}<div><dt>Tempo</dt><dd>{{ page.liturgical.season_label }}</dd></div>{% endif %}
-      {% if page.liturgical.rank_label != empty %}<div><dt>Celebração</dt><dd>{{ page.liturgical.rank_label }}</dd></div>{% endif %}
+      {% if page.liturgical.rank_label != empty %}<div><dt>Grau</dt><dd>{{ page.liturgical.rank_label }}</dd></div>{% endif %}
       <div><dt>Cor</dt><dd><span class="liturgy-color-dot" aria-hidden="true"></span>{{ page.liturgical.color_label }}</dd></div>
       {% if page.liturgical.week_label %}<div><dt>Semana</dt><dd>{{ page.liturgical.week_label }}</dd></div>{% endif %}
       {% if page.liturgical.psalter_label %}<div><dt>Saltério</dt><dd>{{ page.liturgical.psalter_label }}</dd></div>{% endif %}
