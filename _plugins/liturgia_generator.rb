@@ -62,6 +62,9 @@ module Oratio
       "F" => "Festa",
       "M" => "Memória",
       "MO" => "Memória obrigatória",
+      "m" => "Memória facultativa",
+      "m*" => "Memória facultativa",
+      "M*" => "Memória facultativa",
       "ML" => "Memória facultativa",
       "MF" => "Memória facultativa",
       "FE" => "Féria"
@@ -174,10 +177,10 @@ module Oratio
         color = COLOR_MAP.fetch(code, COLOR_MAP["W"])
         week_number = info["semana"].to_s.sub(/\.0\z/, "")
         psalter_week = integer_or_nil(info["semanaSalterio"])
-        rank_code = info["tipoMemoria"].to_s.upcase
+        raw_rank_code = info["tipoMemoria"].to_s.strip
+        rank_code = %w[m m*].include?(raw_rank_code) ? raw_rank_code : raw_rank_code.upcase
 
         observances = []
-        observances << "Primeiras Vésperas" if truthy?(info["primeirasVesp"])
         observances << "Dia de jejum" if truthy?(info["isJejum"])
         observances << "Dia de abstinência" if truthy?(info["isAbstinencia"])
 
@@ -288,6 +291,8 @@ module Oratio
             "daily_url" => day["daily_url"],
             "hours_url" => day["hours_url"],
             "hours" => day["hours"].each_with_object({}) { |hour, result| result[hour["slug"]] = hour["url"] },
+            "hour_cards" => public_hours(day["hours"]),
+            "laudes_cover" => preferred_social_cover(day),
             "invitatory_url" => day["invitatory_exists"] ? invitatory_url(day["date"]) : nil
           }
         end
@@ -296,6 +301,8 @@ module Oratio
       def generate_daily_page(site, day, available_days)
         page_data = common_page_data(day, available_days).merge(
           "layout" => "liturgy-day",
+          "image" => preferred_social_cover(day),
+          "image_alt" => social_cover_alt(day),
           "title" => "Liturgia diária: #{day['celebration']}",
           "description" => "Leituras e orações da liturgia diária de #{day['date_long']}, com informações do calendário litúrgico e acesso à Liturgia das Horas.",
           "search_type" => "Liturgia diária",
@@ -311,6 +318,8 @@ module Oratio
       def generate_hours_day_page(site, day, available_days)
         page_data = common_page_data(day, available_days).merge(
           "layout" => "liturgy-hours-day",
+          "image" => preferred_social_cover(day),
+          "image_alt" => social_cover_alt(day),
           "title" => "Liturgia das Horas: #{day['celebration']}",
           "description" => "Ofício das Leituras, Laudes, Horas Menores, Vésperas e Completas de #{day['date_long']}.",
           "search_type" => "Liturgia das Horas",
@@ -374,6 +383,7 @@ module Oratio
       def generate_index_page(site, days, available_days, kind)
         featured = featured_day(days)
         daily = kind == "daily"
+        featured_data = available_days.find { |item| item["date"] == featured["date_iso"] }
         data = {
           "layout" => "liturgy-index",
           "title" => daily ? "Liturgia diária" : "Liturgia das Horas",
@@ -381,10 +391,10 @@ module Oratio
           "search_type" => daily ? "Liturgia diária" : "Liturgia das Horas",
           "liturgia_page" => true,
           "liturgy_index_kind" => kind,
-          "featured_day" => available_days.find { |item| item["date"] == featured["date_iso"] },
+          "featured_day" => featured_data,
           "available_days" => available_days,
-          "image" => featured["liturgical"]["color_image"],
-          "image_alt" => featured["liturgical"]["color_label"],
+          "image" => featured_data["laudes_cover"] || featured["liturgical"]["color_image"],
+          "image_alt" => "Laudes de #{featured['celebration']}",
           "search" => true,
           "sitemap" => true
         }
@@ -404,8 +414,8 @@ module Oratio
           "available_days" => available_days,
           "previous_day" => day["previous_day"],
           "next_day" => day["next_day"],
-          "image" => day["liturgical"]["color_image"],
-          "image_alt" => "Cor litúrgica #{day['liturgical']['color_label']}",
+          "image" => preferred_social_cover(day),
+          "image_alt" => social_cover_alt(day),
           "search" => true,
           "sitemap" => true
         }
@@ -448,9 +458,20 @@ module Oratio
         }
       end
 
+
+      def preferred_social_cover(day)
+        laudes = day["hours"].find { |hour| hour["slug"] == "laudes" }
+        preferred = laudes || day["hours"].first
+        preferred ? preferred["cover"] : day["liturgical"]["color_image"]
+      end
+
+      def social_cover_alt(day)
+        "Laudes de #{day['celebration']}"
+      end
+
       def featured_day(days)
         configured = ENV["ORATIO_TODAY"]
-        today = configured ? Date.iso8601(configured) : Date.today
+        today = configured ? Date.iso8601(configured) : Time.now.getlocal("-03:00").to_date
         days.find { |day| day["date"] == today } || days.reverse.find { |day| day["date"] <= today } || days.first
       rescue Date::Error
         days.last
@@ -473,7 +494,7 @@ module Oratio
         return match[1].strip if match && !strip_html(match[1]).empty?
 
         Jekyll.logger.warn("Liturgia:", "antífona do Invitatório não identificada; verifique o arquivo do dia")
-        "Antífona do dia não identificada no arquivo-fonte."
+        "Antífona do dia não disponível."
       end
 
       def normalize_fragment(raw, strip_title: false)
