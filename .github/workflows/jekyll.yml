@@ -23,6 +23,9 @@ jobs:
       - name: Baixar arquivos do repositório
         uses: actions/checkout@v5
 
+      - name: Sincronizar calendário litúrgico
+        run: node tools/sync-liturgical-calendar.mjs 2026
+
       - name: Configurar Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -47,7 +50,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     needs: build
 
