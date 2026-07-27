@@ -11,7 +11,6 @@ timezone: "America/Sao_Paulo"
 
 author:
   name: "Equipe Oratio"
-
 organization:
   name: "Oratio"
   apostolate: "Immaculata Mater Christi"
@@ -28,8 +27,11 @@ liturgia:
   timezone: "America/Sao_Paulo"
   default_invitatory_psalm: "94"
 
-permalink: /blog/:year/:month/:title/
+bible:
+  translation: "Matos Soares"
+  source_url: "https://tstxvak.weebly.com/uploads/1/4/4/8/144864775/biblia_matos_soares.json"
 
+permalink: /blog/:year/:month/:title/
 collections:
   oracoes:
     output: true
@@ -72,7 +74,9 @@ collections:
   formacoes:
     output: true
     permalink: /formacoes/:name/
-
+  biblia:
+    output: true
+    permalink: /biblia/:path/
 defaults:
   - scope:
       path: ""
@@ -160,7 +164,12 @@ defaults:
       type: formacoes
     values:
       layout: formation
-
+  - scope:
+      path: ""
+      type: biblia
+    values:
+      bible_page: true
+      image: "/assets/images/social/og-default.webp"
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
@@ -170,7 +179,6 @@ feed:
 
 sass:
   style: compressed
-
 # Arquivos que não fazem parte do site publicado.
 exclude:
   - Gemfile
