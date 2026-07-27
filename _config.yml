@@ -77,6 +77,9 @@ collections:
   biblia:
     output: true
     permalink: /biblia/:path/
+  catecismo:
+    output: true
+    permalink: /catecismo/:name/
 defaults:
   - scope:
       path: ""
@@ -170,6 +173,13 @@ defaults:
     values:
       bible_page: true
       image: "/assets/images/social/og-default.webp"
+  - scope:
+      path: ""
+      type: catecismo
+    values:
+      layout: catechism-reader
+      catechism_page: true
+      image: "/assets/images/social/og-default.webp"
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
@@ -184,6 +194,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - requirements-catechism.txt
   - GUIA_DE_IMPLEMENTACAO.md
   - GUIA_SANTOS.md
   - GUIA_LITURGIA.md
