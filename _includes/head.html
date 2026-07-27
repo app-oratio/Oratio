@@ -8,6 +8,7 @@
 {% if page.layout == 'resources-page' %}<link rel="stylesheet" href="{{ '/assets/css/resources-page.css' | relative_url }}">{% endif %}
 {% if page.editorial or page.layout == 'post' or page.layout == 'formation' or page.layout == 'editorial-archive' %}<link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">{% endif %}
 {% if page.liturgia_page %}<link rel="stylesheet" href="{{ '/assets/css/liturgy.css' | relative_url }}">{% endif %}
+{% if page.bible_page or page.layout == 'bible-index' or page.layout == 'bible-book' or page.layout == 'bible-chapter' %}<link rel="stylesheet" href="{{ '/assets/css/bible.css' | relative_url }}">{% endif %}
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/icons/pwa/apple-touch-icon.png' | relative_url }}">
@@ -87,6 +88,28 @@
   "inLanguage": "pt-BR"{% if page.image %},
   "primaryImageOfPage": {"@type": "ImageObject", "url": {{ page.image | absolute_url | jsonify }}}{% endif %}{% if page.date_iso %},
   "datePublished": {{ page.date_iso | append: 'T00:00:00-03:00' | jsonify }}{% endif %}
+}
+</script>
+{% endif %}
+{% if page.bible_page or page.layout == 'bible-index' or page.layout == 'bible-book' or page.layout == 'bible-chapter' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "inLanguage": "pt-BR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }}
+  }{% if page.book_name %},
+  "about": {
+    "@type": "Book",
+    "name": {{ page.book_name | jsonify }},
+    "inLanguage": "pt-BR"
+  }{% endif %}
 }
 </script>
 {% endif %}
