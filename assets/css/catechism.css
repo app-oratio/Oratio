@@ -1,0 +1,109 @@
+/* Leitor do Catecismo do Oratio. Mantido isolado para não alterar os demais sistemas. */
+.catechism-shell, .catechism-shell * { box-sizing: border-box; }
+.catechism-shell { min-width: 0; overflow-x: clip; }
+.catechism-eyebrow { color: var(--oratio-gold); font-size: .75rem; font-weight: 820; letter-spacing: .11em; margin: 0; text-transform: uppercase; }
+.catechism-hero { background: radial-gradient(circle at 84% 12%, color-mix(in srgb, var(--oratio-gold-container) 78%, transparent), transparent 23rem), linear-gradient(180deg, color-mix(in srgb, var(--oratio-primary-container) 55%, var(--oratio-background)), var(--oratio-background)); border-bottom: 1px solid var(--oratio-divider); padding-block: var(--space-6) var(--space-12); }
+.catechism-hero__content { display: grid; gap: var(--space-3); margin-block: var(--space-8) var(--space-6); max-width: 54rem; }
+.catechism-hero__content h1, .catechism-reader-header h1 { margin: 0; }
+.catechism-hero__content > p:last-child { color: var(--oratio-text-secondary); font-size: clamp(1rem, 2.2vw, 1.15rem); line-height: 1.7; max-width: 50rem; }
+.catechism-jump { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-large); box-shadow: 0 14px 36px color-mix(in srgb, var(--oratio-shadow) 70%, transparent); display: grid; gap: var(--space-3); max-width: 43rem; padding: var(--space-5); }
+.catechism-jump label, .catechism-filter label, .catechism-reader-select label, .catechism-inline-jump label, .catechism-reading-toolbar label { color: var(--oratio-text-primary); font-size: .85rem; font-weight: 780; }
+.catechism-jump__row { display: grid; gap: var(--space-3); grid-template-columns: minmax(0, 1fr); }
+.catechism-jump input, .catechism-filter input, .catechism-reader-select select, .catechism-inline-jump input, .catechism-reading-toolbar input { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-medium); color: var(--oratio-text-primary); min-height: 48px; min-width: 0; padding: .7rem .9rem; width: 100%; }
+.catechism-jump input:focus, .catechism-filter input:focus, .catechism-reader-select select:focus, .catechism-inline-jump input:focus, .catechism-reading-toolbar input:focus { border-color: var(--oratio-primary); box-shadow: 0 0 0 3px var(--oratio-primary-container); outline: 0; }
+.catechism-status { color: var(--oratio-text-muted); font-size: .82rem; min-height: 1.35rem; }
+.catechism-resume { align-items: center; background: var(--oratio-gold-container); border: 1px solid color-mix(in srgb, var(--oratio-gold) 34%, var(--oratio-divider)); border-radius: var(--radius-medium); color: var(--oratio-text-primary); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-4); max-width: 43rem; padding: var(--space-3) var(--space-4); text-decoration: none; }
+.catechism-resume span { color: var(--oratio-text-secondary); font-size: .8rem; font-weight: 750; text-transform: uppercase; }
+.catechism-resume strong { font-family: var(--font-heading); }
+.catechism-setup-state { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-large); display: grid; gap: var(--space-3); margin-inline: auto; max-width: 52rem; padding: clamp(var(--space-5), 5vw, var(--space-8)); }
+.catechism-setup-state h1, .catechism-setup-state h2, .catechism-setup-state p { margin: 0; }
+.catechism-setup-state code { overflow-wrap: anywhere; }
+.catechism-source-warning { background: var(--oratio-gold-container); border: 1px solid color-mix(in srgb, var(--oratio-gold) 42%, var(--oratio-divider)); border-radius: var(--radius-large); display: grid; gap: var(--space-2); margin-bottom: var(--space-6); padding: var(--space-5); }
+.catechism-source-warning h2, .catechism-source-warning p { margin: 0; }
+.catechism-source-warning h2 { font-size: 1.2rem; }
+.catechism-source-warning > p:last-child { color: var(--oratio-text-secondary); overflow-wrap: anywhere; }
+.catechism-overview { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin-bottom: var(--space-8); }
+.catechism-overview > div { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-medium); display: grid; gap: var(--space-1); padding: var(--space-4); }
+.catechism-overview strong { color: var(--oratio-primary); font-family: var(--font-heading); font-size: 1.55rem; }
+.catechism-overview span { color: var(--oratio-text-secondary); font-size: .82rem; }
+.catechism-filter { display: grid; gap: var(--space-2); margin-bottom: var(--space-8); max-width: 32rem; }
+.catechism-part + .catechism-part { border-top: 1px solid var(--oratio-divider); margin-top: var(--space-12); padding-top: var(--space-12); }
+.catechism-unit-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.catechism-unit-card { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-large); display: grid; gap: var(--space-3); min-width: 0; padding: var(--space-5); position: relative; transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast); }
+.catechism-unit-card:hover { border-color: color-mix(in srgb, var(--oratio-primary) 38%, var(--oratio-divider)); box-shadow: 0 12px 30px var(--oratio-shadow); transform: translateY(-2px); }
+.catechism-unit-card[hidden], .catechism-part[hidden] { display: none; }
+.catechism-unit-card__range { color: var(--oratio-gold); font-size: .76rem; font-weight: 820; letter-spacing: .07em; }
+.catechism-unit-card h3 { font-size: 1.08rem; margin: 0; }
+.catechism-unit-card h3 a { color: var(--oratio-text-primary); text-decoration: none; }
+.catechism-unit-card h3 a::after { content: ''; inset: 0; position: absolute; }
+.catechism-unit-card > p:not(.catechism-unit-card__range) { color: var(--oratio-text-secondary); font-size: .84rem; }
+.catechism-unit-card__footer { align-items: center; display: flex; gap: var(--space-3); justify-content: space-between; margin-top: auto; }
+.catechism-unit-card__footer span { color: var(--oratio-text-muted); font-size: .76rem; }
+.catechism-unit-card__footer a { color: var(--oratio-primary); font-size: .82rem; font-weight: 780; position: relative; z-index: 1; }
+.catechism-empty-filter { background: var(--oratio-surface-secondary); border-radius: var(--radius-medium); padding: var(--space-5); text-align: center; }
+.catechism-reader-shell { min-width: 0; padding-block: var(--space-6) var(--space-16); }
+.catechism-reader-breadcrumb { margin-bottom: var(--space-6); }
+.catechism-reader-header { align-items: end; display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; margin-bottom: var(--space-5); }
+.catechism-reader-header > div { display: grid; gap: var(--space-2); max-width: 52rem; min-width: 0; }
+.catechism-reader-header h1 { font-size: clamp(1.8rem, 6vw, 3rem); }
+.catechism-reader-header > div > p:last-child { color: var(--oratio-text-secondary); }
+[data-catechism-complete][aria-pressed='true'] { background: var(--oratio-gold-container); color: var(--oratio-text-primary); }
+.catechism-reader-controls { align-items: end; background: var(--oratio-surface-secondary); border: 1px solid var(--oratio-divider); border-radius: var(--radius-large); display: grid; gap: var(--space-3); grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-4); padding: var(--space-4); }
+.catechism-reader-select, .catechism-inline-jump { display: grid; gap: var(--space-2); min-width: 0; }
+.catechism-inline-jump > div { display: grid; gap: var(--space-2); grid-template-columns: minmax(0, 1fr) auto; }
+.catechism-font-controls { align-items: center; display: flex; flex-wrap: wrap; gap: var(--space-2); min-width: 0; }
+.catechism-font-controls > span { color: var(--oratio-text-secondary); font-size: .8rem; font-weight: 780; margin-right: var(--space-1); }
+.catechism-font-controls .icon-button { border: 1px solid var(--oratio-divider); border-radius: var(--radius-small); flex-basis: 44px; font-size: .82rem; font-weight: 820; }
+.catechism-font-controls output { color: var(--oratio-text-secondary); font-size: .78rem; min-width: 3rem; text-align: center; }
+.catechism-reading-toolbar { align-items: end; display: grid; gap: var(--space-2); grid-template-columns: minmax(0, 1fr); margin: 0 auto var(--space-4); max-width: var(--content-reading-width); }
+.catechism-reading-toolbar span { color: var(--oratio-text-muted); font-size: .78rem; min-height: 1.2rem; }
+.catechism-reading { --catechism-font-size: 1.08rem; background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-large); box-shadow: 0 14px 40px color-mix(in srgb, var(--oratio-shadow) 60%, transparent); font-family: var(--font-heading); font-size: var(--catechism-font-size); line-height: 1.86; margin-inline: auto; max-width: var(--content-reading-width); min-width: 0; padding: clamp(var(--space-5), 5vw, var(--space-10)); transition: font-size var(--transition-fast); width: 100%; }
+.catechism-heading { color: var(--oratio-text-primary); line-height: 1.35; margin-block: 2.3em .85em; scroll-margin-top: calc(var(--header-height) + var(--space-6)); }
+.catechism-heading:first-child { margin-top: 0; }
+.catechism-reading h2 { font-size: 1.55em; }
+.catechism-reading h3 { font-size: 1.3em; }
+.catechism-reading h4 { font-size: 1.12em; }
+.catechism-reading h5 { color: var(--oratio-text-secondary); font-size: .92em; letter-spacing: .04em; text-transform: uppercase; }
+.catechism-paragraph { border-radius: var(--radius-small); color: var(--oratio-text-primary); margin: 0; min-width: 0; overflow-wrap: anywhere; padding: .7rem 2.3rem .7rem .45rem; position: relative; scroll-margin-top: calc(var(--header-height) + var(--space-6)); transition: background-color var(--transition-fast), box-shadow var(--transition-fast); }
+.catechism-paragraph + .catechism-paragraph { margin-top: .55rem; }
+.catechism-paragraph:hover { background: color-mix(in srgb, var(--oratio-primary-container) 30%, transparent); }
+.catechism-paragraph:focus-visible { outline: 2px solid var(--oratio-primary); outline-offset: 2px; }
+.catechism-paragraph.is-selected, .catechism-paragraph:target, .catechism-paragraph.is-search-match { background: var(--oratio-gold-container); box-shadow: inset 3px 0 0 var(--oratio-gold); }
+.catechism-paragraph__number { color: var(--oratio-primary); display: inline-block; font-family: var(--font-body); font-size: .7em; font-weight: 850; line-height: 1; margin-right: .35rem; min-width: 2.4em; text-align: right; text-decoration: none; vertical-align: .28em; }
+.catechism-paragraph__text em { font-style: italic; }
+.catechism-paragraph__text strong { font-weight: 760; }
+.catechism-paragraph__bookmark { background: transparent; border: 0; color: var(--oratio-text-muted); cursor: pointer; font-size: 1.15rem; line-height: 1; padding: .35rem; position: absolute; right: .35rem; top: .55rem; }
+.catechism-paragraph__bookmark[aria-pressed='true'] { color: var(--oratio-gold); }
+.catechism-selection-tools { align-items: center; background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-pill); bottom: max(var(--space-4), env(safe-area-inset-bottom)); box-shadow: 0 14px 38px var(--oratio-shadow); display: flex; flex-wrap: wrap; gap: var(--space-2); left: 50%; max-width: calc(100vw - 2rem); padding: var(--space-2) var(--space-3); position: fixed; transform: translateX(-50%); z-index: 80; }
+.catechism-selection-tools[hidden] { display: none; }
+.catechism-selection-tools > span { color: var(--oratio-text-secondary); font-size: .78rem; font-weight: 750; padding-inline: var(--space-2); }
+.catechism-pagination { display: grid; gap: var(--space-3); grid-template-columns: minmax(0, 1fr); margin: var(--space-10) auto 0; max-width: var(--content-reading-width); }
+.catechism-pagination__item { background: var(--oratio-surface); border: 1px solid var(--oratio-divider); border-radius: var(--radius-medium); color: var(--oratio-text-primary); display: grid; gap: var(--space-1); min-width: 0; padding: var(--space-4); text-decoration: none; }
+.catechism-pagination__item:hover { background: var(--oratio-primary-container); border-color: var(--oratio-primary); color: var(--oratio-on-primary-container); }
+.catechism-pagination__item > span { color: var(--oratio-text-muted); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.catechism-pagination__item strong { overflow-wrap: anywhere; }
+.catechism-pagination__item--next { text-align: right; }
+.catechism-pagination__item.is-disabled { opacity: .54; }
+@media (min-width: 600px) {
+  .catechism-jump__row { grid-template-columns: minmax(0, 1fr) auto; }
+  .catechism-reader-controls { grid-template-columns: minmax(14rem, 1.5fr) minmax(11rem, .7fr); }
+  .catechism-font-controls { grid-column: 1 / -1; }
+  .catechism-reading-toolbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .catechism-reading-toolbar label { grid-column: 1 / -1; }
+  .catechism-pagination { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 920px) {
+  .catechism-reader-controls { grid-template-columns: minmax(14rem, 1.5fr) minmax(11rem, .65fr) auto; }
+  .catechism-font-controls { grid-column: auto; justify-content: flex-end; }
+}
+@media (max-width: 479px) {
+  .catechism-reading { border-left: 0; border-radius: 0; border-right: 0; margin-inline: calc(-1 * max(var(--space-4), env(safe-area-inset-left))); width: calc(100% + 2 * max(var(--space-4), env(safe-area-inset-left))); }
+  .catechism-selection-tools { border-radius: var(--radius-medium); width: calc(100vw - 2rem); }
+}
+@media (prefers-reduced-motion: reduce) { .catechism-unit-card { transition: none; } }
+@media print {
+  .site-header, .site-footer, .catechism-reader-controls, .catechism-reading-toolbar, [data-catechism-complete], .catechism-pagination, .catechism-selection-tools, .catechism-paragraph__bookmark { display: none !important; }
+  .catechism-reader-shell { padding: 0; }
+  .catechism-reading { border: 0; box-shadow: none; max-width: none; padding: 0; }
+  .catechism-paragraph { break-inside: avoid; }
+}
