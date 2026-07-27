@@ -21,7 +21,9 @@ sitemap: false
   | concat: site.formacoes %}
 {% assign search_documents = search_documents | where_exp: 'item', 'item.search != false' %}
 [
+  {% assign first_search_record = true %}
   {% for item in search_documents %}
+    {% unless first_search_record %},{% endunless %}
     {% capture searchable_content %}
       {{ item.content | markdownify | strip_html }}
       {% include search-devotional-text.html document=item %}
@@ -64,6 +66,46 @@ sitemap: false
       "searchText": {{ searchable_content | normalize_whitespace | jsonify }},
       "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% else %}null{% endcase %},
       "image": {{ item.image | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
+    }
+    {% assign first_search_record = false %}
+  {% endfor %}
+
+  {% for book in site.data.bible_books %}
+    {% capture bible_book_description %}Leia o livro de {{ book.name }} na Bíblia Sagrada, tradução Matos Soares.{% endcapture %}
+    {% capture bible_book_search_text %}Bíblia Sagrada livro {{ book.name }} {{ book.short_name }} {{ book.aliases | join: ' ' }} {{ book.testament }} {{ book.section }} {{ book.chapters }} capítulos Matos Soares{% endcapture %}
+    {% unless first_search_record %},{% endunless %}
+    {
+      "title": {{ book.name | jsonify }},
+      "description": {{ bible_book_description | strip | jsonify }},
+      "url": {{ '/biblia/' | append: book.slug | append: '/' | relative_url | jsonify }},
+      "type": "Bíblia · Livro",
+      "category": {{ book.testament | jsonify }},
+      "tags": [{{ book.section | jsonify }}, "Bíblia Sagrada"],
+      "keywords": {{ book.aliases | jsonify }},
+      "aliases": {{ book.aliases | jsonify }},
+      "excerpt": {{ bible_book_search_text | normalize_whitespace | truncate: 320 | jsonify }},
+      "searchText": {{ bible_book_search_text | normalize_whitespace | jsonify }},
+      "searchScope": "Livro e capítulos",
+      "image": {{ '/assets/images/social/og-default.webp' | relative_url | jsonify }}
+    }
+    {% assign first_search_record = false %}
+    {% for chapter_number in (1..book.chapters) %}
+      {% capture bible_chapter_description %}Leia {{ book.name }}, capítulo {{ chapter_number }}, na Bíblia Sagrada, tradução Matos Soares.{% endcapture %}
+      {% capture bible_chapter_search_text %}Bíblia Sagrada {{ book.name }} capítulo {{ chapter_number }} {{ book.short_name }} {{ chapter_number }} {{ book.aliases | join: ' ' }} {{ book.testament }} {{ book.section }} Matos Soares{% endcapture %},
+      {
+        "title": {{ book.name | append: ' ' | append: chapter_number | jsonify }},
+        "description": {{ bible_chapter_description | strip | jsonify }},
+        "url": {{ '/biblia/' | append: book.slug | append: '/' | append: chapter_number | append: '/' | relative_url | jsonify }},
+        "type": "Bíblia · Capítulo",
+        "category": {{ book.testament | jsonify }},
+        "tags": [{{ book.section | jsonify }}, "Bíblia Sagrada"],
+        "keywords": {{ book.aliases | jsonify }},
+        "aliases": {{ book.aliases | jsonify }},
+        "excerpt": {{ bible_chapter_search_text | normalize_whitespace | truncate: 320 | jsonify }},
+        "searchText": {{ bible_chapter_search_text | normalize_whitespace | jsonify }},
+        "searchScope": "Capítulo bíblico",
+        "image": {{ '/assets/images/social/og-default.webp' | relative_url | jsonify }}
+      }
+    {% endfor %}
   {% endfor %}
 ]
