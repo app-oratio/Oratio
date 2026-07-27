@@ -18,7 +18,8 @@ sitemap: false
   | concat: site.coroas
   | concat: site.devocionarios
   | concat: site.santos
-  | concat: site.formacoes %}
+  | concat: site.formacoes
+  | concat: site.catecismo %}
 {% assign search_documents = search_documents | where_exp: 'item', 'item.search != false' %}
 [
   {% assign first_search_record = true %}
@@ -38,6 +39,14 @@ sitemap: false
         {{ item.patronages | join: ' ' }}
         {{ item.virtues | join: ' ' }}
       {% endif %}
+      {% if item.collection == 'catecismo' and item.catechism_unit %}
+        {% assign catechism_search_unit = site.data.catechism_units[item.catechism_unit] %}
+        {{ item.part_label }}
+        {{ item.part_title }}
+        {{ item.structure_path | join: ' ' }}
+        parágrafos {{ item.paragraph_start }} a {{ item.paragraph_end }}
+        {{ catechism_search_unit.plainText }}
+      {% endif %}
       {% case item.collection %}
         {% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}
           {% assign modern_search_days = site.dias_novena | where: 'devotion', item.slug %}
@@ -52,7 +61,7 @@ sitemap: false
           {% endfor %}
       {% endcase %}
     {% endcapture %}
-    {% capture item_type %}{% case item.collection %}{% when 'posts' %}Blog{% when 'oracoes' %}Oração{% when 'novenas' %}Novena{% when 'quaresmas' %}Quaresma{% when 'trintenas' %}Trintena{% when 'devocoes_mensais' %}Devoção mensal{% when 'trezenas' %}Trezena{% when 'triduos' %}Tríduo{% when 'tercos' %}Terço{% when 'rosarios' %}Rosário{% when 'coroas' %}Coroa{% when 'santos' %}Santo{% when 'devocionarios' %}Devocionário{% when 'formacoes' %}Formação{% else %}Página{% endcase %}{% endcapture %}
+    {% capture item_type %}{% case item.collection %}{% when 'posts' %}Blog{% when 'oracoes' %}Oração{% when 'novenas' %}Novena{% when 'quaresmas' %}Quaresma{% when 'trintenas' %}Trintena{% when 'devocoes_mensais' %}Devoção mensal{% when 'trezenas' %}Trezena{% when 'triduos' %}Tríduo{% when 'tercos' %}Terço{% when 'rosarios' %}Rosário{% when 'coroas' %}Coroa{% when 'santos' %}Santo{% when 'devocionarios' %}Devocionário{% when 'formacoes' %}Formação{% when 'catecismo' %}Catecismo{% else %}Página{% endcase %}{% endcapture %}
     {
       "title": {{ item.title | default: site.title | jsonify }},
       "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
@@ -64,12 +73,11 @@ sitemap: false
       "aliases": {{ item.aliases | default: empty | jsonify }},
       "excerpt": {{ searchable_content | normalize_whitespace | truncate: 320 | jsonify }},
       "searchText": {{ searchable_content | normalize_whitespace | jsonify }},
-      "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% else %}null{% endcase %},
+      "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% when 'catecismo' %}"Unidade do Catecismo"{% else %}null{% endcase %},
       "image": {{ item.image | jsonify }}
     }
     {% assign first_search_record = false %}
   {% endfor %}
-
   {% for book in site.data.bible_books %}
     {% capture bible_book_description %}Leia o livro de {{ book.name }} na Bíblia Sagrada, tradução Matos Soares.{% endcapture %}
     {% capture bible_book_search_text %}Bíblia Sagrada livro {{ book.name }} {{ book.short_name }} {{ book.aliases | join: ' ' }} {{ book.testament }} {{ book.section }} {{ book.chapters }} capítulos Matos Soares{% endcapture %}
