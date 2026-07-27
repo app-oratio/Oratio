@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{% assign book = site.data.bible_books | where: "slug", page.book_slug | first %}
+<div class="bible-shell" data-bible-root data-bible-book-page>
+  <section class="bible-book-hero">
+    <div class="container container--large">
+      <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <ol>
+          <li><a href="{{ '/' | relative_url }}">Início</a></li>
+          <li><a href="{{ '/biblia/' | relative_url }}">Bíblia</a></li>
+          <li aria-current="page">{{ page.book_name }}</li>
+        </ol>
+      </nav>
+      <div class="bible-book-hero__content">
+        <div class="bible-book-hero__mark" aria-hidden="true">{{ page.book_short_name }}</div>
+        <div>
+          <p class="bible-eyebrow">{{ page.testament }} · {{ page.section }}</p>
+          <h1>{{ page.book_name }}</h1>
+          <p>Escolha um dos {{ page.chapter_count }} {% if page.chapter_count == 1 %}capítulo{% else %}capítulos{% endif %} para iniciar a leitura.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact">
+    <div class="container container--large">
+      <div class="bible-chapter-grid" aria-label="Capítulos de {{ page.book_name }}">
+        {% for chapter_number in (1..page.chapter_count) %}
+          <a href="{{ '/biblia/' | append: page.book_slug | append: '/' | append: chapter_number | append: '/' | relative_url }}" aria-label="{{ page.book_name }}, capítulo {{ chapter_number }}">{{ chapter_number }}</a>
+        {% endfor %}
+      </div>
+      <div class="bible-book-actions">
+        <a class="button button--primary" href="{{ '/biblia/' | append: page.book_slug | append: '/1/' | relative_url }}">Ler o primeiro capítulo</a>
+        <a class="button button--tonal" href="{{ '/biblia/' | relative_url }}">Voltar para todos os livros</a>
+      </div>
+    </div>
+  </section>
+</div>
+<script id="bible-index-data" type="application/json">{"books":{{ site.data.bible_books | jsonify }}}</script>

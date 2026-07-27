@@ -1,0 +1,139 @@
+---
+layout: default
+---
+{% assign book = site.data.bible_books | where: "slug", page.book_slug | first %}
+{% assign local_book = site.data.bible[page.book_slug] %}
+{% assign local_chapter = nil %}
+{% if local_book and local_book.chapters %}
+  {% assign page_chapter_string = page.chapter | append: "" %}
+  {% for candidate in local_book.chapters %}
+    {% assign candidate_number = candidate.number | default: candidate.chapter | default: candidate.capitulo | append: "" %}
+    {% if candidate_number == page_chapter_string %}
+      {% assign local_chapter = candidate %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="bible-shell" data-bible-root data-bible-reader>
+  <div class="container container--large bible-reader-shell">
+    <nav class="breadcrumb bible-reader-breadcrumb" aria-label="Navegação estrutural">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">Início</a></li>
+        <li><a href="{{ '/biblia/' | relative_url }}">Bíblia</a></li>
+        <li><a href="{{ '/biblia/' | append: page.book_slug | append: '/' | relative_url }}">{{ page.book_name }}</a></li>
+        <li aria-current="page">Capítulo {{ page.chapter }}</li>
+      </ol>
+    </nav>
+
+    <header class="bible-reader-header">
+      <div>
+        <p class="bible-eyebrow">{{ page.testament }} · Tradução Matos Soares</p>
+        <h1>{{ page.book_name }} <span>{{ page.chapter }}</span></h1>
+      </div>
+      <button class="button button--tonal bible-bookmark" type="button" data-bible-bookmark aria-pressed="false">Salvar capítulo</button>
+    </header>
+
+    <section class="bible-reader-controls" aria-label="Navegação da Bíblia">
+      <div class="bible-reader-select">
+        <label for="bible-book-select">Livro</label>
+        <select id="bible-book-select" data-bible-book-select>
+          {% for option_book in site.data.bible_books %}
+            <option value="{{ option_book.slug }}" data-chapters="{{ option_book.chapters }}" {% if option_book.slug == page.book_slug %}selected{% endif %}>{{ option_book.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="bible-reader-select">
+        <label for="bible-chapter-select">Capítulo</label>
+        <select id="bible-chapter-select" data-bible-chapter-select>
+          {% for chapter_number in (1..page.chapter_count) %}
+            <option value="{{ chapter_number }}" {% if chapter_number == page.chapter %}selected{% endif %}>{{ chapter_number }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="bible-font-controls" aria-label="Tamanho do texto">
+        <span>Texto</span>
+        <button class="icon-button" type="button" data-prayer-font="decrease" aria-label="Diminuir texto">A−</button>
+        <output data-prayer-font-value aria-live="polite">100%</output>
+        <button class="icon-button" type="button" data-prayer-font="increase" aria-label="Aumentar texto">A+</button>
+      </div>
+    </section>
+
+    <div class="bible-reader-status" data-bible-status role="status" aria-live="polite" {% if local_chapter %}hidden{% endif %}>
+      {% if local_chapter %}Texto carregado.{% else %}Carregando o capítulo…{% endif %}
+    </div>
+
+    <article class="bible-reading" data-bible-reading data-reading-text data-reading-font-base="1.15" {% if local_chapter %}data-has-static-text="true"{% else %}aria-busy="true"{% endif %}>
+      {% if local_chapter %}
+        {% assign verses = local_chapter.verses | default: local_chapter.versiculos %}
+        {% for verse in verses %}
+          {% assign verse_number = verse.number | default: verse.numero %}
+          {% assign verse_text = verse.text | default: verse.texto %}
+          <p class="bible-verse" id="v{{ verse_number }}" data-bible-verse data-verse-number="{{ verse_number }}" tabindex="0">
+            <a class="bible-verse__number" href="#v{{ verse_number }}" aria-label="Versículo {{ verse_number }}">{{ verse_number }}</a>
+            <span class="bible-verse__text">{{ verse_text }}</span>
+          </p>
+        {% endfor %}
+      {% else %}
+        <div class="bible-loading" data-bible-loading aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      {% endif %}
+    </article>
+
+    <div class="bible-load-error notice notice--warning" data-bible-error hidden>
+      <strong>Não foi possível carregar o texto deste capítulo.</strong>
+      <p data-bible-error-message>Verifique a conexão e tente novamente.</p>
+      <button class="button button--tonal" type="button" data-bible-retry>Tentar novamente</button>
+    </div>
+
+    <noscript>
+      <div class="notice notice--warning">
+        <strong>JavaScript necessário enquanto o texto não estiver local.</strong>
+        <p>Execute o importador fornecido para gerar os arquivos locais e tornar a leitura independente de JavaScript.</p>
+      </div>
+    </noscript>
+
+    <div class="bible-selection-tools" data-bible-selection-tools hidden>
+      <span data-bible-selection-label>Versículo selecionado</span>
+      <button class="button button--tonal button--small" type="button" data-bible-copy-verse>Copiar versículo</button>
+      <button class="button button--text button--small" type="button" data-bible-clear-selection>Limpar seleção</button>
+    </div>
+
+    <div class="bible-chapter-actions">
+      <button class="button button--tonal" type="button" data-bible-share>Compartilhar capítulo</button>
+      <button class="button button--text" type="button" data-bible-copy-link>Copiar endereço</button>
+    </div>
+
+    <nav class="bible-pagination" aria-label="Capítulos anterior e seguinte">
+      {% if page.previous_url %}
+        <a class="bible-pagination__item bible-pagination__item--previous" href="{{ page.previous_url | relative_url }}">
+          <span>Anterior</span>
+          <strong>{{ page.previous_title }}</strong>
+        </a>
+      {% else %}
+        <span class="bible-pagination__item is-disabled"><span>Anterior</span><strong>Início da Bíblia</strong></span>
+      {% endif %}
+      {% if page.next_url %}
+        <a class="bible-pagination__item bible-pagination__item--next" href="{{ page.next_url | relative_url }}">
+          <span>Seguinte</span>
+          <strong>{{ page.next_title }}</strong>
+        </a>
+      {% else %}
+        <span class="bible-pagination__item bible-pagination__item--next is-disabled"><span>Seguinte</span><strong>Fim da Bíblia</strong></span>
+      {% endif %}
+    </nav>
+  </div>
+</div>
+<script id="bible-page-data" type="application/json">{
+  "bookSlug": {{ page.book_slug | jsonify }},
+  "bookName": {{ page.book_name | jsonify }},
+  "bookShortName": {{ page.book_short_name | jsonify }},
+  "bookOrder": {{ page.book_order | jsonify }},
+  "chapter": {{ page.chapter | jsonify }},
+  "chapterCount": {{ page.chapter_count | jsonify }},
+  "aliases": {{ book.aliases | jsonify }},
+  "externalPath": {{ book.external_path | jsonify }},
+  "sourceUrl": {{ site.bible.source_url | jsonify }},
+  "translation": {{ page.translation | jsonify }}
+}</script>

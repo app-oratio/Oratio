@@ -1,0 +1,70 @@
+---
+layout: default
+---
+<div class="bible-shell" data-bible-root data-bible-index>
+  <section class="bible-hero">
+    <div class="container container--large">
+      <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <ol>
+          <li><a href="{{ '/' | relative_url }}">Início</a></li>
+          <li aria-current="page">Bíblia Sagrada</li>
+        </ol>
+      </nav>
+      <div class="bible-hero__content">
+        <p class="bible-eyebrow">Sagrada Escritura</p>
+        <h1>{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+      </div>
+      <form class="bible-reference" data-bible-reference-form role="search">
+        <label for="bible-reference-input">Abrir livro, capítulo ou versículo</label>
+        <div class="bible-reference__row">
+          <input id="bible-reference-input" name="reference" type="search" autocomplete="off" placeholder="Ex.: João 3,16 ou Salmos 22" data-bible-reference-input>
+          <button class="button button--primary" type="submit">Abrir referência</button>
+        </div>
+        <p class="bible-reference__status" data-bible-reference-status aria-live="polite">Digite uma referência bíblica ou filtre os livros pelo nome.</p>
+      </form>
+      <a class="bible-resume" href="#" data-bible-resume hidden>
+        <span>Continuar leitura</span>
+        <strong data-bible-resume-title></strong>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--compact">
+    <div class="container container--large">
+      <div class="bible-filter">
+        <label for="bible-book-filter">Filtrar livros</label>
+        <input id="bible-book-filter" type="search" placeholder="Nome ou abreviação" data-bible-book-filter>
+      </div>
+
+      {% assign testaments = "Antigo Testamento|Novo Testamento" | split: "|" %}
+      {% for testament_name in testaments %}
+        {% assign testament_books = site.data.bible_books | where: "testament", testament_name %}
+        <section class="bible-testament" data-bible-testament>
+          <div class="section-heading">
+            <div>
+              <p class="bible-eyebrow">Cânon católico</p>
+              <h2>{{ testament_name }}</h2>
+            </div>
+            <p>{{ testament_books | size }} livros</p>
+          </div>
+          <div class="bible-book-grid" data-bible-book-list>
+            {% for book in testament_books %}
+              <article class="bible-book-card" data-bible-book-card data-book-search="{{ book.name }} {{ book.short_name }} {{ book.aliases | join: ' ' }}">
+                <div>
+                  <span class="bible-book-card__abbr">{{ book.short_name }}</span>
+                  <p class="bible-book-card__section">{{ book.section }}</p>
+                </div>
+                <h3><a href="{{ '/biblia/' | append: book.slug | append: '/' | relative_url }}">{{ book.name }}</a></h3>
+                <p>{{ book.chapters }} {% if book.chapters == 1 %}capítulo{% else %}capítulos{% endif %}</p>
+                <a class="bible-book-card__link" href="{{ '/biblia/' | append: book.slug | append: '/1/' | relative_url }}">Começar a leitura</a>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+      <p class="bible-empty-filter" data-bible-empty-filter hidden>Nenhum livro corresponde ao filtro informado.</p>
+    </div>
+  </section>
+</div>
+<script id="bible-index-data" type="application/json">{"books":{{ site.data.bible_books | jsonify }}}</script>
