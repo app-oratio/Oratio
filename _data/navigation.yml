@@ -5,6 +5,8 @@ desktop:
     url: "/liturgia/"
   - label: "Bíblia"
     url: "/biblia/"
+  - label: "Catecismo"
+    url: "/catecismo/"
   - label: "Orações"
     url: "/oracoes/"
   - label: "Novenas"
@@ -38,6 +40,11 @@ drawer_groups:
     links:
       - label: "Bíblia Sagrada"
         url: "/biblia/"
+  - id: "doutrina-igreja"
+    title: "Doutrina da Igreja"
+    links:
+      - label: "Catecismo da Igreja Católica"
+        url: "/catecismo/"
   - id: "oracoes-devocoes"
     title: "Orações e devoções"
     links:
