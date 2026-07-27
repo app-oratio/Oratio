@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{% assign unit = site.data.catechism_units[page.catechism_unit] %}
+{% assign all_units = site.catecismo | sort: 'paragraph_start' %}
+<div class="catechism-shell" data-catechism-root data-catechism-reader data-unit-slug="{{ page.catechism_unit }}">
+  <div class="container container--large catechism-reader-shell">
+    <nav class="breadcrumb catechism-reader-breadcrumb" aria-label="Navegação estrutural">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">Início</a></li>
+        <li><a href="{{ '/catecismo/' | relative_url }}">Catecismo</a></li>
+        <li aria-current="page">§§ {{ page.paragraph_start }}–{{ page.paragraph_end }}</li>
+      </ol>
+    </nav>
+
+    {% if unit %}
+    <header class="catechism-reader-header">
+      <div>
+        <p class="catechism-eyebrow">{{ page.part_label }} · §§ {{ page.paragraph_start }}–{{ page.paragraph_end }}</p>
+        <h1>{{ page.title }}</h1>
+        {% if page.structure_path and page.structure_path.size > 0 %}<p>{{ page.structure_path | join: ' · ' }}</p>{% endif %}
+      </div>
+      <button class="button button--tonal" type="button" data-catechism-complete aria-pressed="false">Marcar como concluída</button>
+    </header>
+
+    <section class="catechism-reader-controls" aria-label="Controles de leitura">
+      <div class="catechism-reader-select">
+        <label for="catechism-unit-select">Unidade</label>
+        <select id="catechism-unit-select" data-catechism-unit-select>
+          {% for option in all_units %}
+          <option value="{{ option.url | relative_url }}" {% if option.catechism_unit == page.catechism_unit %}selected{% endif %}>§§ {{ option.paragraph_start }}–{{ option.paragraph_end }} · {{ option.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <form class="catechism-inline-jump" data-catechism-jump-form>
+        <label for="catechism-reader-jump">Parágrafo</label>
+        <div><input id="catechism-reader-jump" type="number" min="1" inputmode="numeric" placeholder="Ex.: 27" data-catechism-jump-input><button class="button button--tonal" type="submit">Ir</button></div>
+        <span class="visually-hidden" data-catechism-jump-status aria-live="polite"></span>
+      </form>
+      <div class="catechism-font-controls" aria-label="Tamanho do texto">
+        <span>Texto</span>
+        <button class="icon-button" type="button" data-catechism-font="decrease" aria-label="Diminuir texto">A−</button>
+        <output data-catechism-font-value aria-live="polite">100%</output>
+        <button class="icon-button" type="button" data-catechism-font="increase" aria-label="Aumentar texto">A+</button>
+      </div>
+    </section>
+
+    <div class="catechism-reading-toolbar">
+      <label for="catechism-page-search">Localizar nesta unidade</label>
+      <input id="catechism-page-search" type="search" placeholder="Pesquisar palavra ou expressão" data-catechism-page-search>
+      <span data-catechism-page-search-status aria-live="polite"></span>
+    </div>
+
+    <article class="catechism-reading" data-catechism-reading>
+      {% for item in unit.items %}
+        {% if item.type == 'heading' %}
+          {% case item.level %}
+            {% when 2 %}<h2 class="catechism-heading">{{ item.text }}</h2>
+            {% when 3 %}<h3 class="catechism-heading">{{ item.text }}</h3>
+            {% when 4 %}<h4 class="catechism-heading">{{ item.text }}</h4>
+            {% else %}<h5 class="catechism-heading">{{ item.text }}</h5>
+          {% endcase %}
+        {% elsif item.type == 'paragraph' %}
+          <p id="paragrafo-{{ item.number }}" class="catechism-paragraph" data-catechism-paragraph data-paragraph-number="{{ item.number }}" tabindex="-1">
+            <a class="catechism-paragraph__number" href="#paragrafo-{{ item.number }}" aria-label="Parágrafo {{ item.number }}">{{ item.number }}.</a>
+            <span class="catechism-paragraph__text">{{ item.html }}</span>
+            <button class="catechism-paragraph__bookmark" type="button" data-catechism-bookmark="{{ item.number }}" aria-label="Salvar parágrafo {{ item.number }}" aria-pressed="false">☆</button>
+          </p>
+        {% endif %}
+      {% endfor %}
+    </article>
+
+    <div class="catechism-selection-tools" data-catechism-selection-tools hidden>
+      <span data-catechism-selection-label></span>
+      <button class="button button--text" type="button" data-catechism-copy>Copiar referência</button>
+      <button class="button button--text" type="button" data-catechism-share>Compartilhar</button>
+    </div>
+
+    <nav class="catechism-pagination" aria-label="Unidades do Catecismo">
+      {% if page.previous_url %}
+      <a class="catechism-pagination__item" href="{{ page.previous_url | relative_url }}"><span>Anterior</span><strong>{{ page.previous_title }}</strong></a>
+      {% else %}<span class="catechism-pagination__item is-disabled"><span>Anterior</span><strong>Início do Catecismo</strong></span>{% endif %}
+      {% if page.next_url %}
+      <a class="catechism-pagination__item catechism-pagination__item--next" href="{{ page.next_url | relative_url }}"><span>Próxima</span><strong>{{ page.next_title }}</strong></a>
+      {% else %}<span class="catechism-pagination__item catechism-pagination__item--next is-disabled"><span>Próxima</span><strong>Fim do Catecismo</strong></span>{% endif %}
+    </nav>
+    {% else %}
+    <div class="catechism-setup-state"><h1>Unidade indisponível</h1><p>Os dados desta unidade não foram gerados. Execute novamente o importador do Catecismo.</p></div>
+    {% endif %}
+  </div>
+</div>
+<script id="catechism-page-data" type="application/json">{"slug":{{ page.catechism_unit | jsonify }},"title":{{ page.title | jsonify }},"paragraphStart":{{ page.paragraph_start | jsonify }},"paragraphEnd":{{ page.paragraph_end | jsonify }},"url":{{ page.url | relative_url | jsonify }},"units":{{ site.data.catechism.units | jsonify }}}</script>

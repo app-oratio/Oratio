@@ -1,0 +1,94 @@
+---
+layout: default
+---
+{% assign catechism = site.data.catechism %}
+<div class="catechism-shell" data-catechism-root data-catechism-index>
+  <section class="catechism-hero">
+    <div class="container container--large">
+      <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <ol>
+          <li><a href="{{ '/' | relative_url }}">Início</a></li>
+          <li aria-current="page">Catecismo</li>
+        </ol>
+      </nav>
+      <div class="catechism-hero__content">
+        <p class="catechism-eyebrow">Doutrina da Igreja</p>
+        <h1>{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+      </div>
+      {% if catechism.generated %}
+      <form class="catechism-jump" data-catechism-jump-form>
+        <label for="catechism-paragraph-jump">Abrir um parágrafo</label>
+        <div class="catechism-jump__row">
+          <input id="catechism-paragraph-jump" type="number" min="1" max="{{ catechism.paragraph_max | default: catechism.paragraph_count }}" inputmode="numeric" placeholder="Ex.: 27" data-catechism-jump-input>
+          <button class="button button--primary" type="submit">Abrir parágrafo</button>
+        </div>
+        <p class="catechism-status" data-catechism-jump-status aria-live="polite">Informe o número oficial do parágrafo do Catecismo.</p>
+      </form>
+      <a class="catechism-resume" href="#" data-catechism-resume hidden>
+        <span>Continuar leitura</span>
+        <strong data-catechism-resume-title></strong>
+      </a>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section section--compact">
+    <div class="container container--large">
+      {% unless catechism.generated %}
+      <div class="catechism-setup-state" role="status">
+        <p class="catechism-eyebrow">Conteúdo ainda não gerado</p>
+        <h2>O leitor está instalado e pronto para receber o texto.</h2>
+        <p>Execute o gerador incluído em <code>tools/generate_catechism.py</code> com uma edição cuja publicação no site esteja autorizada. O processo criará automaticamente as páginas, os dados e o índice de leitura.</p>
+      </div>
+      {% else %}
+      {% unless catechism.complete %}
+      <div class="catechism-source-warning" role="alert">
+        <p class="catechism-eyebrow">Edição incompleta</p>
+        <h2>Esta fonte não contém todos os parágrafos do Catecismo.</h2>
+        <p>Estão disponíveis {{ catechism.paragraph_count }} parágrafos de um total esperado de {{ catechism.expected_paragraph_max }}. Faixas ausentes: {{ catechism.missing_ranges | join: ', ' }}.</p>
+      </div>
+      {% endunless %}
+      <div class="catechism-overview" aria-label="Resumo do Catecismo">
+        <div><strong>{{ catechism.paragraph_count }}</strong><span>parágrafos disponíveis</span></div>
+        <div><strong>{{ catechism.unit_count }}</strong><span>unidades de leitura</span></div>
+        <div><strong>{{ catechism.parts | size }}</strong><span>partes organizadas</span></div>
+      </div>
+
+      <div class="catechism-filter">
+        <label for="catechism-unit-filter">Pesquisar no índice</label>
+        <input id="catechism-unit-filter" type="search" placeholder="Parte, capítulo, tema ou intervalo" data-catechism-filter>
+      </div>
+
+      <div data-catechism-parts>
+        {% for part in catechism.parts %}
+        <section class="catechism-part" data-catechism-part>
+          <div class="section-heading">
+            <div>
+              <p class="catechism-eyebrow">{{ part.label }}</p>
+              <h2>{{ part.title }}</h2>
+            </div>
+            <p>{{ part.units | size }} unidades</p>
+          </div>
+          <div class="catechism-unit-grid">
+            {% for unit in part.units %}
+            <article class="catechism-unit-card" data-catechism-unit-card data-search="{{ part.title }} {{ unit.title }} {{ unit.path | join: ' ' }} parágrafos {{ unit.paragraph_start }} {{ unit.paragraph_end }}">
+              <p class="catechism-unit-card__range">§§ {{ unit.paragraph_start }}–{{ unit.paragraph_end }}</p>
+              <h3><a href="{{ unit.url | relative_url }}">{{ unit.title }}</a></h3>
+              {% if unit.path and unit.path.size > 0 %}<p>{{ unit.path | last }}</p>{% endif %}
+              <div class="catechism-unit-card__footer">
+                <span data-catechism-unit-progress="{{ unit.slug }}">Não iniciada</span>
+                <a href="{{ unit.url | relative_url }}">Ler</a>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+        {% endfor %}
+      </div>
+      <p class="catechism-empty-filter" data-catechism-empty-filter hidden>Nenhuma unidade corresponde à pesquisa.</p>
+      {% endunless %}
+    </div>
+  </section>
+</div>
+{% if catechism.generated %}<script id="catechism-index-data" type="application/json">{{ catechism.units | jsonify }}</script>{% endif %}
