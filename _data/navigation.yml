@@ -3,6 +3,8 @@ desktop:
     url: "/aplicativo/"
   - label: "Liturgia"
     url: "/liturgia/"
+  - label: "Bíblia"
+    url: "/biblia/"
   - label: "Orações"
     url: "/oracoes/"
   - label: "Novenas"
@@ -29,10 +31,13 @@ drawer_groups:
     links:
       - label: "Liturgia diária"
         url: "/liturgia/"
-      - label: "Calendário litúrgico"
-        url: "/calendario-liturgico/"
       - label: "Liturgia das Horas"
         url: "/liturgia-das-horas/"
+  - id: "sagrada-escritura"
+    title: "Sagrada Escritura"
+    links:
+      - label: "Bíblia Sagrada"
+        url: "/biblia/"
   - id: "oracoes-devocoes"
     title: "Orações e devoções"
     links:
@@ -61,7 +66,6 @@ drawer_groups:
         url: "/rosarios/"
       - label: "Coroas e coroinhas"
         url: "/coroas/"
-
   - id: "formacao-conteudo"
     title: "Formação e conteúdo"
     links:
