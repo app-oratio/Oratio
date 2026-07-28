@@ -1,0 +1,58 @@
+---
+layout: meditation
+title: O amor é uma luz que esclarece
+description: Um dos maiores males que nos causou o pecado de Adão é o obscurecimento da nossa razão pelo efeito das paixões
+  que nos ofuscam o espírito. Ora, o ofício do Espírito Santo é exatamente dissipar as trevas do pecado e ao mesmo tempo fazer-nos
+  conhecer a vaidade…
+permalink: /meditacoes/santo-afonso/pascoa/o-amor-e-uma-luz-que-esclarece/
+slug: o-amor-e-uma-luz-que-esclarece
+author_name: Santo Afonso Maria de Ligório
+author_slug: santo-afonso
+liturgical_time: Páscoa
+liturgical_time_slug: pascoa
+liturgical_title: Novena do Espírito Santo • 2º Dia
+meditation_order: 42
+source_day: 42
+total_in_period: 50
+meditation_id: santo-afonso/pascoa/o-amor-e-uma-luz-que-esclarece
+category: Páscoa
+search_type: Meditação
+tags:
+- Meditações
+- Santo Afonso Maria de Ligório
+- Páscoa
+aliases:
+- Novena do Espírito Santo • 2º Dia
+- O amor é uma luz que esclarece
+meditation_page: true
+image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/novena-de-pentecostes-2-20250422-160743-0041_orig.png
+image_alt: O amor é uma luz que esclarece — meditação de Santo Afonso Maria de Ligório
+previous_url: /meditacoes/santo-afonso/pascoa/o-amor-e-um-fogo-que-abrasa/
+previous_title: O amor é um fogo que abrasa
+next_url: /meditacoes/santo-afonso/pascoa/o-amor-e-uma-agua-que-apaga-a-sede/
+next_title: O amor é uma água que apaga a sede
+---
+
+<p class="meditation-epigraph">Ilumina oculos meos, me unquam obdormiam in morte – “Ilumina os meus olhos, para que eu não durma jamais na morte” (Sl 12, 4)</p>
+
+<aside class="meditation-summary"><p><strong>Sumário.</strong> Um dos maiores males que nos causou o pecado de Adão é o obscurecimento da nossa razão pelo efeito das paixões que nos ofuscam o espírito. Ora, o ofício do Espírito Santo é exatamente dissipar as trevas do pecado e ao mesmo tempo fazer-nos conhecer a vaidade do mundo, a importância da salvação eterna, o valor da graça e o amor imenso que Deus merece pela sua bondade e misericórdia. Se queremos ser iluminados, recorramos muitas vezes ao divino Paráclito.</p></aside>
+
+<section class="meditation-section"><h2>I</h2><p>Um dos maiores danos que nos causou o pecado de Adão é o obscurecimento da nossa razão pelo efeito das paixões que nos ofuscam o espírito. Muito desgraçada é a alma que se deixa dominar por alguma paixão! A paixão é uma nuvem, um véu, que nos impede de ver a verdade. Como pode fugir do mal aquele que o não conhece!? E este obscurecimento da nossa razão aumenta em proporção do número dos nossos pecados.</p></section>
+
+<p>Mas o Espírito Santo, que é chamado lux beatíssima – luz bemfazeja, com os seus esplendores divinos, não somente abrasa os nossos corações no seu santo amor, como também dissipa as nossas trevas, e nos faz conhecer a vaidade dos bens terrenos, o valor dos eternos, a importância da salvação, o preço da graça, a bondade de Deus, o amor infinito que ele merece e o imenso amor que nos tem.</p>
+
+<p>Animalis homo non percipit ea quae sunt Spiritus Dei (1) – “O homem animal não percebe as coisas que são do Espírito de Deus”. O homem chafurdado no lamaçal dos prazeres mundanos pouco percebe as verdades da fé. Eis porque o infeliz tem amor ao que devia odiar e odeia ao que devia amar. Santa Maria Madalena de Pazzi exclamava: O amor não é conhecido! O amor não é amado! Santa Teresa dizia igualmente que Deus não é amado porque não é conhecido. Também os santos pediam sem cessar ao Senhor luz e mais luz: Emitte lucem: ilumina tenebras meas: revela oculos meos – “Enviai vossa luz: dissipai minhas trevas: abri meus olhos”; porque, sem sermos esclarecidos, não podemos evitar os precipícios nem achar a Deus.</p>
+
+<section class="meditation-section"><h2>II</h2><p>Como fruto desta meditação tomemos a resolução de recorrer muitas vezes ao Espírito Santo nas dificuldades que encontramos não somente nos negócios espirituais da alma, mas também nos corporais, especialmente nas de mais graves consequências. Lembremo-nos, porém, de que Deus não nos comunicará sempre as suas luzes imediatamente; as mais das vezes se servirá, para tal fim, dos nossos Superiores e Pais espirituais que ele deixou como seus representantes na terra: Que vos audit, me audit, et qui vos spernit me spernit (2) – “Quem vos ouve, a mim ouve, e quem vos despreza, a mim despreza”.</p></section>
+
+<p>Santo e divino Espírito, creio que sois verdadeiramente Deus, e um só Deus com o Pai e o Filho. Adoro-Vos e reconheço-Vos por autor de todas as luzes com as quais me fizestes conhecer o mal que fiz ofendendo-Vos e quanto sou obrigado a amar-Vos. Graças Vos dou e me arrependo sumamente de vos haver ofendido. Merecia que me abandonásseis nas minhas trevas, mas vejo que ainda não me abandonastes.</p>
+
+<p>Ó Espírito eterno, continuai a esclarecer-me e a fazer-me conhecer sempre melhor a vossa bondade infinita e dai-me força para Vos amar no futuro de todo o meu coração. Ajuntai graça à graça, para que eu fique docemente unido a Vós e obrigado a não amar senão a Vós. Eu Vo-lo suplico pelos merecimentos de Jesus Cristo. Amo-Vos, ó meu soberano Bem, amo-Vos mais que a mim mesmo. Quero ser todo vosso; recebei-me e não permitais me afaste mais de Vós. – Ó Maria, minha Mãe, assisti-me sempre por vossa intercessão.</p>
+
+<section class="meditation-references" aria-label="Referências"><h2>Referências</h2>
+
+<p>(1) 1 Cor 2, 14</p>
+
+<p>(2) Lc 10, 16</p>
+
+</section>
