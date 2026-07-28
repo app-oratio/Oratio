@@ -24,8 +24,12 @@ layout: default
     </div>
     {% assign featured_period = meditation_periods | first %}
     {% if featured_period.image %}
+      {% assign featured_period_image = featured_period.image %}
+      {% unless featured_period_image contains '://' %}
+        {% assign featured_period_image = featured_period_image | relative_url %}
+      {% endunless %}
       <figure class="meditation-library-hero__image">
-        <img src="{{ featured_period.image }}" alt="Meditações católicas para acompanhar o ano litúrgico" width="960" height="640" loading="eager" decoding="async">
+        <img src="{{ featured_period_image }}" alt="Meditações católicas para acompanhar o ano litúrgico" width="960" height="640" loading="eager" decoding="async">
       </figure>
     {% endif %}
   </header>
@@ -66,7 +70,11 @@ layout: default
         <article class="meditation-period-card">
           <a href="{{ period.url | relative_url }}">
             <figure class="meditation-period-card__image">
-              <img src="{{ period.image }}" alt="{{ period.title | escape }}" width="720" height="480" loading="lazy" decoding="async">
+              {% assign period_image = period.image %}
+              {% unless period_image contains '://' %}
+                {% assign period_image = period_image | relative_url %}
+              {% endunless %}
+              <img src="{{ period_image }}" alt="{{ period.title | escape }}" width="720" height="480" loading="lazy" decoding="async">
             </figure>
             <div class="meditation-period-card__body">
               <span class="chip">{{ period.count }} meditações</span>

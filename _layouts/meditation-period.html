@@ -27,8 +27,12 @@ layout: default
       </div>
     </div>
     {% if page.image %}
+      {% assign period_hero_image = page.image %}
+      {% unless period_hero_image contains '://' %}
+        {% assign period_hero_image = period_hero_image | relative_url %}
+      {% endunless %}
       <figure class="meditation-period-hero__image">
-        <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="960" height="640" loading="eager" decoding="async">
+        <img src="{{ period_hero_image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="960" height="640" loading="eager" decoding="async">
       </figure>
     {% endif %}
   </header>
@@ -65,7 +69,11 @@ layout: default
         <article class="meditation-list-card" data-meditation-card data-meditation-id="{{ meditation.meditation_id | escape }}" data-search-text="{{ meditation.title | append: ' ' | append: meditation.liturgical_title | append: ' ' | append: meditation.description | downcase | escape }}">
           <a href="{{ meditation.url | relative_url }}">
             <figure class="meditation-list-card__image">
-              <img src="{{ meditation.image }}" alt="" width="686" height="800" loading="lazy" decoding="async">
+              {% assign meditation_card_image = meditation.image %}
+              {% unless meditation_card_image contains '://' %}
+                {% assign meditation_card_image = meditation_card_image | relative_url %}
+              {% endunless %}
+              <img src="{{ meditation_card_image }}" alt="" width="686" height="800" loading="lazy" decoding="async">
               <span class="meditation-list-card__sequence">{{ meditation.meditation_order }}</span>
             </figure>
             <div class="meditation-list-card__body">
