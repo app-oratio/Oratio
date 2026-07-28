@@ -16,6 +16,8 @@ columns:
 
   - title: "Conhecer"
     links:
+      - label: "Meditações"
+        url: "/meditacoes/"
       - label: "História dos Santos"
         url: "/santos/"
       - label: "Formações"

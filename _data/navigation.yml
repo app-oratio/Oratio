@@ -3,6 +3,8 @@ desktop:
     url: "/aplicativo/"
   - label: "Liturgia"
     url: "/liturgia/"
+  - label: "Meditações"
+    url: "/meditacoes/"
   - label: "Bíblia"
     url: "/biblia/"
   - label: "Catecismo"
@@ -76,6 +78,8 @@ drawer_groups:
   - id: "formacao-conteudo"
     title: "Formação e conteúdo"
     links:
+      - label: "Meditações diárias"
+        url: "/meditacoes/"
       - label: "História dos Santos"
         url: "/santos/"
       - label: "Formações"
