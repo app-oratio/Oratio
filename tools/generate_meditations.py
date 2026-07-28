@@ -365,7 +365,7 @@ def generate(source_dir: Path, output_root: Path) -> None:
             path = output_root / "_meditacoes" / AUTHOR_SLUG / period.slug / f"{item['_slug']}.md"
             write_text(path, yaml_front_matter(front_matter) + item["_body"])
 
-        first_image = meditations[0]["_image"]
+        period_cover_image = f"/assets/images/meditacoes/santo-afonso/{period.slug}.png"
         period_page_titles = {
             "advento": "Meditações de Santo Afonso para o Advento",
             "natal": "Meditações de Santo Afonso para o Tempo do Natal",
@@ -387,7 +387,7 @@ def generate(source_dir: Path, output_root: Path) -> None:
             "period_order": period.order,
             "meditation_page": True,
             "search_type": "Coleção de meditações",
-            "image": first_image,
+            "image": period_cover_image,
             "image_alt": f"Meditações de {AUTHOR_NAME} — {period.title}",
         }
         period_page_path = output_root / "pages" / "meditacoes" / AUTHOR_SLUG / f"{period.slug}.md"
@@ -401,7 +401,7 @@ def generate(source_dir: Path, output_root: Path) -> None:
                 "order": period.order,
                 "count": len(meditations),
                 "description": period.short_description,
-                "image": first_image,
+                "image": period_cover_image,
             }
         )
 
