@@ -1,0 +1,60 @@
+---
+layout: meditation
+title: Remorsos e desejos de um pecador moribundo
+description: Consideremos o estado infeliz de um moribundo que viveu mal, especialmente se era pessoa consagrada a Deus. Que
+  remorso lhe causará o pensamento de que, com os meios que o Senhor lhe proporcionou, até um pagão se faria santo! Desejará
+  então um instante daquele…
+permalink: /meditacoes/santo-afonso/tempo-comum-i/remorsos-e-desejos-de-um-pecador-moribundo/
+slug: remorsos-e-desejos-de-um-pecador-moribundo
+author_name: Santo Afonso Maria de Ligório
+author_slug: santo-afonso
+liturgical_time: Tempo Comum I
+liturgical_time_slug: tempo-comum-i
+liturgical_title: 2ª Semana depois da Epifania • Terça-feira
+meditation_order: 10
+source_day: 10
+total_in_period: 38
+meditation_id: santo-afonso/tempo-comum-i/remorsos-e-desejos-de-um-pecador-moribundo
+category: Tempo Comum I
+search_type: Meditação
+tags:
+- Meditações
+- Santo Afonso Maria de Ligório
+- Tempo Comum I
+aliases:
+- 2ª Semana depois da Epifania • Terça-feira
+- Remorsos e desejos de um pecador moribundo
+meditation_page: true
+image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/14-sem-ter-20250826-134426-0004.png
+image_alt: Remorsos e desejos de um pecador moribundo — meditação de Santo Afonso Maria de Ligório
+previous_url: /meditacoes/santo-afonso/tempo-comum-i/o-amor-vence-tudo/
+previous_title: O amor vence tudo
+next_url: /meditacoes/santo-afonso/tempo-comum-i/morte-feliz-dos-religiosos/
+next_title: Morte feliz dos religiosos
+---
+
+<p class="meditation-epigraph">Angustia superveniente, requirent pacem, et non erit – “Ao sobrevir-lhes de repente a angústia, eles buscarão a paz e não a haverá” (Ez 7, 25)</p>
+
+<aside class="meditation-summary"><p><strong>Sumário.</strong> Consideremos o estado infeliz de um moribundo que viveu mal, especialmente se era pessoa consagrada a Deus. Que remorso lhe causará o pensamento de que, com os meios que o Senhor lhe proporcionou, até um pagão se faria santo! Desejará então um instante daquele tempo que agora se perde, ou é empregado no pecado, mas em vão. Irmão meu, a fim de que não tenhamos tal desgraça, tomemos agora as resoluções que então havíamos de tomar. Talvez seja esta a última vez que Deus nos chama.</p></aside>
+
+<section class="meditation-section"><h2>I</h2><p>Como se deixam bem conhecer no momento da morte as verdades da fé, mas para maior tormento do moribundo que viveu mal, especialmente se era pessoa consagrada a Deus, já que, para o servir, tinha mais facilidade, mais exemplos, mais inspirações. Ó Deus, que pena será para essa pessoa pensar e dizer: “Repreendi os outros e fiz pior do que eles! Deixei o mundo e vivi ligado aos gozos, às vaidades e às afeições do mundo!” Que remorso lhe causará o pensamento de que, com as luzes que recebeu de Deus, até um pagão se teria feito santo! Que dor não sofrerá, lembrando-se de ter ridicularizado as práticas de piedade dos outros como fraquezas de espírito e de ter louvado certas máximas do mundo, de estima ou de amor próprio!</p></section>
+
+<p>Desiderium peccatorum peribit (1) — “O desejo dos pecadores perecerá”. Quanto será desejado na morte o tempo que se perde agora! Conta São Gregório, nos seus Diálogos, que um homem rico, mas de maus costumes, chamado Crisâncio, estando a ponto de morrer, gritava aos demônios que lhe apareciam visivelmente para se apoderar de sua alma: “Dai-me tempo, dai-me tempo até amanhã.” Respondiam os demônios: “Ó insensato, é nesta hora que pedes tempo? Tiveste tanto tempo e perdeste-o, empregaste-o a pecar, e agora é que pedes tempo? Já não há mais tempo.” O desgraçado continuava a gritar e a pedir socorro. Próximo dele achava-se um seu filho chamado Maximo, que era monge. Dizia-lhe o moribundo: “Socorre-me, filho, meu caro Maximo, socorre-me!” No entanto, com o rosto chamejante, volvia-se de um para outro lado do leito, e nesta agitação e gritos de desespero, expirou desgraçadamente.</p>
+
+<p>Ó céus! Durante a vida, aqueles desgraçados comprazem-se na sua loucura, mas na morte abrem os olhos e reconhecem quanto foram insensatos; mas isto então lhes serve tão somente para aumentar o seu desespero de remediarem o mal que fizeram. — Meu irmão, penso que ao leres estas reflexões, dirás: É verdade; é mesmo assim. Mas se é verdade, muito maior seria a tua loucura e a tua desgraça, se, reconhecendo a verdade na vida, não te aproveitasses dela a tempo. Esta mesma leitura, que acabas de fazer, ser-te-á no momento da morte uma espada de dor.</p>
+
+<section class="meditation-section"><h2>II</h2><p>Eia pois, já que te é dado tempo de evitar tão deplorável morte, dá-te pressa em aproveitá-lo: não demores até que venha o tempo em que não poderá remediar o mal. Não demores sequer um mês, nem sequer uma semana. Quem sabe se a luz que Deus te dá agora na sua misericórdia, não é a última graça e a última exortação que te faz? É loucura não querer pensar na morte, que é certa e da qual depende a eternidade; mas maior loucura ainda é pensar nela e não se preparar. Faze agora as reflexões e resoluções que farás então; agora com fruto, então sem fruto; agora com a confiança de te salvar, então com grande desconfiança de tua salvação. — A um fidalgo, que se despedia da corte de Carlos V, a fim de viver unicamente para Deus, perguntou o imperador, porque deixava a corte. “Porque é necessário”, respondeu ele, “que exista um intervalo de penitência entre uma vida desordenada e a morte.”</p></section>
+
+<p>Não, meu Jesus, não quero continuar a abusar da vossa misericórdia. Agradeço-Vos a luz que hoje me dais, e prometo-Vos mudar de vida. Quanto me consola o que dissestes: Convertimini ad me, et convertar ad vos (2) — “Convertei-vos a mim e eu me converterei a vós”. Afastei-me de Vós por amor das criaturas e das minhas miseráveis satisfações; agora deixo tudo e converto-me a Vós. Estou certo de que não me repulsareis, se eu quiser amar-Vos, porquanto me dizeis que estais pronto para me acolher em vossos braços. Convertar ad vos — “me converterei a vós”. Recebei-me na vossa graça, fazei-me conhecer o grande bem que em Vós possuo e o amor que tivestes para comigo, a fim de que não torne a deixar-Vos.</p>
+
+<p>— Perdoai-me, ó meu amado Jesus, perdoai-me; meu Amor, perdoai-me todos os desgostos que Vos tenho causado. Dai-me o vosso amor e fazei de mim o que quiserdes. Castigai-me, como entenderdes; privai-me de tudo, mas não me priveis da vossa graça. Venha o mundo todo a oferecer-me todos os seus bens; protesto que só Vos quero a Vós e nada mais.</p>
+
+<p>— Ó Maria, recomendai-me a vosso Filho; Ele vos concede tudo quanto pedis; em vós confio.</p>
+
+<section class="meditation-references" aria-label="Referências"><h2>Referências</h2>
+
+<p>(1) Sl 111, 10</p>
+
+<p>(2) Za 1, 3</p>
+
+</section>
