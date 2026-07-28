@@ -10,7 +10,7 @@ liturgical_time_slug: tempo-comum-ii
 period_order: 6
 meditation_page: true
 search_type: Coleção de meditações
-image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/pentecostes-seg-20250528-100300-0000_orig.png
+image: /assets/images/meditacoes/santo-afonso/tempo-comum-ii.png
 image_alt: Meditações de Santo Afonso Maria de Ligório — Tempo Comum II
 ---
 

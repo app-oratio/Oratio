@@ -10,7 +10,7 @@ liturgical_time_slug: tempo-comum-iii
 period_order: 7
 meditation_page: true
 search_type: Coleção de meditações
-image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/12-sem-dom-20250723-121552-0000_orig.png
+image: /assets/images/meditacoes/santo-afonso/tempo-comum-iii.png
 image_alt: Meditações de Santo Afonso Maria de Ligório — Tempo Comum III
 ---
 

@@ -10,7 +10,7 @@ liturgical_time_slug: advento
 period_order: 1
 meditation_page: true
 search_type: Coleção de meditações
-image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/1-domingo-20241126-234932-0000_orig.png
+image: /assets/images/meditacoes/santo-afonso/advento.png
 image_alt: Meditações de Santo Afonso Maria de Ligório — Advento
 ---
 

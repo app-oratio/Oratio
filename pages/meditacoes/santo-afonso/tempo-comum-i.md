@@ -10,7 +10,7 @@ liturgical_time_slug: tempo-comum-i
 period_order: 3
 meditation_page: true
 search_type: Coleção de meditações
-image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/5-mist-rio-gozoso-20240806-143231-0012.png
+image: /assets/images/meditacoes/santo-afonso/tempo-comum-i.png
 image_alt: Meditações de Santo Afonso Maria de Ligório — Tempo Comum I
 ---
 

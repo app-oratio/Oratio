@@ -10,7 +10,7 @@ liturgical_time_slug: natal
 period_order: 2
 meditation_page: true
 search_type: Coleção de meditações
-image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/25dez-20251216-114750-0000_orig.png
+image: /assets/images/meditacoes/santo-afonso/natal.png
 image_alt: Meditações de Santo Afonso Maria de Ligório — Natal
 ---
 
