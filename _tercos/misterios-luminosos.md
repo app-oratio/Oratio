@@ -34,22 +34,31 @@ sections:
         common_prayer: "pai-nosso"
       - id: "abertura-06"
         label: "Ave Maria - 1"
-        note: |-
+        prayer: |-
           <span style="color: var(--oratio-gold);">℣.</span> O Anjo do Senhor anunciou à Maria.
           <span style="color: var(--oratio-gold);">℟.</span> E ela concebeu do Espírito Santo.
-        common_prayer: "ave-maria"
+
+          Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.
+
+          Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.
       - id: "abertura-07"
         label: "Ave Maria - 2"
-        note: |-
+        prayer: |-
           <span style="color: var(--oratio-gold);">℣.</span> Eis aqui a escrava do Senhor.
           <span style="color: var(--oratio-gold);">℟.</span> Faça-se em mim segundo a Vossa palavra.
-        common_prayer: "ave-maria"
+
+          Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.
+
+          Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.
       - id: "abertura-08"
         label: "Ave Maria - 3"
-        note: |-
+        prayer: |-
           <span style="color: var(--oratio-gold);">℣.</span> E o Verbo se fez carne.
           <span style="color: var(--oratio-gold);">℟.</span> E habitou entre nós.
-        common_prayer: "ave-maria"
+
+          Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.
+
+          Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.
       - id: "abertura-09"
         label: "Glória ao Pai"
         prayer: "Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém."
