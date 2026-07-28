@@ -1,0 +1,94 @@
+---
+layout: default
+---
+{% assign author_meditations = site.meditacoes | where: 'author_slug', page.author_slug %}
+{% assign meditations = author_meditations | where: 'liturgical_time_slug', page.liturgical_time_slug | sort: 'meditation_order' %}
+{% assign first_meditation = meditations | first %}
+<div class="container container--large page-shell meditation-period-page" data-meditation-period data-period-slug="{{ page.liturgical_time_slug | escape }}">
+  <nav class="breadcrumb" aria-label="Navegação estrutural">
+    <ol>
+      <li><a href="{{ '/' | relative_url }}">Início</a></li>
+      <li><a href="{{ '/meditacoes/' | relative_url }}">Meditações</a></li>
+      <li><a href="{{ '/meditacoes/santo-afonso/' | relative_url }}">Santo Afonso</a></li>
+      <li aria-current="page">{{ page.liturgical_time }}</li>
+    </ol>
+  </nav>
+
+  <header class="meditation-period-hero">
+    <div class="meditation-period-hero__content">
+      <p class="eyebrow">{{ page.author_name }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+      <div class="meditation-period-actions">
+        {% if first_meditation %}
+          <a class="button button--primary" href="{{ first_meditation.url | relative_url }}" data-meditation-continue data-default-url="{{ first_meditation.url | relative_url }}">Começar pela primeira</a>
+        {% endif %}
+        <a class="button button--text" href="#lista-de-meditacoes">Ver todas</a>
+      </div>
+    </div>
+    {% if page.image %}
+      <figure class="meditation-period-hero__image">
+        <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="960" height="640" loading="eager" decoding="async">
+      </figure>
+    {% endif %}
+  </header>
+
+  <article class="meditation-period-intro prose">{{ content }}</article>
+
+  <section class="meditation-period-progress" aria-labelledby="period-progress-title">
+    <div>
+      <p class="eyebrow">Progresso neste tempo</p>
+      <h2 id="period-progress-title"><span data-meditation-read-count>0</span> de {{ meditations.size }} concluídas</h2>
+    </div>
+    <div class="meditation-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="{{ meditations.size }}" aria-valuenow="0" data-meditation-progress>
+      <span></span>
+    </div>
+    <button class="button button--text button--small" type="button" data-meditation-reset>Reiniciar progresso deste tempo</button>
+  </section>
+
+  <section class="meditation-list-section" id="lista-de-meditacoes" aria-labelledby="meditation-list-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ meditations.size }} leituras</p>
+        <h2 id="meditation-list-title">Todas as meditações</h2>
+      </div>
+      <p class="meditation-filter-count" aria-live="polite"><span data-meditation-visible-count>{{ meditations.size }}</span> resultados</p>
+    </div>
+
+    <div class="meditation-filter field-group">
+      <label for="meditation-filter-{{ page.liturgical_time_slug }}">Filtrar por título ou tema</label>
+      <input id="meditation-filter-{{ page.liturgical_time_slug }}" type="search" placeholder="Digite uma palavra" autocomplete="off" data-meditation-filter>
+    </div>
+
+    <div class="meditation-card-list" data-meditation-list data-page-size="18">
+      {% for meditation in meditations %}
+        <article class="meditation-list-card" data-meditation-card data-meditation-id="{{ meditation.meditation_id | escape }}" data-search-text="{{ meditation.title | append: ' ' | append: meditation.liturgical_title | append: ' ' | append: meditation.description | downcase | escape }}">
+          <a href="{{ meditation.url | relative_url }}">
+            <figure class="meditation-list-card__image">
+              <img src="{{ meditation.image }}" alt="" width="480" height="320" loading="lazy" decoding="async">
+              <span class="meditation-list-card__sequence">{{ meditation.meditation_order }}</span>
+            </figure>
+            <div class="meditation-list-card__body">
+              <div class="meditation-list-card__meta">
+                <span>{{ meditation.liturgical_title }}</span>
+                <span class="meditation-read-state" data-meditation-card-status>Não lida</span>
+              </div>
+              <h3>{{ meditation.title }}</h3>
+              <p>{{ meditation.description }}</p>
+              <span class="meditation-list-card__link">Ler meditação <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="meditation-empty" data-meditation-empty hidden>
+      <h3>Nenhuma meditação encontrada</h3>
+      <p>Tente outra palavra ou limpe o filtro para visualizar a coleção completa.</p>
+    </div>
+    <div class="meditation-load-more-wrap">
+      <button class="button button--tonal" type="button" data-meditation-load-more hidden>Mostrar mais meditações</button>
+    </div>
+  </section>
+</div>
+<script src="{{ '/assets/js/meditations.js' | relative_url }}" defer></script>

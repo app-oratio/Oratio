@@ -1,0 +1,102 @@
+---
+layout: default
+---
+{% assign period_data = site.data.meditation_periods | where: 'slug', page.liturgical_time_slug | first %}
+<div class="container container--large page-shell meditation-page" data-meditation-reader data-meditation-id="{{ page.meditation_id | escape }}" data-period-slug="{{ page.liturgical_time_slug | escape }}">
+  <nav class="breadcrumb" aria-label="Navegação estrutural">
+    <ol>
+      <li><a href="{{ '/' | relative_url }}">Início</a></li>
+      <li><a href="{{ '/meditacoes/' | relative_url }}">Meditações</a></li>
+      <li><a href="{{ '/meditacoes/santo-afonso/' | relative_url }}">Santo Afonso</a></li>
+      <li><a href="{{ period_data.url | relative_url }}">{{ page.liturgical_time }}</a></li>
+      <li aria-current="page">{{ page.title }}</li>
+    </ol>
+  </nav>
+
+  <header class="meditation-hero">
+    {% if page.image %}
+      <figure class="meditation-hero__image">
+        <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="960" height="640" loading="eager" decoding="async">
+      </figure>
+    {% endif %}
+    <div class="meditation-hero__content">
+      <span class="chip">{{ page.liturgical_time }}</span>
+      <p class="eyebrow">Meditação {{ page.meditation_order }} de {{ page.total_in_period }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="meditation-liturgical-title">{{ page.liturgical_title }}</p>
+      <p class="page-lead">{{ page.description }}</p>
+      <p class="meditation-author-line">Por {{ page.author_name }}</p>
+    </div>
+  </header>
+
+  {% if page.notes %}
+    <aside class="notice meditation-source-note"><strong>Nota para esta meditação:</strong> {{ page.notes }}</aside>
+  {% endif %}
+
+  <section class="meditation-reading-shell" aria-label="Leitura da meditação">
+    <div class="meditation-reading-progress" aria-hidden="true"><span data-meditation-scroll-progress></span></div>
+    <div class="meditation-reading-toolbar" aria-label="Ferramentas de leitura">
+      <div class="meditation-font-controls" aria-label="Tamanho do texto">
+        <span>Texto</span>
+        <button class="icon-button" type="button" data-meditation-font="decrease" aria-label="Diminuir texto">A−</button>
+        <output data-meditation-font-value aria-live="polite">100%</output>
+        <button class="icon-button" type="button" data-meditation-font="increase" aria-label="Aumentar texto">A+</button>
+      </div>
+      <div class="meditation-reading-actions">
+        <button class="button button--tonal button--small" type="button" data-meditation-copy>Copiar texto</button>
+        <button class="button button--primary button--small" type="button" data-meditation-toggle aria-pressed="false">Marcar como concluída</button>
+      </div>
+    </div>
+    <p class="status-message meditation-status" data-meditation-status aria-live="polite"></p>
+
+    <article class="meditation-prose" data-meditation-content>
+      {{ content }}
+    </article>
+
+    <div class="meditation-completion-card">
+      <div>
+        <h2>Concluiu esta meditação?</h2>
+        <p>Marque a leitura para atualizar seu progresso neste tempo litúrgico.</p>
+      </div>
+      <button class="button button--primary" type="button" data-meditation-toggle aria-pressed="false">Marcar como concluída</button>
+    </div>
+  </section>
+
+  {% include share-buttons.html %}
+
+  <nav class="meditation-navigation" aria-label="Meditação anterior e seguinte">
+    {% if page.previous_url %}
+      <a class="meditation-navigation__item meditation-navigation__item--previous" href="{{ page.previous_url | relative_url }}">
+        <span>Meditação anterior</span>
+        <strong>{{ page.previous_title }}</strong>
+      </a>
+    {% else %}
+      <span class="meditation-navigation__item is-disabled"><span>Meditação anterior</span><strong>Início do {{ page.liturgical_time }}</strong></span>
+    {% endif %}
+    {% if page.next_url %}
+      <a class="meditation-navigation__item meditation-navigation__item--next" href="{{ page.next_url | relative_url }}">
+        <span>Próxima meditação</span>
+        <strong>{{ page.next_title }}</strong>
+      </a>
+    {% else %}
+      <a class="meditation-navigation__item meditation-navigation__item--next" href="{{ period_data.url | relative_url }}">
+        <span>Fim da coleção</span>
+        <strong>Voltar ao {{ page.liturgical_time }}</strong>
+      </a>
+    {% endif %}
+  </nav>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "inLanguage": "pt-BR",
+  "author": {"@type": "Person", "name": {{ page.author_name | jsonify }}},
+  "isPartOf": {"@type": "CollectionPage", "name": {{ page.liturgical_time | prepend: 'Meditações de Santo Afonso — ' | jsonify }}, "url": {{ period_data.url | absolute_url | jsonify }}},
+  "image": {{ page.image | jsonify }}
+}
+</script>
+<script src="{{ '/assets/js/meditations.js' | relative_url }}" defer></script>

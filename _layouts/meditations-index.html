@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{% assign meditation_periods = site.data.meditation_periods | sort: 'order' %}
+{% assign meditation_authors = site.data.meditation_authors %}
+<div class="container container--large page-shell meditation-library" data-meditation-library>
+  <nav class="breadcrumb" aria-label="Navegação estrutural">
+    <ol>
+      <li><a href="{{ '/' | relative_url }}">Início</a></li>
+      <li aria-current="page">Meditações</li>
+    </ol>
+  </nav>
+
+  <header class="meditation-library-hero">
+    <div class="meditation-library-hero__content">
+      <p class="eyebrow">Leitura espiritual para cada dia</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+      <div class="meditation-library-hero__facts" aria-label="Informações do acervo">
+        <span><strong>{{ site.meditacoes.size }}</strong> meditações</span>
+        <span><strong>{{ meditation_periods.size }}</strong> tempos litúrgicos</span>
+        <span><strong>{{ meditation_authors.size }}</strong> autor{% if meditation_authors.size != 1 %}es{% endif %}</span>
+      </div>
+    </div>
+    {% assign featured_period = meditation_periods | first %}
+    {% if featured_period.image %}
+      <figure class="meditation-library-hero__image">
+        <img src="{{ featured_period.image }}" alt="Meditações católicas para acompanhar o ano litúrgico" width="960" height="640" loading="eager" decoding="async">
+      </figure>
+    {% endif %}
+  </header>
+
+  <section class="meditation-library-section" aria-labelledby="meditation-authors-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Autores espirituais</p>
+        <h2 id="meditation-authors-title">Escolha um autor</h2>
+      </div>
+    </div>
+    <div class="meditation-author-grid">
+      {% for author in meditation_authors %}
+        {% assign author_meditations = site.meditacoes | where: 'author_slug', author.slug %}
+        <a class="meditation-author-card" href="{{ author.url | relative_url }}">
+          <span class="meditation-author-card__monogram" aria-hidden="true">SA</span>
+          <span class="meditation-author-card__body">
+            <span class="chip">{{ author_meditations.size }} meditações</span>
+            <strong>{{ author.name }}</strong>
+            <span>{{ author.description }}</span>
+          </span>
+          <span class="meditation-card-arrow" aria-hidden="true">→</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="meditation-library-section" aria-labelledby="meditation-periods-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Ano litúrgico</p>
+        <h2 id="meditation-periods-title">Meditações por tempo litúrgico</h2>
+      </div>
+      <a class="button button--text" href="{{ '/meditacoes/santo-afonso/' | relative_url }}">Ver a coleção completa</a>
+    </div>
+    <div class="meditation-period-grid">
+      {% for period in meditation_periods %}
+        <article class="meditation-period-card">
+          <a href="{{ period.url | relative_url }}">
+            <figure class="meditation-period-card__image">
+              <img src="{{ period.image }}" alt="{{ period.title | escape }}" width="720" height="480" loading="lazy" decoding="async">
+            </figure>
+            <div class="meditation-period-card__body">
+              <span class="chip">{{ period.count }} meditações</span>
+              <h3>{{ period.title }}</h3>
+              <p>{{ period.description }}</p>
+              <span class="meditation-period-card__link">Abrir meditações <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="meditation-how" aria-labelledby="meditation-how-title">
+    <div>
+      <p class="eyebrow">Leitura contínua</p>
+      <h2 id="meditation-how-title">Seu progresso permanece neste dispositivo</h2>
+      <p>Marque as meditações concluídas, ajuste o tamanho do texto e retome a leitura pelo primeiro conteúdo ainda não lido. O progresso é salvo apenas no navegador, sem cadastro e sem envio de dados pessoais.</p>
+    </div>
+    <a class="button button--primary" href="{{ '/meditacoes/santo-afonso/advento/' | relative_url }}">Começar a leitura</a>
+  </section>
+</div>
+<script src="{{ '/assets/js/meditations.js' | relative_url }}" defer></script>
