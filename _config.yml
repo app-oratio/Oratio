@@ -74,6 +74,9 @@ collections:
   formacoes:
     output: true
     permalink: /formacoes/:name/
+  meditacoes:
+    output: true
+    permalink: /meditacoes/:path/
   biblia:
     output: true
     permalink: /biblia/:path/
@@ -167,6 +170,12 @@ defaults:
       type: formacoes
     values:
       layout: formation
+  - scope:
+      path: ""
+      type: meditacoes
+    values:
+      layout: meditation
+      meditation_page: true
   - scope:
       path: ""
       type: biblia

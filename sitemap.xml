@@ -22,6 +22,7 @@ sitemap: false
     | concat: site.devocionarios
     | concat: site.santos
     | concat: site.formacoes
+    | concat: site.meditacoes
     | concat: site.biblia
     | concat: site.catecismo %}
   {% for document in sitemap_documents %}
