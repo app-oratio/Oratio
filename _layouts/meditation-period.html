@@ -65,7 +65,7 @@ layout: default
         <article class="meditation-list-card" data-meditation-card data-meditation-id="{{ meditation.meditation_id | escape }}" data-search-text="{{ meditation.title | append: ' ' | append: meditation.liturgical_title | append: ' ' | append: meditation.description | downcase | escape }}">
           <a href="{{ meditation.url | relative_url }}">
             <figure class="meditation-list-card__image">
-              <img src="{{ meditation.image }}" alt="" width="480" height="320" loading="lazy" decoding="async">
+              <img src="{{ meditation.image }}" alt="" width="686" height="800" loading="lazy" decoding="async">
               <span class="meditation-list-card__sequence">{{ meditation.meditation_order }}</span>
             </figure>
             <div class="meditation-list-card__body">
