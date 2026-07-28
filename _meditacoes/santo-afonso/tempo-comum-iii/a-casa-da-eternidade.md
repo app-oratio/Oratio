@@ -1,0 +1,58 @@
+---
+layout: meditation
+title: A casa da eternidade
+description: 'Erramos quando chamamos nossa a casa na qual atualmente moramos. Em breve a casa do nosso corpo será a cova,
+  onde ficará até o dia do juízo; a casa da nossa alma será o céu ou o inferno, e ali ficará durante toda a eternidade. Meu
+  irmão, dize-me: se o Senhor…'
+permalink: /meditacoes/santo-afonso/tempo-comum-iii/a-casa-da-eternidade/
+slug: a-casa-da-eternidade
+author_name: Santo Afonso Maria de Ligório
+author_slug: santo-afonso
+liturgical_time: Tempo Comum III
+liturgical_time_slug: tempo-comum-iii
+liturgical_title: 17ª Semana depois de Pentecostes • Quarta-feira
+meditation_order: 39
+source_day: 39
+total_in_period: 112
+meditation_id: santo-afonso/tempo-comum-iii/a-casa-da-eternidade
+category: Tempo Comum III
+search_type: Meditação
+tags:
+- Meditações
+- Santo Afonso Maria de Ligório
+- Tempo Comum III
+aliases:
+- 17ª Semana depois de Pentecostes • Quarta-feira
+- A casa da eternidade
+meditation_page: true
+image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/17-sem-qua-20250925-190318-0000.png
+image_alt: A casa da eternidade — meditação de Santo Afonso Maria de Ligório
+previous_url: /meditacoes/santo-afonso/tempo-comum-iii/devemos-recear-que-o-primeiro-novo-pecado-seja-talvez-o-ultimo/
+previous_title: Devemos recear que o primeiro novo pecado seja talvez o último
+next_url: /meditacoes/santo-afonso/tempo-comum-iii/a-santa-missa-e-um-meio-eficaz-para-obtermos-as-gracas-de-deus/
+next_title: A Santa Missa é um meio eficaz para obtermos as graças de Deus
+---
+
+<p class="meditation-epigraph">Ibit homo in domum aeternitatis suae – “O homem irá à casa de sua eternidade” (Ecl 12, 5)</p>
+
+<aside class="meditation-summary"><p><strong>Sumário.</strong> Erramos quando chamamos nossa a casa na qual atualmente moramos. Em breve a casa do nosso corpo será a cova, onde ficará até o dia do juízo; a casa da nossa alma será o céu ou o inferno, e ali ficará durante toda a eternidade. Meu irmão, dize-me: se o Senhor te deixasse morrer neste instante, qual das duas casas seria a da tua alma?… Ah! Reflete bem: tantos há que não pensavam que seriam condenados e agora estão ardendo nos abismos do inferno!</p></aside>
+
+<section class="meditation-section"><h2>I</h2><p>Erramos chamando nossa casa na qual presentemente habitamos. Em breve, a casa do nosso corpo será uma cova, onde ficará até o dia do juízo; e a casa da nossa alma será o céu ou o inferno, e ali terá de ficar durante toda a eternidade. – À sepultura os cadáveres não vão por si mesmos, vão levados por outros; mas a alma irá por si mesma ao lugar que lhe caberá, ou de gozo eterno ou de eterno sofrimento. O homem irá à casa de sua eternidade. Conforme o homem pratica o bem ou o mal, dirige-se à casa do paraíso ou do inferno, e destas casas não se muda mais para outra.</p></section>
+
+<p>Os moradores da terra só em muitas vezes mudam de casa, ou por capricho ou por terem sido desalojados. Na eternidade não há mais mudança; ficar-se-á eternamente na casa na qual se entrou primeiro: Si ceciderit lignum ad austrum, sive ad aquilonem, in quocumque loco ceciderit, ibi erit (1) – “Se a árvore cair para a parte do meio-dia, ou para a do norte, em qualquer lugar onde cair, aí ficará”. Quem entrar no céu será eternamente feliz; quem cair no inferno será eternamente desgraçado. Quem entrar no céu, estará para sempre unido a Deus, para sempre em companhia dos Santos, para sempre em suprema paz e pleno contentamento, porque todo o Bem-aventurado estará repleto e saciado de gozo, sem recear jamais a sua perda. Ao contrário, quem entrar no inferno, estará para sempre afastado de Deus, para sempre ardendo no fogo no meio dos réprobos.</p>
+
+<p>Nem imaginemos que os sofrimentos do inferno sejam como os da terra, cujo rigor se sente menos pelo hábito. Assim como as delícias do céu jamais causarão fastio, mas parecerão sempre novas, como se fossem gozadas pela primeira vez; assim no inferno as penas nunca perderão seu rigor. De forma que os infelizes réprobos sofrerão durante toda a eternidade o mesmo tormento que sofreram no primeiro instante da sua entrada no inferno.</p>
+
+<section class="meditation-section"><h2>II</h2><p>“Ó eternidade!” exclama Santo Agostinho, “ó eternidade! Quem pensa em ti e não se converte a Deus, perdeu a razão ou a fé.” E São Cesário acrescenta: “Ai dos pecadores que entram na eternidade sem a terem conhecido, porque se descuidaram de pensar nela!” Os desgraçados terão atraído sobre si dois males irreparáveis; o primeiro será o caírem no abismo do fogo; o segundo, o não mais dele poderem sair durante toda a eternidade, porquanto a porta do inferno só se sabre para dar entrada e não para dar saída: Ingrediuntur et non egrediuntur.</p></section>
+
+<p>Não, os santos não fizeram demais internando-se nos desertos e em grutas, alimentando-se com ervas, e dormindo no chão, a fim de salvarem sua alma. Não, diz São Bernardo, não fizeram demais, porque, em se tratando da eternidade, nenhuma precaução é exagerada: Nulla nímia securitas, ubi periclitatur aeternitas. – Quando Deus nos visita com a cruz de alguma enfermidade, ou de qualquer outro mal, lembremo-nos do inferno que temos merecido e toda a tribulação se nos afigurará leve. Digamos então com Jó: Peccavi et vere deliqui, et ut eram dignus non recepi (2) – “Pequei e deveras delinqui, e não tenho sido castigado como merecia”.</p>
+
+<p>Meu Senhor, tenho-Vos ofendido e traído tantas vezes, e não tenho sido castigado como merecia; como poderia, pois, lastimar-me quando me enviais alguma tribulação, a mim, que merecia estar ardendo nos abismos infernais? – Suplico-Vos, meu Jesus: não me mandeis ao inferno, visto que no inferno não mais Vos poderia amar, mas Vos havia de odiar para sempre. Despojai-me de tudo: das riquezas, da saúde; mas não me priveis de Vós mesmo. Fazei que Vos ame e Vos bendiga sempre, e depois castigai-me, e fazei de mim segundo a vossa vontade. – Ó Mãe de Deus e minha Mãe Maria, pela vossa intercessão, que tudo obtém de Deus, impetrai-me a graça de ser todo d’Ele; fazei-o pelo amor do mesmo Jesus Cristo, vosso divino Filho.</p>
+
+<section class="meditation-references" aria-label="Referências"><h2>Referências</h2>
+
+<p>(1) Ecl 11, 3</p>
+
+<p>(2) Jó 33, 27</p>
+
+</section>

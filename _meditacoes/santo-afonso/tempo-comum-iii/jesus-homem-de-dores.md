@@ -1,0 +1,64 @@
+---
+layout: meditation
+title: Jesus, homem de dores
+description: Se queres ver um homem de dores, olha para Jesus Cristo sobre a cruz. Ei-Lo apoiando-se com todo o peso do corpo
+  sobre as chagas das mãos e dos pés trespassados; cada um dos membros sofre a sua dor particular sem alívio algum. Pois bem,
+  se para a nossa…
+permalink: /meditacoes/santo-afonso/tempo-comum-iii/jesus-homem-de-dores/
+slug: jesus-homem-de-dores
+author_name: Santo Afonso Maria de Ligório
+author_slug: santo-afonso
+liturgical_time: Tempo Comum III
+liturgical_time_slug: tempo-comum-iii
+liturgical_title: 16ª Semana depois de Pentecostes • Sexta-feira
+meditation_order: 34
+source_day: 34
+total_in_period: 112
+meditation_id: santo-afonso/tempo-comum-iii/jesus-homem-de-dores
+category: Tempo Comum III
+search_type: Meditação
+tags:
+- Meditações
+- Santo Afonso Maria de Ligório
+- Tempo Comum III
+aliases:
+- 16ª Semana depois de Pentecostes • Sexta-feira
+- Jesus, homem de dores
+meditation_page: true
+image: https://imcimage.weebly.com/uploads/1/4/4/8/144864775/16-sem-sex-20250826-134429-0016.png
+image_alt: Jesus, homem de dores — meditação de Santo Afonso Maria de Ligório
+previous_url: /meditacoes/santo-afonso/tempo-comum-iii/do-sagrado-viatico/
+previous_title: Do sagrado Viático
+next_url: /meditacoes/santo-afonso/tempo-comum-iii/maria-santissima-modelo-de-mortificacao/
+next_title: Maria Santíssima, modelo de Mortificação
+---
+
+<p class="meditation-epigraph">Virum dolorum et scientem infirmitatem – “Um homem de dores e experimentado nos trabalhos” (Is 53, 3)</p>
+
+<aside class="meditation-summary"><p><strong>Sumário.</strong> Se queres ver um homem de dores, olha para Jesus Cristo sobre a cruz. Ei-Lo apoiando-se com todo o peso do corpo sobre as chagas das mãos e dos pés trespassados; cada um dos membros sofre a sua dor particular sem alívio algum. Pois bem, se para a nossa Redenção bastava uma só lágrima e Jesus, porque é que ele quis sofrer tanto? É para agora temo-Lo amado tão pouco; temo-Lo mesmo ofendido tantas vezes! Permaneceremos sempre tão ingratos?</p></aside>
+
+<section class="meditation-section"><h2>I</h2><p>É assim que o profeta Isaías chamou o nosso Redentor: Homem de dores e experimentado nos trabalhos; isto é, experimentado e provado nos sofrimentos. Salviano, considerando as dores de Jesus Cristo, escreve: Ó amor de meu Jesus, não sei como Vos chamar, doce ou cruel. Parece-me que sois ao mesmo tempo um e outro; fostes doce para conosco, amando-nos tanto depois de tantas nossas ingratidões; mas fostes demasiado cruel para com Vós mesmo, aceitando uma vida cheio de dores e uma morte tão cruel, para satisfazer por nossos pecados.</p></section>
+
+<p>Diz o angélico Santo Tomás que, para nos salvar do inferno, Jesus Cristo abraçou a dor mais acerba e o desprezo mais profundo: Assumpsit dolorem summum, vituperationem summam. Para satisfazer por nós a justiça divina, bastava que Jesus sofresse uma dor qualquer; mas não, ele quis sofrer as injúrias mais ignominiosas e as dores mais cruciantes, para nos fazer compreender a malícia dos nossos pecados e o amor que seu Coração nutria para conosco. – Por isso Jesus disse, como escreve São Paulo: Corpus autem aptasti mihi – “Preparastes-me um corpo” (1). O corpo foi dado a Jesus Cristo exatamente para sofrer. Pelo que a sua carne foi sumamente sensitiva e delicada; sensitiva, de modo que sentia as dores mais vivamente; delicada e tão tenra, que cada golpe no corpo de Jesus abria uma ferida. Numa palavra, o corpo sacrosanto de Jesus foi um corpo formado expressamente para sofrer.</p>
+
+<p>Todas as dores que Jesus Cristo padeceu até o último suspiro, teve-as presentes desde o primeiro instante da sua Encarnação. Viu-as todas e abraçou-as todas de boa vontade, para cumprir a vontade de Deus, que desejava que fosse ele sacrificado pela nossa salvação: Tunc dixi: Ecce venio, ut faciam, Deus, voluntatem tuam – “Então disse: Eis que venho para fazer, ó Deus, a vossa vontade” (2). Foi esta oferta, acrescenta o Apóstolo, que nos alcançou a graça divina: por essa vontade é que temos sido santificados pela oblação do corpo de Jesus Cristo, feita uma vez (3).</p>
+
+<section class="meditation-section"><h2>II</h2><p>Quem deseja ver um homem de dores, olhe para Jesus Cristo sobre a cruz. Ei-Lo como se apoia com todo o peso do corpo sobre as chagas de suas mãos e pés trespassados. Cada membro tem o seu sofrimento particular sem algum alivio. É com muita exatidão que as três horas durante as quais Jesus Cristo esteve crucificado se chamam as três horas de agonia do Salvador; porquanto durante aquelas três horas sofreu uma agonia contínua e uma dor que aos poucos lhe ia tirando a vida; como finalmente lh’a tirou, visto que Jesus terminou a vida, morrendo de pura dor.</p></section>
+
+<p>Ó meu Salvador, quem Vos induziu a sacrificar a vida no meio de tantas dores pela nossa salvação? Responde São Paulo: Foi o amor que nos tinha. Sim, foi o amor quem levou Jesus a entregar o corpo aos açoites, a cabeça aos espinhos, as faces aos escarros e às bofetadas. as mãos e os pés à cruz, e finalmente sua vida à morte: Dilexit nos, et tradidit semetipsum pro nobis – “Ele nos amou e se entregou a si mesmo por nós” (4).</p>
+
+<p>Qual o cristão, ó meu Jesus, que poderá viver sem Vos amar, vendo-Vos feito homem de dores, e morto por ele na cruz? Mas então como é que eu pude viver tantos anos no vosso esquecimento; como é que pude dar tantos desgostos a um Deus que me amou tão excessivamente? Oh! Não ter eu morrido antes e nunca Vos ter ofendido! Ó amor de minha alma, quem me dera morrer por Vós, como Vós morrestes por mim! Amo-Vos, meu Jesus, de todo o coração, e prometo, sempre que disso me lembre, fazer atos de amor. Entre todas as criaturas possíveis me escolhestes para Vos amar; eu também Vos elejo, ó soberano Bem, para Vos amar sobre todos os outros bens.</p>
+
+<p>Meu Senhor, Vós ides adiante com a vossa cruz; não quero mais deixar de Vos seguir com a cruz que me queirais dar a levar. Abraço todas as mortificações e penas que me venham de vossas mãos. Basta que não me priveis da vossa graça, e estou satisfeito. – Maria, minha esperança, obtende-me de Deus a perseverança e a graça de o amar, e nada mais vos peço.</p>
+
+<section class="meditation-references" aria-label="Referências"><h2>Referências</h2>
+
+<p>(1) Hb 10, 5</p>
+
+<p>(2) Hb 10, 9</p>
+
+<p>(3) Hb 10, 10</p>
+
+<p>(4) Ef 5, 2</p>
+
+</section>
