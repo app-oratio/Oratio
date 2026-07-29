@@ -7,8 +7,6 @@ collection_name: novenas
 item_type: "Novena"
 ---
 
-<p class="notice">O progresso, as datas particulares e as intenções são locais, não exigem conta e podem ser transferidos por meio do arquivo de backup disponível em cada novena.</p>
-
 <nav class="devotion-type-links" aria-label="Outros itinerários de oração">
   <a href="{{ '/quaresmas/' | relative_url }}"><strong>Quaresmas</strong><span>Itinerários com calendário e possíveis dias excluídos</span></a>
   <a href="{{ '/trintenas/' | relative_url }}"><strong>Trintenas</strong><span>Roteiros de trinta dias</span></a>
