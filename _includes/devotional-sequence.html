@@ -1,5 +1,5 @@
-{% assign sequence_document = page %}
-{% assign sequence_sections = sequence_document.sections %}
+{% assign sequence_document = page | devotional_prayer_data %}
+{% assign sequence_sections = page.sections %}
 {% assign sequence_default_language = sequence_document['default-language'] | default: sequence_document.default_language | default: 'pt' %}
 {% assign sequence_has_sections = false %}
 {% if sequence_sections and sequence_sections.size > 0 %}
