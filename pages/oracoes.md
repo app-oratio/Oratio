@@ -7,8 +7,6 @@ collection_name: oracoes
 item_type: "Oração"
 ---
 
-<p class="notice">Os textos demonstrativos desta versão devem ser conferidos antes da publicação. Cada nova oração pode ser adicionada como um arquivo Markdown, sem alterar esta página.</p>
-
 <nav class="devotion-type-links" aria-label="Orações com contagem">
   <a href="{{ '/tercos/' | relative_url }}"><strong>Terços</strong><span>Roteiros com contagem individual de cada oração</span></a>
   <a href="{{ '/rosarios/' | relative_url }}"><strong>Rosários</strong><span>Mistérios e dezenas organizados por etapas</span></a>
