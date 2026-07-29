@@ -1,0 +1,39 @@
+---
+title: Dia 4 — Novena a Nossa Senhora do Brasil
+devotion: novena-a-nossa-senhora-do-brasil
+day: 4
+description: A minha alma engrandece o Senhor, e meu espírito exulta em Deus, meu Salvador, porque olhou para a condição humilde de sua serva.
+permalink: /novenas/novena-a-nossa-senhora-do-brasil/dia-4/
+default_language: pt
+language_toggle: false
+sequence_title: Orações do dia 4
+search: false
+sections:
+- id: secao-01-oracoes
+  title: Orações
+  prayers:
+  - id: oracao-001-sinal-da-cruz
+    common_prayer: sinal-da-cruz
+    language_toggle: false
+  - id: oracao-002-maria-exemplo-de-confianca-na-vitoria
+    label: Maria, exemplo de confiança na vitória
+    prayer: |-
+      Ó fidelíssima Virgem Maria, que guardáveis em vosso coração todos os prodígios de Deus, meditando-os quando vossa alma estava angustiada e buscando sempre em Deus vosso refúgio, rogo-vos me obtenhais a graça de imitar vosso exemplo, estendendo a Ele minhas mãos quando o alento em mim se extinguir, e nEle colocando minha esperança.
+      Alcançai esta mesma graça a todos os que me são caros nesta vida, para que no Céu se transforme em alegria a tristeza dos que nesta terra choram e se lamentam. Amém.
+    language_toggle: false
+  - id: oracao-003-oracao
+    label: Oração
+    prayer: Rogai por nós, Nossa Senhora do Brasil, para que sejamos dignos das promessas de Cristo.
+    language_toggle: false
+  - id: oracao-004-sinal-da-cruz
+    common_prayer: sinal-da-cruz
+    language_toggle: false
+  meditation: "### Confiança na Vitória\n\nA minha alma engrandece o Senhor, e meu espírito exulta em Deus, meu Salvador, porque olhou para a condição humilde de sua serva. Todas as gerações, desde agora, me chamarão bem-aventurada, porque o Poderoso fez por mim grandes coisas. Santo é o seu nome, e sua misericórdia se estende, de geração em geração, sobre aqueles que o temem. Ele manifestou poder com o seu braço: dispersou os soberbos nos pensamentos de seu coração. Depôs os poderosos de seus tronos e exaltou os de condição humilde. Encheu de bens os famintos e despediu os ricos sem nada. Amparou Israel, seu servo, lembrando-se da misericórdia, como prometera a nossos pais, a Abraão e à sua descendência, para sempre. (Lc 1, 46-55)\nMeu Deus, meu Deus, por que me abandonaste? (Mc 15, 34)\n\nA Quarta Palavra de Jesus, aquele “Eloí, eloí, lemá sabactâni?”, não foi o clamor de um desesperado: Nosso Senhor aludia ao Salmo 21, escrito mil anos antes pelo rei Davi. O cântico, de fato, começa como\
+    \ um lamento, repleto de profecias cumpridas na Paixão: “Riem de mim todos aqueles que me vêem”, “Transpassaram minhas mãos e os meus pés”, “Eles repartem entre si as minhas vestes, e sorteiam entre si a minha túnica”... Logo adiante, no entanto, o Salmo se converte numa confiante profissão de fé na soberania e no amor de Deus: “Vós que temeis ao Senhor Deus, dai-lhe louvores (...), porque Deus não desprezou nem rejeitou a miséria do que sofre sem amparo”; “ao Senhor é que pertence a realeza; Ele domina sobre todas as nações”.\nNossa Senhora, que como judia devota conhecia bem as Escrituras, certamente captou a alusão – e deve-se ter lembrado de sua própria Quarta Palavra, o cântico de louvor que brotara de seu coração 33 anos antes, em visita a sua prima Isabel (Lc 1, 46-55).\nDe fato, existem paralelos notáveis entre as duas cenas. Por um lado, nenhum dos casos era, sob a ótica humana, particularmente alvissareiro: um “esquecido por Deus”, ultrajado e humilhado na Cruz parecia tudo\
+    \ menos um vitorioso; e uma desconhecida menina de um insignificante vilarejo da Judeia tinha tudo para ser engolfada pelo esquecimento, com o tempo. Os dois momentos, por outro lado, foram marcados pela confiança em meio à escuridão: Jesus proclamava sua vitória antes de a batalha terminar, em meio às trevas que recobriram a terra; Maria afirmava o senhorio de um Senhor ainda não nascido, e guardado no breu de seu ventre.\nNas duas cenas, em suma, transparece com particular vigor a virtude bem propriamente cristã da esperança – aquela “pela qual desejamos o Reino dos céus e a vida eterna como nossa felicidade, pondo toda a nossa confiança nas promessas de Cristo e apoiando-nos, não nas nossas forças, mas no socorro da graça do Espírito Santo”[8]\nA verdadeira esperança é muito diferente do mero otimismo. Uma pessoa pode ser otimista por uma disposição natural de seu temperamento – e esta inclinação, em si mesma involuntária, será boa ou ruim conforme sua ordenação para o bem. De que\
+    \ adianta, afinal, um otimismo que nos cega à realidade em nosso entorno?\nHá também outros tipos de otimismo, originados de ideologias segundo as quais o futuro da humanidade fatalmente caminharia para uma sociedade perfeitamente sadia e livre de conflitos. Tampouco este otimismo ideológico se confunde nossa esperança cristã – pois nele a crença no futuro não se apoia na amorosa Providência de Deus, mas numa suposta marcha inexorável da história por meio das revoluções sociais ou do progresso técnico-científico do homem. No fundo, “o otimismo ideológico não passa da fachada de um mundo sem esperança, um mundo que por meio dessa fachada ilusória deseja esconder seu próprio desespero. Só assim se explica a angústia desmedida e irracional, esse temor traumático e violento, que surge quando algum acidente no desenvolvimento técnico ou econômico desperta dúvidas quanto ao dogma do progresso”[9]\nDe fato, é precisamente diante das adversidades (“dito em cristão”, da Cruz![10]) que se nota\
+    \ toda a força sobrenatural da esperança cristã. H. G. Wells era um ateu e otimista ideológico: em 1902, ao final de um século de enormes progressos no conhecimento humano, ele profetizava um futuro brilhante em que os descendentes do homem ainda haveriam de rir-se, manuseando as estrelas[11]; já em 1939, após os horrores da 1a Guerra e na iminência da 2a, o mesmo Wells se lamuriava da indiferença da natureza perante o homem, “rapidamente arrastado rumo à degradação, ao sofrimento e à morte”[12].\nA reação de um cristão perante a Cruz é completamente oposta: “insultados, abençoamos; perseguidos, suportamos; caluniados, consolamos! Chegamos a ser como que o lixo do mundo, a escória de todos até agora...” (1 Cor 4, 12-13). Venha o que vier, o cristão sabe que a vitória final está garantida: “Quem nos separará do amor de Cristo? A tribulação? A angústia? A perseguição? A fome? A nudez? O perigo? A espada? (...) Estou persuadido de que nem a morte, nem a vida, nem os anjos, nem os principados,\
+    \ nem o presente, nem o futuro, nem as potestades, nem as alturas, nem os abismos, nem outra qualquer criatura nos poderá apartar do amor que Deus nos testemunha em Cristo Jesus, nosso Senhor” (Rm 8, 35.38-39).\n“Tu vês a diferença! Agora, escolhe! Escorregarás até um desespero abissal, ou antes, como Cristo na escuridão que encobriu a terra ao meio dia, e como Maria antes que sua Árvore da Vida tivesse deitado raízes na terra, confiarás em Deus, em sua misericórdia e em sua vitória?”[13]\nTerminemos esta meditação com um conselho prático: quando recebermos em nossos ombros uma cruz que nos aflija, levemo-la à Santa Missa diária. No momento da consagração, entreguemo-la ao Senhor, repetindo-Lhe o que Ele mesmo nos diz: “Isto é meu corpo! Isto é meu sangue! Toma-os para ti: são teus. Não me importa que os acidentes ou aparências de minha vida permaneçam como estão, com meu trabalho diário e meus deveres rotineiros. Mas aquilo que eu sou substancialmente: toma-o, consagra-o, enobrece-o,\
+    \ espiritualiza-o; muda minha cruz num crucifixo, de modo que eu já não seja meu, mas teu, ó Divino Amor!” \n\n______________\n8\\.  Catecismo da Igreja Católica, n. 1817.\n9\\. Joseph Ratzinger, Olhar para Cristo.\n10\\. São Josemaria Escrivá,  Sulco, n. 52\n11\\. The Discovery of the Future.\n12\\. The Fate of Homo Sapiens.\n13\\. Fulton Sheen, Seven Words of Jesus and Mary."
+theme: Confiança na Vitória
+---

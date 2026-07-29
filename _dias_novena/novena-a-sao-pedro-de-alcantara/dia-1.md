@@ -1,0 +1,75 @@
+---
+title: Dia 1 — Novena a São Pedro de Alcântara
+devotion: novena-a-sao-pedro-de-alcantara
+day: 1
+description: 'Glorioso São Pedro de Alcântara, que, sentindo, em vossa alma, uma grande fome de céu, soubeste renunciar a todas as riquezas e prazeres do mundo: dai-nos força e decisão para apartar de nós tudo quanto impede nossa…'
+permalink: /novenas/novena-a-sao-pedro-de-alcantara/dia-1/
+default_language: pt
+language_toggle: false
+sequence_title: Orações do dia 1
+search: false
+sections:
+- id: secao-01-oracoes
+  title: Orações
+  prayers:
+  - id: oracao-001-sinal-da-cruz
+    common_prayer: sinal-da-cruz
+    language_toggle: false
+  - id: oracao-002-oracao-inicial
+    label: Oração Inicial
+    prayer: 'Deus e Senhor nosso, que nos dais, em vossos santos, admiráveis exemplos de virtudes, e que, no bem-aventurado São Pedro de Alcântara, nos apresentais um modelo acabado de oração, de humildade, de penitência e de caridade ardente: Fazei que copiemos, em nosso coração, tão eximias virtudes, e que apenas na cruz e na mortificação, que são chaves do céu, ponhamos, como São Pedro, nossas maiores complacências. Amém.'
+    language_toggle: false
+  - id: oracao-003-oracao
+    label: Oração
+    prayer: 'Glorioso São Pedro de Alcântara, que, sentindo, em vossa alma, uma grande fome de céu, soubeste renunciar a todas as riquezas e prazeres do mundo: dai-nos força e decisão para apartar de nós tudo quanto impede nossa futura salvação. Amém.'
+    language_toggle: false
+  - id: oracao-004-pai-nosso
+    common_prayer: pai-nosso
+    language_toggle: false
+  - id: oracao-005-ave-maria
+    common_prayer: ave-maria
+    language_toggle: false
+  - id: oracao-006-gloria-ao-pai
+    label: Glória ao Pai
+    prayer: |-
+      Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém.
+
+      Pede-se a graça que se deseja alcançar com a novena.
+    language_toggle: false
+  - id: oracao-007-responsorio
+    label: Responsório
+    prayer: |-
+      Soberano Redentor,
+      a quem Pedro serviu fiel
+      todo o tempo de sua vida,
+      de modo que detida
+      foi vossa ira por ele:
+
+      Fazei, Deus meu, o favor
+      de que seja concedida
+      nossa súplica rendida
+      por seu mérito e vosso amor.
+
+      Pois, Senhor,
+      destes palavra cumprida
+      de que, o que em seu nome peça,
+      vos teria por devedor:
+
+      Fazei, Deus meu, o favor
+      de que seja concedida
+      nossa súplica rendida
+      por seu mérito e vosso amor.
+
+      Rogai, Pedro, por nós
+      à divina Bondade,
+      para que assim consigamos
+      sua soberana Piedade. Amém.
+    language_toggle: false
+  - id: oracao-008-oracao-final
+    label: Oração Final
+    prayer: 'Onipotente e sempre eterno Deus, que, por vossos santos, vos dignas fazer sempre maravilhas: vos rogamos humildemente que, assim como tens prometido escutar, misericordioso, os rogos dos que vos implorem por meio de São Pedro de Alcântara, assim atendas agora, pelos méritos do mesmo, as súplicas que vos fazemos, e derrames, sobre nós, o saudável rocío de vossa bênção, para que, livres de todo mal, mereçamos chegar felizmente ao porto de vossa misericórdia. Por Jesus Cristo nosso Senhor. Amém.'
+    language_toggle: false
+  - id: oracao-009-sinal-da-cruz
+    common_prayer: sinal-da-cruz
+    language_toggle: false
+---
