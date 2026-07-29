@@ -6,5 +6,3 @@ permalink: /triduos/
 collection_name: triduos
 item_type: "Tríduo"
 ---
-
-<p class="notice">Mesmo nos roteiros mais breves, cada dia pode possuir título temático, data própria e marcação individual de conclusão.</p>
