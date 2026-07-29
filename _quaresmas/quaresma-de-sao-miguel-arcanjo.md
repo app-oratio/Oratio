@@ -10,7 +10,7 @@ days: 40
 calendar:
   base_month: 9
   base_day: 29
-  skip_weekdays: []
+  skip_weekdays: [0]
 calendar_source: fixed
 ---
 
