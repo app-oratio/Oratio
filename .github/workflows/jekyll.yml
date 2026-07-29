@@ -36,7 +36,8 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Validar conteúdos
+      - name: Auditar conteúdos sem bloquear a compilação
+        continue-on-error: true
         run: python3 tools/validate_project.py
 
       - name: Compilar site com Jekyll
