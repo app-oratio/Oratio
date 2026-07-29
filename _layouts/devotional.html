@@ -21,14 +21,12 @@ layout: default
     {% assign devotional_has_count = true %}
   {% endif %}
 {% endif %}
-
 <div class="container container--large page-shell devotional-book-layout"
   data-devotional-content
   data-devotional-id="{{ devotional_content_id | strip | escape }}"
   data-default-language="{{ devotional_default_language | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Conteúdo demonstrativo' text='Revise este devocionário antes de utilizá-lo como conteúdo oficial.' %}{% endif %}
-
   <article>
     <header class="devotional-hero devotional-book-hero">
       {% include devotional-cover.html image=page.image alt=page.image_alt label=page.category class='devotional-book-cover' width=960 height=640 %}
@@ -49,17 +47,14 @@ layout: default
         {% endif %}
       </div>
     </header>
-
     <noscript>
       <p class="notice notice--warning">O texto permanece disponível sem JavaScript, porém contagens, progresso e alternância de idioma dependem dele.</p>
     </noscript>
-
     <div class="devotional-book-reading" data-prayer-copy-source>
       {% include reading-tools.html copy_label='Copiar devocionário' %}
-      {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='devotional-book-sequence-title' progress_id='devotional-book-progress-title' kicker='Caminho de oração' heading=page.sequence_title %}
+      {% include devotional-sequence.html content=content anchor='roteiro' heading_id='devotional-book-sequence-title' progress_id='devotional-book-progress-title' kicker='Caminho de oração' heading=page.sequence_title %}
       <p class="status-message" data-prayer-status aria-live="polite"></p>
     </div>
-
     {% include prayer-intentions.html key=devotional_intention_key anchor='intencoes' %}
     {% include share-buttons.html %}
   </article>

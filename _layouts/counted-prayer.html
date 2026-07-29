@@ -22,7 +22,6 @@ layout: default
     {% assign counted_has_count = true %}
   {% endif %}
 {% endif %}
-
 <div class="container container--large page-shell counted-prayer-layout"
   data-devotional-content
   data-devotional-id="{{ counted_id | strip | escape }}"
@@ -30,7 +29,6 @@ layout: default
   data-legacy-counted="true">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Roteiro demonstrativo' text='Este conteúdo reduzido existe para apresentar o motor universal. Substitua-o por um roteiro integral e revisado antes da publicação.' %}{% endif %}
-
   <article>
     <header class="devotional-hero counted-prayer-hero">
       {% include devotional-cover.html image=page.image alt=page.image_alt label=beads_type class='counted-prayer-cover' width=960 height=640 %}
@@ -51,7 +49,6 @@ layout: default
         {% endif %}
       </div>
     </header>
-
     <noscript>
       {% if counted_has_count %}
         <p class="notice notice--warning">O roteiro e os textos continuam disponíveis sem JavaScript, porém a contagem, o progresso e a alternância individual de idioma exigem que ele esteja ativado.</p>
@@ -59,13 +56,11 @@ layout: default
         <p class="notice notice--warning">O roteiro e os textos continuam disponíveis sem JavaScript, porém a alternância individual de idioma exige que ele esteja ativado.</p>
       {% endif %}
     </noscript>
-
     <div class="counted-prayer-reading" data-prayer-copy-source>
       {% include reading-tools.html copy_label='Copiar roteiro' %}
-      {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='counted-sequence-title' progress_id='counted-progress-title' kicker='Roteiro passo a passo' heading=page.sequence_title %}
+      {% include devotional-sequence.html content=content anchor='roteiro' heading_id='counted-sequence-title' progress_id='counted-progress-title' kicker='Roteiro passo a passo' heading=page.sequence_title %}
       <p class="status-message" data-prayer-status aria-live="polite"></p>
     </div>
-
     {% include prayer-intentions.html key=intention_key anchor='intencoes' %}
     {% include share-buttons.html %}
   </article>

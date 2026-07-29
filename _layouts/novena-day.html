@@ -26,7 +26,6 @@ layout: default
 {% assign day_default_language = page['default-language'] | default: page.default_language | default: devotion['default-language'] | default: devotion.default_language | default: 'pt' %}
 {% assign day_cover_image = devotion.image %}
 {% assign day_cover_alt = devotion.image_alt | default: devotion.title %}
-
 <div class="container container--medium page-shell novena-day devotion-day-layout"
   data-devotion-progress
   data-devotion-page="day"
@@ -47,7 +46,6 @@ layout: default
   data-default-language="{{ day_default_language | escape }}">
   {% include breadcrumb.html %}
   {% if page.demo %}{% include alert-message.html type='warning' title='Dia demonstrativo' text='Este texto breve demonstra o funcionamento do acompanhamento local.' %}{% endif %}
-
   <header class="devotional-hero devotion-day-hero">
     {% include devotional-cover.html image=day_cover_image alt=day_cover_alt label=devotion_type class='devotion-day-cover' width=960 height=640 %}
     <div class="devotional-hero__content content-header content-header--center devotion-day-header">
@@ -62,11 +60,9 @@ layout: default
       </p>
     </div>
   </header>
-
   <noscript>
     <p class="notice notice--warning">O texto deste dia permanece disponível, porém a data calculada, o progresso, as contagens, os idiomas e as intenções exigem JavaScript ativado.</p>
   </noscript>
-
   <section class="day-progress-card" aria-label="Progresso do itinerário">
     <div class="day-progress-card__summary">
       <div>
@@ -79,13 +75,11 @@ layout: default
       <span data-progress-bar></span>
     </div>
   </section>
-
   <div data-prayer-copy-source>
     {% include reading-tools.html copy_label='Copiar este dia' %}
-    {% include devotional-sequence.html document=page content=content anchor='roteiro' heading_id='day-sequence-title' progress_id='day-sequence-progress-title' kicker='Roteiro deste dia' heading=page.sequence_title %}
+    {% include devotional-sequence.html content=content anchor='roteiro' heading_id='day-sequence-title' progress_id='day-sequence-progress-title' kicker='Roteiro deste dia' heading=page.sequence_title %}
     <p class="status-message" data-prayer-status aria-live="polite"></p>
   </div>
-
   <div class="completion-card devotion-day-completion">
     <label class="check-control">
       <input type="checkbox" data-day-complete>
@@ -97,9 +91,7 @@ layout: default
       <p class="last-update">Última atualização: <time data-progress-updated>nenhuma</time></p>
     </div>
   </div>
-
   {% include prayer-intentions.html key=intention_key compact=true anchor='intencoes' %}
-
   <nav class="content-navigation" aria-label="Navegação entre os dias">
     {% if previous_day %}
       <a class="button button--tonal" href="{{ previous_day.url | relative_url }}">{% include icon.html name='arrow-left' %}<span>Dia anterior</span></a>

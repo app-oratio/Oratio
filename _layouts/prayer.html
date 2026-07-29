@@ -5,7 +5,6 @@ layout: default
 {% assign prayer_common = site.data.common_prayers[prayer_common_key] %}
 {% assign prayer_default_language = page['default-language'] | default: page.default_language | default: prayer_common['default-language'] | default: prayer_common.default_language | default: 'pt' %}
 {% capture prayer_content_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
-
 <div class="container container--large page-shell prayer-layout"
   data-devotional-content
   data-devotional-id="{{ prayer_content_id | strip | escape }}"
@@ -27,13 +26,11 @@ layout: default
         {% endif %}
       </div>
     </header>
-
     <div class="prayer-reading-shell" data-prayer-copy-source>
       {% include reading-tools.html copy_label='Copiar oração' %}
-      {% include devotional-sequence.html document=page content=content hide_heading=true heading_id='prayer-sequence-title' progress_id='prayer-sequence-progress-title' %}
+      {% include devotional-sequence.html content=content hide_heading=true heading_id='prayer-sequence-title' progress_id='prayer-sequence-progress-title' %}
       <p class="status-message" data-prayer-status aria-live="polite"></p>
     </div>
-
     {% capture prayer_intention_key %}prayer:{{ page.slug }}{% endcapture %}
     {% include prayer-intentions.html key=prayer_intention_key anchor='intencoes' %}
     {% include share-buttons.html %}
