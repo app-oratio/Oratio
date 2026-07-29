@@ -1,7 +1,4 @@
 {% assign sequence_document = page %}
-{% if include.document %}
-  {% assign sequence_document = include.document %}
-{% endif %}
 {% assign sequence_sections = sequence_document.sections %}
 {% assign sequence_default_language = sequence_document['default-language'] | default: sequence_document.default_language | default: 'pt' %}
 {% assign sequence_has_sections = false %}
