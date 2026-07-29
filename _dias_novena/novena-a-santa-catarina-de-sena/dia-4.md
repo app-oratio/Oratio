@@ -41,7 +41,7 @@ sections:
     label: Oração Final
     prayer: Espírito Santo, vem ao meu coração, e pela tua potência traz consigo, Deus, e dá-me caridade com temor. Guarda-me, Cristo, de todo mal pensamento; Aquece-me e inflama-me do teu santíssimo Amor, para que cada pena me pareça leve. Meu Santo Pai e meu doce Senhor, ajuda-me agora em cada uma de minhas necessidades. Cristo Amor. Cristo Amor. Amém.
     language_toggle: false
-  - id: oracao-008-oracao-feita-por-santa-catarina-de-sena-aos-pes-
+  - id: oracao-008-oracao-feita-por-santa-catarina-de-sena-aos-pes
     label: Oração feita por Santa Catarina de Sena aos pés do crucifixo ao Precioso Sangue de Jesus
     prayer: |-
       Precioso sangue, Oceano de Misericórdia Divina: Flua sobre nós.

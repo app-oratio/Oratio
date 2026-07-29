@@ -79,7 +79,7 @@ sections:
     common_prayer: gloria-ao-pai
     language_toggle: false
     count: 3
-  - id: oracao-017-em-honra-de-sao-francisco-de-assis-para-obter-o-
+  - id: oracao-017-em-honra-de-sao-francisco-de-assis-para-obter-o
     common_prayer: gloria-ao-pai
     label: Em honra de São Francisco de Assis para obter o dom da pureza
     language_toggle: false

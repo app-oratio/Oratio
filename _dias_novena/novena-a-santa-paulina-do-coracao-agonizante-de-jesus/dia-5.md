@@ -36,7 +36,7 @@ sections:
   - id: oracao-007-gloria-ao-pai
     common_prayer: gloria-ao-pai
     language_toggle: false
-  - id: oracao-008-novena-a-santa-paulina-do-coracao-agonizante-de-
+  - id: oracao-008-novena-a-santa-paulina-do-coracao-agonizante-de
     label: Novena à Santa Paulina do Coração Agonizante de Jesus
     prayer: Santa Paulina, rogai por nós!
     language_toggle: false

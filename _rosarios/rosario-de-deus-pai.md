@@ -123,7 +123,7 @@ sections:
     language_toggle: false
   content: |-
     Pai, se é de teu agrado, afasta de mim este cálice! Não se faça, todavia, a minha vontade, mas sim a tua. Apareceu-lhe então um anjo do céu para confortá-lo. Ele entrou em agonia e orava ainda com mais instância, e seu suor tornou-se como gotas de sangue a escorrer pela terra. Depois de ter rezado, levantou-se, foi ter com os discípulos e achou-os adormecidos de tristeza.
-- id: secao-05-no-quarto-misterio-contemplamos-o-triunfo-do-
+- id: secao-05-no-quarto-misterio-contemplamos-o-triunfo-do
   title: No Quarto Mistério contemplamos o Triunfo do Pai no momento de cada juízo particular.
   theme: Lucas 15,20.22-24
   prayers:
@@ -149,7 +149,7 @@ sections:
     Levantou-se, pois, e foi ter com seu pai. Estava ainda longe, quando seu pai o viu e, movido de compaixão, correu-lhe ao encontro, lançou-se-lhe ao pescoço e o beijou. O filho lhe disse, então: Meu pai, pequei contra o céu e contra ti; já não sou digno de ser chamado teu filho Mas o pai falou aos servos: Trazei-me depressa a melhor veste e vesti-lha, e ponde-lhe um anel no dedo e calçado nos pés
 
     Trazei também um novilho gordo e matai-o; Este meu filho estava morto, e reviveu; tinha se perdido, e foi achado. E começaram a festa.
-- id: secao-06-no-quinto-misterio-contemplamos-o-triunfo-do-
+- id: secao-06-no-quinto-misterio-contemplamos-o-triunfo-do
   title: No Quinto Mistério contemplamos o triunfo do Pai no momento do Juízo Universal.
   theme: Apocalipse 21,1-4
   prayers:
