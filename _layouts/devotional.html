@@ -4,6 +4,7 @@ layout: default
 {% assign devotional_default_language = page['default-language'] | default: page.default_language | default: 'pt' %}
 {% capture devotional_content_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 {% capture devotional_intention_key %}devotional:{{ page.slug }}{% endcapture %}
+{% assign devotional_page_count_value = page | front_matter_value: 'count' %}
 {% assign devotional_has_count = false %}
 {% if page.sections and page.sections.size > 0 %}
   {% for devotional_section in page.sections %}
@@ -15,8 +16,8 @@ layout: default
       {% endif %}
     {% endfor %}
   {% endfor %}
-{% elsif page.count %}
-  {% assign devotional_page_count = page.count | plus: 0 %}
+{% elsif devotional_page_count_value %}
+  {% assign devotional_page_count = devotional_page_count_value | plus: 0 %}
   {% if devotional_page_count > 0 %}
     {% assign devotional_has_count = true %}
   {% endif %}

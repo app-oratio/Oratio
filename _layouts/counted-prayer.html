@@ -5,6 +5,7 @@ layout: default
 {% assign counted_default_language = page['default-language'] | default: page.default_language | default: 'pt' %}
 {% capture counted_id %}{{ page.collection }}:{{ page.slug }}{% endcapture %}
 {% capture intention_key %}counted:{{ counted_id }}{% endcapture %}
+{% assign counted_page_count_value = page | front_matter_value: 'count' %}
 {% assign counted_has_count = false %}
 {% if page.sections and page.sections.size > 0 %}
   {% for counted_section in page.sections %}
@@ -16,8 +17,8 @@ layout: default
       {% endif %}
     {% endfor %}
   {% endfor %}
-{% elsif page.count %}
-  {% assign counted_page_count = page.count | plus: 0 %}
+{% elsif counted_page_count_value %}
+  {% assign counted_page_count = counted_page_count_value | plus: 0 %}
   {% if counted_page_count > 0 %}
     {% assign counted_has_count = true %}
   {% endif %}
