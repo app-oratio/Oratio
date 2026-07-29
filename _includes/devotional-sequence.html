@@ -1,4 +1,7 @@
-{% assign sequence_document = include.document | default: page %}
+{% assign sequence_document = page %}
+{% if include.document %}
+  {% assign sequence_document = include.document %}
+{% endif %}
 {% assign sequence_sections = sequence_document.sections %}
 {% assign sequence_default_language = sequence_document['default-language'] | default: sequence_document.default_language | default: 'pt' %}
 {% assign sequence_has_sections = false %}
@@ -22,7 +25,6 @@
     {% assign sequence_has_counted = true %}
   {% endif %}
 {% endif %}
-
 <section class="devotional-sequence{% unless sequence_has_sections %} devotional-sequence--single{% endunless %}"
   {% if include.anchor %}id="{{ include.anchor }}"{% endif %}
   data-devotional-sequence
@@ -34,7 +36,6 @@
   {% if sequence_has_sections and include.content and include.content != empty %}
     <div class="prose prose--wide devotional-sequence__introduction">{{ include.content }}</div>
   {% endif %}
-
   {% unless include.hide_heading %}
     <div class="devotional-sequence__heading">
       <div>
@@ -43,7 +44,6 @@
       </div>
     </div>
   {% endunless %}
-
   {% if sequence_has_counted %}
     <div class="sequence-progress" data-sequence-progress aria-labelledby="{{ include.progress_id | default: 'sequence-progress-title' }}">
       <div class="sequence-progress__summary">
@@ -66,7 +66,6 @@
       <p class="status-message" data-counted-status aria-live="polite"></p>
     </div>
   {% endif %}
-
   {% if sequence_has_sections %}
     <div class="devotional-sections">
       {% for sequence_section in sequence_sections %}
