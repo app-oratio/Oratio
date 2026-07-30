@@ -50,19 +50,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-30-de-agosto-sao-felix-e-santo-adauto/
 general_info:
 - label: Período
-  value: Século III
+  text: Século III
 - label: Contexto
-  value: Perseguições contra os cristãos em Roma
+  text: Perseguições contra os cristãos em Roma
 - label: Companheiro de martírio
-  value: Santo Adauto
+  text: Santo Adauto
 - label: Local de veneração antiga
-  value: Cemitério de Comodila, Roma
+  text: Cemitério de Comodila, Roma
 - label: Período de vida
-  value: Século III
+  text: Século III
 - label: Estado de vida
-  value: Sacerdote e mártir
+  text: Sacerdote e mártir
 - label: Família espiritual
-  value: Igreja de Roma
+  text: Igreja de Roma
 - label: Padroeiro de
   values:
   - Cristãos perseguidos

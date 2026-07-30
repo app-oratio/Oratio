@@ -51,15 +51,15 @@ sources:
   url: https://templariodemaria.com/hoje-celebramos-nossa-senhora-das-lagrimas-31-de-agosto/
 general_info:
 - label: Origem da devoção
-  value: Siracusa, Sicília, Itália
+  text: Siracusa, Sicília, Itália
 - label: Acontecimento central
-  value: Lágrimas observadas numa imagem mariana em 1953
+  text: Lágrimas observadas numa imagem mariana em 1953
 - label: Mensagem espiritual
-  value: Compaixão materna, conversão e esperança no sofrimento
+  text: Compaixão materna, conversão e esperança no sofrimento
 - label: Classificação
-  value: Título mariano
+  text: Título mariano
 - label: Tradição espiritual
-  value: Devoção mariana de Siracusa
+  text: Devoção mariana de Siracusa
 - label: Invocada por
   values:
   - Famílias em sofrimento

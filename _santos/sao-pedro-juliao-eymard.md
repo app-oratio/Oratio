@@ -49,21 +49,21 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-02-de-agosto-sao-pedro-juliao-eymard/
 general_info:
 - label: Origem
-  value: La Mure, França
+  text: La Mure, França
 - label: Fundações
   values:
   - Congregação do Santíssimo Sacramento
   - Servas do Santíssimo Sacramento
 - label: Missão principal
-  value: Adoração e apostolado eucarístico
+  text: Adoração e apostolado eucarístico
 - label: Título espiritual
-  value: Apóstolo da Eucaristia
+  text: Apóstolo da Eucaristia
 - label: Período de vida
-  value: 1811-1868
+  text: 1811-1868
 - label: Estado de vida
-  value: Sacerdote e fundador
+  text: Sacerdote e fundador
 - label: Família espiritual
-  value: Congregação do Santíssimo Sacramento
+  text: Congregação do Santíssimo Sacramento
 - label: Padroeiro de
   values:
   - Congressos eucarísticos

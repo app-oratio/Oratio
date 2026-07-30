@@ -51,17 +51,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-18-de-agosto-santa-helena/
 general_info:
 - label: Dignidade
-  value: Imperatriz romana e mãe de Constantino
+  text: Imperatriz romana e mãe de Constantino
 - label: Região de atuação
-  value: Império Romano e Terra Santa
+  text: Império Romano e Terra Santa
 - label: Tradição associada
-  value: Busca e veneração dos lugares ligados à Paixão de Cristo
+  text: Busca e veneração dos lugares ligados à Paixão de Cristo
 - label: Período de vida
-  value: c. 248-c. 330
+  text: c. 248-c. 330
 - label: Estado de vida
-  value: Imperatriz e viúva
+  text: Imperatriz e viúva
 - label: Família espiritual
-  value: Igreja do século IV
+  text: Igreja do século IV
 - label: Padroeira de
   values:
   - Arqueólogos

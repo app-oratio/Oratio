@@ -50,19 +50,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-01-de-agosto-santo-afonso-maria-de-ligorio/
 general_info:
 - label: Origem
-  value: Reino de Nápoles
+  text: Reino de Nápoles
 - label: Formação inicial
-  value: Direito civil e canônico
+  text: Direito civil e canônico
 - label: Fundação
-  value: Congregação do Santíssimo Redentor
+  text: Congregação do Santíssimo Redentor
 - label: Contribuição
-  value: Teologia moral marcada pela verdade e pela misericórdia pastoral
+  text: Teologia moral marcada pela verdade e pela misericórdia pastoral
 - label: Período de vida
-  value: 1696-1787
+  text: 1696-1787
 - label: Estado de vida
-  value: Bispo e Doutor da Igreja
+  text: Bispo e Doutor da Igreja
 - label: Família espiritual
-  value: Congregação do Santíssimo Redentor
+  text: Congregação do Santíssimo Redentor
 - label: Padroeiro de
   values:
   - Confessores

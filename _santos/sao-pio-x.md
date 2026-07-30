@@ -50,13 +50,13 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-21-de-agosto-sao-pio-x/
 general_info:
 - label: Nome de nascimento
-  value: Giuseppe Melchiorre Sarto
+  text: Giuseppe Melchiorre Sarto
 - label: Origem
-  value: Riese, Itália
+  text: Riese, Itália
 - label: Pontificado
-  value: 1903–1914
+  text: 1903–1914
 - label: Lema
-  value: Restaurar todas as coisas em Cristo
+  text: Restaurar todas as coisas em Cristo
 - label: Reformas conhecidas
   values:
   - Comunhão frequente
@@ -64,11 +64,11 @@ general_info:
   - Catequese
   - Música sacra
 - label: Período de vida
-  value: 1835-1914
+  text: 1835-1914
 - label: Estado de vida
-  value: Papa
+  text: Papa
 - label: Família espiritual
-  value: Clero diocesano
+  text: Clero diocesano
 - label: Padroeiro de
   values:
   - Catequistas

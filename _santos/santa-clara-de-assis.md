@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-11-de-agosto-santa-clara-de-assis/
 general_info:
 - label: Nome de origem
-  value: Clara Offreduccio
+  text: Clara Offreduccio
 - label: Origem
-  value: Assis, Itália
+  text: Assis, Itália
 - label: Fundação
-  value: Ordem de Santa Clara, em comunhão com São Francisco
+  text: Ordem de Santa Clara, em comunhão com São Francisco
 - label: Marca espiritual
-  value: Pobreza evangélica, vida fraterna e amor à Eucaristia
+  text: Pobreza evangélica, vida fraterna e amor à Eucaristia
 - label: Período de vida
-  value: c. 1193-1253
+  text: c. 1193-1253
 - label: Estado de vida
-  value: Virgem e fundadora
+  text: Virgem e fundadora
 - label: Família espiritual
-  value: Ordem de Santa Clara
+  text: Ordem de Santa Clara
 - label: Padroeira de
   values:
   - Televisão

@@ -50,17 +50,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-17-de-agosto-santa-beatriz-da-silva/
 general_info:
 - label: Origem
-  value: Portugal
+  text: Portugal
 - label: Missão principal
-  value: Fundação de uma ordem dedicada à Imaculada Conceição
+  text: Fundação de uma ordem dedicada à Imaculada Conceição
 - label: Fundação
-  value: Ordem da Imaculada Conceição
+  text: Ordem da Imaculada Conceição
 - label: Período de vida
-  value: c. 1424-1492
+  text: c. 1424-1492
 - label: Estado de vida
-  value: Virgem e fundadora
+  text: Virgem e fundadora
 - label: Família espiritual
-  value: Ordem da Imaculada Conceição
+  text: Ordem da Imaculada Conceição
 - label: Padroeira de
   values:
   - Ordem da Imaculada Conceição

@@ -51,15 +51,15 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-22-de-agosto-nossa-senhora-rainha/
 general_info:
 - label: Natureza
-  value: Memória mariana da realeza de Maria
+  text: Memória mariana da realeza de Maria
 - label: Fundamento
-  value: A participação de Maria na vitória e no Reino de Cristo
+  text: A participação de Maria na vitória e no Reino de Cristo
 - label: Instituição litúrgica
-  value: Papa Pio XII, em 1954
+  text: Papa Pio XII, em 1954
 - label: Classificação
-  value: Título mariano
+  text: Título mariano
 - label: Tradição espiritual
-  value: Igreja universal
+  text: Igreja universal
 - label: Invocada por
   values:
   - Comunidades consagradas a Maria Rainha

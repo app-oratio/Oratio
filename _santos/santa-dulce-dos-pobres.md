@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-13-de-agosto-beata-dulce-dos-pobres/
 general_info:
 - label: Nome de nascimento
-  value: Maria Rita de Sousa Brito Lopes Pontes
+  text: Maria Rita de Sousa Brito Lopes Pontes
 - label: Origem
-  value: Salvador, Bahia, Brasil
+  text: Salvador, Bahia, Brasil
 - label: Obra principal
-  value: Obras Sociais Irmã Dulce
+  text: Obras Sociais Irmã Dulce
 - label: Marca espiritual
-  value: Caridade concreta e perseverante junto aos pobres e enfermos
+  text: Caridade concreta e perseverante junto aos pobres e enfermos
 - label: Período de vida
-  value: 1914-1992
+  text: 1914-1992
 - label: Estado de vida
-  value: Religiosa
+  text: Religiosa
 - label: Família espiritual
-  value: Irmãs Missionárias da Imaculada Conceição da Mãe de Deus
+  text: Irmãs Missionárias da Imaculada Conceição da Mãe de Deus
 - label: Padroeira de
   values:
   - Pobres

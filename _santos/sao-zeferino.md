@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-26-de-agosto-sao-zeferino/
 general_info:
 - label: Origem
-  value: Roma, segundo a tradição
+  text: Roma, segundo a tradição
 - label: Pontificado
-  value: c. 199–217
+  text: c. 199–217
 - label: Contexto
-  value: Perseguições e controvérsias cristológicas na Igreja de Roma
+  text: Perseguições e controvérsias cristológicas na Igreja de Roma
 - label: Colaborador
-  value: São Calisto, futuro papa
+  text: São Calisto, futuro papa
 - label: Período de vida
-  value: c. 160-217
+  text: c. 160-217
 - label: Estado de vida
-  value: Papa
+  text: Papa
 - label: Família espiritual
-  value: Clero romano
+  text: Clero romano
 - label: Padroeiro de
   values:
   - Comunidades perseguidas

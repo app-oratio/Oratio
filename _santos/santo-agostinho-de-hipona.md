@@ -50,9 +50,9 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-28-de-agosto-santo-agostinho/
 general_info:
 - label: Origem
-  value: Tagaste, Norte da África
+  text: Tagaste, Norte da África
 - label: Sede episcopal
-  value: Hipona
+  text: Hipona
 - label: Principais áreas
   values:
   - Teologia
@@ -64,11 +64,11 @@ general_info:
   - Confissões
   - A Cidade de Deus
 - label: Período de vida
-  value: 354-430
+  text: 354-430
 - label: Estado de vida
-  value: Bispo e Doutor da Igreja
+  text: Bispo e Doutor da Igreja
 - label: Família espiritual
-  value: Igreja de Hipona
+  text: Igreja de Hipona
 - label: Padroeiro de
   values:
   - Teólogos

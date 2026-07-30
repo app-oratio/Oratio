@@ -50,15 +50,15 @@ sources:
   url: https://templariodemaria.com/hoje-celebramos-a-festa-de-nossa-senhora-das-neves-05-de-agosto/
 general_info:
 - label: Centro histórico
-  value: Basílica de Santa Maria Maior, Roma
+  text: Basílica de Santa Maria Maior, Roma
 - label: Tradição associada
-  value: Uma nevada extraordinária teria indicado o local de uma igreja mariana
+  text: Uma nevada extraordinária teria indicado o local de uma igreja mariana
 - label: Data da celebração
-  value: 5 de agosto
+  text: 5 de agosto
 - label: Classificação
-  value: Título mariano
+  text: Título mariano
 - label: Tradição espiritual
-  value: Devoção mariana
+  text: Devoção mariana
 - label: Invocada por
   values:
   - Roma

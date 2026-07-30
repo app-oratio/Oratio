@@ -50,19 +50,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-03-de-agosto-santa-lidia/
 general_info:
 - label: Origem
-  value: Tiatira, na Ásia Menor
+  text: Tiatira, na Ásia Menor
 - label: Residência conhecida
-  value: Filipos, Macedônia
+  text: Filipos, Macedônia
 - label: Atividade
-  value: Comerciante de púrpura
+  text: Comerciante de púrpura
 - label: Importância bíblica
-  value: Primeira convertida de Paulo mencionada na Europa
+  text: Primeira convertida de Paulo mencionada na Europa
 - label: Período de vida
-  value: Século I
+  text: Século I
 - label: Estado de vida
-  value: Leiga e discípula
+  text: Leiga e discípula
 - label: Família espiritual
-  value: Igreja apostólica
+  text: Igreja apostólica
 - label: Padroeira de
   values:
   - Tintureiros

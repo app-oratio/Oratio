@@ -50,17 +50,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-27-de-agosto-santa-monica/
 general_info:
 - label: Origem
-  value: Tagaste, Norte da África
+  text: Tagaste, Norte da África
 - label: Relação familiar
-  value: Mãe de Santo Agostinho
+  text: Mãe de Santo Agostinho
 - label: Marca espiritual
-  value: Perseverança na oração pela conversão da família
+  text: Perseverança na oração pela conversão da família
 - label: Período de vida
-  value: c. 331-387
+  text: c. 331-387
 - label: Estado de vida
-  value: Esposa, mãe e viúva
+  text: Esposa, mãe e viúva
 - label: Família espiritual
-  value: Leiga cristã
+  text: Leiga cristã
 - label: Padroeira de
   values:
   - Mães cristãs

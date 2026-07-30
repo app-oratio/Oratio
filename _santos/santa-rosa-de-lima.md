@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-23-de-agosto-santa-rosa-de-lima/
 general_info:
 - label: Nome de nascimento
-  value: Isabel Flores de Oliva
+  text: Isabel Flores de Oliva
 - label: Origem
-  value: Lima, Peru
+  text: Lima, Peru
 - label: Vínculo espiritual
-  value: Terceira Ordem Dominicana
+  text: Terceira Ordem Dominicana
 - label: Importância histórica
-  value: Primeira santa canonizada nascida nas Américas
+  text: Primeira santa canonizada nascida nas Américas
 - label: Período de vida
-  value: 1586-1617
+  text: 1586-1617
 - label: Estado de vida
-  value: Virgem e terciária dominicana
+  text: Virgem e terciária dominicana
 - label: Família espiritual
-  value: Ordem Terceira Dominicana
+  text: Ordem Terceira Dominicana
 - label: Padroeira de
   values:
   - América Latina

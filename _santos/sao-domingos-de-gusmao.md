@@ -50,19 +50,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-08-de-agosto-sao-domingos-de-gusmao/
 general_info:
 - label: Origem
-  value: Caleruega, Castela
+  text: Caleruega, Castela
 - label: Fundação
-  value: Ordem dos Pregadores
+  text: Ordem dos Pregadores
 - label: Missão principal
-  value: Pregação doutrinal sustentada pela oração, estudo e pobreza apostólica
+  text: Pregação doutrinal sustentada pela oração, estudo e pobreza apostólica
 - label: Tradição espiritual
-  value: Fortemente ligado à difusão do Rosário
+  text: Fortemente ligado à difusão do Rosário
 - label: Período de vida
-  value: c. 1170-1221
+  text: c. 1170-1221
 - label: Estado de vida
-  value: Sacerdote e fundador
+  text: Sacerdote e fundador
 - label: Família espiritual
-  value: Ordem dos Pregadores
+  text: Ordem dos Pregadores
 - label: Padroeiro de
   values:
   - Pregadores

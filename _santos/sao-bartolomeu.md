@@ -51,17 +51,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-24-de-agosto-sao-bartolomeu/
 general_info:
 - label: Grupo apostólico
-  value: Um dos Doze Apóstolos
+  text: Um dos Doze Apóstolos
 - label: Identificação tradicional
-  value: Frequentemente associado a Natanael
+  text: Frequentemente associado a Natanael
 - label: Missão
-  value: Anúncio do Evangelho em regiões do Oriente segundo antigas tradições
+  text: Anúncio do Evangelho em regiões do Oriente segundo antigas tradições
 - label: Período de vida
-  value: Século I
+  text: Século I
 - label: Estado de vida
-  value: Apóstolo e mártir
+  text: Apóstolo e mártir
 - label: Família espiritual
-  value: Colégio Apostólico
+  text: Colégio Apostólico
 - label: Padroeiro de
   values:
   - Açougueiros

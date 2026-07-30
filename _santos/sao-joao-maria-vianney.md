@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-04-de-agosto-sao-joao-maria-vianney/
 general_info:
 - label: Origem
-  value: Dardilly, França
+  text: Dardilly, França
 - label: Paróquia
-  value: Ars-sur-Formans
+  text: Ars-sur-Formans
 - label: Missão principal
-  value: Cuidado pastoral, catequese e ministério da reconciliação
+  text: Cuidado pastoral, catequese e ministério da reconciliação
 - label: Título popular
-  value: Cura d’Ars
+  text: Cura d’Ars
 - label: Período de vida
-  value: 1786-1859
+  text: 1786-1859
 - label: Estado de vida
-  value: Sacerdote
+  text: Sacerdote
 - label: Família espiritual
-  value: Clero diocesano
+  text: Clero diocesano
 - label: Padroeiro de
   values:
   - Párocos

@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-10-de-agosto-sao-lourenco/
 general_info:
 - label: Ministério
-  value: Diácono da Igreja de Roma
+  text: Diácono da Igreja de Roma
 - label: Pontífice servido
-  value: Papa São Sisto II
+  text: Papa São Sisto II
 - label: Martírio
-  value: Roma, no ano 258
+  text: Roma, no ano 258
 - label: Testemunho central
-  value: Reconheceu os pobres como o verdadeiro tesouro da Igreja
+  text: Reconheceu os pobres como o verdadeiro tesouro da Igreja
 - label: Período de vida
-  value: c. 225-258
+  text: c. 225-258
 - label: Estado de vida
-  value: Diácono e mártir
+  text: Diácono e mártir
 - label: Família espiritual
-  value: Igreja de Roma
+  text: Igreja de Roma
 - label: Padroeiro de
   values:
   - Diáconos

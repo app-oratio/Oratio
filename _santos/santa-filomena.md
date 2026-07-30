@@ -49,19 +49,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-10-de-agosto-santa-filomena-virgem-e-martir/
 general_info:
 - label: Período atribuído
-  value: Antiguidade cristã
+  text: Antiguidade cristã
 - label: Centro da devoção
-  value: Mugnano del Cardinale, Itália
+  text: Mugnano del Cardinale, Itália
 - label: Base histórica
-  value: Relíquias encontradas nas catacumbas de Priscila em 1802
+  text: Relíquias encontradas nas catacumbas de Priscila em 1802
 - label: Observação histórica
-  value: Parte de sua biografia pertence à tradição devocional posterior
+  text: Parte de sua biografia pertence à tradição devocional posterior
 - label: Período de vida
-  value: Antiguidade cristã
+  text: Antiguidade cristã
 - label: Estado de vida
-  value: Virgem e mártir
+  text: Virgem e mártir
 - label: Família espiritual
-  value: Igreja dos mártires
+  text: Igreja dos mártires
 - label: Padroeira de
   values:
   - Jovens

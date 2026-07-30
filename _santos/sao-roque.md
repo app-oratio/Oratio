@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-16-de-agosto-sao-roque/
 general_info:
 - label: Período
-  value: Séculos XIII–XIV, conforme a tradição
+  text: Séculos XIII–XIV, conforme a tradição
 - label: Origem tradicional
-  value: Montpellier, França
+  text: Montpellier, França
 - label: Vocação
-  value: Leigo peregrino dedicado aos enfermos
+  text: Leigo peregrino dedicado aos enfermos
 - label: Observação histórica
-  value: A biografia mistura testemunhos antigos e tradições medievais
+  text: A biografia mistura testemunhos antigos e tradições medievais
 - label: Período de vida
-  value: Século XIV
+  text: Século XIV
 - label: Estado de vida
-  value: Leigo, peregrino e confessor
+  text: Leigo, peregrino e confessor
 - label: Família espiritual
-  value: Espiritualidade franciscana
+  text: Espiritualidade franciscana
 - label: Padroeiro de
   values:
   - Doentes

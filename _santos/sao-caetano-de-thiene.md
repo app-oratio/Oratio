@@ -51,17 +51,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-07-de-agosto-sao-caetano-de-thiene/
 general_info:
 - label: Origem
-  value: Vicenza, Itália
+  text: Vicenza, Itália
 - label: Fundação
-  value: Ordem dos Clérigos Regulares Teatinos
+  text: Ordem dos Clérigos Regulares Teatinos
 - label: Missão
-  value: Renovação do clero, cuidado dos doentes e confiança na Providência
+  text: Renovação do clero, cuidado dos doentes e confiança na Providência
 - label: Período de vida
-  value: 1480-1547
+  text: 1480-1547
 - label: Estado de vida
-  value: Sacerdote e fundador
+  text: Sacerdote e fundador
 - label: Família espiritual
-  value: Ordem dos Clérigos Regulares Teatinos
+  text: Ordem dos Clérigos Regulares Teatinos
 - label: Padroeiro de
   values:
   - Desempregados

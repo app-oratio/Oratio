@@ -50,7 +50,7 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-12-de-agosto-santa-joana-francisca-de-chantal/
 general_info:
 - label: Origem
-  value: Dijon, França
+  text: Dijon, França
 - label: Estados de vida
   values:
   - Esposa
@@ -58,15 +58,15 @@ general_info:
   - Viúva
   - Religiosa e fundadora
 - label: Fundação
-  value: Ordem da Visitação de Santa Maria
+  text: Ordem da Visitação de Santa Maria
 - label: Diretor espiritual
-  value: São Francisco de Sales
+  text: São Francisco de Sales
 - label: Período de vida
-  value: 1572-1641
+  text: 1572-1641
 - label: Estado de vida
-  value: Viúva e fundadora
+  text: Viúva e fundadora
 - label: Família espiritual
-  value: Ordem da Visitação de Santa Maria
+  text: Ordem da Visitação de Santa Maria
 - label: Padroeira de
   values:
   - Viúvas

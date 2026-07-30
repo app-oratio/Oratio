@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-13-de-agosto-sao-maximo-de-constantinopla/
 general_info:
 - label: Tradição
-  value: Cristianismo oriental
+  text: Cristianismo oriental
 - label: Vocação
-  value: Monge, teólogo e defensor da fé cristológica
+  text: Monge, teólogo e defensor da fé cristológica
 - label: Controvérsia central
-  value: Defesa das duas vontades de Cristo, divina e humana
+  text: Defesa das duas vontades de Cristo, divina e humana
 - label: Últimos anos
-  value: Julgamento, mutilação e exílio por recusar uma fórmula doutrinal ambígua
+  text: Julgamento, mutilação e exílio por recusar uma fórmula doutrinal ambígua
 - label: Período de vida
-  value: c. 580-662
+  text: c. 580-662
 - label: Estado de vida
-  value: Monge e confessor
+  text: Monge e confessor
 - label: Família espiritual
-  value: Tradição monástica oriental
+  text: Tradição monástica oriental
 - label: Padroeiro de
   values:
   - Teólogos

@@ -51,15 +51,15 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-15-de-agosto-assuncao-de-nossa-senhora/
 general_info:
 - label: Natureza
-  value: Mistério da fé e solenidade mariana
+  text: Mistério da fé e solenidade mariana
 - label: Doutrina celebrada
-  value: Maria foi elevada à glória celeste em corpo e alma
+  text: Maria foi elevada à glória celeste em corpo e alma
 - label: Definição dogmática
-  value: Papa Pio XII, em 1950
+  text: Papa Pio XII, em 1950
 - label: Classificação
-  value: Mistério mariano
+  text: Mistério mariano
 - label: Tradição espiritual
-  value: Igreja universal
+  text: Igreja universal
 - label: Invocada por
   values:
   - Comunidades sob o título de Nossa Senhora da Assunção

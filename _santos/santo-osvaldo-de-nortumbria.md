@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-05-de-agosto-santo-osvaldo-de-nortumbria/
 general_info:
 - label: Dignidade
-  value: Rei da Nortúmbria
+  text: Rei da Nortúmbria
 - label: Região
-  value: Norte da Inglaterra
+  text: Norte da Inglaterra
 - label: Colaborador missionário
-  value: Santo Aidano de Lindisfarne
+  text: Santo Aidano de Lindisfarne
 - label: Legado
-  value: Evangelização, justiça e cuidado dos pobres
+  text: Evangelização, justiça e cuidado dos pobres
 - label: Período de vida
-  value: c. 604-642
+  text: c. 604-642
 - label: Estado de vida
-  value: Rei e mártir
+  text: Rei e mártir
 - label: Família espiritual
-  value: Igreja da Nortúmbria
+  text: Igreja da Nortúmbria
 - label: Padroeiro de
   values:
   - Reis cristãos

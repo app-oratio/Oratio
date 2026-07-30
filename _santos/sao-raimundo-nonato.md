@@ -51,17 +51,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-31-de-agosto-sao-raimundo-nonato/
 general_info:
 - label: Origem
-  value: Catalunha, segundo a tradição
+  text: Catalunha, segundo a tradição
 - label: Missão
-  value: Resgate e assistência de cristãos cativos
+  text: Resgate e assistência de cristãos cativos
 - label: Tradição do nome
-  value: “Nonato”, por ter nascido após a morte da mãe
+  text: “Nonato”, por ter nascido após a morte da mãe
 - label: Período de vida
-  value: c. 1204-1240
+  text: c. 1204-1240
 - label: Estado de vida
-  value: Sacerdote e religioso
+  text: Sacerdote e religioso
 - label: Família espiritual
-  value: Ordem de Nossa Senhora das Mercês
+  text: Ordem de Nossa Senhora das Mercês
 - label: Padroeiro de
   values:
   - Gestantes

@@ -50,22 +50,22 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-09-de-agosto-santa-edith-stein-tereza-benedita-da-cruz/
 general_info:
 - label: Nome religioso
-  value: Teresa Benedita da Cruz
+  text: Teresa Benedita da Cruz
 - label: Origem
-  value: Breslau, então Império Alemão
+  text: Breslau, então Império Alemão
 - label: Áreas de atuação
   values:
   - Filosofia
   - Educação
   - Espiritualidade carmelitana
 - label: Martírio
-  value: Auschwitz, em 9 de agosto de 1942
+  text: Auschwitz, em 9 de agosto de 1942
 - label: Período de vida
-  value: 1891-1942
+  text: 1891-1942
 - label: Estado de vida
-  value: Religiosa e mártir
+  text: Religiosa e mártir
 - label: Família espiritual
-  value: Carmelo Descalço
+  text: Carmelo Descalço
 - label: Padroeira de
   values:
   - Europa

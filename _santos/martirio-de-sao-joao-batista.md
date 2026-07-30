@@ -51,17 +51,17 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-29-de-agosto-martirio-de-sao-joao-batista/
 general_info:
 - label: Identidade
-  value: Profeta precursor de Jesus Cristo
+  text: Profeta precursor de Jesus Cristo
 - label: Contexto
-  value: Judeia e Galileia, no século I
+  text: Judeia e Galileia, no século I
 - label: Motivo do martírio
-  value: Fidelidade à verdade diante de Herodes Antipas
+  text: Fidelidade à verdade diante de Herodes Antipas
 - label: Período de vida
-  value: Século I
+  text: Século I
 - label: Classificação
-  value: Profeta e mártir
+  text: Profeta e mártir
 - label: Tradição espiritual
-  value: Tradição profética de Israel
+  text: Tradição profética de Israel
 - label: Invocada por
   values:
   - Profetas

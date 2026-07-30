@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/sao-luis-rei-da-franca-modelo-ideal-de-governante-25-de-agosto/
 general_info:
 - label: Dignidade
-  value: Rei Luís IX da França
+  text: Rei Luís IX da França
 - label: Família
-  value: Esposo de Margarida da Provença e pai de família
+  text: Esposo de Margarida da Provença e pai de família
 - label: Legado
-  value: Justiça, assistência aos pobres e proteção da fé
+  text: Justiça, assistência aos pobres e proteção da fé
 - label: Obra associada
-  value: Sainte-Chapelle, em Paris
+  text: Sainte-Chapelle, em Paris
 - label: Período de vida
-  value: 1214-1270
+  text: 1214-1270
 - label: Estado de vida
-  value: Rei e pai de família
+  text: Rei e pai de família
 - label: Família espiritual
-  value: Leigo cristão
+  text: Leigo cristão
 - label: Padroeiro de
   values:
   - Governantes

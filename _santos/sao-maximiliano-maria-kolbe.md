@@ -50,24 +50,24 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-14-de-agosto-sao-maximiliano-maria-kolbe/
 general_info:
 - label: Nome de nascimento
-  value: Raimundo Kolbe
+  text: Raimundo Kolbe
 - label: Origem
-  value: Polônia
+  text: Polônia
 - label: Fundação
-  value: Milícia da Imaculada
+  text: Milícia da Imaculada
 - label: Apostolado
   values:
   - Imprensa
   - Rádio
   - Missão mariana
 - label: Martírio
-  value: Auschwitz, em 14 de agosto de 1941
+  text: Auschwitz, em 14 de agosto de 1941
 - label: Período de vida
-  value: 1894-1941
+  text: 1894-1941
 - label: Estado de vida
-  value: Sacerdote e mártir
+  text: Sacerdote e mártir
 - label: Família espiritual
-  value: Ordem dos Frades Menores Conventuais
+  text: Ordem dos Frades Menores Conventuais
 - label: Padroeiro de
   values:
   - Jornalistas

@@ -49,19 +49,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-06-de-agosto-sao-hormisda/
 general_info:
 - label: Origem
-  value: Frosinone, Itália
+  text: Frosinone, Itália
 - label: Pontificado
-  value: 514–523
+  text: 514–523
 - label: Missão principal
-  value: Restauração da comunhão entre Roma e Constantinopla
+  text: Restauração da comunhão entre Roma e Constantinopla
 - label: Documento associado
-  value: Fórmula de Hormisda
+  text: Fórmula de Hormisda
 - label: Período de vida
-  value: c. 450-523
+  text: c. 450-523
 - label: Estado de vida
-  value: Papa
+  text: Papa
 - label: Família espiritual
-  value: Clero romano
+  text: Clero romano
 - label: Padroeiro de
   values:
   - Unidade dos cristãos

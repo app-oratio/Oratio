@@ -50,21 +50,21 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-19-de-agosto-sao-joao-eudes/
 general_info:
 - label: Origem
-  value: Normandia, França
+  text: Normandia, França
 - label: Fundações
   values:
   - Congregação de Jesus e Maria
   - Ordem de Nossa Senhora da Caridade
 - label: Missão
-  value: Missões populares e formação de sacerdotes
+  text: Missões populares e formação de sacerdotes
 - label: Contribuição espiritual
-  value: Culto litúrgico aos Corações de Jesus e Maria
+  text: Culto litúrgico aos Corações de Jesus e Maria
 - label: Período de vida
-  value: 1601-1680
+  text: 1601-1680
 - label: Estado de vida
-  value: Sacerdote e fundador
+  text: Sacerdote e fundador
 - label: Família espiritual
-  value: Congregação de Jesus e Maria
+  text: Congregação de Jesus e Maria
 - label: Padroeiro de
   values:
   - Eudistas

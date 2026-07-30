@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-20-de-agosto-sao-bernardo-de-claraval/
 general_info:
 - label: Origem
-  value: Borgonha, França
+  text: Borgonha, França
 - label: Mosteiro
-  value: Claraval
+  text: Claraval
 - label: Contribuição
-  value: Renovação cisterciense, pregação e teologia espiritual
+  text: Renovação cisterciense, pregação e teologia espiritual
 - label: Marca espiritual
-  value: Amor a Cristo e profunda devoção à Virgem Maria
+  text: Amor a Cristo e profunda devoção à Virgem Maria
 - label: Período de vida
-  value: 1090-1153
+  text: 1090-1153
 - label: Estado de vida
-  value: Abade e Doutor da Igreja
+  text: Abade e Doutor da Igreja
 - label: Família espiritual
-  value: Ordem Cisterciense
+  text: Ordem Cisterciense
 - label: Padroeiro de
   values:
   - Cistercienses

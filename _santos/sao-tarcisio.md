@@ -50,19 +50,19 @@ sources:
   url: https://templariodemaria.com/sao-tarcisio-protetor-dos-acolitos-e-coroinhas-15-de-agosto/
 general_info:
 - label: Período
-  value: Século III
+  text: Século III
 - label: Comunidade
-  value: Igreja de Roma
+  text: Igreja de Roma
 - label: Martírio
-  value: Morto ao proteger a Eucaristia que levava aos cristãos presos
+  text: Morto ao proteger a Eucaristia que levava aos cristãos presos
 - label: Legado
-  value: Modelo de reverência e coragem para os servidores do altar
+  text: Modelo de reverência e coragem para os servidores do altar
 - label: Período de vida
-  value: Século III
+  text: Século III
 - label: Estado de vida
-  value: Jovem mártir
+  text: Jovem mártir
 - label: Família espiritual
-  value: Igreja de Roma
+  text: Igreja de Roma
 - label: Padroeiro de
   values:
   - Coroinhas

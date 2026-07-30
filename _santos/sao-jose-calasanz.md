@@ -51,19 +51,19 @@ sources:
   url: https://templariodemaria.com/santo-do-dia-25-de-agosto-sao-jose-calasanz/
 general_info:
 - label: Origem
-  value: Aragão, Espanha
+  text: Aragão, Espanha
 - label: Fundação
-  value: Ordem das Escolas Pias
+  text: Ordem das Escolas Pias
 - label: Obra pioneira
-  value: Escolas gratuitas e estáveis para crianças pobres
+  text: Escolas gratuitas e estáveis para crianças pobres
 - label: Lema espiritual
-  value: Piedade e letras
+  text: Piedade e letras
 - label: Período de vida
-  value: 1557-1648
+  text: 1557-1648
 - label: Estado de vida
-  value: Sacerdote e fundador
+  text: Sacerdote e fundador
 - label: Família espiritual
-  value: Ordem das Escolas Pias
+  text: Ordem das Escolas Pias
 - label: Padroeiro de
   values:
   - Escolas cristãs
