@@ -1,8 +1,4 @@
-{% assign saint_timeline = include.items %}
-{% if saint_timeline == blank %}
-  {% assign saint_timeline = page.timeline %}
-{% endif %}
-
+{% assign saint_timeline = include.items | default: page.timeline %}
 {% if saint_timeline != blank %}
 <section class="saint-timeline-section" aria-labelledby="saint-timeline-title">
   <div class="saint-timeline-section__heading">
@@ -12,17 +8,13 @@
 
   <ol class="saint-timeline">
     {% for event in saint_timeline %}
-      {% assign event_date = event['date'] %}
-      {% assign event_title = event['title'] %}
-      {% assign event_description = event['description'] %}
-
-      {% if event_title != blank or event_description != blank %}
+      {% if event.title != blank or event.description != blank %}
       <li class="saint-timeline__event">
         <div class="saint-timeline__marker" aria-hidden="true"></div>
         <div class="saint-timeline__content">
-          {% if event_date != blank %}<time>{{ event_date }}</time>{% endif %}
-          {% if event_title != blank %}<h3>{{ event_title }}</h3>{% endif %}
-          {% if event_description != blank %}<p>{{ event_description }}</p>{% endif %}
+          {% if event.date != blank %}<time>{{ event.date }}</time>{% endif %}
+          {% if event.title != blank %}<h3>{{ event.title }}</h3>{% endif %}
+          {% if event.description != blank %}<p>{{ event.description }}</p>{% endif %}
         </div>
       </li>
       {% endif %}

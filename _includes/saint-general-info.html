@@ -1,8 +1,4 @@
-{% assign saint_info_items = include.items %}
-{% if saint_info_items == blank %}
-  {% assign saint_info_items = page.general_info %}
-{% endif %}
-
+{% assign saint_info_items = include.items | default: page.general_info %}
 {% assign has_legacy_saint_info = false %}
 {% if page.life_dates != blank or page.dates != blank or page.saint_type != blank or page.religious_family != blank or page.patronages != blank %}
   {% assign has_legacy_saint_info = true %}
@@ -31,137 +27,45 @@
 
     {% if saint_info_items != blank %}
       {% for item in saint_info_items %}
+        {% assign item_label = item.label | default: item.info | default: item.name %}
+        {% assign item_text = item.text | default: item.content | default: item.answer %}
+        {% assign item_values = item.values %}
 
-        {%- comment -%}
-        A leitura é feita percorrendo os pares do objeto YAML, evitando
-        colisões entre nomes de chaves e propriedades internas do Liquid.
-        {%- endcomment -%}
-
-        {% capture item_label_capture %}
-          {% for field in item %}
-            {% assign field_key = field[0] %}
-            {% if field_key == 'label' or field_key == 'info' or field_key == 'name' %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_label = item_label_capture | strip %}
-
-        {% capture item_value_capture %}
-          {% for field in item %}
-            {% assign field_key = field[0] %}
-            {% if field_key == 'content' or field_key == 'text' or field_key == 'answer' or field_key == 'value' %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_value = item_value_capture | strip %}
-
-        {% capture item_values_html %}
-          {% for field in item %}
-            {% assign field_key = field[0] %}
-            {% if field_key == 'values' and field[1] != blank %}
-              <ul class="saint-general-info__values">
-                {% for list_value in field[1] %}
-                  {% if list_value != blank %}<li>{{ list_value }}</li>{% endif %}
-                {% endfor %}
-              </ul>
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_values_html = item_values_html | strip %}
-
-        {% capture item_url_capture %}
-          {% for field in item %}
-            {% if field[0] == 'url' and field[1] != blank %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_url = item_url_capture | strip %}
-
-        {% capture item_external_url_capture %}
-          {% for field in item %}
-            {% if field[0] == 'external_url' and field[1] != blank %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_external_url = item_external_url_capture | strip %}
-
-        {% capture item_note_capture %}
-          {% for field in item %}
-            {% if field[0] == 'note' and field[1] != blank %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_note = item_note_capture | strip %}
-
-        {% capture item_wide_capture %}
-          {% for field in item %}
-            {% if field[0] == 'wide' %}
-              {{ field[1] }}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endcapture %}
-        {% assign item_wide = item_wide_capture | strip %}
-
-        {% if item_label != blank %}
-          {% if item_value != blank or item_values_html != blank %}
-        <div class="saint-general-info__item{% if item_wide == 'true' %} saint-general-info__item--wide{% endif %}">
+        {% if item_label != blank and item_text != blank or item_label != blank and item_values != blank %}
+        <div class="saint-general-info__item{% if item.wide %} saint-general-info__item--wide{% endif %}">
           <dt>{{ item_label }}</dt>
           <dd>
-            {% if item_values_html != blank %}
-              {{ item_values_html }}
-            {% elsif item_external_url != blank %}
-              <a href="{{ item_external_url }}" rel="noopener noreferrer">{{ item_value }}</a>
-            {% elsif item_url != blank %}
-              <a href="{{ item_url | relative_url }}">{{ item_value }}</a>
+            {% if item_values != blank %}
+              <ul class="saint-general-info__values">
+                {% for list_item in item_values %}
+                  {% if list_item != blank %}<li>{{ list_item }}</li>{% endif %}
+                {% endfor %}
+              </ul>
+            {% elsif item.external_url != blank %}
+              <a href="{{ item.external_url }}" rel="noopener noreferrer">{{ item_text }}</a>
+            {% elsif item.url != blank %}
+              <a href="{{ item.url | relative_url }}">{{ item_text }}</a>
             {% else %}
-              {{ item_value }}
+              {{ item_text }}
             {% endif %}
-            {% if item_note != blank %}<small>{{ item_note }}</small>{% endif %}
+            {% if item.note != blank %}<small>{{ item.note }}</small>{% endif %}
           </dd>
         </div>
-          {% endif %}
         {% endif %}
       {% endfor %}
 
     {% elsif has_legacy_saint_info %}
       {% if page.life_dates != blank or page.dates != blank %}
-      <div class="saint-general-info__item">
-        <dt>Vida</dt>
-        <dd>{{ page.life_dates | default: page.dates }}</dd>
-      </div>
+      <div class="saint-general-info__item"><dt>Vida</dt><dd>{{ page.life_dates | default: page.dates }}</dd></div>
       {% endif %}
-
       {% if page.saint_type != blank %}
-      <div class="saint-general-info__item">
-        <dt>Estado de vida</dt>
-        <dd>{{ page.saint_type }}</dd>
-      </div>
+      <div class="saint-general-info__item"><dt>Estado de vida</dt><dd>{{ page.saint_type }}</dd></div>
       {% endif %}
-
       {% if page.religious_family != blank %}
-      <div class="saint-general-info__item">
-        <dt>Família espiritual</dt>
-        <dd>{{ page.religious_family }}</dd>
-      </div>
+      <div class="saint-general-info__item"><dt>Família espiritual</dt><dd>{{ page.religious_family }}</dd></div>
       {% endif %}
-
       {% if page.patronages != blank %}
-      <div class="saint-general-info__item saint-general-info__item--wide">
-        <dt>Patronato</dt>
-        <dd>{{ page.patronages | join: ', ' }}</dd>
-      </div>
+      <div class="saint-general-info__item saint-general-info__item--wide"><dt>Patronato</dt><dd>{{ page.patronages | join: ', ' }}</dd></div>
       {% endif %}
     {% endif %}
   </dl>
