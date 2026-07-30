@@ -30,7 +30,7 @@ sitemap: false
         {% if derived_religious_family == blank %}
           {% case info_label %}
             {% when 'família espiritual' or 'familia espiritual' or 'ordem religiosa' or 'congregação' or 'congregacao' or 'instituto religioso' %}
-              {% assign derived_religious_family = info_item.value | default: info_item.text | default: info_item.values.first %}
+              {% assign derived_religious_family = info_item.text | default: info_item.content | default: info_item.answer | default: info_item.values.first %}
           {% endcase %}
         {% endif %}
       {% endfor %}
@@ -76,7 +76,7 @@ sitemap: false
               {% if info_item.values != blank %}
                 {% for info_value in info_item.values %}{% if info_value != blank %}{% if patronage_written %},{% endif %}{{ info_value | jsonify }}{% assign patronage_written = true %}{% endif %}{% endfor %}
               {% else %}
-                {% assign info_value = info_item.value | default: info_item.text %}
+                {% assign info_value = info_item.text | default: info_item.content | default: info_item.answer %}
                 {% if info_value != blank %}{% if patronage_written %},{% endif %}{{ info_value | jsonify }}{% assign patronage_written = true %}{% endif %}
               {% endif %}
             {% endif %}
@@ -93,7 +93,7 @@ sitemap: false
         {% if saint.general_info != blank %}
           {% for info_item in saint.general_info %}
             {% assign info_label = info_item.label | default: info_item.info | default: info_item.name %}
-            {% assign info_value = info_item.value | default: info_item.text %}
+            {% assign info_value = info_item.text | default: info_item.content | default: info_item.answer %}
             {% if info_label != blank %}{% if keyword_written %},{% endif %}{{ info_label | jsonify }}{% assign keyword_written = true %}{% endif %}
             {% if info_value != blank %}{% if keyword_written %},{% endif %}{{ info_value | jsonify }}{% assign keyword_written = true %}{% endif %}
             {% if info_item.values != blank %}
