@@ -3,6 +3,8 @@ layout: default
 ---
 {% assign saints = site.santos | where_exp: 'item', 'item.published != false' | sort_natural: 'title' %}
 {% assign saint_types = saints | map: 'entry_type' | compact | uniq | sort_natural %}
+{% assign saint_card_image_width = 1100 %}
+{% assign saint_card_image_height = 770 %}
 <div class="container container--wide page-shell saints-archive"
   data-saints-archive
   data-saints-endpoint="{{ '/santos/dados.json' | relative_url }}">
@@ -81,7 +83,7 @@ layout: default
         <button class="button button--text button--small" type="button" data-saints-clear>Limpar filtros</button>
       </div>
       <div class="saints-grid" data-saints-grid>
-        {% for saint in saints %}{% include saint-card.html item=saint %}{% endfor %}
+        {% for saint in saints %}{% include saint-card.html item=saint image_width=saint_card_image_width image_height=saint_card_image_height %}{% endfor %}
       </div>
       <div class="saints-load-more" data-saints-load-more-wrapper hidden>
         <button class="button button--tonal" type="button" data-saints-load-more>Mostrar mais histórias</button>
