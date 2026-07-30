@@ -6,7 +6,7 @@
   data-saint-card
   data-saint-slug="{{ saint_slug | escape }}"
   data-saint-title="{{ saint.title | escape }}"
-  data-saint-type="{{ saint.saint_type | default: saint.entry_type | default: 'Santo' | escape }}"
+  data-saint-type="{{ saint.entry_type | default: saint.saint_type | default: 'Santo' | escape }}"
   data-saint-tags="{{ saint.tags | join: '|' | escape }}"
   data-saint-aliases="{{ saint.aliases | join: '|' | escape }}"
   data-saint-date-rule="{{ saint.liturgical_date | jsonify | escape }}"

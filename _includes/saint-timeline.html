@@ -1,0 +1,25 @@
+{% assign saint_timeline = include.items | default: page.timeline %}
+{% if saint_timeline != blank %}
+<section class="saint-timeline-section" aria-labelledby="saint-timeline-title">
+  <div class="saint-timeline-section__heading">
+    <p class="eyebrow">Marcos da trajetória</p>
+    <h2 id="saint-timeline-title">Linha do tempo</h2>
+  </div>
+
+  <ol class="saint-timeline">
+    {% for event in saint_timeline %}
+      {% if event.title != blank or event.description != blank %}
+      <li class="saint-timeline__event">
+        <div class="saint-timeline__marker" aria-hidden="true"></div>
+        <div class="saint-timeline__content">
+          {% if event.date != blank %}<time>{{ event.date }}</time>{% endif %}
+          {% if event.title != blank %}<h3>{{ event.title }}</h3>{% endif %}
+          {% if event.description != blank %}<p>{{ event.description }}</p>{% endif %}
+          {% if event.url != blank %}<a href="{{ event.url | relative_url }}">Saiba mais</a>{% elsif event.external_url != blank %}<a href="{{ event.external_url }}" rel="noopener noreferrer">Saiba mais</a>{% endif %}
+        </div>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
