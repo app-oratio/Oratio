@@ -23,6 +23,18 @@ sitemap: false
   "generatedAt": {{ site.time | date_to_xmlschema | jsonify }},
   "saints": [
     {% for saint in saints_data %}
+    {% assign derived_religious_family = saint.religious_family | default: '' %}
+    {% if derived_religious_family == blank and saint.general_info != blank %}
+      {% for info_item in saint.general_info %}
+        {% assign info_label = info_item.label | default: info_item.info | default: info_item.name | downcase %}
+        {% if derived_religious_family == blank %}
+          {% case info_label %}
+            {% when 'família espiritual' or 'familia espiritual' or 'ordem religiosa' or 'congregação' or 'congregacao' or 'instituto religioso' %}
+              {% assign derived_religious_family = info_item.value | default: info_item.text | default: info_item.values.first %}
+          {% endcase %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     {
       "slug": {{ saint.slug | default: saint.basename_without_ext | jsonify }},
       "title": {{ saint.title | jsonify }},
@@ -35,20 +47,69 @@ sitemap: false
       "imagePosition": {{ saint.image_position | default: 'center' | jsonify }},
       "imageWidth": {{ saint.image_width | default: 1200 | jsonify }},
       "imageHeight": {{ saint.image_height | default: 675 | jsonify }},
-      "entryType": {{ saint.entry_type | default: 'Santo' | jsonify }},
-      "saintType": {{ saint.saint_type | jsonify }},
+      "entryType": {{ saint.entry_type | default: saint.saint_type | default: 'Santo' | jsonify }},
+      "saintType": {{ saint.entry_type | default: saint.saint_type | default: 'Santo' | jsonify }},
+      "profileType": {{ saint.saint_type | jsonify }},
       "category": {{ saint.category | jsonify }},
       "liturgicalRank": {{ saint.liturgical_rank | jsonify }},
       "liturgicalDate": {{ saint.liturgical_date | jsonify }},
       "liturgicalMemorial": {{ saint.liturgical_memorial | jsonify }},
       "memorialMonth": {{ saint.memorial_month | jsonify }},
       "memorialDay": {{ saint.memorial_day | jsonify }},
+      "generalInfo": {{ saint.general_info | default: empty | jsonify }},
+      "timeline": {{ saint.timeline | default: empty | jsonify }},
       "lifeDates": {{ saint.life_dates | default: saint.dates | jsonify }},
-      "religiousFamily": {{ saint.religious_family | jsonify }},
-      "patronages": {{ saint.patronages | default: empty | jsonify }},
+      "religiousFamily": {{ derived_religious_family | jsonify }},
+      "patronages": [
+        {% assign patronage_written = false %}
+        {% for patronage in saint.patronages %}
+          {% if patronage != blank %}{% if patronage_written %},{% endif %}{{ patronage | jsonify }}{% assign patronage_written = true %}{% endif %}
+        {% endfor %}
+        {% if saint.general_info != blank %}
+          {% for info_item in saint.general_info %}
+            {% assign info_label = info_item.label | default: info_item.info | default: info_item.name | downcase %}
+            {% assign is_patronage = false %}
+            {% case info_label %}
+              {% when 'patronato' or 'padroeiro de' or 'padroeira de' or 'protetor de' or 'protetora de' %}{% assign is_patronage = true %}
+            {% endcase %}
+            {% if is_patronage %}
+              {% if info_item.values != blank %}
+                {% for info_value in info_item.values %}{% if info_value != blank %}{% if patronage_written %},{% endif %}{{ info_value | jsonify }}{% assign patronage_written = true %}{% endif %}{% endfor %}
+              {% else %}
+                {% assign info_value = info_item.value | default: info_item.text %}
+                {% if info_value != blank %}{% if patronage_written %},{% endif %}{{ info_value | jsonify }}{% assign patronage_written = true %}{% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      ],
       "virtues": {{ saint.virtues | default: empty | jsonify }},
       "tags": {{ saint.tags | default: empty | jsonify }},
-      "keywords": {{ saint.keywords | default: empty | jsonify }},
+      "keywords": [
+        {% assign keyword_written = false %}
+        {% for keyword in saint.keywords %}
+          {% if keyword != blank %}{% if keyword_written %},{% endif %}{{ keyword | jsonify }}{% assign keyword_written = true %}{% endif %}
+        {% endfor %}
+        {% if saint.general_info != blank %}
+          {% for info_item in saint.general_info %}
+            {% assign info_label = info_item.label | default: info_item.info | default: info_item.name %}
+            {% assign info_value = info_item.value | default: info_item.text %}
+            {% if info_label != blank %}{% if keyword_written %},{% endif %}{{ info_label | jsonify }}{% assign keyword_written = true %}{% endif %}
+            {% if info_value != blank %}{% if keyword_written %},{% endif %}{{ info_value | jsonify }}{% assign keyword_written = true %}{% endif %}
+            {% if info_item.values != blank %}
+              {% for list_value in info_item.values %}{% if list_value != blank %}{% if keyword_written %},{% endif %}{{ list_value | jsonify }}{% assign keyword_written = true %}{% endif %}{% endfor %}
+            {% endif %}
+            {% if info_item.note != blank %}{% if keyword_written %},{% endif %}{{ info_item.note | jsonify }}{% assign keyword_written = true %}{% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if saint.timeline != blank %}
+          {% for event in saint.timeline %}
+            {% if event.date != blank %}{% if keyword_written %},{% endif %}{{ event.date | jsonify }}{% assign keyword_written = true %}{% endif %}
+            {% if event.title != blank %}{% if keyword_written %},{% endif %}{{ event.title | jsonify }}{% assign keyword_written = true %}{% endif %}
+            {% if event.description != blank %}{% if keyword_written %},{% endif %}{{ event.description | jsonify }}{% assign keyword_written = true %}{% endif %}
+          {% endfor %}
+        {% endif %}
+      ],
       "aliases": {{ saint.aliases | default: empty | jsonify }},
       "relatedSaints": {{ saint.related_saints | default: empty | jsonify }},
       "dailyOrder": {{ saint.daily_order | default: 100 | jsonify }},
