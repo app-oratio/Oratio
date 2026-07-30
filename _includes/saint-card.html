@@ -1,7 +1,7 @@
 {% assign saint = include.item %}
 {% assign saint_slug = saint.slug | default: saint.basename_without_ext %}
-{% assign saint_image_width = saint.image_width | default: 1200 %}
-{% assign saint_image_height = saint.image_height | default: 675 %}
+{% assign saint_image_width = include.image_width | default: saint.image_width | default: 1100 %}
+{% assign saint_image_height = include.image_height | default: saint.image_height | default: 770 %}
 <article class="saint-card"
   data-saint-card
   data-saint-slug="{{ saint_slug | escape }}"
