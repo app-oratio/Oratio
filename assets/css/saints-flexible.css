@@ -1,0 +1,211 @@
+/* Informações gerais flexíveis e linha do tempo das páginas de santos. */
+.saint-general-info {
+  background: color-mix(in srgb, var(--oratio-surface) 76%, transparent);
+  border: 1px solid var(--oratio-divider);
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  padding: var(--space-5);
+}
+
+.saint-general-info__heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.saint-general-info__heading h2 {
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  margin: 0;
+}
+
+.saint-general-info__list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.saint-general-info__item {
+  align-items: start;
+  border-top: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(7.5rem, 0.72fr) minmax(0, 1.28fr);
+  padding-block: var(--space-3);
+}
+
+.saint-general-info__item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.saint-general-info__item:last-child {
+  padding-bottom: 0;
+}
+
+.saint-general-info__item dt {
+  color: var(--oratio-text-muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.055em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.saint-general-info__item dd {
+  color: var(--oratio-text-primary);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.55;
+  min-width: 0;
+}
+
+.saint-general-info__item dd > small {
+  color: var(--oratio-text-muted);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-top: var(--space-1);
+}
+
+.saint-general-info__item a {
+  overflow-wrap: anywhere;
+}
+
+.saint-general-info__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.saint-general-info__values li {
+  margin: 0;
+}
+
+.saint-general-info__values li:not(:last-child)::after {
+  color: var(--oratio-text-muted);
+  content: '•';
+  margin-left: 0.75rem;
+}
+
+.saint-timeline-section {
+  border-block: 1px solid var(--oratio-divider);
+  display: grid;
+  gap: var(--space-6);
+  margin-block: var(--space-8);
+  padding-block: var(--space-7);
+}
+
+.saint-timeline-section__heading {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.saint-timeline {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  max-width: 72rem;
+  padding: 0;
+  position: relative;
+}
+
+.saint-timeline::before {
+  background: var(--saints-border-accent);
+  bottom: 1.25rem;
+  content: '';
+  left: 0.43rem;
+  position: absolute;
+  top: 1.25rem;
+  width: 2px;
+}
+
+.saint-timeline__event {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 0.95rem minmax(0, 1fr);
+  margin: 0;
+  padding-bottom: var(--space-6);
+  position: relative;
+}
+
+.saint-timeline__event:last-child {
+  padding-bottom: 0;
+}
+
+.saint-timeline__marker {
+  background: var(--oratio-gold);
+  border: 3px solid var(--oratio-surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--saints-border-accent);
+  height: 0.9rem;
+  margin-top: 0.28rem;
+  position: relative;
+  width: 0.9rem;
+  z-index: 1;
+}
+
+.saint-timeline__content {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.saint-timeline__content time {
+  color: var(--oratio-gold);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.saint-timeline__content h3 {
+  font-size: clamp(1rem, 2.5vw, 1.22rem);
+  margin: 0;
+}
+
+.saint-timeline__content p {
+  color: var(--oratio-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 62rem;
+}
+
+@media (min-width: 700px) {
+  .saint-timeline-section {
+    grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1.58fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .saint-general-info {
+    padding: var(--space-4);
+  }
+
+  .saint-general-info__item {
+    gap: 0.2rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .saint-general-info__values {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .saint-general-info__values li:not(:last-child)::after {
+    content: '';
+    margin: 0;
+  }
+}
+
+@media print {
+  .saint-general-info,
+  .saint-timeline-section {
+    background: transparent;
+    border: 1px solid #999;
+    break-inside: avoid;
+  }
+}
