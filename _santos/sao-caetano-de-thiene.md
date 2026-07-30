@@ -15,10 +15,10 @@ liturgical_date:
   label: 7 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/sao-caetano-de-thiene.webp
+image: /assets/images/saints/sao-caetano-de-thiene.png
 image_alt: Imagem horizontal representando São Caetano de Thiene
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - São Caetano

@@ -15,10 +15,10 @@ liturgical_date:
   label: 30 de agosto
 daily_order: 20
 featured: false
-image: /assets/images/saints/santo-adauto.webp
+image: /assets/images/saints/santo-adauto.png
 image_alt: Imagem horizontal representando Santo Adauto
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Santo Adaucto

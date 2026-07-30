@@ -15,10 +15,10 @@ liturgical_date:
   label: 28 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/santo-agostinho-de-hipona.webp
+image: /assets/images/saints/santo-agostinho-de-hipona.png
 image_alt: Imagem horizontal representando Santo Agostinho de Hipona
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Santo Agostinho

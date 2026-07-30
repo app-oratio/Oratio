@@ -15,10 +15,10 @@ liturgical_date:
   label: 29 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/martirio-de-sao-joao-batista.webp
+image: /assets/images/saints/martirio-de-sao-joao-batista.png
 image_alt: Imagem horizontal representando Martírio de São João Batista
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Decapitação de São João Batista

@@ -15,10 +15,10 @@ liturgical_date:
   label: 5 de agosto
 daily_order: 20
 featured: false
-image: /assets/images/saints/nossa-senhora-das-neves.webp
+image: /assets/images/saints/nossa-senhora-das-neves.png
 image_alt: Imagem horizontal representando Nossa Senhora das Neves
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Santa Maria das Neves

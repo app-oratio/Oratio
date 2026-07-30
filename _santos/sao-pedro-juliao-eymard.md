@@ -15,10 +15,10 @@ liturgical_date:
   label: 2 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/sao-pedro-juliao-eymard.webp
+image: /assets/images/saints/sao-pedro-juliao-eymard.png
 image_alt: Imagem horizontal representando São Pedro Julião Eymard
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - São Pedro Julião

@@ -15,10 +15,10 @@ liturgical_date:
   label: 23 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/santa-rosa-de-lima.webp
+image: /assets/images/saints/santa-rosa-de-lima.png
 image_alt: Imagem horizontal representando Santa Rosa de Lima
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Santa Rosa de Santa Maria

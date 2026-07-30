@@ -15,10 +15,10 @@ liturgical_date:
   label: 21 de agosto
 daily_order: 10
 featured: false
-image: /assets/images/saints/sao-pio-x.webp
+image: /assets/images/saints/sao-pio-x.png
 image_alt: Imagem horizontal representando São Pio X
-image_width: 1200
-image_height: 675
+image_width: 1100
+image_height: 770
 image_position: center
 aliases:
 - Papa São Pio X
