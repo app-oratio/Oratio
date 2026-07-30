@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign saints = site.santos | where_exp: 'item', 'item.published != false' | sort_natural: 'title' %}
-{% assign saint_types = saints | map: 'saint_type' | compact | uniq | sort_natural %}
+{% assign saint_types = saints | map: 'entry_type' | compact | uniq | sort_natural %}
 <div class="container container--wide page-shell saints-archive"
   data-saints-archive
   data-saints-endpoint="{{ '/santos/dados.json' | relative_url }}">
@@ -39,10 +39,10 @@ layout: default
     <div class="saints-toolbar" aria-label="Controles do acervo">
       <label class="field-group saints-toolbar__search">
         <span>Pesquisar santos e celebrações</span>
-        <input type="search" data-saints-search placeholder="Nome, título, ordem religiosa, virtude ou patronato" autocomplete="off">
+        <input type="search" data-saints-search placeholder="Nome, título, virtude, informação biográfica ou patronato" autocomplete="off">
       </label>
       <label class="field-group">
-        <span>Tipo</span>
+        <span>Tipo de conteúdo</span>
         <select data-saints-type-filter>
           <option value="">Todos os tipos</option>
           {% for saint_type in saint_types %}{% if saint_type %}<option value="{{ saint_type | escape }}">{{ saint_type }}</option>{% endif %}{% endfor %}
@@ -63,7 +63,7 @@ layout: default
         <select data-saints-sort>
           <option value="alphabetical">Ordem alfabética</option>
           <option value="date">Data litúrgica</option>
-          <option value="type">Tipo de santo</option>
+          <option value="type">Tipo de conteúdo</option>
         </select>
       </label>
     </div>

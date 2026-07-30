@@ -15,15 +15,6 @@ layout: default
 {% if page.liturgical_memorial != blank %}{% assign has_liturgical_date = true %}{% endif %}
 {% if page.memorial_month != blank and page.memorial_day != blank %}{% assign has_liturgical_date = true %}{% endif %}
 
-{% assign has_life_dates = false %}
-{% if page.life_dates != blank or page.dates != blank %}{% assign has_life_dates = true %}{% endif %}
-{% assign has_saint_type = false %}
-{% if page.saint_type != blank %}{% assign has_saint_type = true %}{% endif %}
-{% assign has_religious_family = false %}
-{% if page.religious_family != blank %}{% assign has_religious_family = true %}{% endif %}
-{% assign has_profile_facts = false %}
-{% if has_liturgical_date or has_life_dates or has_saint_type or has_religious_family %}{% assign has_profile_facts = true %}{% endif %}
-
 <div class="container container--wide page-shell saint-page"
   data-saint-page
   data-saint-slug="{{ saint_slug | escape }}"
@@ -59,29 +50,7 @@ layout: default
         {% if page.subtitle != blank %}<p class="saint-subtitle">{{ page.subtitle }}</p>{% endif %}
         {% if page.description != blank %}<p class="page-lead">{{ page.description }}</p>{% endif %}
 
-        {% if has_profile_facts %}
-        <dl class="saint-facts">
-          {% if has_liturgical_date %}
-          <div>
-            <dt>Data litúrgica</dt>
-            <dd data-saint-date-label
-              data-date-rule="{{ page.liturgical_date | jsonify | escape }}"
-              data-memorial-month="{{ page.memorial_month }}"
-              data-memorial-day="{{ page.memorial_day }}"
-              data-date-fallback="{{ page.liturgical_date.label | default: page.liturgical_memorial | escape }}">
-              {{ page.liturgical_date.label | default: page.liturgical_memorial }}
-            </dd>
-          </div>
-          {% endif %}
-          {% if has_life_dates %}<div><dt>Vida</dt><dd>{{ page.life_dates | default: page.dates }}</dd></div>{% endif %}
-          {% if has_saint_type %}<div><dt>Estado de vida</dt><dd>{{ page.saint_type }}</dd></div>{% endif %}
-          {% if has_religious_family %}<div><dt>Família espiritual</dt><dd>{{ page.religious_family }}</dd></div>{% endif %}
-        </dl>
-        {% endif %}
-
-        {% if page.patronages != blank %}
-        <div class="saint-inline-list"><strong>Patronatos</strong><span>{{ page.patronages | join: ', ' }}</span></div>
-        {% endif %}
+        {% include saint-general-info.html has_liturgical_date=has_liturgical_date items=page.general_info %}
       </div>
     </header>
 
@@ -93,6 +62,8 @@ layout: default
       <div class="prose">{{ page.summary | markdownify }}</div>
     </section>
     {% endif %}
+
+    {% include saint-timeline.html items=page.timeline %}
 
     {% if page.virtues != blank %}
     <section class="saint-virtues" aria-labelledby="saint-virtues-title">
@@ -227,7 +198,16 @@ layout: default
   "about": {
     "@type": {{ page.subject_schema_type | default: 'Person' | jsonify }},
     "name": {{ page.title | jsonify }}{% if page.aliases != blank %},
-    "alternateName": {{ page.aliases | jsonify }}{% endif %}
+    "alternateName": {{ page.aliases | jsonify }}{% endif %}{% if page.general_info != blank %},
+    "additionalProperty": [
+      {% for item in page.general_info %}
+      {
+        "@type": "PropertyValue",
+        "name": {{ item.label | default: item.info | default: item.name | jsonify }},
+        "value": {% if item.values != blank %}{{ item.values | join: ', ' | jsonify }}{% else %}{{ item.value | default: item.text | jsonify }}{% endif %}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]{% endif %}
   },
   "publisher": {
     "@type": "Organization",
