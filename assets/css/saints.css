@@ -209,7 +209,15 @@
 }
 
 .saint-mini-card__media {
-  aspect-ratio: 16 / 9;
+  align-self: start;
+  aspect-ratio: 1100 / 770;
+  width: 100%;
+}
+
+.saint-mini-card__media > img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .saint-mini-card__body {
@@ -384,8 +392,14 @@
 }
 
 .saint-card__media {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1100 / 770;
   border-radius: 0;
+}
+
+.saint-card__media > img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .saint-card__body {
@@ -616,9 +630,17 @@
 }
 
 .saint-profile-hero__media {
-  aspect-ratio: 16 / 9;
+  align-self: start;
+  aspect-ratio: 1100 / 770;
   border-radius: 0;
   min-height: 0;
+  width: 100%;
+}
+
+.saint-profile-hero__media > img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .saint-profile-hero__content {
@@ -904,8 +926,8 @@
   }
 
   .saint-mini-card__media {
-    aspect-ratio: auto;
-    min-height: 12rem;
+    aspect-ratio: 1100 / 770;
+    min-height: 0;
   }
 
   .saints-toolbar {
@@ -947,8 +969,9 @@
   }
 
   .saint-profile-hero__media {
-    aspect-ratio: 16 / 10;
-    min-height: 100%;
+    aspect-ratio: 1100 / 770;
+    min-height: 0;
+    width: 100%;
   }
 
   .saint-reading-layout {
