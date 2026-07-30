@@ -1,4 +1,8 @@
-{% assign saint_info_items = include.items | default: page.general_info %}
+{% assign saint_info_items = include.items %}
+{% if saint_info_items == blank %}
+  {% assign saint_info_items = page.general_info %}
+{% endif %}
+
 {% assign has_legacy_saint_info = false %}
 {% if page.life_dates != blank or page.dates != blank or page.saint_type != blank or page.religious_family != blank or page.patronages != blank %}
   {% assign has_legacy_saint_info = true %}
@@ -27,29 +31,40 @@
 
     {% if saint_info_items != blank %}
       {% for item in saint_info_items %}
-        {% assign item_label = item.label | default: item.info | default: item.name %}
-        {% assign item_value = item.value | default: item.text %}
+        {% assign item_label = item['label'] %}
+        {% if item_label == blank %}{% assign item_label = item['info'] %}{% endif %}
+        {% if item_label == blank %}{% assign item_label = item['name'] %}{% endif %}
+
+        {% assign item_value = item['value'] %}
+        {% if item_value == blank %}{% assign item_value = item['text'] %}{% endif %}
+
+        {% assign item_values = item['values'] %}
+        {% assign item_url = item['url'] %}
+        {% assign item_external_url = item['external_url'] %}
+        {% assign item_note = item['note'] %}
+        {% assign item_wide = item['wide'] %}
+
         {% if item_label != blank %}
-          {% if item_value != blank or item.values != blank %}
-          <div class="saint-general-info__item{% if item.wide %} saint-general-info__item--wide{% endif %}">
-            <dt>{{ item_label }}</dt>
-            <dd>
-              {% if item.values != blank %}
-                <ul class="saint-general-info__values">
-                  {% for value in item.values %}
-                    {% if value != blank %}<li>{{ value }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
-              {% elsif item.url != blank %}
-                <a href="{{ item.url | relative_url }}">{{ item_value }}</a>
-              {% elsif item.external_url != blank %}
-                <a href="{{ item.external_url }}" rel="noopener noreferrer">{{ item_value }}</a>
-              {% else %}
-                {{ item_value }}
-              {% endif %}
-              {% if item.note != blank %}<small>{{ item.note }}</small>{% endif %}
-            </dd>
-          </div>
+          {% if item_value != blank or item_values != blank %}
+        <div class="saint-general-info__item{% if item_wide %} saint-general-info__item--wide{% endif %}">
+          <dt>{{ item_label }}</dt>
+          <dd>
+            {% if item_values != blank %}
+              <ul class="saint-general-info__values">
+                {% for value in item_values %}
+                  {% if value != blank %}<li>{{ value }}</li>{% endif %}
+                {% endfor %}
+              </ul>
+            {% elsif item_external_url != blank %}
+              <a href="{{ item_external_url }}" rel="noopener noreferrer">{{ item_value }}</a>
+            {% elsif item_url != blank %}
+              <a href="{{ item_url | relative_url }}">{{ item_value }}</a>
+            {% else %}
+              {{ item_value }}
+            {% endif %}
+            {% if item_note != blank %}<small>{{ item_note }}</small>{% endif %}
+          </dd>
+        </div>
           {% endif %}
         {% endif %}
       {% endfor %}
