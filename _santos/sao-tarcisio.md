@@ -1,66 +1,87 @@
 ---
-title: "São Tarcísio"
-short_title: "São Tarcísio"
-slug: "sao-tarcisio"
-subtitle: "Jovem mártir da Santíssima Eucaristia"
-description: "São Tarcísio é venerado como o jovem cristão que preferiu entregar a vida a permitir que a Eucaristia fosse profanada."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Jovem mártir"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "Século III"
-religious_family: "Igreja de Roma"
+title: São Tarcísio
+short_title: São Tarcísio
+slug: sao-tarcisio
+subtitle: Jovem mártir da Santíssima Eucaristia
+description: São Tarcísio é venerado como o jovem cristão que preferiu entregar a vida a permitir que a Eucaristia fosse profanada.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 15
-  label: "15 de agosto"
+  label: 15 de agosto
 daily_order: 20
 featured: false
-image: "/assets/images/saints/sao-tarcisio.webp"
-image_alt: "Imagem horizontal representando São Tarcísio"
+image: /assets/images/saints/sao-tarcisio.webp
+image_alt: Imagem horizontal representando São Tarcísio
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Tarcísio de Roma"
-  - "Tarcísio, mártir da Eucaristia"
+- São Tarcísio de Roma
+- Tarcísio, mártir da Eucaristia
 tags:
-  - "Eucaristia"
-  - "mártires"
-  - "jovens"
-  - "coroinhas"
-  - "Roma"
+- Eucaristia
+- mártires
+- jovens
+- coroinhas
+- Roma
 keywords:
-  - "são tarcísio"
-  - "padroeiro dos coroinhas"
-  - "mártir da eucaristia"
-  - "acolitos"
-patronages:
-  - "Coroinhas"
-  - "Acólitos"
-  - "Ministros do altar"
+- são tarcísio
+- padroeiro dos coroinhas
+- mártir da eucaristia
+- acolitos
 virtues:
-  - "Reverência eucarística"
-  - "Coragem"
-  - "Fidelidade"
-summary: >-
-  A antiga tradição romana recorda Tarcísio como um jovem encarregado de levar a Eucaristia a cristãos
-  presos durante a perseguição. Ao ser atacado, protegeu o Sacramento e morreu sem entregá-lo à
-  profanação.
-prayer: >-
-  São Tarcísio, jovem mártir da Eucaristia, ensinai-nos a amar e respeitar profundamente o Corpo de
-  Cristo. Protegei os coroinhas, acólitos e ministros do altar, para que sirvam com pureza, atenção e
-  alegria. Amém.
+- Reverência eucarística
+- Coragem
+- Fidelidade
+summary: A antiga tradição romana recorda Tarcísio como um jovem encarregado de levar a Eucaristia a cristãos presos durante a perseguição. Ao ser atacado, protegeu o Sacramento e morreu sem entregá-lo à profanação.
+prayer: São Tarcísio, jovem mártir da Eucaristia, ensinai-nos a amar e respeitar profundamente o Corpo de Cristo. Protegei os coroinhas, acólitos e ministros do altar, para que sirvam com pureza, atenção e alegria. Amém.
 related_saints:
-  - "sao-pedro-juliao-eymard"
-  - "sao-lourenco"
-  - "santa-filomena"
+- sao-pedro-juliao-eymard
+- sao-lourenco
+- santa-filomena
 related: []
 sources:
-  - title: "Templário de Maria: São Tarcísio"
-    url: "https://templariodemaria.com/sao-tarcisio-protetor-dos-acolitos-e-coroinhas-15-de-agosto/"
+- title: 'Templário de Maria: São Tarcísio'
+  url: https://templariodemaria.com/sao-tarcisio-protetor-dos-acolitos-e-coroinhas-15-de-agosto/
+general_info:
+- label: Período
+  value: Século III
+- label: Comunidade
+  value: Igreja de Roma
+- label: Martírio
+  value: Morto ao proteger a Eucaristia que levava aos cristãos presos
+- label: Legado
+  value: Modelo de reverência e coragem para os servidores do altar
+- label: Período de vida
+  value: Século III
+- label: Estado de vida
+  value: Jovem mártir
+- label: Família espiritual
+  value: Igreja de Roma
+- label: Padroeiro de
+  values:
+  - Coroinhas
+  - Acólitos
+  - Ministros do altar
+  wide: true
+timeline:
+- date: Século III
+  title: Serviço à comunidade romana
+  description: Tarcísio participa da vida da Igreja durante um período de perseguição.
+- date: Século III
+  title: Missão eucarística
+  description: Recebe a tarefa de levar a Eucaristia a cristãos presos.
+- date: Século III
+  title: Martírio
+  description: É morto ao se recusar a entregar o Sacramento que levava.
+- date: Século IV
+  title: Memória registrada por São Dâmaso
+  description: Uma inscrição antiga compara sua fidelidade à do diácono Santo Estêvão.
 ---
 
 ## Um nome conservado pela Igreja de Roma

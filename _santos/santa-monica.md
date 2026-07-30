@@ -1,66 +1,85 @@
 ---
-title: "Santa Mônica"
-short_title: "Santa Mônica"
-slug: "santa-monica"
-subtitle: "Esposa, mãe e mulher perseverante na oração"
-description: "Santa Mônica sustentou a família em meio a grandes provações e rezou durante anos pela conversão de seu filho Agostinho."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Esposa, mãe e viúva"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "c. 331-387"
-religious_family: "Leiga cristã"
+title: Santa Mônica
+short_title: Santa Mônica
+slug: santa-monica
+subtitle: Esposa, mãe e mulher perseverante na oração
+description: Santa Mônica sustentou a família em meio a grandes provações e rezou durante anos pela conversão de seu filho Agostinho.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 27
-  label: "27 de agosto"
+  label: 27 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-monica.webp"
-image_alt: "Imagem horizontal representando Santa Mônica"
+image: /assets/images/saints/santa-monica.webp
+image_alt: Imagem horizontal representando Santa Mônica
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Mônica de Hipona"
-  - "Mônica de Tagaste"
-  - "Mãe de Santo Agostinho"
+- Santa Mônica de Hipona
+- Mônica de Tagaste
+- Mãe de Santo Agostinho
 tags:
-  - "mães"
-  - "família"
-  - "oração"
-  - "conversão"
-  - "viúvas"
+- mães
+- família
+- oração
+- conversão
+- viúvas
 keywords:
-  - "santa mônica"
-  - "mãe de santo agostinho"
-  - "oração pelos filhos"
-  - "padroeira das mães"
-patronages:
-  - "Mães cristãs"
-  - "Esposas"
-  - "Famílias com filhos afastados da fé"
+- santa mônica
+- oração pelos filhos
+- padroeira das mães
 virtues:
-  - "Perseverança na oração"
-  - "Paciência"
-  - "Esperança"
-summary: >-
-  Mônica viveu um casamento difícil e sofreu com o afastamento religioso de seu filho Agostinho. Sem
-  abandonar a caridade nem tentar controlar a graça, acompanhou-o com oração, lágrimas e presença até
-  testemunhar sua conversão e seu batismo.
-prayer: >-
-  Santa Mônica, acolhei a oração das mães e famílias que sofrem por aqueles que se afastaram de Deus.
-  Alcançai-nos perseverança sem desespero, caridade sem omissão e confiança no tempo da graça. Amém.
+- Perseverança na oração
+- Paciência
+- Esperança
+summary: Mônica viveu um casamento difícil e sofreu com o afastamento religioso de seu filho Agostinho. Sem abandonar a caridade nem tentar controlar a graça, acompanhou-o com oração, lágrimas e presença até testemunhar sua conversão e seu batismo.
+prayer: Santa Mônica, acolhei a oração das mães e famílias que sofrem por aqueles que se afastaram de Deus. Alcançai-nos perseverança sem desespero, caridade sem omissão e confiança no tempo da graça. Amém.
 related_saints:
-  - "santo-agostinho-de-hipona"
-  - "santa-joana-francisca-de-chantal"
-  - "santa-rosa-de-lima"
+- santo-agostinho-de-hipona
+- santa-joana-francisca-de-chantal
+- santa-rosa-de-lima
 related: []
 sources:
-  - title: "Templário de Maria: Santa Mônica"
-    url: "https://templariodemaria.com/santo-do-dia-27-de-agosto-santa-monica/"
+- title: 'Templário de Maria: Santa Mônica'
+  url: https://templariodemaria.com/santo-do-dia-27-de-agosto-santa-monica/
+general_info:
+- label: Origem
+  value: Tagaste, Norte da África
+- label: Relação familiar
+  value: Mãe de Santo Agostinho
+- label: Marca espiritual
+  value: Perseverança na oração pela conversão da família
+- label: Período de vida
+  value: c. 331-387
+- label: Estado de vida
+  value: Esposa, mãe e viúva
+- label: Família espiritual
+  value: Leiga cristã
+- label: Padroeira de
+  values:
+  - Mães cristãs
+  - Esposas
+  - Famílias com filhos afastados da fé
+  wide: true
+timeline:
+- date: c. 331
+  title: Nascimento em Tagaste
+  description: Mônica cresce no Norte da África e recebe sólida formação cristã.
+- date: Vida adulta
+  title: Oração pela família
+  description: Enfrenta dificuldades no matrimônio e acompanha com perseverança o caminho de Agostinho.
+- date: '387'
+  title: Conversão e batismo de Agostinho
+  description: Vê realizada uma esperança alimentada durante muitos anos de oração.
+- date: '387'
+  title: Morte em Óstia
+  description: Morre pouco depois, durante a viagem de retorno para a África.
 ---
 
 ## Uma cristã dentro de uma casa difícil

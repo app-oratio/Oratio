@@ -1,67 +1,96 @@
 ---
-title: "Santo Agostinho de Hipona"
-short_title: "Santo Agostinho"
-slug: "santo-agostinho-de-hipona"
-subtitle: "Bispo e Doutor da Igreja"
-description: "Depois de uma longa busca, Santo Agostinho encontrou em Cristo a verdade e tornou-se um dos maiores pastores e pensadores da Igreja."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Bispo e Doutor da Igreja"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "354-430"
-religious_family: "Igreja de Hipona"
+title: Santo Agostinho de Hipona
+short_title: Santo Agostinho
+slug: santo-agostinho-de-hipona
+subtitle: Bispo e Doutor da Igreja
+description: Depois de uma longa busca, Santo Agostinho encontrou em Cristo a verdade e tornou-se um dos maiores pastores e pensadores da Igreja.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 28
-  label: "28 de agosto"
+  label: 28 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santo-agostinho-de-hipona.webp"
-image_alt: "Imagem horizontal representando Santo Agostinho de Hipona"
+image: /assets/images/saints/santo-agostinho-de-hipona.webp
+image_alt: Imagem horizontal representando Santo Agostinho de Hipona
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santo Agostinho"
-  - "Agostinho de Hipona"
-  - "Aurélio Agostinho"
+- Santo Agostinho
+- Agostinho de Hipona
+- Aurélio Agostinho
 tags:
-  - "Doutores da Igreja"
-  - "bispos"
-  - "conversão"
-  - "filosofia"
-  - "graça"
+- Doutores da Igreja
+- bispos
+- conversão
+- filosofia
+- graça
 keywords:
-  - "santo agostinho"
-  - "agostinho de hipona"
-  - "confissões"
-  - "doutor da graça"
-patronages:
-  - "Teólogos"
-  - "Impressores"
-  - "Cervejeiros"
+- santo agostinho
+- agostinho de hipona
+- doutor da graça
 virtues:
-  - "Busca da verdade"
-  - "Humildade da conversão"
-  - "Amor à graça"
-summary: >-
-  Agostinho procurou felicidade no sucesso, nos prazeres e em diferentes correntes filosóficas e
-  religiosas. Alcançado pela graça, recebeu o batismo, tornou-se sacerdote e bispo, deixando obras que
-  continuam a iluminar a compreensão de Deus, da pessoa humana e da Igreja.
-prayer: >-
-  Santo Agostinho, ajudai-nos a procurar a verdade com sinceridade e a não fugir quando Deus pedir nossa
-  conversão. Alcançai-nos amor pela graça, inteligência humilde e um coração que só encontre repouso no
-  Senhor. Amém.
+- Busca da verdade
+- Humildade da conversão
+- Amor à graça
+summary: Agostinho procurou felicidade no sucesso, nos prazeres e em diferentes correntes filosóficas e religiosas. Alcançado pela graça, recebeu o batismo, tornou-se sacerdote e bispo, deixando obras que continuam a iluminar a compreensão de Deus, da pessoa humana e da Igreja.
+prayer: Santo Agostinho, ajudai-nos a procurar a verdade com sinceridade e a não fugir quando Deus pedir nossa conversão. Alcançai-nos amor pela graça, inteligência humilde e um coração que só encontre repouso no Senhor. Amém.
 related_saints:
-  - "santa-monica"
-  - "sao-maximo-o-confessor"
-  - "sao-bernardo-de-claraval"
+- santa-monica
+- sao-maximo-o-confessor
+- sao-bernardo-de-claraval
 related: []
 sources:
-  - title: "Templário de Maria: Santo Agostinho de Hipona"
-    url: "https://templariodemaria.com/santo-do-dia-28-de-agosto-santo-agostinho/"
+- title: 'Templário de Maria: Santo Agostinho de Hipona'
+  url: https://templariodemaria.com/santo-do-dia-28-de-agosto-santo-agostinho/
+general_info:
+- label: Origem
+  value: Tagaste, Norte da África
+- label: Sede episcopal
+  value: Hipona
+- label: Principais áreas
+  values:
+  - Teologia
+  - Filosofia
+  - Pregação
+  - Vida comunitária
+- label: Obras conhecidas
+  values:
+  - Confissões
+  - A Cidade de Deus
+- label: Período de vida
+  value: 354-430
+- label: Estado de vida
+  value: Bispo e Doutor da Igreja
+- label: Família espiritual
+  value: Igreja de Hipona
+- label: Padroeiro de
+  values:
+  - Teólogos
+  - Impressores
+  - Cervejeiros
+  wide: true
+timeline:
+- date: '354'
+  title: Nascimento em Tagaste
+  description: Agostinho nasce no Norte da África, filho de Patrício e Santa Mônica.
+- date: '386'
+  title: Conversão em Milão
+  description: Depois de longa busca intelectual e moral, decide entregar-se inteiramente a Cristo.
+- date: '387'
+  title: Batismo
+  description: Recebe o batismo de Santo Ambrósio na Vigília Pascal.
+- date: 391–395
+  title: Sacerdócio e episcopado
+  description: É ordenado sacerdote e depois se torna bispo de Hipona.
+- date: '430'
+  title: Morte durante o cerco de Hipona
+  description: Morre deixando uma das obras teológicas mais influentes do cristianismo.
 ---
 
 ## Um coração inquieto em busca de felicidade

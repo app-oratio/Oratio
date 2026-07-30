@@ -1,66 +1,85 @@
 ---
-title: "Martírio de São João Batista"
-short_title: "Martírio de São João Batista"
-slug: "martirio-de-sao-joao-batista"
-subtitle: "Memória da fidelidade do Precursor até a morte"
-description: "A memória do martírio de São João Batista celebra o profeta que anunciou Cristo e não silenciou diante do pecado dos poderosos."
-entry_type: "Celebração de santo"
-subject_schema_type: "Event"
-saint_type: "Profeta e mártir"
-liturgical_rank: "Memória"
-category: "Santos bíblicos"
-life_dates: "Século I"
-religious_family: "Tradição profética de Israel"
+title: Martírio de São João Batista
+short_title: Martírio de São João Batista
+slug: martirio-de-sao-joao-batista
+subtitle: Memória da fidelidade do Precursor até a morte
+description: A memória do martírio de São João Batista celebra o profeta que anunciou Cristo e não silenciou diante do pecado dos poderosos.
+entry_type: Celebração de santo
+subject_schema_type: Event
+liturgical_rank: Memória
+category: Santos bíblicos
 liturgical_date:
   type: fixed
   month: 8
   day: 29
-  label: "29 de agosto"
+  label: 29 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/martirio-de-sao-joao-batista.webp"
-image_alt: "Imagem horizontal representando Martírio de São João Batista"
+image: /assets/images/saints/martirio-de-sao-joao-batista.webp
+image_alt: Imagem horizontal representando Martírio de São João Batista
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Decapitação de São João Batista"
-  - "Paixão de São João Batista"
-  - "Martírio do Precursor"
+- Decapitação de São João Batista
+- Paixão de São João Batista
+- Martírio do Precursor
 tags:
-  - "São João Batista"
-  - "mártires"
-  - "profetas"
-  - "Bíblia"
-  - "verdade"
+- São João Batista
+- mártires
+- profetas
+- Bíblia
+- verdade
 keywords:
-  - "martírio de são joão batista"
-  - "29 de agosto"
-  - "herodes antipas"
-  - "morte de joão batista"
-patronages:
-  - "Profetas"
-  - "Testemunhas da verdade"
+- martírio de são joão batista
+- 29 de agosto
+- herodes antipas
+- morte de joão batista
 virtues:
-  - "Coragem profética"
-  - "Fidelidade"
-  - "Desapego"
-summary: >-
-  João Batista preparou o caminho de Jesus e denunciou publicamente a situação irregular de Herodes
-  Antipas. Preso por sua fidelidade, foi morto por decisão de um governante que preferiu proteger a
-  própria imagem a reconhecer a verdade.
-prayer: >-
-  São João Batista, profeta e mártir, alcançai-nos coragem para testemunhar a verdade com caridade e sem
-  respeito humano. Ajudai-nos a diminuir para que Cristo cresça e a permanecer fiéis mesmo quando a
-  obediência a Deus tiver um preço. Amém.
+- Coragem profética
+- Fidelidade
+- Desapego
+summary: João Batista preparou o caminho de Jesus e denunciou publicamente a situação irregular de Herodes Antipas. Preso por sua fidelidade, foi morto por decisão de um governante que preferiu proteger a própria imagem a reconhecer a verdade.
+prayer: São João Batista, profeta e mártir, alcançai-nos coragem para testemunhar a verdade com caridade e sem respeito humano. Ajudai-nos a diminuir para que Cristo cresça e a permanecer fiéis mesmo quando a obediência a Deus tiver um preço. Amém.
 related_saints:
-  - "sao-bartolomeu"
-  - "sao-lourenco"
-  - "sao-tarcisio"
+- sao-bartolomeu
+- sao-lourenco
+- sao-tarcisio
 related: []
 sources:
-  - title: "Templário de Maria: Martírio de São João Batista"
-    url: "https://templariodemaria.com/santo-do-dia-29-de-agosto-martirio-de-sao-joao-batista/"
+- title: 'Templário de Maria: Martírio de São João Batista'
+  url: https://templariodemaria.com/santo-do-dia-29-de-agosto-martirio-de-sao-joao-batista/
+general_info:
+- label: Identidade
+  value: Profeta precursor de Jesus Cristo
+- label: Contexto
+  value: Judeia e Galileia, no século I
+- label: Motivo do martírio
+  value: Fidelidade à verdade diante de Herodes Antipas
+- label: Período de vida
+  value: Século I
+- label: Classificação
+  value: Profeta e mártir
+- label: Tradição espiritual
+  value: Tradição profética de Israel
+- label: Invocada por
+  values:
+  - Profetas
+  - Testemunhas da verdade
+  wide: true
+timeline:
+- date: Século I
+  title: Pregação no deserto
+  description: João chama o povo à conversão e prepara o caminho do Messias.
+- date: Início do ministério de Jesus
+  title: Batismo do Senhor
+  description: João reconhece a missão de Cristo e orienta seus discípulos para Ele.
+- date: Século I
+  title: Prisão por ordem de Herodes
+  description: Sua denúncia pública de uma união ilícita o coloca diante do poder político.
+- date: Século I
+  title: Martírio
+  description: João é morto por permanecer fiel à verdade que havia anunciado.
 ---
 
 ## O profeta que preparou o caminho

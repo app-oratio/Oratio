@@ -1,65 +1,93 @@
 ---
-title: "São Pedro Julião Eymard"
-short_title: "São Pedro Julião Eymard"
-slug: "sao-pedro-juliao-eymard"
-subtitle: "Sacerdote e apóstolo da Eucaristia"
-description: "São Pedro Julião Eymard fez da presença real de Cristo na Eucaristia o centro de sua vida, de sua pregação e de suas fundações."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e fundador"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1811-1868"
-religious_family: "Congregação do Santíssimo Sacramento"
+title: São Pedro Julião Eymard
+short_title: São Pedro Julião Eymard
+slug: sao-pedro-juliao-eymard
+subtitle: Sacerdote e apóstolo da Eucaristia
+description: São Pedro Julião Eymard fez da presença real de Cristo na Eucaristia o centro de sua vida, de sua pregação e de suas fundações.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 2
-  label: "2 de agosto"
+  label: 2 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-pedro-juliao-eymard.webp"
-image_alt: "Imagem horizontal representando São Pedro Julião Eymard"
+image: /assets/images/saints/sao-pedro-juliao-eymard.webp
+image_alt: Imagem horizontal representando São Pedro Julião Eymard
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Pedro Julião"
-  - "Pedro Julião Eymard"
-  - "Saint Pierre-Julien Eymard"
+- São Pedro Julião
+- Pedro Julião Eymard
+- Saint Pierre-Julien Eymard
 tags:
-  - "Eucaristia"
-  - "adoração"
-  - "sacerdotes"
-  - "fundadores"
-  - "Santíssimo Sacramento"
+- Eucaristia
+- adoração
+- sacerdotes
+- fundadores
+- Santíssimo Sacramento
 keywords:
-  - "são pedro julião eymard"
-  - "apóstolo da eucaristia"
-  - "adoração eucarística"
-patronages:
-  - "Congressos eucarísticos"
-  - "Adoradores do Santíssimo Sacramento"
+- são pedro julião eymard
+- adoração eucarística
 virtues:
-  - "Amor à Eucaristia"
-  - "Docilidade à vontade de Deus"
-  - "Zelo apostólico"
-summary: >-
-  Desde a juventude, Pedro Julião foi atraído pela presença de Jesus no Santíssimo Sacramento. Depois de
-  anos de discernimento e serviço sacerdotal, fundou comunidades voltadas à adoração, à catequese e à
-  renovação da vida cristã a partir da Eucaristia.
-prayer: >-
-  São Pedro Julião Eymard, ensinai-nos a reconhecer Jesus vivo e presente na Santíssima Eucaristia.
-  Alcançai-nos recolhimento na adoração, fervor na Santa Missa e caridade concreta para com aqueles que
-  recebem de nós o amor que oferecemos a Cristo. Amém.
+- Amor à Eucaristia
+- Docilidade à vontade de Deus
+- Zelo apostólico
+summary: Desde a juventude, Pedro Julião foi atraído pela presença de Jesus no Santíssimo Sacramento. Depois de anos de discernimento e serviço sacerdotal, fundou comunidades voltadas à adoração, à catequese e à renovação da vida cristã a partir da Eucaristia.
+prayer: São Pedro Julião Eymard, ensinai-nos a reconhecer Jesus vivo e presente na Santíssima Eucaristia. Alcançai-nos recolhimento na adoração, fervor na Santa Missa e caridade concreta para com aqueles que recebem de nós o amor que oferecemos a Cristo. Amém.
 related_saints:
-  - "sao-tarcisio"
-  - "sao-pio-x"
-  - "sao-joao-eudes"
+- sao-tarcisio
+- sao-pio-x
+- sao-joao-eudes
 related: []
 sources:
-  - title: "Templário de Maria: São Pedro Julião Eymard"
-    url: "https://templariodemaria.com/santo-do-dia-02-de-agosto-sao-pedro-juliao-eymard/"
+- title: 'Templário de Maria: São Pedro Julião Eymard'
+  url: https://templariodemaria.com/santo-do-dia-02-de-agosto-sao-pedro-juliao-eymard/
+general_info:
+- label: Origem
+  value: La Mure, França
+- label: Fundações
+  values:
+  - Congregação do Santíssimo Sacramento
+  - Servas do Santíssimo Sacramento
+- label: Missão principal
+  value: Adoração e apostolado eucarístico
+- label: Título espiritual
+  value: Apóstolo da Eucaristia
+- label: Período de vida
+  value: 1811-1868
+- label: Estado de vida
+  value: Sacerdote e fundador
+- label: Família espiritual
+  value: Congregação do Santíssimo Sacramento
+- label: Padroeiro de
+  values:
+  - Congressos eucarísticos
+  - Adoradores do Santíssimo Sacramento
+  wide: true
+timeline:
+- date: '1811'
+  title: Nascimento em La Mure
+  description: Pedro Julião nasce numa pequena cidade francesa e desde cedo se sente atraído pela Eucaristia.
+- date: '1834'
+  title: Ordenação sacerdotal
+  description: Inicia o ministério no clero diocesano.
+- date: '1856'
+  title: Fundação da Congregação do Santíssimo Sacramento
+  description: Começa uma comunidade masculina dedicada à adoração e ao apostolado eucarístico.
+- date: '1858'
+  title: Fundação do ramo feminino
+  description: A missão se amplia com as Servas do Santíssimo Sacramento.
+- date: '1868'
+  title: Morte
+  description: Morre em La Mure depois de intenso trabalho apostólico.
+- date: '1962'
+  title: Canonização
+  description: João XXIII o proclama santo.
 ---
 
 ## Uma atração que começou diante do sacrário

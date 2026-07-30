@@ -1,67 +1,97 @@
 ---
-title: "Santa Joana Francisca de Chantal"
-short_title: "Santa Joana de Chantal"
-slug: "santa-joana-francisca-de-chantal"
-subtitle: "Viúva e fundadora da Ordem da Visitação"
-description: "Esposa, mãe, viúva e fundadora, Santa Joana de Chantal amadureceu na dor e ajudou a criar uma vida religiosa marcada pela mansidão."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Viúva e fundadora"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1572-1641"
-religious_family: "Ordem da Visitação de Santa Maria"
+title: Santa Joana Francisca de Chantal
+short_title: Santa Joana de Chantal
+slug: santa-joana-francisca-de-chantal
+subtitle: Viúva e fundadora da Ordem da Visitação
+description: Esposa, mãe, viúva e fundadora, Santa Joana de Chantal amadureceu na dor e ajudou a criar uma vida religiosa marcada pela mansidão.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 12
-  label: "12 de agosto"
+  label: 12 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-joana-francisca-de-chantal.webp"
-image_alt: "Imagem horizontal representando Santa Joana Francisca de Chantal"
+image: /assets/images/saints/santa-joana-francisca-de-chantal.webp
+image_alt: Imagem horizontal representando Santa Joana Francisca de Chantal
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Joana de Chantal"
-  - "Joana Francisca Frémyot de Chantal"
-  - "Jeanne de Chantal"
+- Santa Joana de Chantal
+- Joana Francisca Frémyot de Chantal
+- Jeanne de Chantal
 tags:
-  - "viúvas"
-  - "fundadoras"
-  - "Visitação"
-  - "São Francisco de Sales"
-  - "família"
+- viúvas
+- fundadoras
+- Visitação
+- São Francisco de Sales
+- família
 keywords:
-  - "santa joana de chantal"
-  - "fundadora da visitação"
-  - "são francisco de sales"
-  - "santa viúva"
-patronages:
-  - "Viúvas"
-  - "Pessoas enlutadas"
-  - "Mães de família"
+- santa joana de chantal
+- fundadora da visitação
+- santa viúva
 virtues:
-  - "Mansidão"
-  - "Fortaleza na dor"
-  - "Obediência à vontade de Deus"
-summary: >-
-  Joana viveu a santidade em diferentes estados de vida. Foi esposa dedicada, mãe, viúva provada pelo
-  sofrimento e, sob a direção de São Francisco de Sales, fundadora da Ordem da Visitação, destinada a unir
-  vida interior e caridade fraterna.
-prayer: >-
-  Santa Joana Francisca de Chantal, sustentai as famílias, as viúvas e todos os que atravessam o luto.
-  Alcançai-nos mansidão nas relações, coragem nas mudanças da vida e disponibilidade para servir a Deus no
-  lugar em que ele nos chamar. Amém.
+- Mansidão
+- Fortaleza na dor
+- Obediência à vontade de Deus
+summary: Joana viveu a santidade em diferentes estados de vida. Foi esposa dedicada, mãe, viúva provada pelo sofrimento e, sob a direção de São Francisco de Sales, fundadora da Ordem da Visitação, destinada a unir vida interior e caridade fraterna.
+prayer: Santa Joana Francisca de Chantal, sustentai as famílias, as viúvas e todos os que atravessam o luto. Alcançai-nos mansidão nas relações, coragem nas mudanças da vida e disponibilidade para servir a Deus no lugar em que ele nos chamar. Amém.
 related_saints:
-  - "sao-joao-eudes"
-  - "santa-monica"
-  - "santa-dulce-dos-pobres"
+- sao-joao-eudes
+- santa-monica
+- santa-dulce-dos-pobres
 related: []
 sources:
-  - title: "Templário de Maria: Santa Joana Francisca de Chantal"
-    url: "https://templariodemaria.com/santo-do-dia-12-de-agosto-santa-joana-francisca-de-chantal/"
+- title: 'Templário de Maria: Santa Joana Francisca de Chantal'
+  url: https://templariodemaria.com/santo-do-dia-12-de-agosto-santa-joana-francisca-de-chantal/
+general_info:
+- label: Origem
+  value: Dijon, França
+- label: Estados de vida
+  values:
+  - Esposa
+  - Mãe
+  - Viúva
+  - Religiosa e fundadora
+- label: Fundação
+  value: Ordem da Visitação de Santa Maria
+- label: Diretor espiritual
+  value: São Francisco de Sales
+- label: Período de vida
+  value: 1572-1641
+- label: Estado de vida
+  value: Viúva e fundadora
+- label: Família espiritual
+  value: Ordem da Visitação de Santa Maria
+- label: Padroeira de
+  values:
+  - Viúvas
+  - Pessoas enlutadas
+  - Mães de família
+  wide: true
+timeline:
+- date: '1572'
+  title: Nascimento em Dijon
+  description: Joana nasce numa família de destaque e cresce numa sólida formação cristã.
+- date: '1601'
+  title: Viuvez
+  description: A morte inesperada do marido abre um período de sofrimento, responsabilidade familiar e amadurecimento espiritual.
+- date: '1604'
+  title: Encontro com Francisco de Sales
+  description: Começa uma amizade espiritual decisiva para sua vocação.
+- date: '1610'
+  title: Fundação da Visitação
+  description: Em Annecy, inicia a Ordem da Visitação de Santa Maria.
+- date: '1641'
+  title: Morte
+  description: Morre depois de consolidar e visitar numerosas comunidades.
+- date: '1767'
+  title: Canonização
+  description: Clemente XIII a proclama santa.
 ---
 
 ## Santidade dentro da família

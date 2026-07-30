@@ -1,65 +1,79 @@
 ---
-title: "Nossa Senhora das Neves"
-short_title: "Nossa Senhora das Neves"
-slug: "nossa-senhora-das-neves"
-subtitle: "Memória da dedicação da Basílica de Santa Maria Maior"
-description: "A devoção a Nossa Senhora das Neves recorda a antiga Basílica de Santa Maria Maior e a proteção materna da Virgem sobre a Igreja."
-entry_type: "Celebração mariana"
-subject_schema_type: "Thing"
-saint_type: "Título mariano"
-liturgical_rank: "Memória facultativa"
-category: "Festas de Nossa Senhora"
-religious_family: "Devoção mariana"
+title: Nossa Senhora das Neves
+short_title: Nossa Senhora das Neves
+slug: nossa-senhora-das-neves
+subtitle: Memória da dedicação da Basílica de Santa Maria Maior
+description: A devoção a Nossa Senhora das Neves recorda a antiga Basílica de Santa Maria Maior e a proteção materna da Virgem sobre a Igreja.
+entry_type: Celebração mariana
+subject_schema_type: Thing
+liturgical_rank: Memória facultativa
+category: Festas de Nossa Senhora
 liturgical_date:
   type: fixed
   month: 8
   day: 5
-  label: "5 de agosto"
+  label: 5 de agosto
 daily_order: 20
 featured: false
-image: "/assets/images/saints/nossa-senhora-das-neves.webp"
-image_alt: "Imagem horizontal representando Nossa Senhora das Neves"
+image: /assets/images/saints/nossa-senhora-das-neves.webp
+image_alt: Imagem horizontal representando Nossa Senhora das Neves
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Maria das Neves"
-  - "Nossa Senhora da Neve"
-  - "Dedicação da Basílica de Santa Maria Maior"
+- Santa Maria das Neves
+- Nossa Senhora da Neve
+- Dedicação da Basílica de Santa Maria Maior
 tags:
-  - "Nossa Senhora"
-  - "Santa Maria Maior"
-  - "Roma"
-  - "basílicas"
-  - "devoção mariana"
+- Nossa Senhora
+- Santa Maria Maior
+- Roma
+- basílicas
+- devoção mariana
 keywords:
-  - "nossa senhora das neves"
-  - "santa maria maior"
-  - "milagre da neve"
-  - "5 de agosto"
-patronages:
-  - "Roma"
-  - "Comunidades sob a invocação de Nossa Senhora das Neves"
+- nossa senhora das neves
+- santa maria maior
+- milagre da neve
 virtues:
-  - "Confiança na proteção de Maria"
-  - "Docilidade à graça"
-  - "Amor à Igreja"
-summary: >-
-  Celebrada em 5 de agosto, Nossa Senhora das Neves está ligada à dedicação da Basílica de Santa Maria
-  Maior, uma das principais igrejas marianas de Roma. A antiga tradição da neve no verão expressa, em
-  linguagem devocional, a iniciativa de Deus e a prontidão daqueles que acolhem seus sinais.
-prayer: >-
-  Nossa Senhora das Neves, Mãe de Deus e Mãe da Igreja, cobri-nos com vossa proteção e conduzi-nos sempre
-  a Jesus. Purificai nosso coração, fortalecei nossa fé e fazei de nossa vida uma morada agradável ao
-  Senhor. Amém.
+- Confiança na proteção de Maria
+- Docilidade à graça
+- Amor à Igreja
+summary: Celebrada em 5 de agosto, Nossa Senhora das Neves está ligada à dedicação da Basílica de Santa Maria Maior, uma das principais igrejas marianas de Roma. A antiga tradição da neve no verão expressa, em linguagem devocional, a iniciativa de Deus e a prontidão daqueles que acolhem seus sinais.
+prayer: Nossa Senhora das Neves, Mãe de Deus e Mãe da Igreja, cobri-nos com vossa proteção e conduzi-nos sempre a Jesus. Purificai nosso coração, fortalecei nossa fé e fazei de nossa vida uma morada agradável ao Senhor. Amém.
 related_saints:
-  - "assuncao-de-nossa-senhora"
-  - "nossa-senhora-rainha"
-  - "nossa-senhora-das-lagrimas"
+- assuncao-de-nossa-senhora
+- nossa-senhora-rainha
+- nossa-senhora-das-lagrimas
 related: []
 sources:
-  - title: "Templário de Maria: Nossa Senhora das Neves"
-    url: "https://templariodemaria.com/hoje-celebramos-a-festa-de-nossa-senhora-das-neves-05-de-agosto/"
+- title: 'Templário de Maria: Nossa Senhora das Neves'
+  url: https://templariodemaria.com/hoje-celebramos-a-festa-de-nossa-senhora-das-neves-05-de-agosto/
+general_info:
+- label: Centro histórico
+  value: Basílica de Santa Maria Maior, Roma
+- label: Tradição associada
+  value: Uma nevada extraordinária teria indicado o local de uma igreja mariana
+- label: Data da celebração
+  value: 5 de agosto
+- label: Classificação
+  value: Título mariano
+- label: Tradição espiritual
+  value: Devoção mariana
+- label: Invocada por
+  values:
+  - Roma
+  - Comunidades sob a invocação de Nossa Senhora das Neves
+  wide: true
+timeline:
+- date: Século IV, segundo a tradição
+  title: A indicação por meio da neve
+  description: Uma nevada fora de época teria mostrado o lugar destinado a uma igreja dedicada à Virgem Maria.
+- date: Século V
+  title: Santa Maria Maior ganha sua forma monumental
+  description: A basílica romana torna-se um dos principais santuários marianos do Ocidente.
+- date: 5 de agosto
+  title: Memória anual da dedicação
+  description: A Igreja recorda a basílica e a antiga invocação de Nossa Senhora das Neves.
 ---
 
 ## Uma antiga festa mariana de Roma

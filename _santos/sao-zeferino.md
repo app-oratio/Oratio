@@ -1,65 +1,86 @@
 ---
-title: "São Zeferino"
-short_title: "São Zeferino"
-slug: "sao-zeferino"
-subtitle: "Papa da Igreja nos primeiros séculos"
-description: "São Zeferino conduziu a Igreja de Roma num período de perseguições, disputas teológicas e crescimento da comunidade cristã."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Papa"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 160-217"
-religious_family: "Clero romano"
+title: São Zeferino
+short_title: São Zeferino
+slug: sao-zeferino
+subtitle: Papa da Igreja nos primeiros séculos
+description: São Zeferino conduziu a Igreja de Roma num período de perseguições, disputas teológicas e crescimento da comunidade cristã.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 26
-  label: "26 de agosto"
+  label: 26 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-zeferino.webp"
-image_alt: "Imagem horizontal representando São Zeferino"
+image: /assets/images/saints/sao-zeferino.webp
+image_alt: Imagem horizontal representando São Zeferino
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Papa São Zeferino"
-  - "Zephyrinus"
-  - "São Zeferino de Roma"
+- Papa São Zeferino
+- Zephyrinus
+- São Zeferino de Roma
 tags:
-  - "papas"
-  - "Roma"
-  - "Igreja antiga"
-  - "doutrina"
-  - "perseguições"
+- papas
+- Roma
+- Igreja antiga
+- doutrina
+- perseguições
 keywords:
-  - "são zeferino"
-  - "papa zeferino"
-  - "igreja do século iii"
-  - "catacumbas de são calisto"
-patronages:
-  - "Comunidades perseguidas"
+- são zeferino
+- papa zeferino
+- igreja do século iii
+- catacumbas de são calisto
 virtues:
-  - "Perseverança"
-  - "Prudência pastoral"
-  - "Fidelidade à Igreja"
-summary: >-
-  Zeferino governou a Igreja de Roma entre o fim do século II e o início do III, quando os cristãos
-  enfrentavam perseguições e intensos debates sobre a identidade de Cristo e a Trindade. Seu pontificado
-  preparou o crescimento da comunidade romana.
-prayer: >-
-  São Zeferino, intercedei pela Igreja nos tempos de confusão e perseguição. Alcançai aos pastores
-  prudência, firmeza e humildade, para que guardem a fé apostólica e conduzam o povo de Deus com caridade.
-  Amém.
+- Perseverança
+- Prudência pastoral
+- Fidelidade à Igreja
+summary: Zeferino governou a Igreja de Roma entre o fim do século II e o início do III, quando os cristãos enfrentavam perseguições e intensos debates sobre a identidade de Cristo e a Trindade. Seu pontificado preparou o crescimento da comunidade romana.
+prayer: São Zeferino, intercedei pela Igreja nos tempos de confusão e perseguição. Alcançai aos pastores prudência, firmeza e humildade, para que guardem a fé apostólica e conduzam o povo de Deus com caridade. Amém.
 related_saints:
-  - "sao-hormisda"
-  - "sao-pio-x"
-  - "sao-lourenco"
+- sao-hormisda
+- sao-pio-x
+- sao-lourenco
 related: []
 sources:
-  - title: "Templário de Maria: São Zeferino"
-    url: "https://templariodemaria.com/santo-do-dia-26-de-agosto-sao-zeferino/"
+- title: 'Templário de Maria: São Zeferino'
+  url: https://templariodemaria.com/santo-do-dia-26-de-agosto-sao-zeferino/
+general_info:
+- label: Origem
+  value: Roma, segundo a tradição
+- label: Pontificado
+  value: c. 199–217
+- label: Contexto
+  value: Perseguições e controvérsias cristológicas na Igreja de Roma
+- label: Colaborador
+  value: São Calisto, futuro papa
+- label: Período de vida
+  value: c. 160-217
+- label: Estado de vida
+  value: Papa
+- label: Família espiritual
+  value: Clero romano
+- label: Padroeiro de
+  values:
+  - Comunidades perseguidas
+  wide: true
+timeline:
+- date: c. 160
+  title: Nascimento
+  description: A tradição situa seu nascimento em Roma.
+- date: c. 199
+  title: Eleição como papa
+  description: Assume a Igreja romana em meio a perseguições e debates doutrinais.
+- date: Início do século III
+  title: Organização da comunidade
+  description: Conta com o auxílio do diácono Calisto na administração e no cuidado dos cemitérios cristãos.
+- date: '217'
+  title: Morte
+  description: Conclui um longo pontificado dedicado à preservação da fé e da unidade.
 ---
 
 ## Um pontificado entre perseguições e controvérsias

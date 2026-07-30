@@ -1,64 +1,79 @@
 ---
-title: "Assunção de Nossa Senhora"
-short_title: "Assunção de Nossa Senhora"
-slug: "assuncao-de-nossa-senhora"
-subtitle: "Solenidade da glorificação de Maria em corpo e alma"
-description: "Na Assunção, a Igreja celebra Maria elevada à glória celeste em corpo e alma, sinal da vitória de Cristo e esperança dos fiéis."
-entry_type: "Celebração mariana"
-subject_schema_type: "Event"
-saint_type: "Mistério mariano"
-liturgical_rank: "Solenidade"
-category: "Festas de Nossa Senhora"
-religious_family: "Igreja universal"
+title: Assunção de Nossa Senhora
+short_title: Assunção de Nossa Senhora
+slug: assuncao-de-nossa-senhora
+subtitle: Solenidade da glorificação de Maria em corpo e alma
+description: Na Assunção, a Igreja celebra Maria elevada à glória celeste em corpo e alma, sinal da vitória de Cristo e esperança dos fiéis.
+entry_type: Celebração mariana
+subject_schema_type: Event
+liturgical_rank: Solenidade
+category: Festas de Nossa Senhora
 liturgical_date:
   type: fixed
   month: 8
   day: 15
-  label: "15 de agosto"
+  label: 15 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/assuncao-de-nossa-senhora.webp"
-image_alt: "Imagem horizontal representando Assunção de Nossa Senhora"
+image: /assets/images/saints/assuncao-de-nossa-senhora.webp
+image_alt: Imagem horizontal representando Assunção de Nossa Senhora
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Assunção da Bem-Aventurada Virgem Maria"
-  - "Dormição de Maria"
-  - "Nossa Senhora da Assunção"
+- Assunção da Bem-Aventurada Virgem Maria
+- Dormição de Maria
+- Nossa Senhora da Assunção
 tags:
-  - "Nossa Senhora"
-  - "Assunção"
-  - "ressurreição"
-  - "céu"
-  - "solenidades"
+- Nossa Senhora
+- Assunção
+- ressurreição
+- céu
+- solenidades
 keywords:
-  - "assunção de nossa senhora"
-  - "nossa senhora da assunção"
-  - "maria elevada ao céu"
-  - "15 de agosto"
-patronages:
-  - "Comunidades sob o título de Nossa Senhora da Assunção"
+- assunção de nossa senhora
+- nossa senhora da assunção
+- maria elevada ao céu
+- 15 de agosto
 virtues:
-  - "Esperança na ressurreição"
-  - "Fidelidade"
-  - "Entrega a Deus"
-summary: >-
-  A Assunção proclama que Maria, ao término de sua vida terrena, foi elevada por Deus à glória celeste em
-  corpo e alma. Nela contemplamos antecipadamente aquilo que a graça de Cristo prepara para toda a Igreja:
-  a vitória completa sobre o pecado e a morte.
-prayer: >-
-  Virgem Maria, elevada ao céu em corpo e alma, aumentai em nós a esperança da ressurreição e o desejo das
-  coisas eternas. Ensinai-nos a viver na terra com fidelidade, para que um dia participemos plenamente da
-  vitória de vosso Filho. Amém.
+- Esperança na ressurreição
+- Fidelidade
+- Entrega a Deus
+summary: 'A Assunção proclama que Maria, ao término de sua vida terrena, foi elevada por Deus à glória celeste em corpo e alma. Nela contemplamos antecipadamente aquilo que a graça de Cristo prepara para toda a Igreja: a vitória completa sobre o pecado e a morte.'
+prayer: Virgem Maria, elevada ao céu em corpo e alma, aumentai em nós a esperança da ressurreição e o desejo das coisas eternas. Ensinai-nos a viver na terra com fidelidade, para que um dia participemos plenamente da vitória de vosso Filho. Amém.
 related_saints:
-  - "nossa-senhora-rainha"
-  - "nossa-senhora-das-neves"
-  - "nossa-senhora-das-lagrimas"
+- nossa-senhora-rainha
+- nossa-senhora-das-neves
+- nossa-senhora-das-lagrimas
 related: []
 sources:
-  - title: "Templário de Maria: Assunção de Nossa Senhora"
-    url: "https://templariodemaria.com/santo-do-dia-15-de-agosto-assuncao-de-nossa-senhora/"
+- title: 'Templário de Maria: Assunção de Nossa Senhora'
+  url: https://templariodemaria.com/santo-do-dia-15-de-agosto-assuncao-de-nossa-senhora/
+general_info:
+- label: Natureza
+  value: Mistério da fé e solenidade mariana
+- label: Doutrina celebrada
+  value: Maria foi elevada à glória celeste em corpo e alma
+- label: Definição dogmática
+  value: Papa Pio XII, em 1950
+- label: Classificação
+  value: Mistério mariano
+- label: Tradição espiritual
+  value: Igreja universal
+- label: Invocada por
+  values:
+  - Comunidades sob o título de Nossa Senhora da Assunção
+  wide: true
+timeline:
+- date: Primeiros séculos
+  title: A fé da Igreja contempla a glorificação de Maria
+  description: A celebração cresce a partir da tradição cristã sobre o destino glorioso da Mãe de Deus.
+- date: Séculos VI–VII
+  title: A festa se consolida no Oriente e no Ocidente
+  description: A memória litúrgica da Dormição ou Assunção passa a ocupar lugar estável no calendário cristão.
+- date: 1º de novembro de 1950
+  title: Definição dogmática
+  description: Pio XII proclama solenemente que Maria foi elevada à glória celeste em corpo e alma.
 ---
 
 ## O destino glorioso da Mãe de Deus

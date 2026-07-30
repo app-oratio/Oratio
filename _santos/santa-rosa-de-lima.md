@@ -1,68 +1,92 @@
 ---
-title: "Santa Rosa de Lima"
-short_title: "Santa Rosa de Lima"
-slug: "santa-rosa-de-lima"
-subtitle: "Virgem e primeira santa canonizada das Américas"
-description: "Santa Rosa de Lima viveu intensa união com Cristo, serviu pobres e doentes e tornou-se a primeira santa canonizada do continente americano."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Virgem e terciária dominicana"
-liturgical_rank: "Memória"
-category: "Santos das Américas"
-life_dates: "1586-1617"
-religious_family: "Ordem Terceira Dominicana"
+title: Santa Rosa de Lima
+short_title: Santa Rosa de Lima
+slug: santa-rosa-de-lima
+subtitle: Virgem e primeira santa canonizada das Américas
+description: Santa Rosa de Lima viveu intensa união com Cristo, serviu pobres e doentes e tornou-se a primeira santa canonizada do continente americano.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos das Américas
 liturgical_date:
   type: fixed
   month: 8
   day: 23
-  label: "23 de agosto"
+  label: 23 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-rosa-de-lima.webp"
-image_alt: "Imagem horizontal representando Santa Rosa de Lima"
+image: /assets/images/saints/santa-rosa-de-lima.webp
+image_alt: Imagem horizontal representando Santa Rosa de Lima
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Rosa de Santa Maria"
-  - "Isabel Flores de Oliva"
-  - "Rosa de Lima"
+- Santa Rosa de Santa Maria
+- Isabel Flores de Oliva
+- Rosa de Lima
 tags:
-  - "Peru"
-  - "América Latina"
-  - "dominicanos"
-  - "místicos"
-  - "caridade"
+- Peru
+- América Latina
+- dominicanos
+- místicos
+- caridade
 keywords:
-  - "santa rosa de lima"
-  - "primeira santa das américas"
-  - "padroeira da américa latina"
-  - "terciária dominicana"
-patronages:
-  - "América Latina"
-  - "Peru"
-  - "Filipinas"
-  - "Jardineiros"
+- santa rosa de lima
+- primeira santa das américas
+- padroeira da américa latina
+- terciária dominicana
 virtues:
-  - "União com Cristo"
-  - "Caridade com os enfermos"
-  - "Perseverança"
-summary: >-
-  Isabel Flores, chamada Rosa por sua família, escolheu consagrar-se a Deus permanecendo no ambiente
-  doméstico. Como terciária dominicana, uniu oração, penitência, trabalho e cuidado dos doentes,
-  tornando-se um dos grandes sinais de santidade da América Latina.
-prayer: >-
-  Santa Rosa de Lima, padroeira das Américas, alcançai-nos amor profundo por Cristo e caridade concreta
-  pelos que sofrem. Ajudai os povos latino-americanos a conservar a fé, promover a justiça e florescer em
-  santidade. Amém.
+- União com Cristo
+- Caridade com os enfermos
+- Perseverança
+summary: Isabel Flores, chamada Rosa por sua família, escolheu consagrar-se a Deus permanecendo no ambiente doméstico. Como terciária dominicana, uniu oração, penitência, trabalho e cuidado dos doentes, tornando-se um dos grandes sinais de santidade da América Latina.
+prayer: Santa Rosa de Lima, padroeira das Américas, alcançai-nos amor profundo por Cristo e caridade concreta pelos que sofrem. Ajudai os povos latino-americanos a conservar a fé, promover a justiça e florescer em santidade. Amém.
 related_saints:
-  - "sao-domingos-de-gusmao"
-  - "santa-dulce-dos-pobres"
-  - "santa-monica"
+- sao-domingos-de-gusmao
+- santa-dulce-dos-pobres
+- santa-monica
 related: []
 sources:
-  - title: "Templário de Maria: Santa Rosa de Lima"
-    url: "https://templariodemaria.com/santo-do-dia-23-de-agosto-santa-rosa-de-lima/"
+- title: 'Templário de Maria: Santa Rosa de Lima'
+  url: https://templariodemaria.com/santo-do-dia-23-de-agosto-santa-rosa-de-lima/
+general_info:
+- label: Nome de nascimento
+  value: Isabel Flores de Oliva
+- label: Origem
+  value: Lima, Peru
+- label: Vínculo espiritual
+  value: Terceira Ordem Dominicana
+- label: Importância histórica
+  value: Primeira santa canonizada nascida nas Américas
+- label: Período de vida
+  value: 1586-1617
+- label: Estado de vida
+  value: Virgem e terciária dominicana
+- label: Família espiritual
+  value: Ordem Terceira Dominicana
+- label: Padroeira de
+  values:
+  - América Latina
+  - Peru
+  - Filipinas
+  - Jardineiros
+  wide: true
+timeline:
+- date: '1586'
+  title: Nascimento em Lima
+  description: Isabel Flores de Oliva nasce na capital do Vice-Reino do Peru.
+- date: Juventude
+  title: Consagração e vida penitente
+  description: Assume o nome Rosa e vive a espiritualidade dominicana dentro do cotidiano familiar.
+- date: '1617'
+  title: Morte
+  description: Morre aos trinta e um anos, conhecida pela oração e pelo cuidado dos necessitados.
+- date: '1668'
+  title: Beatificação
+  description: Clemente IX reconhece publicamente seu culto.
+- date: '1671'
+  title: Canonização
+  description: Clemente X a proclama santa, a primeira canonizada nascida nas Américas.
 ---
 
 ## Uma flor nascida na cidade de Lima

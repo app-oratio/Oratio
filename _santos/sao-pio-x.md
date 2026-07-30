@@ -1,66 +1,98 @@
 ---
-title: "São Pio X"
-short_title: "São Pio X"
-slug: "sao-pio-x"
-subtitle: "Papa da Eucaristia e da renovação da vida cristã"
-description: "São Pio X promoveu a participação eucarística, a catequese e a reforma da Igreja com a simplicidade de um antigo pároco."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Papa"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "1835-1914"
-religious_family: "Clero diocesano"
+title: São Pio X
+short_title: São Pio X
+slug: sao-pio-x
+subtitle: Papa da Eucaristia e da renovação da vida cristã
+description: São Pio X promoveu a participação eucarística, a catequese e a reforma da Igreja com a simplicidade de um antigo pároco.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 21
-  label: "21 de agosto"
+  label: 21 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-pio-x.webp"
-image_alt: "Imagem horizontal representando São Pio X"
+image: /assets/images/saints/sao-pio-x.webp
+image_alt: Imagem horizontal representando São Pio X
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Papa São Pio X"
-  - "Giuseppe Melchiorre Sarto"
-  - "José Sarto"
+- Papa São Pio X
+- Giuseppe Melchiorre Sarto
+- José Sarto
 tags:
-  - "papas"
-  - "Eucaristia"
-  - "catequese"
-  - "liturgia"
-  - "sacerdotes"
+- papas
+- Eucaristia
+- catequese
+- liturgia
+- sacerdotes
 keywords:
-  - "são pio x"
-  - "papa da eucaristia"
-  - "primeira comunhão das crianças"
-  - "catecismo de pio x"
-patronages:
-  - "Catequistas"
-  - "Peregrinos enfermos"
+- são pio x
+- papa da eucaristia
+- catecismo de pio x
 virtues:
-  - "Simplicidade"
-  - "Zelo pastoral"
-  - "Amor à Eucaristia"
-summary: >-
-  Nascido numa família simples, Giuseppe Sarto percorreu todas as etapas do ministério pastoral antes de
-  ser eleito papa. Como Pio X, incentivou a Comunhão frequente, aproximou as crianças da Eucaristia e
-  procurou restaurar todas as coisas em Cristo.
-prayer: >-
-  São Pio X, alcançai-nos amor pela Santa Missa, fidelidade à doutrina e simplicidade no serviço.
-  Intercedei pelas crianças que se preparam para a primeira Comunhão, pelos catequistas e pelos pastores
-  da Igreja. Amém.
+- Simplicidade
+- Zelo pastoral
+- Amor à Eucaristia
+summary: Nascido numa família simples, Giuseppe Sarto percorreu todas as etapas do ministério pastoral antes de ser eleito papa. Como Pio X, incentivou a Comunhão frequente, aproximou as crianças da Eucaristia e procurou restaurar todas as coisas em Cristo.
+prayer: São Pio X, alcançai-nos amor pela Santa Missa, fidelidade à doutrina e simplicidade no serviço. Intercedei pelas crianças que se preparam para a primeira Comunhão, pelos catequistas e pelos pastores da Igreja. Amém.
 related_saints:
-  - "sao-pedro-juliao-eymard"
-  - "sao-joao-maria-vianney"
-  - "sao-hormisda"
+- sao-pedro-juliao-eymard
+- sao-joao-maria-vianney
+- sao-hormisda
 related: []
 sources:
-  - title: "Templário de Maria: São Pio X"
-    url: "https://templariodemaria.com/santo-do-dia-21-de-agosto-sao-pio-x/"
+- title: 'Templário de Maria: São Pio X'
+  url: https://templariodemaria.com/santo-do-dia-21-de-agosto-sao-pio-x/
+general_info:
+- label: Nome de nascimento
+  value: Giuseppe Melchiorre Sarto
+- label: Origem
+  value: Riese, Itália
+- label: Pontificado
+  value: 1903–1914
+- label: Lema
+  value: Restaurar todas as coisas em Cristo
+- label: Reformas conhecidas
+  values:
+  - Comunhão frequente
+  - Primeira Comunhão das crianças
+  - Catequese
+  - Música sacra
+- label: Período de vida
+  value: 1835-1914
+- label: Estado de vida
+  value: Papa
+- label: Família espiritual
+  value: Clero diocesano
+- label: Padroeiro de
+  values:
+  - Catequistas
+  - Peregrinos enfermos
+  wide: true
+timeline:
+- date: '1835'
+  title: Nascimento em Riese
+  description: Giuseppe Sarto nasce numa família numerosa e de recursos modestos.
+- date: '1858'
+  title: Ordenação sacerdotal
+  description: Inicia uma trajetória pastoral como vigário, pároco, bispo e patriarca.
+- date: '1903'
+  title: Eleição pontifícia
+  description: Assume o nome Pio X e escolhe restaurar todas as coisas em Cristo.
+- date: '1910'
+  title: Incentivo à Primeira Comunhão das crianças
+  description: A disciplina eucarística é renovada para aproximar as crianças da mesa do Senhor.
+- date: '1914'
+  title: Morte
+  description: Morre pouco depois do início da Primeira Guerra Mundial.
+- date: '1954'
+  title: Canonização
+  description: Pio XII o proclama santo.
 ---
 
 ## Um filho de família pobre chamado ao sacerdócio

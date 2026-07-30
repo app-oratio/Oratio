@@ -1,65 +1,92 @@
 ---
-title: "Santo Afonso Maria de Ligório"
-short_title: "Santo Afonso de Ligório"
-slug: "santo-afonso-maria-de-ligorio"
-subtitle: "Bispo, fundador e Doutor da Igreja"
-description: "A vida de Santo Afonso de Ligório, pastor incansável, fundador dos Redentoristas e mestre da misericórdia de Deus."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Bispo e Doutor da Igreja"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "1696-1787"
-religious_family: "Congregação do Santíssimo Redentor"
+title: Santo Afonso Maria de Ligório
+short_title: Santo Afonso de Ligório
+slug: santo-afonso-maria-de-ligorio
+subtitle: Bispo, fundador e Doutor da Igreja
+description: A vida de Santo Afonso de Ligório, pastor incansável, fundador dos Redentoristas e mestre da misericórdia de Deus.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 1
-  label: "1 de agosto"
+  label: 1 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santo-afonso-maria-de-ligorio.webp"
-image_alt: "Imagem horizontal representando Santo Afonso Maria de Ligório"
+image: /assets/images/saints/santo-afonso-maria-de-ligorio.webp
+image_alt: Imagem horizontal representando Santo Afonso Maria de Ligório
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santo Afonso de Ligório"
-  - "Santo Afonso Maria de Liguori"
+- Santo Afonso de Ligório
+- Santo Afonso Maria de Liguori
 tags:
-  - "redentoristas"
-  - "misericórdia"
-  - "teologia moral"
-  - "Nossa Senhora"
-  - "bispos"
+- redentoristas
+- misericórdia
+- teologia moral
+- Nossa Senhora
+- bispos
 keywords:
-  - "santo afonso de ligório"
-  - "história de santo afonso"
-  - "doutor da igreja"
-  - "redentoristas"
-patronages:
-  - "Confessores"
-  - "Teólogos moralistas"
+- santo afonso de ligório
+- história de santo afonso
+- doutor da igreja
+- redentoristas
 virtues:
-  - "Misericórdia pastoral"
-  - "Perseverança"
-  - "Confiança em Nossa Senhora"
-summary: >-
-  Santo Afonso abandonou uma carreira brilhante no direito para se tornar sacerdote e servir especialmente
-  os pobres e espiritualmente abandonados. Como fundador, missionário, bispo e escritor, ensinou que a
-  verdade cristã deve conduzir as almas à conversão sem ocultar a ternura e a paciência de Deus.
-prayer: >-
-  Santo Afonso Maria de Ligório, alcançai-nos um coração firme na fé, compassivo com os pecadores e
-  inteiramente confiante na misericórdia de Deus. Ajudai-nos a amar Jesus Cristo, a recorrer filialmente à
-  Virgem Maria e a perseverar no caminho da salvação. Amém.
+- Misericórdia pastoral
+- Perseverança
+- Confiança em Nossa Senhora
+summary: Santo Afonso abandonou uma carreira brilhante no direito para se tornar sacerdote e servir especialmente os pobres e espiritualmente abandonados. Como fundador, missionário, bispo e escritor, ensinou que a verdade cristã deve conduzir as almas à conversão sem ocultar a ternura e a paciência de Deus.
+prayer: Santo Afonso Maria de Ligório, alcançai-nos um coração firme na fé, compassivo com os pecadores e inteiramente confiante na misericórdia de Deus. Ajudai-nos a amar Jesus Cristo, a recorrer filialmente à Virgem Maria e a perseverar no caminho da salvação. Amém.
 related_saints:
-  - "sao-joao-maria-vianney"
-  - "sao-pio-x"
-  - "sao-joao-eudes"
+- sao-joao-maria-vianney
+- sao-pio-x
+- sao-joao-eudes
 related: []
 sources:
-  - title: "Templário de Maria: Santo Afonso Maria de Ligório"
-    url: "https://templariodemaria.com/santo-do-dia-01-de-agosto-santo-afonso-maria-de-ligorio/"
+- title: 'Templário de Maria: Santo Afonso Maria de Ligório'
+  url: https://templariodemaria.com/santo-do-dia-01-de-agosto-santo-afonso-maria-de-ligorio/
+general_info:
+- label: Origem
+  value: Reino de Nápoles
+- label: Formação inicial
+  value: Direito civil e canônico
+- label: Fundação
+  value: Congregação do Santíssimo Redentor
+- label: Contribuição
+  value: Teologia moral marcada pela verdade e pela misericórdia pastoral
+- label: Período de vida
+  value: 1696-1787
+- label: Estado de vida
+  value: Bispo e Doutor da Igreja
+- label: Família espiritual
+  value: Congregação do Santíssimo Redentor
+- label: Padroeiro de
+  values:
+  - Confessores
+  - Teólogos moralistas
+  wide: true
+timeline:
+- date: '1696'
+  title: Nascimento no Reino de Nápoles
+  description: Afonso nasce numa família nobre e recebe formação intelectual excepcional.
+- date: '1726'
+  title: Ordenação sacerdotal
+  description: Depois de abandonar a carreira jurídica, dedica-se aos pobres e espiritualmente abandonados.
+- date: '1732'
+  title: Fundação dos Redentoristas
+  description: Cria a Congregação do Santíssimo Redentor para evangelizar as populações mais esquecidas.
+- date: '1762'
+  title: Nomeação episcopal
+  description: Torna-se bispo de Santa Ágata dos Godos.
+- date: '1787'
+  title: Morte
+  description: Morre no dia 1º de agosto depois de grandes provações e extensa obra pastoral.
+- date: 1839–1871
+  title: Canonização e título de Doutor da Igreja
+  description: É canonizado em 1839 e proclamado Doutor da Igreja em 1871.
 ---
 
 ## Um jovem advogado chamado por Deus

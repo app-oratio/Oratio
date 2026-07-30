@@ -1,66 +1,87 @@
 ---
-title: "Santa Beatriz da Silva"
-short_title: "Santa Beatriz da Silva"
-slug: "santa-beatriz-da-silva"
-subtitle: "Virgem e fundadora da Ordem da Imaculada Conceição"
-description: "Santa Beatriz da Silva deixou a corte e fundou uma ordem contemplativa dedicada ao mistério da Imaculada Conceição de Maria."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Virgem e fundadora"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 1424-1492"
-religious_family: "Ordem da Imaculada Conceição"
+title: Santa Beatriz da Silva
+short_title: Santa Beatriz da Silva
+slug: santa-beatriz-da-silva
+subtitle: Virgem e fundadora da Ordem da Imaculada Conceição
+description: Santa Beatriz da Silva deixou a corte e fundou uma ordem contemplativa dedicada ao mistério da Imaculada Conceição de Maria.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 17
-  label: "17 de agosto"
+  label: 17 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-beatriz-da-silva.webp"
-image_alt: "Imagem horizontal representando Santa Beatriz da Silva"
+image: /assets/images/saints/santa-beatriz-da-silva.webp
+image_alt: Imagem horizontal representando Santa Beatriz da Silva
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Beatriz de Silva"
-  - "Beatriz da Silva e Meneses"
-  - "Fundadora das Concepcionistas"
+- Santa Beatriz de Silva
+- Beatriz da Silva e Meneses
+- Fundadora das Concepcionistas
 tags:
-  - "concepcionistas"
-  - "Imaculada Conceição"
-  - "vida contemplativa"
-  - "fundadoras"
-  - "Portugal"
+- concepcionistas
+- Imaculada Conceição
+- vida contemplativa
+- fundadoras
+- Portugal
 keywords:
-  - "santa beatriz da silva"
-  - "fundadora das concepcionistas"
-  - "ordem da imaculada conceição"
-  - "santa portuguesa"
-patronages:
-  - "Ordem da Imaculada Conceição"
-  - "Concepcionistas"
+- santa beatriz da silva
+- fundadora das concepcionistas
+- santa portuguesa
 virtues:
-  - "Pureza de intenção"
-  - "Perseverança"
-  - "Amor à Imaculada Conceição"
-summary: >-
-  Beatriz nasceu em Portugal e viveu por algum tempo na corte castelhana, onde enfrentou vaidades e
-  perigos. Retirou-se para uma vida de oração em Toledo e, depois de longo discernimento, fundou a Ordem
-  da Imaculada Conceição.
-prayer: >-
-  Santa Beatriz da Silva, alcançai-nos pureza de coração e liberdade diante das vaidades do mundo.
-  Ajudai-nos a amar a Imaculada Conceição de Maria e a perseverar com paciência na vocação que Deus nos
-  confiar. Amém.
+- Pureza de intenção
+- Perseverança
+- Amor à Imaculada Conceição
+summary: Beatriz nasceu em Portugal e viveu por algum tempo na corte castelhana, onde enfrentou vaidades e perigos. Retirou-se para uma vida de oração em Toledo e, depois de longo discernimento, fundou a Ordem da Imaculada Conceição.
+prayer: Santa Beatriz da Silva, alcançai-nos pureza de coração e liberdade diante das vaidades do mundo. Ajudai-nos a amar a Imaculada Conceição de Maria e a perseverar com paciência na vocação que Deus nos confiar. Amém.
 related_saints:
-  - "nossa-senhora-rainha"
-  - "assuncao-de-nossa-senhora"
-  - "santa-clara-de-assis"
+- nossa-senhora-rainha
+- assuncao-de-nossa-senhora
+- santa-clara-de-assis
 related: []
 sources:
-  - title: "Templário de Maria: Santa Beatriz da Silva"
-    url: "https://templariodemaria.com/santo-do-dia-17-de-agosto-santa-beatriz-da-silva/"
+- title: 'Templário de Maria: Santa Beatriz da Silva'
+  url: https://templariodemaria.com/santo-do-dia-17-de-agosto-santa-beatriz-da-silva/
+general_info:
+- label: Origem
+  value: Portugal
+- label: Missão principal
+  value: Fundação de uma ordem dedicada à Imaculada Conceição
+- label: Fundação
+  value: Ordem da Imaculada Conceição
+- label: Período de vida
+  value: c. 1424-1492
+- label: Estado de vida
+  value: Virgem e fundadora
+- label: Família espiritual
+  value: Ordem da Imaculada Conceição
+- label: Padroeira de
+  values:
+  - Ordem da Imaculada Conceição
+  - Concepcionistas
+  wide: true
+timeline:
+- date: c. 1424
+  title: Nascimento em Portugal
+  description: Beatriz nasce numa família nobre e mais tarde acompanha a corte de Castela.
+- date: Século XV
+  title: Vida recolhida em Toledo
+  description: Depois de deixar a corte, vive por muitos anos em oração e discernimento.
+- date: '1489'
+  title: Aprovação da nova fundação
+  description: Inocêncio VIII autoriza a comunidade dedicada à Imaculada Conceição.
+- date: '1492'
+  title: Morte
+  description: Beatriz morre pouco depois da aprovação inicial de sua obra.
+- date: '1976'
+  title: Canonização
+  description: Paulo VI a inscreve no catálogo dos santos.
 ---
 
 ## Uma jovem portuguesa na corte de Castela

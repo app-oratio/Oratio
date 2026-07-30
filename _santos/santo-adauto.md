@@ -1,66 +1,84 @@
 ---
-title: "Santo Adauto"
-short_title: "Santo Adauto"
-slug: "santo-adauto"
-subtitle: "Mártir unido a São Félix no testemunho da fé"
-description: "Santo Adauto é lembrado como o cristão desconhecido que se uniu a São Félix e recebeu com ele a coroa do martírio."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Mártir"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "Século III"
-religious_family: "Igreja de Roma"
+title: Santo Adauto
+short_title: Santo Adauto
+slug: santo-adauto
+subtitle: Mártir unido a São Félix no testemunho da fé
+description: Santo Adauto é lembrado como o cristão desconhecido que se uniu a São Félix e recebeu com ele a coroa do martírio.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 30
-  label: "30 de agosto"
+  label: 30 de agosto
 daily_order: 20
 featured: false
-image: "/assets/images/saints/santo-adauto.webp"
-image_alt: "Imagem horizontal representando Santo Adauto"
+image: /assets/images/saints/santo-adauto.webp
+image_alt: Imagem horizontal representando Santo Adauto
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santo Adaucto"
-  - "Santo Adauto de Roma"
-  - "Adauto, mártir de Comodila"
+- Santo Adaucto
+- Santo Adauto de Roma
+- Adauto, mártir de Comodila
 tags:
-  - "mártires"
-  - "Roma"
-  - "Diocleciano"
-  - "coragem"
-  - "testemunho"
+- mártires
+- Roma
+- Diocleciano
+- coragem
+- testemunho
 keywords:
-  - "santo adauto"
-  - "são félix e santo adauto"
-  - "mártir acrescentado"
-  - "mártires de comodila"
-patronages:
-  - "Convertidos"
-  - "Cristãos perseguidos"
+- santo adauto
+- são félix e santo adauto
+- mártir acrescentado
+- mártires de comodila
 virtues:
-  - "Coragem imediata"
-  - "Profissão pública da fé"
-  - "Fraternidade"
-summary: >-
-  Segundo a tradição, Adauto era um cristão cuja identidade não foi registrada. Ao ver São Félix sendo
-  conduzido à morte, declarou sua fé e foi unido a ele no martírio. Seu próprio nome conserva a lembrança
-  daquele que foi acrescentado ao testemunho do sacerdote.
-prayer: >-
-  Santo Adauto, alcançai-nos prontidão para reconhecer e confessar Cristo quando surgir a ocasião.
-  Ajudai-nos a fortalecer os irmãos perseguidos, a vencer o medo e a não deixar sozinho quem sofre por
-  fidelidade ao Evangelho. Amém.
+- Coragem imediata
+- Profissão pública da fé
+- Fraternidade
+summary: Segundo a tradição, Adauto era um cristão cuja identidade não foi registrada. Ao ver São Félix sendo conduzido à morte, declarou sua fé e foi unido a ele no martírio. Seu próprio nome conserva a lembrança daquele que foi acrescentado ao testemunho do sacerdote.
+prayer: Santo Adauto, alcançai-nos prontidão para reconhecer e confessar Cristo quando surgir a ocasião. Ajudai-nos a fortalecer os irmãos perseguidos, a vencer o medo e a não deixar sozinho quem sofre por fidelidade ao Evangelho. Amém.
 related_saints:
-  - "sao-felix"
-  - "sao-lourenco"
-  - "sao-tarcisio"
+- sao-felix
+- sao-lourenco
+- sao-tarcisio
 related: []
 sources:
-  - title: "Templário de Maria: Santo Adauto"
-    url: "https://templariodemaria.com/santo-do-dia-30-de-agosto-sao-felix-e-santo-adauto/"
+- title: 'Templário de Maria: Santo Adauto'
+  url: https://templariodemaria.com/santo-do-dia-30-de-agosto-sao-felix-e-santo-adauto/
+general_info:
+- label: Período
+  value: Século III
+- label: Contexto
+  value: Perseguições contra os cristãos em Roma
+- label: Companheiro de martírio
+  value: São Félix
+- label: Sentido do nome
+  value: “Adicionado”, nome ligado à tradição de seu encontro com Félix
+- label: Período de vida
+  value: Século III
+- label: Estado de vida
+  value: Mártir
+- label: Família espiritual
+  value: Igreja de Roma
+- label: Padroeiro de
+  values:
+  - Convertidos
+  - Cristãos perseguidos
+  wide: true
+timeline:
+- date: Século III
+  title: Encontro com São Félix
+  description: Segundo a tradição, um cristão desconhecido se une espontaneamente ao sacerdote conduzido ao martírio.
+- date: Século III
+  title: Confissão pública da fé
+  description: Sua decisão de se declarar cristão faz com que seja condenado junto com Félix.
+- date: Século III
+  title: Martírio e sepultura
+  description: Os dois são mortos e venerados juntos no cemitério de Comodila, em Roma.
 ---
 
 ## O santo cujo nome nasceu do encontro

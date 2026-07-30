@@ -1,67 +1,86 @@
 ---
-title: "Santa Helena"
-short_title: "Santa Helena"
-slug: "santa-helena"
-subtitle: "Imperatriz e peregrina da Terra Santa"
-description: "Santa Helena, mãe do imperador Constantino, utilizou sua influência para promover a fé e ficou ligada à memória dos lugares santos."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Imperatriz e viúva"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 248-c. 330"
-religious_family: "Igreja do século IV"
+title: Santa Helena
+short_title: Santa Helena
+slug: santa-helena
+subtitle: Imperatriz e peregrina da Terra Santa
+description: Santa Helena, mãe do imperador Constantino, utilizou sua influência para promover a fé e ficou ligada à memória dos lugares santos.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 18
-  label: "18 de agosto"
+  label: 18 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-helena.webp"
-image_alt: "Imagem horizontal representando Santa Helena"
+image: /assets/images/saints/santa-helena.webp
+image_alt: Imagem horizontal representando Santa Helena
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Helena de Constantinopla"
-  - "Flávia Júlia Helena"
-  - "Helena Augusta"
+- Santa Helena de Constantinopla
+- Flávia Júlia Helena
+- Helena Augusta
 tags:
-  - "imperatrizes"
-  - "Terra Santa"
-  - "Santa Cruz"
-  - "peregrinação"
-  - "caridade"
+- imperatrizes
+- Terra Santa
+- Santa Cruz
+- peregrinação
+- caridade
 keywords:
-  - "santa helena"
-  - "mãe de constantino"
-  - "descoberta da santa cruz"
-  - "imperatriz cristã"
-patronages:
-  - "Arqueólogos"
-  - "Peregrinos"
-  - "Pessoas em busca de objetos perdidos"
+- santa helena
+- mãe de constantino
+- descoberta da santa cruz
+- imperatriz cristã
 virtues:
-  - "Generosidade"
-  - "Amor aos lugares santos"
-  - "Uso cristão da influência"
-summary: >-
-  De origem provavelmente humilde, Helena tornou-se mãe do imperador Constantino e recebeu o título de
-  Augusta. Convertida ao cristianismo, ajudou os pobres, favoreceu igrejas e peregrinou à Terra Santa,
-  ficando tradicionalmente associada ao encontro da Cruz de Cristo.
-prayer: >-
-  Santa Helena, ensinai-nos a utilizar toda influência e recurso para a glória de Deus e o bem do próximo.
-  Intercedei pelos peregrinos, pelos que procuram a verdade e por todos os responsáveis pela preservação
-  dos lugares santos. Amém.
+- Generosidade
+- Amor aos lugares santos
+- Uso cristão da influência
+summary: De origem provavelmente humilde, Helena tornou-se mãe do imperador Constantino e recebeu o título de Augusta. Convertida ao cristianismo, ajudou os pobres, favoreceu igrejas e peregrinou à Terra Santa, ficando tradicionalmente associada ao encontro da Cruz de Cristo.
+prayer: Santa Helena, ensinai-nos a utilizar toda influência e recurso para a glória de Deus e o bem do próximo. Intercedei pelos peregrinos, pelos que procuram a verdade e por todos os responsáveis pela preservação dos lugares santos. Amém.
 related_saints:
-  - "santo-osvaldo-de-nortumbria"
-  - "sao-luis-rei-da-franca"
-  - "martirio-de-sao-joao-batista"
+- santo-osvaldo-de-nortumbria
+- sao-luis-rei-da-franca
+- martirio-de-sao-joao-batista
 related: []
 sources:
-  - title: "Templário de Maria: Santa Helena"
-    url: "https://templariodemaria.com/santo-do-dia-18-de-agosto-santa-helena/"
+- title: 'Templário de Maria: Santa Helena'
+  url: https://templariodemaria.com/santo-do-dia-18-de-agosto-santa-helena/
+general_info:
+- label: Dignidade
+  value: Imperatriz romana e mãe de Constantino
+- label: Região de atuação
+  value: Império Romano e Terra Santa
+- label: Tradição associada
+  value: Busca e veneração dos lugares ligados à Paixão de Cristo
+- label: Período de vida
+  value: c. 248-c. 330
+- label: Estado de vida
+  value: Imperatriz e viúva
+- label: Família espiritual
+  value: Igreja do século IV
+- label: Padroeira de
+  values:
+  - Arqueólogos
+  - Peregrinos
+  - Pessoas em busca de objetos perdidos
+  wide: true
+timeline:
+- date: c. 248
+  title: Nascimento
+  description: Helena nasce em ambiente modesto e mais tarde se torna mãe do imperador Constantino.
+- date: '324'
+  title: Recebe o título de Augusta
+  description: Passa a ocupar posição de grande influência no Império Romano.
+- date: c. 326
+  title: Peregrinação à Terra Santa
+  description: Promove igrejas e a veneração dos lugares ligados à vida, morte e ressurreição de Cristo.
+- date: c. 330
+  title: Morte
+  description: Sua memória permanece ligada à fé, à peregrinação e à tradição da Santa Cruz.
 ---
 
 ## Uma mulher elevada à dignidade imperial

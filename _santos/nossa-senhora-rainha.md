@@ -1,64 +1,79 @@
 ---
-title: "Nossa Senhora Rainha"
-short_title: "Nossa Senhora Rainha"
-slug: "nossa-senhora-rainha"
-subtitle: "Memória da realeza materna da Virgem Maria"
-description: "A memória de Nossa Senhora Rainha celebra a participação de Maria na vitória de Cristo e sua intercessão materna pela Igreja."
-entry_type: "Celebração mariana"
-subject_schema_type: "Thing"
-saint_type: "Título mariano"
-liturgical_rank: "Memória"
-category: "Festas de Nossa Senhora"
-religious_family: "Igreja universal"
+title: Nossa Senhora Rainha
+short_title: Nossa Senhora Rainha
+slug: nossa-senhora-rainha
+subtitle: Memória da realeza materna da Virgem Maria
+description: A memória de Nossa Senhora Rainha celebra a participação de Maria na vitória de Cristo e sua intercessão materna pela Igreja.
+entry_type: Celebração mariana
+subject_schema_type: Thing
+liturgical_rank: Memória
+category: Festas de Nossa Senhora
 liturgical_date:
   type: fixed
   month: 8
   day: 22
-  label: "22 de agosto"
+  label: 22 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/nossa-senhora-rainha.webp"
-image_alt: "Imagem horizontal representando Nossa Senhora Rainha"
+image: /assets/images/saints/nossa-senhora-rainha.webp
+image_alt: Imagem horizontal representando Nossa Senhora Rainha
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Realeza de Nossa Senhora"
-  - "Maria Rainha"
-  - "Bem-Aventurada Virgem Maria Rainha"
+- Realeza de Nossa Senhora
+- Maria Rainha
+- Bem-Aventurada Virgem Maria Rainha
 tags:
-  - "Nossa Senhora"
-  - "realeza de Maria"
-  - "Assunção"
-  - "intercessão"
-  - "Igreja"
+- Nossa Senhora
+- realeza de Maria
+- Assunção
+- intercessão
+- Igreja
 keywords:
-  - "nossa senhora rainha"
-  - "maria rainha"
-  - "realeza de nossa senhora"
-  - "22 de agosto"
-patronages:
-  - "Comunidades consagradas a Maria Rainha"
+- nossa senhora rainha
+- maria rainha
+- realeza de nossa senhora
+- 22 de agosto
 virtues:
-  - "Humildade"
-  - "Serviço"
-  - "Confiança na intercessão de Maria"
-summary: >-
-  Oito dias depois da Assunção, a Igreja contempla Maria como Rainha. Sua realeza não é poder mundano, mas
-  participação no reinado de Cristo, que vence servindo e oferece a vida. A Mãe glorificada continua
-  intercedendo pelos discípulos de seu Filho.
-prayer: >-
-  Nossa Senhora Rainha, reinai em nosso coração para que nele reine plenamente Jesus Cristo. Protegei a
-  Igreja, sustentai os que sofrem e ensinai-nos a exercer toda responsabilidade com humildade, serviço e
-  fidelidade ao Evangelho. Amém.
+- Humildade
+- Serviço
+- Confiança na intercessão de Maria
+summary: Oito dias depois da Assunção, a Igreja contempla Maria como Rainha. Sua realeza não é poder mundano, mas participação no reinado de Cristo, que vence servindo e oferece a vida. A Mãe glorificada continua intercedendo pelos discípulos de seu Filho.
+prayer: Nossa Senhora Rainha, reinai em nosso coração para que nele reine plenamente Jesus Cristo. Protegei a Igreja, sustentai os que sofrem e ensinai-nos a exercer toda responsabilidade com humildade, serviço e fidelidade ao Evangelho. Amém.
 related_saints:
-  - "assuncao-de-nossa-senhora"
-  - "nossa-senhora-das-neves"
-  - "nossa-senhora-das-lagrimas"
+- assuncao-de-nossa-senhora
+- nossa-senhora-das-neves
+- nossa-senhora-das-lagrimas
 related: []
 sources:
-  - title: "Templário de Maria: Nossa Senhora Rainha"
-    url: "https://templariodemaria.com/santo-do-dia-22-de-agosto-nossa-senhora-rainha/"
+- title: 'Templário de Maria: Nossa Senhora Rainha'
+  url: https://templariodemaria.com/santo-do-dia-22-de-agosto-nossa-senhora-rainha/
+general_info:
+- label: Natureza
+  value: Memória mariana da realeza de Maria
+- label: Fundamento
+  value: A participação de Maria na vitória e no Reino de Cristo
+- label: Instituição litúrgica
+  value: Papa Pio XII, em 1954
+- label: Classificação
+  value: Título mariano
+- label: Tradição espiritual
+  value: Igreja universal
+- label: Invocada por
+  values:
+  - Comunidades consagradas a Maria Rainha
+  wide: true
+timeline:
+- date: Tradição cristã
+  title: Maria é venerada como Rainha
+  description: A realeza de Maria é compreendida sempre em relação à realeza universal de Cristo.
+- date: '1954'
+  title: Instituição da festa
+  description: Pio XII estabelece uma celebração litúrgica dedicada a Maria Rainha.
+- date: '1969'
+  title: Celebração fixada em 22 de agosto
+  description: A memória é colocada oito dias depois da Assunção, ressaltando a ligação entre os dois mistérios.
 ---
 
 ## Uma coroa recebida do Filho

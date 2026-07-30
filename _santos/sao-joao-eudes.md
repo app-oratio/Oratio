@@ -1,66 +1,94 @@
 ---
-title: "São João Eudes"
-short_title: "São João Eudes"
-slug: "sao-joao-eudes"
-subtitle: "Sacerdote, fundador e apóstolo dos Corações de Jesus e Maria"
-description: "São João Eudes renovou a vida cristã por meio das missões, da formação do clero e da devoção litúrgica aos Corações de Jesus e Maria."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e fundador"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1601-1680"
-religious_family: "Congregação de Jesus e Maria"
+title: São João Eudes
+short_title: São João Eudes
+slug: sao-joao-eudes
+subtitle: Sacerdote, fundador e apóstolo dos Corações de Jesus e Maria
+description: São João Eudes renovou a vida cristã por meio das missões, da formação do clero e da devoção litúrgica aos Corações de Jesus e Maria.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 19
-  label: "19 de agosto"
+  label: 19 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-joao-eudes.webp"
-image_alt: "Imagem horizontal representando São João Eudes"
+image: /assets/images/saints/sao-joao-eudes.webp
+image_alt: Imagem horizontal representando São João Eudes
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São João Eudes"
-  - "Jean Eudes"
-  - "Apóstolo dos Sagrados Corações"
+- São João Eudes
+- Jean Eudes
+- Apóstolo dos Sagrados Corações
 tags:
-  - "Sagrado Coração"
-  - "Imaculado Coração"
-  - "sacerdotes"
-  - "missões"
-  - "fundadores"
+- Sagrado Coração
+- Imaculado Coração
+- sacerdotes
+- missões
+- fundadores
 keywords:
-  - "são joão eudes"
-  - "corações de jesus e maria"
-  - "eudistas"
-  - "formação sacerdotal"
-patronages:
-  - "Eudistas"
-  - "Seminários"
+- são joão eudes
+- corações de jesus e maria
+- formação sacerdotal
 virtues:
-  - "Zelo missionário"
-  - "Amor aos Corações de Jesus e Maria"
-  - "Cuidado com o clero"
-summary: >-
-  João Eudes percorreu cidades e aldeias pregando missões populares, cuidou de enfermos em tempos de
-  epidemia e fundou comunidades voltadas à formação sacerdotal e à recuperação de mulheres vulneráveis.
-  Foi pioneiro na celebração litúrgica dos Corações de Jesus e Maria.
-prayer: >-
-  São João Eudes, formai em nós os sentimentos dos Corações de Jesus e Maria. Intercedei pelos sacerdotes,
-  pelos seminaristas, pelos missionários e por todos os que trabalham pela restauração da dignidade
-  daqueles que foram feridos. Amém.
+- Zelo missionário
+- Amor aos Corações de Jesus e Maria
+- Cuidado com o clero
+summary: João Eudes percorreu cidades e aldeias pregando missões populares, cuidou de enfermos em tempos de epidemia e fundou comunidades voltadas à formação sacerdotal e à recuperação de mulheres vulneráveis. Foi pioneiro na celebração litúrgica dos Corações de Jesus e Maria.
+prayer: São João Eudes, formai em nós os sentimentos dos Corações de Jesus e Maria. Intercedei pelos sacerdotes, pelos seminaristas, pelos missionários e por todos os que trabalham pela restauração da dignidade daqueles que foram feridos. Amém.
 related_saints:
-  - "sao-pedro-juliao-eymard"
-  - "sao-caetano-de-thiene"
-  - "sao-bernardo-de-claraval"
+- sao-pedro-juliao-eymard
+- sao-caetano-de-thiene
+- sao-bernardo-de-claraval
 related: []
 sources:
-  - title: "Templário de Maria: São João Eudes"
-    url: "https://templariodemaria.com/santo-do-dia-19-de-agosto-sao-joao-eudes/"
+- title: 'Templário de Maria: São João Eudes'
+  url: https://templariodemaria.com/santo-do-dia-19-de-agosto-sao-joao-eudes/
+general_info:
+- label: Origem
+  value: Normandia, França
+- label: Fundações
+  values:
+  - Congregação de Jesus e Maria
+  - Ordem de Nossa Senhora da Caridade
+- label: Missão
+  value: Missões populares e formação de sacerdotes
+- label: Contribuição espiritual
+  value: Culto litúrgico aos Corações de Jesus e Maria
+- label: Período de vida
+  value: 1601-1680
+- label: Estado de vida
+  value: Sacerdote e fundador
+- label: Família espiritual
+  value: Congregação de Jesus e Maria
+- label: Padroeiro de
+  values:
+  - Eudistas
+  - Seminários
+  wide: true
+timeline:
+- date: '1601'
+  title: Nascimento na Normandia
+  description: João nasce numa família cristã da França.
+- date: '1625'
+  title: Ordenação sacerdotal
+  description: Inicia o ministério servindo também populações atingidas por epidemias.
+- date: '1641'
+  title: Obra para mulheres vulneráveis
+  description: Inicia a comunidade que dará origem à Ordem de Nossa Senhora da Caridade.
+- date: '1643'
+  title: Fundação dos Eudistas
+  description: Cria a Congregação de Jesus e Maria para missões e formação sacerdotal.
+- date: '1680'
+  title: Morte
+  description: Morre depois de uma vida dedicada à renovação espiritual da França.
+- date: '1925'
+  title: Canonização
+  description: Pio XI o proclama santo.
 ---
 
 ## Um missionário no coração da França

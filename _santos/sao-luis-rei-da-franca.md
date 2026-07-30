@@ -1,67 +1,91 @@
 ---
-title: "São Luís, Rei da França"
-short_title: "São Luís, Rei da França"
-slug: "sao-luis-rei-da-franca"
-subtitle: "Rei, esposo, pai e servidor da justiça"
-description: "São Luís IX procurou governar a França segundo a fé cristã, promovendo justiça, assistência aos pobres e responsabilidade pessoal."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Rei e pai de família"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1214-1270"
-religious_family: "Leigo cristão"
+title: São Luís, Rei da França
+short_title: São Luís, Rei da França
+slug: sao-luis-rei-da-franca
+subtitle: Rei, esposo, pai e servidor da justiça
+description: São Luís IX procurou governar a França segundo a fé cristã, promovendo justiça, assistência aos pobres e responsabilidade pessoal.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 25
-  label: "25 de agosto"
+  label: 25 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-luis-rei-da-franca.webp"
-image_alt: "Imagem horizontal representando São Luís, Rei da França"
+image: /assets/images/saints/sao-luis-rei-da-franca.webp
+image_alt: Imagem horizontal representando São Luís, Rei da França
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Luís IX"
-  - "Luís IX da França"
-  - "Saint Louis"
+- São Luís IX
+- Luís IX da França
+- Saint Louis
 tags:
-  - "reis"
-  - "governantes"
-  - "família"
-  - "justiça"
-  - "caridade"
+- reis
+- governantes
+- família
+- justiça
+- caridade
 keywords:
-  - "são luís rei da frança"
-  - "luís ix"
-  - "rei santo"
-  - "sainte chapelle"
-patronages:
-  - "Governantes"
-  - "França"
-  - "Terceira Ordem Franciscana"
+- são luís rei da frança
+- luís ix
+- rei santo
+- sainte chapelle
 virtues:
-  - "Justiça"
-  - "Caridade"
-  - "Responsabilidade no governo"
-summary: >-
-  Luís IX recebeu a coroa ainda jovem e procurou exercer o poder como serviço diante de Deus. Esposo e pai
-  de família, promoveu tribunais mais justos, obras de assistência e uma vida pública marcada por oração e
-  responsabilidade.
-prayer: >-
-  São Luís, rei e pai de família, intercedei pelos governantes para que busquem a justiça e o bem comum.
-  Ajudai-nos a exercer nossas responsabilidades sem orgulho, a cuidar dos pobres e a colocar a lei de Deus
-  acima dos interesses pessoais. Amém.
+- Justiça
+- Caridade
+- Responsabilidade no governo
+summary: Luís IX recebeu a coroa ainda jovem e procurou exercer o poder como serviço diante de Deus. Esposo e pai de família, promoveu tribunais mais justos, obras de assistência e uma vida pública marcada por oração e responsabilidade.
+prayer: São Luís, rei e pai de família, intercedei pelos governantes para que busquem a justiça e o bem comum. Ajudai-nos a exercer nossas responsabilidades sem orgulho, a cuidar dos pobres e a colocar a lei de Deus acima dos interesses pessoais. Amém.
 related_saints:
-  - "santo-osvaldo-de-nortumbria"
-  - "santa-helena"
-  - "sao-pio-x"
+- santo-osvaldo-de-nortumbria
+- santa-helena
+- sao-pio-x
 related: []
 sources:
-  - title: "Templário de Maria: São Luís, Rei da França"
-    url: "https://templariodemaria.com/sao-luis-rei-da-franca-modelo-ideal-de-governante-25-de-agosto/"
+- title: 'Templário de Maria: São Luís, Rei da França'
+  url: https://templariodemaria.com/sao-luis-rei-da-franca-modelo-ideal-de-governante-25-de-agosto/
+general_info:
+- label: Dignidade
+  value: Rei Luís IX da França
+- label: Família
+  value: Esposo de Margarida da Provença e pai de família
+- label: Legado
+  value: Justiça, assistência aos pobres e proteção da fé
+- label: Obra associada
+  value: Sainte-Chapelle, em Paris
+- label: Período de vida
+  value: 1214-1270
+- label: Estado de vida
+  value: Rei e pai de família
+- label: Família espiritual
+  value: Leigo cristão
+- label: Padroeiro de
+  values:
+  - Governantes
+  - França
+  - Terceira Ordem Franciscana
+  wide: true
+timeline:
+- date: '1214'
+  title: Nascimento
+  description: Luís nasce na família real francesa e recebe forte educação cristã.
+- date: '1226'
+  title: Início do reinado
+  description: Torna-se rei ainda jovem, sob a regência de sua mãe, Branca de Castela.
+- date: '1248'
+  title: Sainte-Chapelle e expedição ao Oriente
+  description: Conclui a capela destinada às relíquias da Paixão e parte para uma cruzada.
+- date: '1270'
+  title: Morte perto de Túnis
+  description: Morre durante uma campanha no norte da África.
+- date: '1297'
+  title: Canonização
+  description: Bonifácio VIII o proclama santo.
 ---
 
 ## Um rei educado para responder diante de Deus

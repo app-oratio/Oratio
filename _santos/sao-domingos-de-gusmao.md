@@ -1,66 +1,89 @@
 ---
-title: "São Domingos de Gusmão"
-short_title: "São Domingos"
-slug: "sao-domingos-de-gusmao"
-subtitle: "Sacerdote e fundador da Ordem dos Pregadores"
-description: "São Domingos de Gusmão serviu à verdade pela oração, pelo estudo e por uma pregação pobre, clara e profundamente enraizada no Evangelho."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e fundador"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "c. 1170-1221"
-religious_family: "Ordem dos Pregadores"
+title: São Domingos de Gusmão
+short_title: São Domingos
+slug: sao-domingos-de-gusmao
+subtitle: Sacerdote e fundador da Ordem dos Pregadores
+description: São Domingos de Gusmão serviu à verdade pela oração, pelo estudo e por uma pregação pobre, clara e profundamente enraizada no Evangelho.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 8
-  label: "8 de agosto"
+  label: 8 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-domingos-de-gusmao.webp"
-image_alt: "Imagem horizontal representando São Domingos de Gusmão"
+image: /assets/images/saints/sao-domingos-de-gusmao.webp
+image_alt: Imagem horizontal representando São Domingos de Gusmão
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Domingos"
-  - "Domingos de Caleruega"
-  - "Santo Domingo de Guzmán"
+- São Domingos
+- Domingos de Caleruega
+- Santo Domingo de Guzmán
 tags:
-  - "dominicanos"
-  - "pregação"
-  - "Rosário"
-  - "estudo"
-  - "fundadores"
+- dominicanos
+- pregação
+- Rosário
+- estudo
+- fundadores
 keywords:
-  - "são domingos de gusmão"
-  - "fundador dos dominicanos"
-  - "ordem dos pregadores"
-  - "santo rosário"
-patronages:
-  - "Pregadores"
-  - "Ordem Dominicana"
+- são domingos de gusmão
+- fundador dos dominicanos
+- santo rosário
 virtues:
-  - "Amor à verdade"
-  - "Compaixão pelos pecadores"
-  - "Vida de oração"
-summary: >-
-  Diante de erros doutrinais e de uma sociedade ferida, Domingos escolheu evangelizar pela pobreza, pelo
-  diálogo e pelo testemunho. Fundou a Ordem dos Pregadores para unir estudo sério, vida comunitária,
-  contemplação e anúncio da verdade.
-prayer: >-
-  São Domingos de Gusmão, alcançai-nos amor pela verdade, perseverança no estudo da fé e compaixão por
-  quem está distante de Deus. Ensinai-nos a falar de Cristo com clareza e humildade, sustentados pela
-  oração e pela proteção da Virgem Maria. Amém.
+- Amor à verdade
+- Compaixão pelos pecadores
+- Vida de oração
+summary: Diante de erros doutrinais e de uma sociedade ferida, Domingos escolheu evangelizar pela pobreza, pelo diálogo e pelo testemunho. Fundou a Ordem dos Pregadores para unir estudo sério, vida comunitária, contemplação e anúncio da verdade.
+prayer: São Domingos de Gusmão, alcançai-nos amor pela verdade, perseverança no estudo da fé e compaixão por quem está distante de Deus. Ensinai-nos a falar de Cristo com clareza e humildade, sustentados pela oração e pela proteção da Virgem Maria. Amém.
 related_saints:
-  - "santa-rosa-de-lima"
-  - "santo-agostinho-de-hipona"
-  - "sao-bernardo-de-claraval"
+- santa-rosa-de-lima
+- santo-agostinho-de-hipona
+- sao-bernardo-de-claraval
 related: []
 sources:
-  - title: "Templário de Maria: São Domingos de Gusmão"
-    url: "https://templariodemaria.com/santo-do-dia-08-de-agosto-sao-domingos-de-gusmao/"
+- title: 'Templário de Maria: São Domingos de Gusmão'
+  url: https://templariodemaria.com/santo-do-dia-08-de-agosto-sao-domingos-de-gusmao/
+general_info:
+- label: Origem
+  value: Caleruega, Castela
+- label: Fundação
+  value: Ordem dos Pregadores
+- label: Missão principal
+  value: Pregação doutrinal sustentada pela oração, estudo e pobreza apostólica
+- label: Tradição espiritual
+  value: Fortemente ligado à difusão do Rosário
+- label: Período de vida
+  value: c. 1170-1221
+- label: Estado de vida
+  value: Sacerdote e fundador
+- label: Família espiritual
+  value: Ordem dos Pregadores
+- label: Padroeiro de
+  values:
+  - Pregadores
+  - Ordem Dominicana
+  wide: true
+timeline:
+- date: c. 1170
+  title: Nascimento em Caleruega
+  description: Domingos nasce em Castela e recebe formação clerical e intelectual.
+- date: c. 1206
+  title: Início da missão de pregação
+  description: Passa a anunciar a fé por meio da palavra, do estudo e do testemunho de pobreza.
+- date: '1216'
+  title: Confirmação da Ordem dos Pregadores
+  description: A Igreja reconhece a nova família dominicana.
+- date: '1221'
+  title: Morte em Bolonha
+  description: Morre entre seus irmãos, deixando uma ordem missionária em expansão.
+- date: '1234'
+  title: Canonização
+  description: Gregório IX o inscreve no catálogo dos santos.
 ---
 
 ## Formado pela Palavra e pela compaixão

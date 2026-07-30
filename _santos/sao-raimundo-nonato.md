@@ -1,68 +1,87 @@
 ---
-title: "São Raimundo Nonato"
-short_title: "São Raimundo Nonato"
-slug: "sao-raimundo-nonato"
-subtitle: "Sacerdote mercedário e servidor dos cativos"
-description: "São Raimundo Nonato é venerado por sua missão entre os cativos e por uma tradição de entrega que o tornou padroeiro das gestantes."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e religioso"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 1204-1240"
-religious_family: "Ordem de Nossa Senhora das Mercês"
+title: São Raimundo Nonato
+short_title: São Raimundo Nonato
+slug: sao-raimundo-nonato
+subtitle: Sacerdote mercedário e servidor dos cativos
+description: São Raimundo Nonato é venerado por sua missão entre os cativos e por uma tradição de entrega que o tornou padroeiro das gestantes.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 31
-  label: "31 de agosto"
+  label: 31 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-raimundo-nonato.webp"
-image_alt: "Imagem horizontal representando São Raimundo Nonato"
+image: /assets/images/saints/sao-raimundo-nonato.webp
+image_alt: Imagem horizontal representando São Raimundo Nonato
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Raimundo Nonnato"
-  - "Raimundo Nonato de Portell"
-  - "San Ramón Nonato"
+- São Raimundo Nonnato
+- Raimundo Nonato de Portell
+- San Ramón Nonato
 tags:
-  - "mercedários"
-  - "cativos"
-  - "gestantes"
-  - "missionários"
-  - "caridade"
+- mercedários
+- cativos
+- gestantes
+- missionários
+- caridade
 keywords:
-  - "são raimundo nonato"
-  - "padroeiro das gestantes"
-  - "ordem das mercês"
-  - "santo dos partos"
-patronages:
-  - "Gestantes"
-  - "Parturientes"
-  - "Parteiras"
-  - "Obstetras"
+- são raimundo nonato
+- padroeiro das gestantes
+- ordem das mercês
+- santo dos partos
 virtues:
-  - "Entrega pelos cativos"
-  - "Coragem missionária"
-  - "Confiança em Maria"
-summary: >-
-  A antiga tradição mercedária apresenta Raimundo como uma criança retirada com vida do ventre da mãe
-  falecida, origem do nome Nonato. Sacerdote da Ordem das Mercês, dedicou-se à libertação de cativos e
-  teria oferecido a própria liberdade para salvar outros cristãos.
-prayer: >-
-  São Raimundo Nonato, intercedei pelas gestantes, pelas mães em trabalho de parto, pelos nascituros e
-  pelos profissionais que os assistem. Alcançai-nos também coragem para defender a liberdade e a dignidade
-  daqueles que vivem presos ou oprimidos. Amém.
+- Entrega pelos cativos
+- Coragem missionária
+- Confiança em Maria
+summary: A antiga tradição mercedária apresenta Raimundo como uma criança retirada com vida do ventre da mãe falecida, origem do nome Nonato. Sacerdote da Ordem das Mercês, dedicou-se à libertação de cativos e teria oferecido a própria liberdade para salvar outros cristãos.
+prayer: São Raimundo Nonato, intercedei pelas gestantes, pelas mães em trabalho de parto, pelos nascituros e pelos profissionais que os assistem. Alcançai-nos também coragem para defender a liberdade e a dignidade daqueles que vivem presos ou oprimidos. Amém.
 related_saints:
-  - "sao-roque"
-  - "sao-caetano-de-thiene"
-  - "santa-dulce-dos-pobres"
+- sao-roque
+- sao-caetano-de-thiene
+- santa-dulce-dos-pobres
 related: []
 sources:
-  - title: "Templário de Maria: São Raimundo Nonato"
-    url: "https://templariodemaria.com/santo-do-dia-31-de-agosto-sao-raimundo-nonato/"
+- title: 'Templário de Maria: São Raimundo Nonato'
+  url: https://templariodemaria.com/santo-do-dia-31-de-agosto-sao-raimundo-nonato/
+general_info:
+- label: Origem
+  value: Catalunha, segundo a tradição
+- label: Missão
+  value: Resgate e assistência de cristãos cativos
+- label: Tradição do nome
+  value: “Nonato”, por ter nascido após a morte da mãe
+- label: Período de vida
+  value: c. 1204-1240
+- label: Estado de vida
+  value: Sacerdote e religioso
+- label: Família espiritual
+  value: Ordem de Nossa Senhora das Mercês
+- label: Padroeiro de
+  values:
+  - Gestantes
+  - Parturientes
+  - Parteiras
+  - Obstetras
+  wide: true
+timeline:
+- date: c. 1204, segundo a tradição
+  title: Nascimento extraordinário
+  description: A tradição afirma que nasceu após a morte da mãe, origem do nome Nonato.
+- date: Século XIII
+  title: Entrada na Ordem das Mercês
+  description: Dedica-se à libertação de cristãos cativos.
+- date: Século XIII
+  title: Missões de resgate
+  description: Viaja ao norte da África e, segundo a tradição, oferece-se como refém para libertar outros.
+- date: '1240'
+  title: Morte em Cardona
+  description: Morre durante uma viagem, depois de uma vida dedicada à liberdade dos cativos.
 ---
 
 ## Um nascimento conservado pela tradição

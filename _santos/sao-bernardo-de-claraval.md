@@ -1,66 +1,90 @@
 ---
-title: "São Bernardo de Claraval"
-short_title: "São Bernardo de Claraval"
-slug: "sao-bernardo-de-claraval"
-subtitle: "Abade e Doutor da Igreja"
-description: "São Bernardo de Claraval uniu contemplação, reforma monástica, serviço à Igreja e profunda devoção à Virgem Maria."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Abade e Doutor da Igreja"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "1090-1153"
-religious_family: "Ordem Cisterciense"
+title: São Bernardo de Claraval
+short_title: São Bernardo de Claraval
+slug: sao-bernardo-de-claraval
+subtitle: Abade e Doutor da Igreja
+description: São Bernardo de Claraval uniu contemplação, reforma monástica, serviço à Igreja e profunda devoção à Virgem Maria.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 20
-  label: "20 de agosto"
+  label: 20 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-bernardo-de-claraval.webp"
-image_alt: "Imagem horizontal representando São Bernardo de Claraval"
+image: /assets/images/saints/sao-bernardo-de-claraval.webp
+image_alt: Imagem horizontal representando São Bernardo de Claraval
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Bernardo"
-  - "Bernardo de Claraval"
-  - "Doutor Melífluo"
+- São Bernardo
+- Bernardo de Claraval
+- Doutor Melífluo
 tags:
-  - "cistercienses"
-  - "monges"
-  - "Doutores da Igreja"
-  - "Nossa Senhora"
-  - "contemplação"
+- cistercienses
+- monges
+- Doutores da Igreja
+- Nossa Senhora
+- contemplação
 keywords:
-  - "são bernardo de claraval"
-  - "doutor melífluo"
-  - "monge cisterciense"
-  - "devoto de nossa senhora"
-patronages:
-  - "Cistercienses"
-  - "Apicultores"
+- são bernardo de claraval
+- doutor melífluo
+- monge cisterciense
+- devoto de nossa senhora
 virtues:
-  - "Amor contemplativo"
-  - "Zelo pela Igreja"
-  - "Devoção mariana"
-summary: >-
-  Bernardo entrou em Cister acompanhado por familiares e amigos e tornou-se abade de Claraval. Sua palavra
-  influenciou a Igreja e a sociedade do século XII, enquanto seus escritos conduziram gerações ao amor de
-  Cristo e à confiança filial em Maria.
-prayer: >-
-  São Bernardo de Claraval, alcançai-nos silêncio interior, amor pela oração e sabedoria para servir à
-  Igreja sem perder a união com Deus. Ensinai-nos a recorrer com confiança à Virgem Maria e a buscar Jesus
-  com um coração inteiro. Amém.
+- Amor contemplativo
+- Zelo pela Igreja
+- Devoção mariana
+summary: Bernardo entrou em Cister acompanhado por familiares e amigos e tornou-se abade de Claraval. Sua palavra influenciou a Igreja e a sociedade do século XII, enquanto seus escritos conduziram gerações ao amor de Cristo e à confiança filial em Maria.
+prayer: São Bernardo de Claraval, alcançai-nos silêncio interior, amor pela oração e sabedoria para servir à Igreja sem perder a união com Deus. Ensinai-nos a recorrer com confiança à Virgem Maria e a buscar Jesus com um coração inteiro. Amém.
 related_saints:
-  - "sao-maximo-o-confessor"
-  - "santo-agostinho-de-hipona"
-  - "sao-joao-eudes"
+- sao-maximo-o-confessor
+- santo-agostinho-de-hipona
+- sao-joao-eudes
 related: []
 sources:
-  - title: "Templário de Maria: São Bernardo de Claraval"
-    url: "https://templariodemaria.com/santo-do-dia-20-de-agosto-sao-bernardo-de-claraval/"
+- title: 'Templário de Maria: São Bernardo de Claraval'
+  url: https://templariodemaria.com/santo-do-dia-20-de-agosto-sao-bernardo-de-claraval/
+general_info:
+- label: Origem
+  value: Borgonha, França
+- label: Mosteiro
+  value: Claraval
+- label: Contribuição
+  value: Renovação cisterciense, pregação e teologia espiritual
+- label: Marca espiritual
+  value: Amor a Cristo e profunda devoção à Virgem Maria
+- label: Período de vida
+  value: 1090-1153
+- label: Estado de vida
+  value: Abade e Doutor da Igreja
+- label: Família espiritual
+  value: Ordem Cisterciense
+- label: Padroeiro de
+  values:
+  - Cistercienses
+  - Apicultores
+  wide: true
+timeline:
+- date: '1090'
+  title: Nascimento na Borgonha
+  description: Bernardo nasce numa família nobre da França.
+- date: '1113'
+  title: Entrada em Cister
+  description: Ingressa na vida monástica acompanhado por numerosos parentes e amigos.
+- date: '1115'
+  title: Fundação de Claraval
+  description: Torna-se abade do mosteiro que dará nome à sua missão e influência.
+- date: '1153'
+  title: Morte
+  description: Morre depois de intensa atividade espiritual, eclesial e diplomática.
+- date: 1174–1830
+  title: Canonização e Doutor da Igreja
+  description: É canonizado em 1174 e proclamado Doutor da Igreja em 1830.
 ---
 
 ## Um chamado que arrastou muitos outros

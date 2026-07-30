@@ -1,67 +1,92 @@
 ---
-title: "São Caetano de Thiene"
-short_title: "São Caetano"
-slug: "sao-caetano-de-thiene"
-subtitle: "Sacerdote, fundador e apóstolo da Providência"
-description: "São Caetano de Thiene respondeu à crise religiosa de seu tempo com reforma interior, serviço aos pobres e confiança radical na Providência."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e fundador"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1480-1547"
-religious_family: "Ordem dos Clérigos Regulares Teatinos"
+title: São Caetano de Thiene
+short_title: São Caetano
+slug: sao-caetano-de-thiene
+subtitle: Sacerdote, fundador e apóstolo da Providência
+description: São Caetano de Thiene respondeu à crise religiosa de seu tempo com reforma interior, serviço aos pobres e confiança radical na Providência.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 7
-  label: "7 de agosto"
+  label: 7 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-caetano-de-thiene.webp"
-image_alt: "Imagem horizontal representando São Caetano de Thiene"
+image: /assets/images/saints/sao-caetano-de-thiene.webp
+image_alt: Imagem horizontal representando São Caetano de Thiene
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Caetano"
-  - "Gaetano de Thiene"
-  - "São Caetano de Tiene"
+- São Caetano
+- Gaetano de Thiene
+- São Caetano de Tiene
 tags:
-  - "Providência"
-  - "teatinos"
-  - "sacerdotes"
-  - "fundadores"
-  - "caridade"
+- Providência
+- teatinos
+- sacerdotes
+- fundadores
+- caridade
 keywords:
-  - "são caetano"
-  - "são caetano de thiene"
-  - "santo da providência"
-  - "teatinos"
-patronages:
-  - "Desempregados"
-  - "Trabalhadores"
-  - "Pessoas que buscam sustento"
+- são caetano
+- são caetano de thiene
+- santo da providência
+- teatinos
 virtues:
-  - "Confiança na Providência"
-  - "Reforma de vida"
-  - "Caridade com os pobres"
-summary: >-
-  Homem de sólida formação e posição social elevada, Caetano deixou as seguranças do mundo para servir
-  como sacerdote. Fundou os Teatinos e procurou renovar a Igreja por meio de clérigos santos, oração
-  litúrgica, pobreza e cuidado concreto dos necessitados.
-prayer: >-
-  São Caetano, ensinai-nos a trabalhar com responsabilidade e a confiar sem medo na Providência do Pai.
-  Intercedei pelos desempregados, pelas famílias que passam necessidade e por todos os que precisam unir
-  fé, coragem e honestidade na busca do pão de cada dia. Amém.
+- Confiança na Providência
+- Reforma de vida
+- Caridade com os pobres
+summary: Homem de sólida formação e posição social elevada, Caetano deixou as seguranças do mundo para servir como sacerdote. Fundou os Teatinos e procurou renovar a Igreja por meio de clérigos santos, oração litúrgica, pobreza e cuidado concreto dos necessitados.
+prayer: São Caetano, ensinai-nos a trabalhar com responsabilidade e a confiar sem medo na Providência do Pai. Intercedei pelos desempregados, pelas famílias que passam necessidade e por todos os que precisam unir fé, coragem e honestidade na busca do pão de cada dia. Amém.
 related_saints:
-  - "sao-joao-eudes"
-  - "sao-jose-calasanz"
-  - "sao-pedro-juliao-eymard"
+- sao-joao-eudes
+- sao-jose-calasanz
+- sao-pedro-juliao-eymard
 related: []
 sources:
-  - title: "Templário de Maria: São Caetano de Thiene"
-    url: "https://templariodemaria.com/santo-do-dia-07-de-agosto-sao-caetano-de-thiene/"
+- title: 'Templário de Maria: São Caetano de Thiene'
+  url: https://templariodemaria.com/santo-do-dia-07-de-agosto-sao-caetano-de-thiene/
+general_info:
+- label: Origem
+  value: Vicenza, Itália
+- label: Fundação
+  value: Ordem dos Clérigos Regulares Teatinos
+- label: Missão
+  value: Renovação do clero, cuidado dos doentes e confiança na Providência
+- label: Período de vida
+  value: 1480-1547
+- label: Estado de vida
+  value: Sacerdote e fundador
+- label: Família espiritual
+  value: Ordem dos Clérigos Regulares Teatinos
+- label: Padroeiro de
+  values:
+  - Desempregados
+  - Trabalhadores
+  - Pessoas que buscam sustento
+  wide: true
+timeline:
+- date: '1480'
+  title: Nascimento em Vicenza
+  description: Caetano nasce numa família nobre do norte da Itália.
+- date: '1516'
+  title: Ordenação sacerdotal
+  description: Depois de uma carreira eclesiástica, assume um ministério marcado pela conversão e pelo serviço.
+- date: '1524'
+  title: Fundação dos Teatinos
+  description: Com João Pedro Carafa e outros companheiros, inicia uma comunidade para a renovação do clero.
+- date: '1527'
+  title: Saque de Roma
+  description: A comunidade atravessa violência, prisão e dispersão.
+- date: '1547'
+  title: Morte em Nápoles
+  description: Morre depois de servir os enfermos e trabalhar pela reforma da vida cristã.
+- date: '1671'
+  title: Canonização
+  description: Clemente X o proclama santo.
 ---
 
 ## Da carreira eclesiástica à conversão do coração

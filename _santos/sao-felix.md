@@ -1,64 +1,85 @@
 ---
-title: "São Félix"
-short_title: "São Félix"
-slug: "sao-felix"
-subtitle: "Sacerdote e mártir de Roma"
-description: "São Félix é recordado com Santo Adauto entre os mártires de Roma que permaneceram fiéis durante a perseguição de Diocleciano."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e mártir"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "Século III"
-religious_family: "Igreja de Roma"
+title: São Félix
+short_title: São Félix
+slug: sao-felix
+subtitle: Sacerdote e mártir de Roma
+description: São Félix é recordado com Santo Adauto entre os mártires de Roma que permaneceram fiéis durante a perseguição de Diocleciano.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 30
-  label: "30 de agosto"
+  label: 30 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-felix.webp"
-image_alt: "Imagem horizontal representando São Félix"
+image: /assets/images/saints/sao-felix.webp
+image_alt: Imagem horizontal representando São Félix
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Félix de Roma"
-  - "Félix, mártir de Comodila"
+- São Félix de Roma
+- Félix, mártir de Comodila
 tags:
-  - "mártires"
-  - "sacerdotes"
-  - "Roma"
-  - "Diocleciano"
-  - "fidelidade"
+- mártires
+- sacerdotes
+- Roma
+- Diocleciano
+- fidelidade
 keywords:
-  - "são félix 30 de agosto"
-  - "são félix e santo adauto"
-  - "mártires de comodila"
-  - "mártir romano"
-patronages:
-  - "Cristãos perseguidos"
+- são félix 30 de agosto
+- são félix e santo adauto
+- mártires de comodila
+- mártir romano
 virtues:
-  - "Fidelidade"
-  - "Coragem"
-  - "Comunhão no martírio"
-summary: >-
-  Os registros sobre Félix são breves. A tradição o apresenta como sacerdote condenado durante a
-  perseguição de Diocleciano. No caminho para a morte, recebeu a companhia inesperada de outro cristão,
-  chamado Adauto, que decidiu professar a mesma fé.
-prayer: >-
-  São Félix, sacerdote e mártir, alcançai-nos fidelidade a Cristo nas pequenas escolhas e nas grandes
-  provações. Intercedei pelos sacerdotes perseguidos e por todos os cristãos que precisam testemunhar a fé
-  em ambientes hostis. Amém.
+- Fidelidade
+- Coragem
+- Comunhão no martírio
+summary: Os registros sobre Félix são breves. A tradição o apresenta como sacerdote condenado durante a perseguição de Diocleciano. No caminho para a morte, recebeu a companhia inesperada de outro cristão, chamado Adauto, que decidiu professar a mesma fé.
+prayer: São Félix, sacerdote e mártir, alcançai-nos fidelidade a Cristo nas pequenas escolhas e nas grandes provações. Intercedei pelos sacerdotes perseguidos e por todos os cristãos que precisam testemunhar a fé em ambientes hostis. Amém.
 related_saints:
-  - "santo-adauto"
-  - "sao-lourenco"
-  - "sao-zeferino"
+- santo-adauto
+- sao-lourenco
+- sao-zeferino
 related: []
 sources:
-  - title: "Templário de Maria: São Félix"
-    url: "https://templariodemaria.com/santo-do-dia-30-de-agosto-sao-felix-e-santo-adauto/"
+- title: 'Templário de Maria: São Félix'
+  url: https://templariodemaria.com/santo-do-dia-30-de-agosto-sao-felix-e-santo-adauto/
+general_info:
+- label: Período
+  value: Século III
+- label: Contexto
+  value: Perseguições contra os cristãos em Roma
+- label: Companheiro de martírio
+  value: Santo Adauto
+- label: Local de veneração antiga
+  value: Cemitério de Comodila, Roma
+- label: Período de vida
+  value: Século III
+- label: Estado de vida
+  value: Sacerdote e mártir
+- label: Família espiritual
+  value: Igreja de Roma
+- label: Padroeiro de
+  values:
+  - Cristãos perseguidos
+  wide: true
+timeline:
+- date: Século III
+  title: Ministério sacerdotal em Roma
+  description: Félix serve a comunidade cristã durante um período de perseguição.
+- date: Século III
+  title: Conduzido ao martírio
+  description: É levado para a execução por causa da fé.
+- date: Século III
+  title: Santo Adauto se une ao testemunho
+  description: Um cristão desconhecido confessa a fé ao seu lado e é morto com ele.
+- date: Antiguidade cristã
+  title: Culto no cemitério de Comodila
+  description: A memória dos dois mártires permanece unida na Igreja de Roma.
 ---
 
 ## Uma memória antiga com poucos detalhes

@@ -1,67 +1,96 @@
 ---
-title: "Santa Edith Stein"
-short_title: "Santa Edith Stein"
-slug: "santa-edith-stein-teresa-benedita-da-cruz"
-subtitle: "Santa Teresa Benedita da Cruz, virgem e mártir"
-description: "Filósofa, convertida, carmelita e mártir, Santa Edith Stein encontrou em Cristo a Verdade que buscava e ofereceu a vida pela paz."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Religiosa e mártir"
-liturgical_rank: "Festa na Europa"
-category: "Santos"
-life_dates: "1891-1942"
-religious_family: "Carmelo Descalço"
+title: Santa Edith Stein
+short_title: Santa Edith Stein
+slug: santa-edith-stein-teresa-benedita-da-cruz
+subtitle: Santa Teresa Benedita da Cruz, virgem e mártir
+description: Filósofa, convertida, carmelita e mártir, Santa Edith Stein encontrou em Cristo a Verdade que buscava e ofereceu a vida pela paz.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Festa na Europa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 9
-  label: "9 de agosto"
+  label: 9 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-edith-stein-teresa-benedita-da-cruz.webp"
-image_alt: "Imagem horizontal representando Santa Edith Stein"
+image: /assets/images/saints/santa-edith-stein-teresa-benedita-da-cruz.webp
+image_alt: Imagem horizontal representando Santa Edith Stein
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Teresa Benedita da Cruz"
-  - "Edith Stein"
-  - "Teresa Benedita da Cruz"
+- Santa Teresa Benedita da Cruz
+- Edith Stein
+- Teresa Benedita da Cruz
 tags:
-  - "Carmelo"
-  - "mártires"
-  - "filosofia"
-  - "judaísmo"
-  - "Europa"
+- Carmelo
+- mártires
+- filosofia
+- judaísmo
+- Europa
 keywords:
-  - "santa edith stein"
-  - "teresa benedita da cruz"
-  - "filósofa carmelita"
-  - "mártir de auschwitz"
-patronages:
-  - "Europa"
-  - "Filósofos"
-  - "Convertidos"
+- santa edith stein
+- filósofa carmelita
+- mártir de auschwitz
 virtues:
-  - "Busca sincera da verdade"
-  - "Coragem"
-  - "Oferta de si"
-summary: >-
-  Nascida numa família judaica, Edith Stein passou pela perda da fé, destacou-se na filosofia e encontrou
-  em Cristo a verdade que procurava. Como carmelita Teresa Benedita da Cruz, viveu sua vocação
-  contemplativa e enfrentou a perseguição nazista com lucidez, fé e entrega.
-prayer: >-
-  Santa Teresa Benedita da Cruz, ajudai-nos a procurar a verdade sem medo e a acolhê-la quando ela exigir
-  mudança de vida. Intercedei pelas vítimas do ódio, pela paz entre os povos e por todos os que buscam
-  unir inteligência, fé e amor à Cruz de Cristo. Amém.
+- Busca sincera da verdade
+- Coragem
+- Oferta de si
+summary: Nascida numa família judaica, Edith Stein passou pela perda da fé, destacou-se na filosofia e encontrou em Cristo a verdade que procurava. Como carmelita Teresa Benedita da Cruz, viveu sua vocação contemplativa e enfrentou a perseguição nazista com lucidez, fé e entrega.
+prayer: Santa Teresa Benedita da Cruz, ajudai-nos a procurar a verdade sem medo e a acolhê-la quando ela exigir mudança de vida. Intercedei pelas vítimas do ódio, pela paz entre os povos e por todos os que buscam unir inteligência, fé e amor à Cruz de Cristo. Amém.
 related_saints:
-  - "sao-maximiliano-maria-kolbe"
-  - "santa-clara-de-assis"
-  - "sao-maximo-o-confessor"
+- sao-maximiliano-maria-kolbe
+- santa-clara-de-assis
+- sao-maximo-o-confessor
 related: []
 sources:
-  - title: "Templário de Maria: Santa Edith Stein"
-    url: "https://templariodemaria.com/santo-do-dia-09-de-agosto-santa-edith-stein-tereza-benedita-da-cruz/"
+- title: 'Templário de Maria: Santa Edith Stein'
+  url: https://templariodemaria.com/santo-do-dia-09-de-agosto-santa-edith-stein-tereza-benedita-da-cruz/
+general_info:
+- label: Nome religioso
+  value: Teresa Benedita da Cruz
+- label: Origem
+  value: Breslau, então Império Alemão
+- label: Áreas de atuação
+  values:
+  - Filosofia
+  - Educação
+  - Espiritualidade carmelitana
+- label: Martírio
+  value: Auschwitz, em 9 de agosto de 1942
+- label: Período de vida
+  value: 1891-1942
+- label: Estado de vida
+  value: Religiosa e mártir
+- label: Família espiritual
+  value: Carmelo Descalço
+- label: Padroeira de
+  values:
+  - Europa
+  - Filósofos
+  - Convertidos
+  wide: true
+timeline:
+- date: '1891'
+  title: Nascimento em família judaica
+  description: Edith nasce em Breslau e desenvolve desde cedo grande inteligência e amor pela verdade.
+- date: '1922'
+  title: Batismo na Igreja Católica
+  description: Depois de longa busca filosófica e espiritual, recebe o batismo.
+- date: '1933'
+  title: Entrada no Carmelo
+  description: Assume o nome de Teresa Benedita da Cruz.
+- date: 9 de agosto de 1942
+  title: Martírio em Auschwitz
+  description: É morta com sua irmã Rosa durante a perseguição nazista.
+- date: '1998'
+  title: Canonização
+  description: João Paulo II a proclama santa.
+- date: '1999'
+  title: Copadroeira da Europa
+  description: É apresentada como testemunha da dignidade humana, da verdade e da reconciliação.
 ---
 
 ## Uma inteligência inquieta diante da verdade

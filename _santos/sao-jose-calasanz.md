@@ -1,67 +1,94 @@
 ---
-title: "São José Calasanz"
-short_title: "São José Calasanz"
-slug: "sao-jose-calasanz"
-subtitle: "Sacerdote e fundador das Escolas Pias"
-description: "São José Calasanz dedicou-se à educação gratuita das crianças pobres e permaneceu fiel quando sua obra atravessou graves crises."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e fundador"
-liturgical_rank: "Memória facultativa"
-category: "Santos"
-life_dates: "1557-1648"
-religious_family: "Ordem das Escolas Pias"
+title: São José Calasanz
+short_title: São José Calasanz
+slug: sao-jose-calasanz
+subtitle: Sacerdote e fundador das Escolas Pias
+description: São José Calasanz dedicou-se à educação gratuita das crianças pobres e permaneceu fiel quando sua obra atravessou graves crises.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória facultativa
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 25
-  label: "25 de agosto"
+  label: 25 de agosto
 daily_order: 20
 featured: false
-image: "/assets/images/saints/sao-jose-calasanz.webp"
-image_alt: "Imagem horizontal representando São José Calasanz"
+image: /assets/images/saints/sao-jose-calasanz.webp
+image_alt: Imagem horizontal representando São José Calasanz
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São José de Calasanz"
-  - "José Calasanz"
-  - "Fundador dos Escolápios"
+- São José de Calasanz
+- José Calasanz
+- Fundador dos Escolápios
 tags:
-  - "educação"
-  - "crianças"
-  - "escolápios"
-  - "fundadores"
-  - "pobres"
+- educação
+- crianças
+- escolápios
+- fundadores
+- pobres
 keywords:
-  - "são josé calasanz"
-  - "fundador das escolas pias"
-  - "educação católica"
-  - "padroeiro das escolas populares"
-patronages:
-  - "Escolas cristãs"
-  - "Educadores"
-  - "Crianças e jovens"
+- são josé calasanz
+- fundador das escolas pias
+- educação católica
+- padroeiro das escolas populares
 virtues:
-  - "Amor à educação"
-  - "Paciência nas provações"
-  - "Preferência pelos pobres"
-summary: >-
-  Ao chegar a Roma, José Calasanz encontrou crianças pobres sem acesso à escola. Organizou aulas
-  gratuitas, fundou uma comunidade de educadores religiosos e enfrentou com humildade uma crise que quase
-  destruiu sua obra.
-prayer: >-
-  São José Calasanz, intercedei pelos estudantes, professores e famílias. Ajudai-nos a reconhecer a
-  educação como obra de caridade e a permanecer fiéis quando o trabalho pelo bem dos pequenos encontrar
-  incompreensão e dificuldades. Amém.
+- Amor à educação
+- Paciência nas provações
+- Preferência pelos pobres
+summary: Ao chegar a Roma, José Calasanz encontrou crianças pobres sem acesso à escola. Organizou aulas gratuitas, fundou uma comunidade de educadores religiosos e enfrentou com humildade uma crise que quase destruiu sua obra.
+prayer: São José Calasanz, intercedei pelos estudantes, professores e famílias. Ajudai-nos a reconhecer a educação como obra de caridade e a permanecer fiéis quando o trabalho pelo bem dos pequenos encontrar incompreensão e dificuldades. Amém.
 related_saints:
-  - "sao-joao-maria-vianney"
-  - "sao-caetano-de-thiene"
-  - "santa-dulce-dos-pobres"
+- sao-joao-maria-vianney
+- sao-caetano-de-thiene
+- santa-dulce-dos-pobres
 related: []
 sources:
-  - title: "Templário de Maria: São José Calasanz"
-    url: "https://templariodemaria.com/santo-do-dia-25-de-agosto-sao-jose-calasanz/"
+- title: 'Templário de Maria: São José Calasanz'
+  url: https://templariodemaria.com/santo-do-dia-25-de-agosto-sao-jose-calasanz/
+general_info:
+- label: Origem
+  value: Aragão, Espanha
+- label: Fundação
+  value: Ordem das Escolas Pias
+- label: Obra pioneira
+  value: Escolas gratuitas e estáveis para crianças pobres
+- label: Lema espiritual
+  value: Piedade e letras
+- label: Período de vida
+  value: 1557-1648
+- label: Estado de vida
+  value: Sacerdote e fundador
+- label: Família espiritual
+  value: Ordem das Escolas Pias
+- label: Padroeiro de
+  values:
+  - Escolas cristãs
+  - Educadores
+  - Crianças e jovens
+  wide: true
+timeline:
+- date: '1557'
+  title: Nascimento em Aragão
+  description: José nasce na Espanha e recebe formação para o sacerdócio.
+- date: '1597'
+  title: Primeira escola gratuita em Roma
+  description: Começa a ensinar crianças pobres no bairro de Trastevere.
+- date: '1621'
+  title: Aprovação das Escolas Pias
+  description: A obra educativa se torna uma ordem religiosa dedicada à educação cristã.
+- date: '1646'
+  title: Crise e redução da ordem
+  description: Conflitos internos levam a uma grave intervenção que parece destruir a fundação.
+- date: '1648'
+  title: Morte
+  description: Calasanz morre confiando que a obra de Deus sobreviveria.
+- date: '1767'
+  title: Canonização
+  description: Clemente XIII o proclama santo.
 ---
 
 ## Um sacerdote diante das crianças esquecidas

@@ -1,68 +1,99 @@
 ---
-title: "São Maximiliano Maria Kolbe"
-short_title: "São Maximiliano Kolbe"
-slug: "sao-maximiliano-maria-kolbe"
-subtitle: "Sacerdote franciscano e mártir da caridade"
-description: "São Maximiliano Kolbe colocou os meios de comunicação a serviço da Imaculada e ofereceu a própria vida por outro prisioneiro em Auschwitz."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote e mártir"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "1894-1941"
-religious_family: "Ordem dos Frades Menores Conventuais"
+title: São Maximiliano Maria Kolbe
+short_title: São Maximiliano Kolbe
+slug: sao-maximiliano-maria-kolbe
+subtitle: Sacerdote franciscano e mártir da caridade
+description: São Maximiliano Kolbe colocou os meios de comunicação a serviço da Imaculada e ofereceu a própria vida por outro prisioneiro em Auschwitz.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 14
-  label: "14 de agosto"
+  label: 14 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-maximiliano-maria-kolbe.webp"
-image_alt: "Imagem horizontal representando São Maximiliano Maria Kolbe"
+image: /assets/images/saints/sao-maximiliano-maria-kolbe.webp
+image_alt: Imagem horizontal representando São Maximiliano Maria Kolbe
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Maximiliano Kolbe"
-  - "Raimundo Kolbe"
-  - "Mártir da caridade"
+- São Maximiliano Kolbe
+- Raimundo Kolbe
+- Mártir da caridade
 tags:
-  - "franciscanos"
-  - "mártires"
-  - "Imaculada"
-  - "comunicação"
-  - "Auschwitz"
+- franciscanos
+- mártires
+- Imaculada
+- comunicação
+- Auschwitz
 keywords:
-  - "são maximiliano kolbe"
-  - "mártir da caridade"
-  - "milícia da imaculada"
-  - "auschwitz"
-patronages:
-  - "Jornalistas"
-  - "Radioamadores"
-  - "Famílias"
-  - "Dependentes químicos"
+- são maximiliano kolbe
+- mártir da caridade
+- auschwitz
 virtues:
-  - "Amor sacrificial"
-  - "Devoção à Imaculada"
-  - "Criatividade apostólica"
-summary: >-
-  Maximiliano Kolbe foi um franciscano de intensa vida mariana e extraordinária capacidade de
-  evangelização. Utilizou imprensa e rádio para anunciar a fé, acolheu perseguidos durante a guerra e,
-  preso em Auschwitz, ofereceu-se para morrer no lugar de um pai de família.
-prayer: >-
-  São Maximiliano Maria Kolbe, consagrado inteiramente à Imaculada, alcançai-nos coragem para amar quando
-  o egoísmo parece mais forte. Intercedei pelas famílias, pelos perseguidos e por todos os que trabalham
-  na comunicação, para que usem seus dons a serviço da verdade. Amém.
+- Amor sacrificial
+- Devoção à Imaculada
+- Criatividade apostólica
+summary: Maximiliano Kolbe foi um franciscano de intensa vida mariana e extraordinária capacidade de evangelização. Utilizou imprensa e rádio para anunciar a fé, acolheu perseguidos durante a guerra e, preso em Auschwitz, ofereceu-se para morrer no lugar de um pai de família.
+prayer: São Maximiliano Maria Kolbe, consagrado inteiramente à Imaculada, alcançai-nos coragem para amar quando o egoísmo parece mais forte. Intercedei pelas famílias, pelos perseguidos e por todos os que trabalham na comunicação, para que usem seus dons a serviço da verdade. Amém.
 related_saints:
-  - "santa-edith-stein-teresa-benedita-da-cruz"
-  - "sao-tarcisio"
-  - "sao-lourenco"
+- santa-edith-stein-teresa-benedita-da-cruz
+- sao-tarcisio
+- sao-lourenco
 related: []
 sources:
-  - title: "Templário de Maria: São Maximiliano Maria Kolbe"
-    url: "https://templariodemaria.com/santo-do-dia-14-de-agosto-sao-maximiliano-maria-kolbe/"
+- title: 'Templário de Maria: São Maximiliano Maria Kolbe'
+  url: https://templariodemaria.com/santo-do-dia-14-de-agosto-sao-maximiliano-maria-kolbe/
+general_info:
+- label: Nome de nascimento
+  value: Raimundo Kolbe
+- label: Origem
+  value: Polônia
+- label: Fundação
+  value: Milícia da Imaculada
+- label: Apostolado
+  values:
+  - Imprensa
+  - Rádio
+  - Missão mariana
+- label: Martírio
+  value: Auschwitz, em 14 de agosto de 1941
+- label: Período de vida
+  value: 1894-1941
+- label: Estado de vida
+  value: Sacerdote e mártir
+- label: Família espiritual
+  value: Ordem dos Frades Menores Conventuais
+- label: Padroeiro de
+  values:
+  - Jornalistas
+  - Radioamadores
+  - Famílias
+  - Dependentes químicos
+  wide: true
+timeline:
+- date: '1894'
+  title: Nascimento na Polônia
+  description: Raimundo Kolbe nasce numa família católica e patriótica.
+- date: '1917'
+  title: Fundação da Milícia da Imaculada
+  description: Organiza um movimento de consagração mariana e evangelização.
+- date: '1927'
+  title: Fundação de Niepokalanów
+  description: Cria um grande centro franciscano de imprensa e missão.
+- date: 14 de agosto de 1941
+  title: Martírio em Auschwitz
+  description: Morre depois de oferecer a própria vida em lugar de outro prisioneiro.
+- date: '1971'
+  title: Beatificação
+  description: Paulo VI reconhece oficialmente seu testemunho.
+- date: '1982'
+  title: Canonização
+  description: João Paulo II o proclama santo e mártir da caridade.
 ---
 
 ## Uma vida colocada nas mãos da Imaculada

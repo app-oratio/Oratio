@@ -1,66 +1,90 @@
 ---
-title: "São Máximo de Constantinopla"
-short_title: "São Máximo, o Confessor"
-slug: "sao-maximo-o-confessor"
-subtitle: "Monge, teólogo e defensor da fé em Cristo"
-description: "São Máximo, o Confessor, defendeu com extraordinária firmeza a plena humanidade e divindade de Cristo, mesmo sob perseguição."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Monge e confessor"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 580-662"
-religious_family: "Tradição monástica oriental"
+title: São Máximo de Constantinopla
+short_title: São Máximo, o Confessor
+slug: sao-maximo-o-confessor
+subtitle: Monge, teólogo e defensor da fé em Cristo
+description: São Máximo, o Confessor, defendeu com extraordinária firmeza a plena humanidade e divindade de Cristo, mesmo sob perseguição.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 13
-  label: "13 de agosto"
+  label: 13 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-maximo-o-confessor.webp"
-image_alt: "Imagem horizontal representando São Máximo de Constantinopla"
+image: /assets/images/saints/sao-maximo-o-confessor.webp
+image_alt: Imagem horizontal representando São Máximo de Constantinopla
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "São Máximo, o Confessor"
-  - "Máximo de Constantinopla"
-  - "Maximus Confessor"
+- São Máximo, o Confessor
+- Máximo de Constantinopla
+- Maximus Confessor
 tags:
-  - "teólogos"
-  - "monges"
-  - "Igreja oriental"
-  - "Cristologia"
-  - "confessores"
+- teólogos
+- monges
+- Igreja oriental
+- Cristologia
+- confessores
 keywords:
-  - "são máximo confessor"
-  - "máximo de constantinopla"
-  - "monotelismo"
-  - "teólogo bizantino"
-patronages:
-  - "Teólogos"
-  - "Defensores da fé"
+- são máximo confessor
+- máximo de constantinopla
+- monotelismo
+- teólogo bizantino
 virtues:
-  - "Fidelidade doutrinal"
-  - "Coragem"
-  - "Profundidade contemplativa"
-summary: >-
-  Máximo deixou uma posição importante no Império Bizantino para viver como monge. Quando uma doutrina
-  reduziu a verdadeira humanidade de Cristo, ele enfrentou pressões políticas e eclesiásticas, preferindo
-  o exílio e o sofrimento a assinar uma fórmula contrária à fé.
-prayer: >-
-  São Máximo, o Confessor, alcançai-nos inteligência iluminada pela fé e coragem para permanecer na
-  verdade. Ajudai-nos a conhecer e amar Jesus Cristo, verdadeiro Deus e verdadeiro homem, sem transformar
-  a defesa da doutrina em orgulho ou violência. Amém.
+- Fidelidade doutrinal
+- Coragem
+- Profundidade contemplativa
+summary: Máximo deixou uma posição importante no Império Bizantino para viver como monge. Quando uma doutrina reduziu a verdadeira humanidade de Cristo, ele enfrentou pressões políticas e eclesiásticas, preferindo o exílio e o sofrimento a assinar uma fórmula contrária à fé.
+prayer: São Máximo, o Confessor, alcançai-nos inteligência iluminada pela fé e coragem para permanecer na verdade. Ajudai-nos a conhecer e amar Jesus Cristo, verdadeiro Deus e verdadeiro homem, sem transformar a defesa da doutrina em orgulho ou violência. Amém.
 related_saints:
-  - "santo-agostinho-de-hipona"
-  - "sao-bernardo-de-claraval"
-  - "sao-hormisda"
+- santo-agostinho-de-hipona
+- sao-bernardo-de-claraval
+- sao-hormisda
 related: []
 sources:
-  - title: "Templário de Maria: São Máximo de Constantinopla"
-    url: "https://templariodemaria.com/santo-do-dia-13-de-agosto-sao-maximo-de-constantinopla/"
+- title: 'Templário de Maria: São Máximo de Constantinopla'
+  url: https://templariodemaria.com/santo-do-dia-13-de-agosto-sao-maximo-de-constantinopla/
+general_info:
+- label: Tradição
+  value: Cristianismo oriental
+- label: Vocação
+  value: Monge, teólogo e defensor da fé cristológica
+- label: Controvérsia central
+  value: Defesa das duas vontades de Cristo, divina e humana
+- label: Últimos anos
+  value: Julgamento, mutilação e exílio por recusar uma fórmula doutrinal ambígua
+- label: Período de vida
+  value: c. 580-662
+- label: Estado de vida
+  value: Monge e confessor
+- label: Família espiritual
+  value: Tradição monástica oriental
+- label: Padroeiro de
+  values:
+  - Teólogos
+  - Defensores da fé
+  wide: true
+timeline:
+- date: c. 580
+  title: Nascimento
+  description: Máximo recebe formação elevada e chega a servir na administração imperial.
+- date: Início do século VII
+  title: Vida monástica
+  description: Deixa a corte e se entrega à oração, ao estudo e à direção espiritual.
+- date: '649'
+  title: Concílio de Latrão
+  description: Apoia a condenação de fórmulas que reduziam a plena humanidade de Cristo.
+- date: '655'
+  title: Julgamento e exílio
+  description: É perseguido por recusar um compromisso doutrinal imposto pelo poder imperial.
+- date: '662'
+  title: Morte no exílio
+  description: Morre depois de sofrer mutilações, permanecendo fiel à fé professada.
 ---
 
 ## Da corte imperial ao silêncio monástico

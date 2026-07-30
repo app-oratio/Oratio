@@ -1,64 +1,84 @@
 ---
-title: "São Hormisda"
-short_title: "São Hormisda"
-slug: "sao-hormisda"
-subtitle: "Papa e defensor da unidade da Igreja"
-description: "São Hormisda conduziu a Igreja no início do século VI e trabalhou com prudência para restaurar a comunhão entre Roma e Constantinopla."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Papa"
-liturgical_rank: "Comemoração"
-category: "Santos"
-life_dates: "c. 450-523"
-religious_family: "Clero romano"
+title: São Hormisda
+short_title: São Hormisda
+slug: sao-hormisda
+subtitle: Papa e defensor da unidade da Igreja
+description: São Hormisda conduziu a Igreja no início do século VI e trabalhou com prudência para restaurar a comunhão entre Roma e Constantinopla.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 6
-  label: "6 de agosto"
+  label: 6 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-hormisda.webp"
-image_alt: "Imagem horizontal representando São Hormisda"
+image: /assets/images/saints/sao-hormisda.webp
+image_alt: Imagem horizontal representando São Hormisda
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Papa São Hormisda"
-  - "Hormisdas"
+- Papa São Hormisda
+- Hormisdas
 tags:
-  - "papas"
-  - "unidade da Igreja"
-  - "doutrina"
-  - "Roma"
-  - "Constantinopla"
+- papas
+- unidade da Igreja
+- doutrina
+- Roma
+- Constantinopla
 keywords:
-  - "são hormisda"
-  - "papa hormisda"
-  - "fórmula de hormisda"
-  - "cisma acaciano"
-patronages:
-  - "Unidade dos cristãos"
+- são hormisda
+- papa hormisda
+- cisma acaciano
 virtues:
-  - "Prudência"
-  - "Firmeza na fé"
-  - "Paciência diplomática"
-summary: >-
-  Antes de receber as ordens sacras, Hormisda foi casado e teve um filho que também se tornaria papa.
-  Eleito para a Sé de Pedro, dedicou seu pontificado à superação de uma longa ruptura entre Oriente e
-  Ocidente, unindo clareza doutrinal e habilidade pastoral.
-prayer: >-
-  São Hormisda, alcançai à Igreja unidade na verdade e caridade nas relações. Ajudai pastores e fiéis a
-  defender a fé sem orgulho, a buscar a reconciliação sem esconder as diferenças e a servir humildemente à
-  comunhão querida por Cristo. Amém.
+- Prudência
+- Firmeza na fé
+- Paciência diplomática
+summary: Antes de receber as ordens sacras, Hormisda foi casado e teve um filho que também se tornaria papa. Eleito para a Sé de Pedro, dedicou seu pontificado à superação de uma longa ruptura entre Oriente e Ocidente, unindo clareza doutrinal e habilidade pastoral.
+prayer: São Hormisda, alcançai à Igreja unidade na verdade e caridade nas relações. Ajudai pastores e fiéis a defender a fé sem orgulho, a buscar a reconciliação sem esconder as diferenças e a servir humildemente à comunhão querida por Cristo. Amém.
 related_saints:
-  - "sao-zeferino"
-  - "sao-pio-x"
-  - "santo-agostinho-de-hipona"
+- sao-zeferino
+- sao-pio-x
+- santo-agostinho-de-hipona
 related: []
 sources:
-  - title: "Templário de Maria: São Hormisda"
-    url: "https://templariodemaria.com/santo-do-dia-06-de-agosto-sao-hormisda/"
+- title: 'Templário de Maria: São Hormisda'
+  url: https://templariodemaria.com/santo-do-dia-06-de-agosto-sao-hormisda/
+general_info:
+- label: Origem
+  value: Frosinone, Itália
+- label: Pontificado
+  value: 514–523
+- label: Missão principal
+  value: Restauração da comunhão entre Roma e Constantinopla
+- label: Documento associado
+  value: Fórmula de Hormisda
+- label: Período de vida
+  value: c. 450-523
+- label: Estado de vida
+  value: Papa
+- label: Família espiritual
+  value: Clero romano
+- label: Padroeiro de
+  values:
+  - Unidade dos cristãos
+  wide: true
+timeline:
+- date: c. 450
+  title: Nascimento em Frosinone
+  description: Hormisda nasce na Itália e, antes do ministério clerical, constitui família.
+- date: '514'
+  title: Eleição como papa
+  description: Assume a Sé de Pedro num período de grave ruptura entre Oriente e Ocidente.
+- date: '519'
+  title: Restauração da comunhão
+  description: A Fórmula de Hormisda contribui para encerrar o cisma acaciano.
+- date: '523'
+  title: Morte
+  description: Conclui um pontificado marcado pela unidade doutrinal e eclesial.
 ---
 
 ## De pai de família à Sé de Pedro

@@ -1,67 +1,91 @@
 ---
-title: "Santa Clara de Assis"
-short_title: "Santa Clara de Assis"
-slug: "santa-clara-de-assis"
-subtitle: "Virgem e fundadora das Clarissas"
-description: "Santa Clara seguiu o ideal evangélico de São Francisco e defendeu até o fim uma vida de pobreza, oração e confiança em Cristo."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Virgem e fundadora"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "c. 1193-1253"
-religious_family: "Ordem de Santa Clara"
+title: Santa Clara de Assis
+short_title: Santa Clara de Assis
+slug: santa-clara-de-assis
+subtitle: Virgem e fundadora das Clarissas
+description: Santa Clara seguiu o ideal evangélico de São Francisco e defendeu até o fim uma vida de pobreza, oração e confiança em Cristo.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 11
-  label: "11 de agosto"
+  label: 11 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-clara-de-assis.webp"
-image_alt: "Imagem horizontal representando Santa Clara de Assis"
+image: /assets/images/saints/santa-clara-de-assis.webp
+image_alt: Imagem horizontal representando Santa Clara de Assis
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santa Clara"
-  - "Clara de Assis"
-  - "Santa Chiara d'Assisi"
+- Santa Clara
+- Clara de Assis
+- Santa Chiara d'Assisi
 tags:
-  - "clarissas"
-  - "franciscanos"
-  - "pobreza"
-  - "Eucaristia"
-  - "vida contemplativa"
+- clarissas
+- franciscanos
+- pobreza
+- Eucaristia
+- vida contemplativa
 keywords:
-  - "santa clara de assis"
-  - "fundadora das clarissas"
-  - "amiga de são francisco"
-  - "santa da televisão"
-patronages:
-  - "Televisão"
-  - "Comunicações"
-  - "Lavadeiras"
+- santa clara de assis
+- fundadora das clarissas
+- amiga de são francisco
+- santa da televisão
 virtues:
-  - "Pobreza evangélica"
-  - "Vida contemplativa"
-  - "Firmeza de propósito"
-summary: >-
-  Clara deixou uma vida nobre para seguir Cristo em pobreza e recolhimento, inspirada pelo exemplo de São
-  Francisco. Em São Damião, conduziu uma comunidade de mulheres e lutou para conservar o privilégio de
-  nada possuir, confiando inteiramente na Providência.
-prayer: >-
-  Santa Clara de Assis, iluminai nosso caminho com vosso amor por Cristo pobre e crucificado. Ajudai-nos a
-  desapegar o coração, a perseverar na oração e a confiar na Eucaristia como força para toda provação.
-  Amém.
+- Pobreza evangélica
+- Vida contemplativa
+- Firmeza de propósito
+summary: Clara deixou uma vida nobre para seguir Cristo em pobreza e recolhimento, inspirada pelo exemplo de São Francisco. Em São Damião, conduziu uma comunidade de mulheres e lutou para conservar o privilégio de nada possuir, confiando inteiramente na Providência.
+prayer: Santa Clara de Assis, iluminai nosso caminho com vosso amor por Cristo pobre e crucificado. Ajudai-nos a desapegar o coração, a perseverar na oração e a confiar na Eucaristia como força para toda provação. Amém.
 related_saints:
-  - "sao-domingos-de-gusmao"
-  - "santa-beatriz-da-silva"
-  - "santa-edith-stein-teresa-benedita-da-cruz"
+- sao-domingos-de-gusmao
+- santa-beatriz-da-silva
+- santa-edith-stein-teresa-benedita-da-cruz
 related: []
 sources:
-  - title: "Templário de Maria: Santa Clara de Assis"
-    url: "https://templariodemaria.com/santo-do-dia-11-de-agosto-santa-clara-de-assis/"
+- title: 'Templário de Maria: Santa Clara de Assis'
+  url: https://templariodemaria.com/santo-do-dia-11-de-agosto-santa-clara-de-assis/
+general_info:
+- label: Nome de origem
+  value: Clara Offreduccio
+- label: Origem
+  value: Assis, Itália
+- label: Fundação
+  value: Ordem de Santa Clara, em comunhão com São Francisco
+- label: Marca espiritual
+  value: Pobreza evangélica, vida fraterna e amor à Eucaristia
+- label: Período de vida
+  value: c. 1193-1253
+- label: Estado de vida
+  value: Virgem e fundadora
+- label: Família espiritual
+  value: Ordem de Santa Clara
+- label: Padroeira de
+  values:
+  - Televisão
+  - Comunicações
+  - Lavadeiras
+  wide: true
+timeline:
+- date: c. 1193
+  title: Nascimento em Assis
+  description: Clara cresce numa família nobre, mas amadurece o desejo de seguir o Evangelho em pobreza.
+- date: '1212'
+  title: Deixa a casa e se consagra a Deus
+  description: Na noite do Domingo de Ramos, encontra Francisco e inicia uma nova forma de vida.
+- date: 1212–1253
+  title: Comunidade de São Damião
+  description: Clara conduz as irmãs numa vida de oração, fraternidade e pobreza radical.
+- date: '1253'
+  title: Aprovação da regra e morte
+  description: Pouco antes de morrer, recebe a confirmação da forma de vida que defendera durante décadas.
+- date: '1255'
+  title: Canonização
+  description: Alexandre IV reconhece oficialmente sua santidade.
 ---
 
 ## A jovem que deixou tudo durante a noite

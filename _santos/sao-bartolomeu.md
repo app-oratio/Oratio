@@ -1,66 +1,83 @@
 ---
-title: "São Bartolomeu"
-short_title: "São Bartolomeu"
-slug: "sao-bartolomeu"
-subtitle: "Apóstolo de Jesus Cristo"
-description: "São Bartolomeu, um dos Doze Apóstolos, respondeu ao chamado de Cristo com sinceridade e levou o Evangelho além das fronteiras de Israel."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Apóstolo e mártir"
-liturgical_rank: "Festa"
-category: "Santos bíblicos"
-life_dates: "Século I"
-religious_family: "Colégio Apostólico"
+title: São Bartolomeu
+short_title: São Bartolomeu
+slug: sao-bartolomeu
+subtitle: Apóstolo de Jesus Cristo
+description: São Bartolomeu, um dos Doze Apóstolos, respondeu ao chamado de Cristo com sinceridade e levou o Evangelho além das fronteiras de Israel.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Festa
+category: Santos bíblicos
 liturgical_date:
   type: fixed
   month: 8
   day: 24
-  label: "24 de agosto"
+  label: 24 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-bartolomeu.webp"
-image_alt: "Imagem horizontal representando São Bartolomeu"
+image: /assets/images/saints/sao-bartolomeu.webp
+image_alt: Imagem horizontal representando São Bartolomeu
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Bartolomeu Apóstolo"
-  - "Natanael"
-  - "São Natanael"
+- Bartolomeu Apóstolo
+- Natanael
+- São Natanael
 tags:
-  - "Apóstolos"
-  - "Bíblia"
-  - "mártires"
-  - "missões"
-  - "Israel"
+- Apóstolos
+- Bíblia
+- mártires
+- missões
+- Israel
 keywords:
-  - "são bartolomeu"
-  - "apóstolo bartolomeu"
-  - "natanael"
-  - "um israelita sem falsidade"
-patronages:
-  - "Açougueiros"
-  - "Curtidores"
-  - "Armênia"
+- são bartolomeu
+- apóstolo bartolomeu
+- natanael
+- um israelita sem falsidade
 virtues:
-  - "Sinceridade"
-  - "Prontidão para seguir Cristo"
-  - "Coragem missionária"
-summary: >-
-  Os Evangelhos incluem Bartolomeu entre os Doze. Uma antiga tradição o identifica com Natanael, o homem
-  sincero apresentado a Jesus por Filipe. Depois da Ressurreição, teria anunciado o Evangelho em regiões
-  distantes e selado a missão com o martírio.
-prayer: >-
-  São Bartolomeu, apóstolo do Senhor, alcançai-nos um coração sem falsidade e pronto para reconhecer
-  Jesus. Intercedei pelos missionários e por todos os que anunciam o Evangelho em lugares difíceis. Amém.
+- Sinceridade
+- Prontidão para seguir Cristo
+- Coragem missionária
+summary: Os Evangelhos incluem Bartolomeu entre os Doze. Uma antiga tradição o identifica com Natanael, o homem sincero apresentado a Jesus por Filipe. Depois da Ressurreição, teria anunciado o Evangelho em regiões distantes e selado a missão com o martírio.
+prayer: São Bartolomeu, apóstolo do Senhor, alcançai-nos um coração sem falsidade e pronto para reconhecer Jesus. Intercedei pelos missionários e por todos os que anunciam o Evangelho em lugares difíceis. Amém.
 related_saints:
-  - "santa-lidia"
-  - "martirio-de-sao-joao-batista"
-  - "sao-lourenco"
+- santa-lidia
+- martirio-de-sao-joao-batista
+- sao-lourenco
 related: []
 sources:
-  - title: "Templário de Maria: São Bartolomeu"
-    url: "https://templariodemaria.com/santo-do-dia-24-de-agosto-sao-bartolomeu/"
+- title: 'Templário de Maria: São Bartolomeu'
+  url: https://templariodemaria.com/santo-do-dia-24-de-agosto-sao-bartolomeu/
+general_info:
+- label: Grupo apostólico
+  value: Um dos Doze Apóstolos
+- label: Identificação tradicional
+  value: Frequentemente associado a Natanael
+- label: Missão
+  value: Anúncio do Evangelho em regiões do Oriente segundo antigas tradições
+- label: Período de vida
+  value: Século I
+- label: Estado de vida
+  value: Apóstolo e mártir
+- label: Família espiritual
+  value: Colégio Apostólico
+- label: Padroeiro de
+  values:
+  - Açougueiros
+  - Curtidores
+  - Armênia
+  wide: true
+timeline:
+- date: Século I
+  title: Chamado ao colégio apostólico
+  description: Bartolomeu é escolhido por Jesus para fazer parte dos Doze.
+- date: Após a Ressurreição
+  title: Missão apostólica
+  description: Antigas tradições o apresentam anunciando o Evangelho em diferentes regiões do Oriente.
+- date: Século I
+  title: Martírio
+  description: Entrega a vida por Cristo, embora as tradições variem quanto ao lugar e à forma de sua morte.
 ---
 
 ## Um dos Doze escolhidos por Jesus

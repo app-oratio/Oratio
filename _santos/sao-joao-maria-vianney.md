@@ -1,66 +1,93 @@
 ---
-title: "São João Maria Vianney"
-short_title: "São João Maria Vianney"
-slug: "sao-joao-maria-vianney"
-subtitle: "Sacerdote e Cura d'Ars"
-description: "São João Maria Vianney transformou uma pequena paróquia pela oração, pela penitência, pela pregação simples e pelo incansável ministério da confissão."
-entry_type: "Santo"
-subject_schema_type: "Person"
-saint_type: "Sacerdote"
-liturgical_rank: "Memória"
-category: "Santos"
-life_dates: "1786-1859"
-religious_family: "Clero diocesano"
+title: São João Maria Vianney
+short_title: São João Maria Vianney
+slug: sao-joao-maria-vianney
+subtitle: Sacerdote e Cura d'Ars
+description: São João Maria Vianney transformou uma pequena paróquia pela oração, pela penitência, pela pregação simples e pelo incansável ministério da confissão.
+entry_type: Santo
+subject_schema_type: Person
+liturgical_rank: Memória
+category: Santos
 liturgical_date:
   type: fixed
   month: 8
   day: 4
-  label: "4 de agosto"
+  label: 4 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/sao-joao-maria-vianney.webp"
-image_alt: "Imagem horizontal representando São João Maria Vianney"
+image: /assets/images/saints/sao-joao-maria-vianney.webp
+image_alt: Imagem horizontal representando São João Maria Vianney
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Santo Cura d'Ars"
-  - "João Batista Maria Vianney"
-  - "São João Vianney"
+- Santo Cura d'Ars
+- João Batista Maria Vianney
+- São João Vianney
 tags:
-  - "sacerdotes"
-  - "confissão"
-  - "paróquia"
-  - "oração"
-  - "penitência"
+- sacerdotes
+- confissão
+- paróquia
+- oração
+- penitência
 keywords:
-  - "são joão maria vianney"
-  - "cura d'ars"
-  - "padroeiro dos sacerdotes"
-  - "santo da confissão"
-patronages:
-  - "Párocos"
-  - "Sacerdotes"
+- são joão maria vianney
+- cura d'ars
+- padroeiro dos sacerdotes
+- santo da confissão
 virtues:
-  - "Zelo pelas almas"
-  - "Humildade"
-  - "Perseverança na oração"
-summary: >-
-  Com pouca facilidade para os estudos, mas profundamente unido a Deus, João Maria Vianney tornou-se um
-  dos maiores modelos de sacerdote da história. Em Ars, sua vida de oração e seu serviço no confessionário
-  atraíram pessoas de toda a França.
-prayer: >-
-  São João Maria Vianney, alcançai aos sacerdotes fidelidade, pureza de intenção e amor pelas almas.
-  Ensinai-nos a procurar com confiança o perdão de Deus, a valorizar os sacramentos e a transformar nossas
-  comunidades pela oração perseverante. Amém.
+- Zelo pelas almas
+- Humildade
+- Perseverança na oração
+summary: Com pouca facilidade para os estudos, mas profundamente unido a Deus, João Maria Vianney tornou-se um dos maiores modelos de sacerdote da história. Em Ars, sua vida de oração e seu serviço no confessionário atraíram pessoas de toda a França.
+prayer: São João Maria Vianney, alcançai aos sacerdotes fidelidade, pureza de intenção e amor pelas almas. Ensinai-nos a procurar com confiança o perdão de Deus, a valorizar os sacramentos e a transformar nossas comunidades pela oração perseverante. Amém.
 related_saints:
-  - "santo-afonso-maria-de-ligorio"
-  - "sao-pio-x"
-  - "sao-jose-calasanz"
+- santo-afonso-maria-de-ligorio
+- sao-pio-x
+- sao-jose-calasanz
 related: []
 sources:
-  - title: "Templário de Maria: São João Maria Vianney"
-    url: "https://templariodemaria.com/santo-do-dia-04-de-agosto-sao-joao-maria-vianney/"
+- title: 'Templário de Maria: São João Maria Vianney'
+  url: https://templariodemaria.com/santo-do-dia-04-de-agosto-sao-joao-maria-vianney/
+general_info:
+- label: Origem
+  value: Dardilly, França
+- label: Paróquia
+  value: Ars-sur-Formans
+- label: Missão principal
+  value: Cuidado pastoral, catequese e ministério da reconciliação
+- label: Título popular
+  value: Cura d’Ars
+- label: Período de vida
+  value: 1786-1859
+- label: Estado de vida
+  value: Sacerdote
+- label: Família espiritual
+  value: Clero diocesano
+- label: Padroeiro de
+  values:
+  - Párocos
+  - Sacerdotes
+  wide: true
+timeline:
+- date: '1786'
+  title: Nascimento em Dardilly
+  description: João Maria nasce numa família camponesa profundamente cristã.
+- date: '1815'
+  title: Ordenação sacerdotal
+  description: Supera grandes dificuldades de estudo e chega ao sacerdócio.
+- date: '1818'
+  title: Chegada a Ars
+  description: Assume uma pequena comunidade que será transformada por sua oração e dedicação pastoral.
+- date: '1859'
+  title: Morte
+  description: Morre em Ars depois de décadas no confessionário, na catequese e no cuidado dos fiéis.
+- date: '1925'
+  title: Canonização
+  description: Pio XI o proclama santo.
+- date: '1929'
+  title: Padroeiro dos párocos
+  description: É declarado patrono dos sacerdotes encarregados de paróquias.
 ---
 
 ## Uma vocação provada desde o início

@@ -1,65 +1,83 @@
 ---
-title: "Santa Lídia"
-short_title: "Santa Lídia"
-slug: "santa-lidia"
-subtitle: "Discípula de São Paulo e primeira cristã de Filipos"
-description: "Santa Lídia acolheu o Evangelho anunciado por São Paulo e colocou sua casa a serviço da primeira comunidade cristã de Filipos."
-entry_type: "Santa"
-subject_schema_type: "Person"
-saint_type: "Leiga e discípula"
-liturgical_rank: "Comemoração"
-category: "Santos bíblicos"
-life_dates: "Século I"
-religious_family: "Igreja apostólica"
+title: Santa Lídia
+short_title: Santa Lídia
+slug: santa-lidia
+subtitle: Discípula de São Paulo e primeira cristã de Filipos
+description: Santa Lídia acolheu o Evangelho anunciado por São Paulo e colocou sua casa a serviço da primeira comunidade cristã de Filipos.
+entry_type: Santa
+subject_schema_type: Person
+liturgical_rank: Comemoração
+category: Santos bíblicos
 liturgical_date:
   type: fixed
   month: 8
   day: 3
-  label: "3 de agosto"
+  label: 3 de agosto
 daily_order: 10
 featured: false
-image: "/assets/images/saints/santa-lidia.webp"
-image_alt: "Imagem horizontal representando Santa Lídia"
+image: /assets/images/saints/santa-lidia.webp
+image_alt: Imagem horizontal representando Santa Lídia
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Lídia de Tiatira"
-  - "Santa Lídia de Filipos"
+- Lídia de Tiatira
+- Santa Lídia de Filipos
 tags:
-  - "Bíblia"
-  - "São Paulo"
-  - "Filipos"
-  - "leigos"
-  - "hospitalidade"
+- Bíblia
+- São Paulo
+- Filipos
+- leigos
+- hospitalidade
 keywords:
-  - "santa lídia"
-  - "lídia de tiatira"
-  - "primeira cristã da europa"
-  - "atos dos apóstolos"
-patronages:
-  - "Tintureiros"
-  - "Comerciantes de tecidos"
+- santa lídia
+- lídia de tiatira
+- primeira cristã da europa
+- atos dos apóstolos
 virtues:
-  - "Escuta da Palavra"
-  - "Hospitalidade"
-  - "Generosidade"
-summary: >-
-  Lídia era uma comerciante de púrpura que vivia em Filipos e buscava sinceramente a Deus. Ao ouvir a
-  pregação de São Paulo, recebeu a fé, foi batizada com sua casa e transformou o próprio lar num ponto de
-  apoio para a comunidade cristã nascente.
-prayer: >-
-  Santa Lídia, que abriste o coração à Palavra e a casa aos discípulos de Cristo, ajudai-nos a receber a
-  fé com sinceridade e a colocar nossos bens a serviço do Evangelho. Fazei de nossas famílias lugares de
-  oração, acolhida e comunhão. Amém.
+- Escuta da Palavra
+- Hospitalidade
+- Generosidade
+summary: Lídia era uma comerciante de púrpura que vivia em Filipos e buscava sinceramente a Deus. Ao ouvir a pregação de São Paulo, recebeu a fé, foi batizada com sua casa e transformou o próprio lar num ponto de apoio para a comunidade cristã nascente.
+prayer: Santa Lídia, que abriste o coração à Palavra e a casa aos discípulos de Cristo, ajudai-nos a receber a fé com sinceridade e a colocar nossos bens a serviço do Evangelho. Fazei de nossas famílias lugares de oração, acolhida e comunhão. Amém.
 related_saints:
-  - "sao-bartolomeu"
-  - "martirio-de-sao-joao-batista"
-  - "sao-tarcisio"
+- sao-bartolomeu
+- martirio-de-sao-joao-batista
+- sao-tarcisio
 related: []
 sources:
-  - title: "Templário de Maria: Santa Lídia"
-    url: "https://templariodemaria.com/santo-do-dia-03-de-agosto-santa-lidia/"
+- title: 'Templário de Maria: Santa Lídia'
+  url: https://templariodemaria.com/santo-do-dia-03-de-agosto-santa-lidia/
+general_info:
+- label: Origem
+  value: Tiatira, na Ásia Menor
+- label: Residência conhecida
+  value: Filipos, Macedônia
+- label: Atividade
+  value: Comerciante de púrpura
+- label: Importância bíblica
+  value: Primeira convertida de Paulo mencionada na Europa
+- label: Período de vida
+  value: Século I
+- label: Estado de vida
+  value: Leiga e discípula
+- label: Família espiritual
+  value: Igreja apostólica
+- label: Padroeira de
+  values:
+  - Tintureiros
+  - Comerciantes de tecidos
+  wide: true
+timeline:
+- date: c. 50
+  title: Encontro com São Paulo em Filipos
+  description: Lídia escuta a pregação apostólica às margens do rio.
+- date: Século I
+  title: Batismo
+  description: Ela e sua casa recebem o batismo e passam a fazer parte da comunidade cristã.
+- date: Século I
+  title: Hospitalidade missionária
+  description: Sua casa acolhe Paulo e se torna ponto de apoio para a Igreja nascente em Filipos.
 ---
 
 ## Uma mulher atenta à voz de Deus

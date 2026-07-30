@@ -1,65 +1,80 @@
 ---
-title: "Nossa Senhora das Lágrimas"
-short_title: "Nossa Senhora das Lágrimas"
-slug: "nossa-senhora-das-lagrimas"
-subtitle: "Devoção mariana ligada às lágrimas de Siracusa"
-description: "Nossa Senhora das Lágrimas recorda o acontecimento de Siracusa, em 1953, e convida à conversão diante das dores do mundo."
-entry_type: "Devoção mariana"
-subject_schema_type: "Thing"
-saint_type: "Título mariano"
-liturgical_rank: "Celebração devocional"
-category: "Festas de Nossa Senhora"
-religious_family: "Devoção mariana de Siracusa"
+title: Nossa Senhora das Lágrimas
+short_title: Nossa Senhora das Lágrimas
+slug: nossa-senhora-das-lagrimas
+subtitle: Devoção mariana ligada às lágrimas de Siracusa
+description: Nossa Senhora das Lágrimas recorda o acontecimento de Siracusa, em 1953, e convida à conversão diante das dores do mundo.
+entry_type: Devoção mariana
+subject_schema_type: Thing
+liturgical_rank: Celebração devocional
+category: Festas de Nossa Senhora
 liturgical_date:
   type: fixed
   month: 8
   day: 31
-  label: "31 de agosto"
+  label: 31 de agosto
 daily_order: 20
 featured: false
-image: "/assets/images/saints/nossa-senhora-das-lagrimas.webp"
-image_alt: "Imagem horizontal representando Nossa Senhora das Lágrimas"
+image: /assets/images/saints/nossa-senhora-das-lagrimas.webp
+image_alt: Imagem horizontal representando Nossa Senhora das Lágrimas
 image_width: 1200
 image_height: 675
-image_position: "center"
+image_position: center
 aliases:
-  - "Virgem das Lágrimas"
-  - "Madonna delle Lacrime"
-  - "Nossa Senhora das Lágrimas de Siracusa"
+- Virgem das Lágrimas
+- Madonna delle Lacrime
+- Nossa Senhora das Lágrimas de Siracusa
 tags:
-  - "Nossa Senhora"
-  - "Siracusa"
-  - "lágrimas"
-  - "conversão"
-  - "devoção mariana"
+- Nossa Senhora
+- Siracusa
+- lágrimas
+- conversão
+- devoção mariana
 keywords:
-  - "nossa senhora das lágrimas"
-  - "virgem das lágrimas"
-  - "milagre de siracusa"
-  - "31 de agosto"
-patronages:
-  - "Famílias em sofrimento"
-  - "Pessoas aflitas"
+- nossa senhora das lágrimas
+- virgem das lágrimas
+- milagre de siracusa
+- 31 de agosto
 virtues:
-  - "Compaixão"
-  - "Conversão"
-  - "Esperança"
-summary: >-
-  Entre 29 de agosto e 1º de setembro de 1953, uma pequena imagem do Imaculado Coração de Maria, na casa
-  de um casal em Siracusa, apresentou lágrimas examinadas por especialistas. O acontecimento foi
-  reconhecido pelos bispos da Sicília e deu origem a um grande santuário.
-prayer: >-
-  Nossa Senhora das Lágrimas, acolhei as dores das famílias, dos enfermos, dos perseguidos e de todos os
-  que choram sem consolo. Levai-nos à conversão, ensinai-nos a reparar o pecado e fazei de nossas lágrimas
-  uma oração de esperança diante de Jesus. Amém.
+- Compaixão
+- Conversão
+- Esperança
+summary: Entre 29 de agosto e 1º de setembro de 1953, uma pequena imagem do Imaculado Coração de Maria, na casa de um casal em Siracusa, apresentou lágrimas examinadas por especialistas. O acontecimento foi reconhecido pelos bispos da Sicília e deu origem a um grande santuário.
+prayer: Nossa Senhora das Lágrimas, acolhei as dores das famílias, dos enfermos, dos perseguidos e de todos os que choram sem consolo. Levai-nos à conversão, ensinai-nos a reparar o pecado e fazei de nossas lágrimas uma oração de esperança diante de Jesus. Amém.
 related_saints:
-  - "assuncao-de-nossa-senhora"
-  - "nossa-senhora-rainha"
-  - "nossa-senhora-das-neves"
+- assuncao-de-nossa-senhora
+- nossa-senhora-rainha
+- nossa-senhora-das-neves
 related: []
 sources:
-  - title: "Templário de Maria: Nossa Senhora das Lágrimas"
-    url: "https://templariodemaria.com/hoje-celebramos-nossa-senhora-das-lagrimas-31-de-agosto/"
+- title: 'Templário de Maria: Nossa Senhora das Lágrimas'
+  url: https://templariodemaria.com/hoje-celebramos-nossa-senhora-das-lagrimas-31-de-agosto/
+general_info:
+- label: Origem da devoção
+  value: Siracusa, Sicília, Itália
+- label: Acontecimento central
+  value: Lágrimas observadas numa imagem mariana em 1953
+- label: Mensagem espiritual
+  value: Compaixão materna, conversão e esperança no sofrimento
+- label: Classificação
+  value: Título mariano
+- label: Tradição espiritual
+  value: Devoção mariana de Siracusa
+- label: Invocada por
+  values:
+  - Famílias em sofrimento
+  - Pessoas aflitas
+  wide: true
+timeline:
+- date: 29 de agosto de 1953
+  title: Começam as lágrimas em Siracusa
+  description: Uma pequena imagem mariana numa casa familiar passa a apresentar lágrimas visíveis.
+- date: 29 de agosto a 1º de setembro de 1953
+  title: Observação e exames
+  description: Autoridades, especialistas e numerosas testemunhas acompanham o acontecimento.
+- date: Dezembro de 1953
+  title: Pronunciamento dos bispos da Sicília
+  description: O episcopado regional reconhece a realidade do fenômeno observado.
 ---
 
 ## Uma pequena imagem numa casa de Siracusa
