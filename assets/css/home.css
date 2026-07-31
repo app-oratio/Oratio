@@ -121,16 +121,20 @@
   padding: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-.home-portal__welcome-heading > span {
+.home-portal__welcome-logo {
   align-items: center;
-  background: var(--oratio-primary);
-  border-radius: 50%;
-  color: var(--oratio-text-on-primary);
   display: inline-flex;
   flex: 0 0 3rem;
-  font-size: 1.2rem;
   height: 3rem;
   justify-content: center;
+  width: 3rem;
+}
+
+.home-portal__welcome-logo img {
+  display: block;
+  height: 3rem;
+  object-fit: contain;
+  width: 3rem;
 }
 
 .home-portal__welcome-heading div {
@@ -344,6 +348,10 @@
   line-height: 1.68;
 }
 
+.home-portal__daily-card--liturgy .home-portal__daily-card-body h3 {
+  color: #FFFFFF;
+}
+
 .home-portal__daily-card--liturgy .home-portal__daily-card-body p,
 .home-portal__daily-card--liturgy .home-portal__daily-date {
   color: color-mix(in srgb, var(--oratio-text-on-primary) 83%, transparent);
@@ -370,6 +378,73 @@
 
 .home-portal__daily-card--liturgy .home-portal__text-link {
   color: var(--oratio-text-on-primary);
+}
+
+.home-portal__canonical-hours {
+  border-top: 1px solid color-mix(in srgb, var(--oratio-text-on-primary) 24%, transparent);
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.home-portal__canonical-hours[hidden] {
+  display: none;
+}
+
+.home-portal__canonical-hours-heading {
+  align-items: center;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+
+.home-portal__canonical-hours-heading > span {
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.home-portal__canonical-hours-heading a {
+  color: var(--oratio-text-on-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-portal__canonical-hours-heading a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.home-portal__canonical-hours-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.home-portal__canonical-hour {
+  align-items: center;
+  background: color-mix(in srgb, var(--oratio-text-on-primary) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--oratio-text-on-primary) 24%, transparent);
+  border-radius: var(--radius-pill);
+  color: var(--oratio-text-on-primary);
+  display: inline-flex;
+  font-size: 0.77rem;
+  font-weight: 780;
+  line-height: 1.2;
+  min-height: 2.15rem;
+  padding: 0.48rem 0.75rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.home-portal__canonical-hour:hover {
+  background: color-mix(in srgb, var(--oratio-text-on-primary) 19%, transparent);
+  border-color: color-mix(in srgb, var(--oratio-text-on-primary) 38%, transparent);
+  transform: translateY(-1px);
 }
 
 .home-portal__daily-media {
@@ -706,6 +781,10 @@
   gap: var(--space-4);
 }
 
+.home-portal__app-copy h2 {
+  color: #FFFFFF;
+}
+
 .home-portal__app-copy .home-portal__overline {
   color: color-mix(in srgb, var(--oratio-text-on-primary) 82%, transparent);
 }
@@ -935,6 +1014,12 @@
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+
+html[data-theme='dark'] .home-portal__daily-card--liturgy .home-portal__daily-card-body h3,
+html[data-theme='dark'] .home-portal__app-copy h2 {
+  color: #000000;
 }
 
 @media (prefers-reduced-motion: reduce) {
