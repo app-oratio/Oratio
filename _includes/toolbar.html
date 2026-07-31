@@ -9,7 +9,6 @@
       aria-controls="site-drawer">
       {% include icon.html name='menu' %}
     </button>
-
     <a class="brand toolbar__brand" href="{{ '/' | relative_url }}" aria-label="Oratio, página inicial">
       <img
         class="brand__symbol"
@@ -22,7 +21,6 @@
         <small>App Católico</small>
       </span>
     </a>
-
     <nav class="toolbar__nav" aria-label="Seções principais">
       <ul>
         {% for item in site.data.navigation.desktop %}
@@ -42,14 +40,15 @@
         {% endfor %}
       </ul>
     </nav>
-
     <div class="toolbar__actions">
       <button
         class="icon-button toolbar__search"
         type="button"
         data-search-open
         aria-label="Buscar no Oratio"
-        aria-haspopup="dialog">
+        aria-haspopup="dialog"
+        aria-controls="site-search-dialog"
+        aria-expanded="false">
         {% include icon.html name='search' %}
       </button>
 
