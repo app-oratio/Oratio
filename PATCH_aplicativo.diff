@@ -1,9 +1,0 @@
---- a/pages/aplicativo.md
-+++ b/pages/aplicativo.md
-@@ -413,6 +413,7 @@
-       </div>
-       <a class="app-technical__link" href="{{ app.support_url | relative_url }}">Suporte e contato</a>
-       <a class="app-technical__link" href="{{ app.privacy_url | relative_url }}">Política de Privacidade</a>
-+      <a class="app-technical__link" href="{{ app.terms_url | relative_url }}">Termos de Uso</a>
-     </div>
- </section>
