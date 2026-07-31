@@ -1,0 +1,4 @@
+# Integração do Google Analytics 4.
+# A tag é carregada somente nas compilações de produção.
+enabled: true
+measurement_id: "G-2Y6C4ST8FT"
