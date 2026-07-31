@@ -1,0 +1,129 @@
+/*
+ * Refinamentos de navegação do Oratio.
+ * Carregado depois de site-chrome.css para manter as alterações isoladas,
+ * previsíveis e fáceis de reverter sem afetar os estilos editoriais.
+ */
+
+/* Área segura superior para PWA e aparelhos com recorte na tela. */
+.site-header {
+  height: auto;
+  min-height: calc(var(--header-height) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+}
+
+.toolbar {
+  height: var(--header-height);
+}
+
+/* Toolbar mais equilibrada, com somente os destinos principais. */
+.toolbar__nav ul {
+  gap: 0.1rem;
+}
+
+.toolbar__nav a {
+  padding-inline: 0.66rem;
+}
+
+/*
+ * Mantém o drawer como navegação principal em notebooks e tablets largos.
+ * A navegação textual completa só aparece quando há espaço real para todos
+ * os elementos da marca, ações e links, evitando compressão intermediária.
+ */
+@media (min-width: 1024px) and (max-width: 1359px) {
+  .toolbar__menu {
+    display: inline-flex;
+  }
+
+  .toolbar__nav,
+  .toolbar__download {
+    display: none;
+  }
+}
+
+@media (min-width: 1360px) {
+  .toolbar__menu {
+    display: none;
+  }
+
+  .toolbar__nav {
+    display: block;
+  }
+
+  .toolbar__download {
+    display: inline-flex;
+  }
+}
+
+/* Drawer mais compacto sem reduzir as áreas mínimas de toque. */
+.drawer__intro {
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.drawer__tagline {
+  display: -webkit-box;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  max-width: 34ch;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.drawer__search {
+  margin-top: var(--space-2);
+  min-height: 56px;
+  padding: 0.65rem var(--space-3);
+}
+
+.drawer__search small {
+  display: -webkit-box;
+  line-height: 1.35;
+  overflow: hidden;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.drawer__nav {
+  gap: 0.6rem;
+  padding-bottom: var(--space-4);
+}
+
+.drawer__accordion-trigger {
+  min-height: 50px;
+}
+
+.drawer__accordion-panel {
+  padding: 0.4rem var(--space-2) var(--space-2);
+}
+
+.drawer__group ul {
+  gap: 0.15rem;
+}
+
+.drawer__group a {
+  min-height: 44px;
+}
+
+.drawer__group a[aria-current='page'] {
+  font-weight: 760;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--oratio-primary) 16%, transparent);
+}
+
+@media (max-width: 359px) {
+  .drawer__intro {
+    padding-top: var(--space-3);
+  }
+
+  .drawer__search {
+    padding-inline: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__group,
+  .drawer__search {
+    transition: none;
+  }
+}
