@@ -1,42 +1,65 @@
-/* Página inicial definitiva
-   Mantém os estilos da home isolados dos demais layouts do portal. */
+/* Portal inicial do Oratio
+   Todos os seletores permanecem dentro de .home-portal para não alterar outros layouts. */
 
-.home-hero {
+.home-portal {
+  --home-border: color-mix(in srgb, var(--oratio-divider) 82%, transparent);
+  --home-shadow: 0 22px 60px color-mix(in srgb, var(--oratio-primary) 9%, transparent);
+  background: var(--oratio-background);
+  color: var(--oratio-text-primary);
+  overflow: clip;
+}
+
+.home-portal *,
+.home-portal *::before,
+.home-portal *::after {
+  box-sizing: border-box;
+}
+
+.home-portal__section {
+  padding-block: clamp(3.75rem, 8vw, 7rem);
+}
+
+.home-portal__section:nth-of-type(even) {
+  background: color-mix(in srgb, var(--oratio-surface) 82%, var(--oratio-background));
+}
+
+.home-portal__intro {
   background:
-    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--oratio-teal) 16%, transparent), transparent 30rem),
-    radial-gradient(circle at 92% 74%, color-mix(in srgb, var(--oratio-primary) 12%, transparent), transparent 27rem),
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--oratio-teal) 16%, transparent), transparent 28rem),
+    radial-gradient(circle at 94% 72%, color-mix(in srgb, var(--oratio-primary) 13%, transparent), transparent 31rem),
     var(--oratio-background);
+  border-bottom: 1px solid var(--home-border);
   isolation: isolate;
-  overflow: hidden;
-  padding-block: clamp(3rem, 8vw, 6.5rem);
+  padding-block: clamp(3.25rem, 8vw, 6.25rem);
   position: relative;
 }
 
-.home-hero::before {
-  border: 1px solid color-mix(in srgb, var(--oratio-primary) 15%, transparent);
+.home-portal__intro::after {
+  border: 1px solid color-mix(in srgb, var(--oratio-primary) 13%, transparent);
   border-radius: 50%;
   content: "";
-  height: 34rem;
+  height: 31rem;
+  pointer-events: none;
   position: absolute;
-  right: -20rem;
-  top: -21rem;
-  width: 34rem;
+  right: -18rem;
+  top: -20rem;
+  width: 31rem;
   z-index: -1;
 }
 
-.home-hero__grid {
+.home-portal__intro-grid {
   align-items: center;
   display: grid;
-  gap: clamp(2.5rem, 7vw, 6rem);
+  gap: clamp(2.25rem, 6vw, 5.5rem);
 }
 
-.home-hero__copy {
+.home-portal__intro-copy {
   display: grid;
   gap: var(--space-5);
-  max-width: 45rem;
+  max-width: 50rem;
 }
 
-.home-hero__kicker {
+.home-portal__eyebrow {
   align-items: center;
   background: var(--oratio-primary-container);
   border: 1px solid color-mix(in srgb, var(--oratio-primary) 18%, var(--oratio-divider));
@@ -47,706 +70,878 @@
   font-weight: 800;
   gap: var(--space-2);
   justify-self: start;
-  padding: 0.45rem 0.85rem 0.45rem 0.55rem;
+  letter-spacing: 0.035em;
+  padding: 0.4rem 0.85rem 0.4rem 0.5rem;
+  text-transform: uppercase;
 }
 
-.home-hero__kicker img {
+.home-portal__eyebrow img {
   height: 30px;
   width: 30px;
 }
 
-.home-hero__title {
-  font-size: clamp(2.7rem, 8vw, 5.5rem);
-  letter-spacing: -0.055em;
-  line-height: 1.02;
-  max-width: 12ch;
+.home-portal__intro h1 {
+  font-size: clamp(2.45rem, 7vw, 5.15rem);
+  letter-spacing: -0.052em;
+  line-height: 1.03;
+  max-width: 13ch;
   text-wrap: balance;
 }
 
-.home-hero__title span {
-  color: var(--oratio-primary);
-  display: block;
-}
-
-.home-hero__lead {
+.home-portal__intro-lead {
   color: var(--oratio-text-secondary);
-  font-size: clamp(1.04rem, 2.2vw, 1.25rem);
-  line-height: 1.75;
-  max-width: 42rem;
+  font-size: clamp(1.04rem, 2vw, 1.22rem);
+  line-height: 1.76;
+  max-width: 44rem;
 }
 
-.home-hero__quote {
-  border-left: 3px solid var(--oratio-gold);
-  color: var(--oratio-text-primary);
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 2.3vw, 1.25rem);
-  margin: 0;
-  max-width: 36rem;
-  padding: 0.15rem 0 0.15rem var(--space-4);
-}
-
-.home-hero__actions,
-.home-support__actions,
-.home-callout__actions,
-.home-library__actions {
+.home-portal__intro-actions,
+.home-portal__closing-actions,
+.home-portal__app-actions {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
 
-.home-hero__facts {
-  color: var(--oratio-text-muted);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 0.82rem;
-  gap: var(--space-2) var(--space-5);
-  list-style: none;
-}
-
-.home-hero__facts li {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--space-2);
-}
-
-.home-hero__facts .icon {
-  color: var(--oratio-success);
-  height: 18px;
-  width: 18px;
-}
-
-.home-hero__visual {
-  justify-self: center;
-  max-width: 22rem;
-  position: relative;
-  width: min(78vw, 22rem);
-}
-
-.home-hero__halo {
-  background: var(--oratio-primary-container);
-  border-radius: 50%;
-  height: 92%;
-  left: 7%;
-  position: absolute;
-  top: 12%;
-  width: 112%;
-  z-index: -1;
-}
-
-.home-hero__phone {
-  aspect-ratio: 9 / 18;
-  background: var(--oratio-surface);
-  border: 9px solid var(--oratio-text-primary);
-  border-radius: 2.45rem;
-  box-shadow: 0 28px 70px color-mix(in srgb, var(--oratio-text-primary) 19%, transparent);
+.home-portal__welcome {
+  background: color-mix(in srgb, var(--oratio-surface) 95%, transparent);
+  border: 1px solid var(--home-border);
+  border-radius: clamp(1.35rem, 3vw, 2rem);
+  box-shadow: var(--home-shadow);
   overflow: hidden;
 }
 
-.home-hero__phone::before {
-  background: var(--oratio-text-primary);
-  border-radius: 0 0 0.85rem 0.85rem;
-  content: "";
-  height: 1.1rem;
-  left: 34%;
-  position: absolute;
-  top: 0;
-  width: 32%;
-  z-index: 2;
+.home-portal__welcome-heading {
+  align-items: center;
+  background: color-mix(in srgb, var(--oratio-primary-container) 58%, var(--oratio-surface));
+  border-bottom: 1px solid var(--home-border);
+  display: flex;
+  gap: var(--space-4);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-.home-hero__seal {
-  align-content: center;
-  background: var(--oratio-gold-container);
-  border: 1px solid color-mix(in srgb, var(--oratio-gold) 24%, var(--oratio-divider));
+.home-portal__welcome-heading > span {
+  align-items: center;
+  background: var(--oratio-primary);
   border-radius: 50%;
-  bottom: 6%;
-  box-shadow: 0 14px 32px var(--oratio-shadow);
-  color: var(--oratio-text-primary);
-  display: grid;
-  height: 6rem;
-  justify-items: center;
-  position: absolute;
-  right: -12%;
-  transform: rotate(6deg);
-  width: 6rem;
-}
-
-.home-hero__seal strong {
-  color: var(--oratio-gold);
-  font-family: var(--font-heading);
-  font-size: 1.22rem;
-}
-
-.home-hero__seal span {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.home-paths {
-  padding-block: var(--space-10) 0;
-  position: relative;
-  z-index: 2;
-}
-
-.home-paths__grid {
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-large);
-  box-shadow: 0 18px 44px var(--oratio-shadow);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  list-style: none;
-  overflow: hidden;
-}
-
-.home-paths__grid li {
-  border-bottom: 1px solid var(--oratio-divider);
-}
-
-.home-paths__grid li:nth-child(odd) {
-  border-right: 1px solid var(--oratio-divider);
-}
-
-.home-paths__grid a {
-  color: var(--oratio-text-primary);
-  display: grid;
-  gap: var(--space-1);
-  min-height: 5.25rem;
-  padding: var(--space-4);
-  text-decoration: none;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.home-paths__grid a:hover,
-.home-paths__grid a:focus-visible {
-  background: var(--oratio-primary-container);
-  color: var(--oratio-on-primary-container);
-}
-
-.home-paths__grid span {
-  font-family: var(--font-heading);
-  font-weight: 700;
-}
-
-.home-paths__grid small {
-  color: var(--oratio-text-muted);
-  font-size: 0.74rem;
-}
-
-.home-paths__grid a:hover small,
-.home-paths__grid a:focus-visible small {
-  color: inherit;
-  opacity: 0.76;
-}
-
-.home-editorial__grid,
-.home-recent__grid {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.home-editorial {
-  background: var(--oratio-background);
-}
-
-.home-recent {
-  scroll-margin-top: calc(var(--header-height) + var(--space-5));
-}
-
-.home-recent__intro {
-  align-items: end;
-  display: grid;
-  gap: var(--space-5);
-  margin-bottom: var(--space-10);
-}
-
-.home-recent__intro > div {
-  display: grid;
-  gap: var(--space-3);
-  max-width: 48rem;
-}
-
-.home-recent__intro > div > p:last-child {
-  font-size: 1rem;
-  line-height: 1.75;
-}
-
-.home-recent__intro .button {
-  justify-self: start;
-}
-
-.home-recent__groups {
-  display: grid;
-  gap: var(--space-12);
-}
-
-.home-recent__group {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.home-recent__group-header {
-  align-items: center;
-  border-bottom: 1px solid var(--oratio-divider);
-  display: flex;
-  gap: var(--space-4);
-  justify-content: space-between;
-  padding-bottom: var(--space-3);
-}
-
-.home-recent__group-header h3 {
-  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
-}
-
-.home-recent__group-header a {
-  align-items: center;
+  color: var(--oratio-text-on-primary);
   display: inline-flex;
-  font-size: 0.84rem;
-  font-weight: 800;
-  gap: var(--space-2);
-  text-decoration: none;
-}
-
-.home-recent__empty {
-  border: 1px dashed var(--oratio-divider);
-  border-radius: var(--radius-large);
-  padding: var(--space-6);
-}
-
-.home-recent__empty p {
-  font-size: 0.92rem;
-}
-
-.home-mission__grid {
-  display: grid;
-  gap: clamp(2.5rem, 7vw, 5.5rem);
-}
-
-.home-mission__copy {
-  align-content: start;
-  display: grid;
-  gap: var(--space-4);
-}
-
-.home-mission__copy > p:not(.eyebrow):not(.home-mission__quote) {
-  font-size: 1.04rem;
-  line-height: 1.8;
-  max-width: 42rem;
-}
-
-.home-mission__quote {
-  border-left: 3px solid var(--oratio-gold);
-  display: grid;
-  gap: var(--space-2);
-  margin: var(--space-2) 0;
-  max-width: 42rem;
-  padding: var(--space-2) 0 var(--space-2) var(--space-5);
-}
-
-.home-mission__quote p {
-  color: var(--oratio-text-primary);
-  font-family: var(--font-heading);
-  font-size: clamp(1.08rem, 2.5vw, 1.35rem);
-  line-height: 1.65;
-}
-
-.home-mission__quote cite {
-  color: var(--oratio-gold);
-  font-size: 0.82rem;
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.home-mission__link {
-  gap: var(--space-2);
-  justify-self: start;
-  margin-left: calc(var(--space-3) * -1);
-  margin-top: var(--space-2);
-}
-
-.home-principles {
-  display: grid;
-  gap: var(--space-3);
-  list-style: none;
-}
-
-.home-principles li {
-  align-items: start;
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: var(--radius-large);
-  display: grid;
-  gap: var(--space-4);
-  grid-template-columns: auto 1fr;
-  padding: var(--space-5);
-}
-
-.home-principles > li > span {
-  align-items: center;
-  background: var(--oratio-primary-container);
-  border-radius: var(--radius-medium);
-  color: var(--oratio-on-primary-container);
-  display: flex;
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 700;
-  height: 2.75rem;
+  flex: 0 0 3rem;
+  font-size: 1.2rem;
+  height: 3rem;
   justify-content: center;
-  width: 2.75rem;
 }
 
-.home-principles div {
+.home-portal__welcome-heading div {
   display: grid;
-  gap: var(--space-2);
+  gap: 0.2rem;
 }
 
-.home-principles strong {
-  color: var(--oratio-text-primary);
+.home-portal__welcome-heading strong {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.3rem;
 }
 
-.home-principles p {
-  font-size: 0.9rem;
-  line-height: 1.65;
+.home-portal__welcome-heading small {
+  color: var(--oratio-text-secondary);
+  line-height: 1.5;
 }
 
-.home-section-heading > p {
-  max-width: 36rem;
-}
-
-.home-feature-grid {
+.home-portal__welcome-links {
   display: grid;
-  gap: var(--space-4);
 }
 
-.home-feature {
+.home-portal__welcome-links a,
+.home-portal__welcome-links button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--home-border);
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 0.25rem;
+  padding: 1.15rem clamp(1.25rem, 3vw, 1.75rem);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 180ms ease, padding-left 180ms ease;
+  width: 100%;
+}
+
+.home-portal__welcome-links a:last-child,
+.home-portal__welcome-links button:last-child {
+  border-bottom: 0;
+}
+
+.home-portal__welcome-links a:hover,
+.home-portal__welcome-links button:hover,
+.home-portal__welcome-links a:focus-visible,
+.home-portal__welcome-links button:focus-visible {
+  background: var(--oratio-surface-secondary);
+  padding-left: calc(clamp(1.25rem, 3vw, 1.75rem) + 0.35rem);
+}
+
+.home-portal__welcome-links span {
+  font-weight: 800;
+}
+
+.home-portal__welcome-links small {
+  color: var(--oratio-text-muted);
+  line-height: 1.5;
+}
+
+.home-portal__section-heading {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: clamp(1.75rem, 5vw, 3.25rem);
+  max-width: 55rem;
+}
+
+.home-portal__section-heading--split {
+  max-width: none;
+}
+
+.home-portal__section-heading h2,
+.home-portal__library-copy h2,
+.home-portal__app-copy h2,
+.home-portal__closing h2 {
+  font-size: clamp(2rem, 5vw, 3.55rem);
+  letter-spacing: -0.038em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.home-portal__section-heading > p:last-child,
+.home-portal__section-heading > div > p:last-child,
+.home-portal__library-copy > p:last-child,
+.home-portal__app-copy > p,
+.home-portal__closing-grid > div > p:last-child {
+  color: var(--oratio-text-secondary);
+  line-height: 1.75;
+  max-width: 46rem;
+}
+
+.home-portal__overline {
+  color: var(--oratio-primary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.home-portal__heading-link,
+.home-portal__subheading a,
+.home-portal__card-link,
+.home-portal__text-link {
+  color: var(--oratio-primary);
+  font-weight: 800;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.home-portal__heading-link:hover,
+.home-portal__subheading a:hover,
+.home-portal__card-link:hover,
+.home-portal__text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.home-portal__today {
   background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
+  border-bottom: 1px solid var(--home-border);
+}
+
+.home-portal__today-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.home-portal__daily-card {
+  background: var(--oratio-background);
+  border: 1px solid var(--home-border);
   border-radius: var(--radius-large);
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-5);
   min-height: 100%;
-  padding: clamp(1.25rem, 3vw, 1.75rem);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
-}
-
-.home-feature:hover {
-  border-color: color-mix(in srgb, var(--oratio-primary) 32%, var(--oratio-divider));
-  box-shadow: 0 16px 34px var(--oratio-shadow);
-  transform: translateY(-2px);
-}
-
-.home-feature__number {
-  color: var(--oratio-primary);
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.home-feature h3 {
-  font-size: clamp(1.12rem, 2.3vw, 1.35rem);
-}
-
-.home-feature p {
-  font-size: 0.92rem;
-  line-height: 1.7;
-}
-
-.home-feature a {
-  align-items: center;
-  display: inline-flex;
-  font-size: 0.86rem;
-  font-weight: 800;
-  gap: var(--space-2);
-  margin-top: auto;
-  padding-top: var(--space-2);
-  text-decoration: none;
-}
-
-.home-preview {
   overflow: hidden;
-}
-
-.home-screenshots {
-  display: flex;
-  gap: var(--space-4);
-  margin-inline: calc(var(--space-4) * -1);
-  overflow-x: auto;
-  padding: var(--space-4) var(--space-4) var(--space-8);
-  scroll-padding-inline: var(--space-4);
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-}
-
-.home-screenshot {
-  background: var(--oratio-surface);
-  border: 1px solid var(--oratio-divider);
-  border-radius: 1.7rem;
-  box-shadow: 0 14px 32px var(--oratio-shadow);
-  flex: 0 0 min(72vw, 260px);
-  overflow: hidden;
-  scroll-snap-align: start;
-}
-
-.home-screenshot .image-shell {
-  aspect-ratio: 9 / 18;
-}
-
-.home-screenshot figcaption {
-  color: var(--oratio-text-secondary);
-  font-size: 0.82rem;
-  font-weight: 750;
-  padding: var(--space-3);
-  text-align: center;
-}
-
-
-.home-callout {
-  background:
-    radial-gradient(circle at 4% 15%, rgba(255, 255, 255, 0.13), transparent 24rem),
-    radial-gradient(circle at 92% 100%, rgba(255, 255, 255, 0.1), transparent 26rem),
-    var(--oratio-primary);
-  color: #FFFFFF;
-  overflow: hidden;
-  padding-block: clamp(3.5rem, 8vw, 6rem);
+  padding: clamp(1.35rem, 3vw, 2rem);
   position: relative;
 }
 
-.home-callout::before,
-.home-callout::after {
-  border: 1px solid rgba(255, 255, 255, 0.16);
+.home-portal__daily-card--liturgy {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--oratio-primary) 92%, #000 8%), var(--oratio-primary));
+  border-color: color-mix(in srgb, var(--oratio-primary) 80%, #fff 20%);
+  color: var(--oratio-text-on-primary);
+}
+
+.home-portal__daily-card--liturgy::after {
+  border: 1px solid color-mix(in srgb, var(--oratio-text-on-primary) 20%, transparent);
   border-radius: 50%;
   content: "";
+  height: 16rem;
+  pointer-events: none;
   position: absolute;
+  right: -8rem;
+  top: -8rem;
+  width: 16rem;
 }
 
-.home-callout::before {
-  height: 24rem;
-  left: -14rem;
-  top: -16rem;
-  width: 24rem;
+.home-portal__daily-card--saint {
+  background: color-mix(in srgb, var(--oratio-gold-container) 58%, var(--oratio-background));
 }
 
-.home-callout::after {
-  bottom: -19rem;
-  height: 31rem;
-  right: -18rem;
-  width: 31rem;
+.home-portal__daily-card--compact {
+  background: color-mix(in srgb, var(--oratio-surface) 86%, var(--oratio-background));
 }
 
-.home-callout__inner {
-  display: grid;
-  gap: var(--space-8);
+.home-portal__daily-card-head {
+  align-items: center;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
   position: relative;
   z-index: 1;
 }
 
-.home-callout__copy {
+.home-portal__daily-label {
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.home-portal__daily-symbol {
+  align-items: center;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  border-radius: 50%;
+  display: inline-flex;
+  flex: 0 0 2.35rem;
+  height: 2.35rem;
+  justify-content: center;
+}
+
+.home-portal__daily-card-body {
   display: grid;
-  gap: var(--space-4);
-  max-width: 50rem;
+  gap: var(--space-3);
+  position: relative;
+  z-index: 1;
 }
 
-.home-callout h2,
-.home-callout p,
-.home-callout .eyebrow {
-  color: #FFFFFF;
-}
-
-.home-callout h2 {
-  font-size: clamp(1.65rem, 4vw, 2.65rem);
-  line-height: 1.35;
+.home-portal__daily-card-body h3 {
+  font-size: clamp(1.42rem, 3vw, 2.05rem);
+  letter-spacing: -0.025em;
+  line-height: 1.17;
   text-wrap: balance;
 }
 
-.home-callout__copy > p:last-child {
-  max-width: 43rem;
-  opacity: 0.86;
+.home-portal__daily-card-body p {
+  color: var(--oratio-text-secondary);
+  line-height: 1.68;
 }
 
-.home-callout__actions {
-  align-content: start;
+.home-portal__daily-card--liturgy .home-portal__daily-card-body p,
+.home-portal__daily-card--liturgy .home-portal__daily-date {
+  color: color-mix(in srgb, var(--oratio-text-on-primary) 83%, transparent);
 }
 
-.home-callout__store {
-  aspect-ratio: 47 / 14;
-  border-radius: var(--radius-small);
-  max-width: 13.5rem;
+.home-portal__daily-date {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.home-portal__daily-actions {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.home-portal__daily-card > .home-portal__card-link {
+  margin-top: auto;
+}
+
+.home-portal__daily-card--liturgy .home-portal__text-link {
+  color: var(--oratio-text-on-primary);
+}
+
+.home-portal__daily-media {
+  aspect-ratio: 1100 / 770;
+  border-radius: calc(var(--radius-large) - 0.45rem);
+  margin: calc(clamp(1.35rem, 3vw, 2rem) * -1) calc(clamp(1.35rem, 3vw, 2rem) * -1) 0;
+  overflow: hidden;
+}
+
+.home-portal__daily-media img {
+  height: 100%;
+  object-fit: cover;
   width: 100%;
 }
 
-.home-support__card {
-  align-items: center;
-  background: var(--oratio-gold-container);
-  border: 1px solid color-mix(in srgb, var(--oratio-gold) 18%, var(--oratio-divider));
+.home-portal__explore {
+  border-bottom: 1px solid var(--home-border);
+}
+
+.home-portal__explore-grid {
+  border: 1px solid var(--home-border);
   border-radius: var(--radius-large);
   display: grid;
-  gap: var(--space-6);
-  padding: clamp(1.5rem, 4vw, 3rem);
+  overflow: hidden;
 }
 
-.home-support__card > div:first-child {
+.home-portal__explore-grid a {
+  background: var(--oratio-surface);
+  border-bottom: 1px solid var(--home-border);
+  color: inherit;
+  display: grid;
+  gap: 0.32rem;
+  min-height: 10rem;
+  padding: clamp(1.2rem, 3vw, 1.65rem);
+  position: relative;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.home-portal__explore-grid a:last-child {
+  border-bottom: 0;
+}
+
+.home-portal__explore-grid a:hover,
+.home-portal__explore-grid a:focus-visible {
+  background: var(--oratio-primary-container);
+  z-index: 1;
+}
+
+.home-portal__explore-grid a > span {
+  color: var(--oratio-primary);
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.home-portal__explore-grid strong {
+  align-self: end;
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
+  line-height: 1.22;
+}
+
+.home-portal__explore-grid small {
+  color: var(--oratio-text-muted);
+  line-height: 1.45;
+}
+
+.home-portal__prayer {
+  background: var(--oratio-surface);
+}
+
+.home-portal__prayer-layout {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.home-portal__content-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.home-portal__content-grid > * {
+  min-width: 0;
+}
+
+.home-portal__devotions {
+  background: var(--oratio-background);
+  border: 1px solid var(--home-border);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+.home-portal__devotions-heading {
+  border-bottom: 1px solid var(--home-border);
+  display: grid;
+  gap: var(--space-2);
+  padding: 1.4rem;
+}
+
+.home-portal__devotions-heading h3 {
+  font-size: 1.55rem;
+}
+
+.home-portal__devotions > a {
+  color: inherit;
+  display: grid;
+  gap: 0.42rem;
+  padding: 1.25rem 1.4rem;
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.home-portal__devotions > a + a {
+  border-top: 1px solid var(--home-border);
+}
+
+.home-portal__devotions > a:hover,
+.home-portal__devotions > a:focus-visible {
+  background: var(--oratio-surface-secondary);
+}
+
+.home-portal__devotions strong {
+  font-size: 1.06rem;
+}
+
+.home-portal__devotions span {
+  color: var(--oratio-text-secondary);
+  line-height: 1.55;
+}
+
+.home-portal__devotions small {
+  color: var(--oratio-primary);
+  font-weight: 800;
+}
+
+.home-portal__meditations {
+  border-block: 1px solid var(--home-border);
+}
+
+.home-portal__learning-groups {
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 6rem);
+}
+
+.home-portal__subheading {
+  align-items: center;
+  border-bottom: 1px solid var(--home-border);
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+}
+
+.home-portal__subheading h3 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.home-portal__saints {
+  background: var(--oratio-surface);
+  border-block: 1px solid var(--home-border);
+}
+
+.home-portal__saints-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.home-portal__saint-card {
+  background: var(--oratio-background);
+  border: 1px solid var(--home-border);
+  border-radius: var(--radius-large);
+  color: inherit;
+  display: grid;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.home-portal__saint-card:hover,
+.home-portal__saint-card:focus-visible {
+  border-color: color-mix(in srgb, var(--oratio-primary) 50%, var(--oratio-divider));
+  box-shadow: var(--home-shadow);
+  transform: translateY(-3px);
+}
+
+.home-portal__saint-image {
+  aspect-ratio: 1100 / 770;
+  background: var(--oratio-surface-secondary);
+  overflow: hidden;
+}
+
+.home-portal__saint-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+  width: 100%;
+}
+
+.home-portal__saint-card:hover .home-portal__saint-image img {
+  transform: scale(1.025);
+}
+
+.home-portal__saint-card > div:last-child {
+  display: grid;
+  gap: var(--space-2);
+  padding: 1.25rem;
+}
+
+.home-portal__saint-card small {
+  color: var(--oratio-primary);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.home-portal__saint-card h3 {
+  font-size: 1.28rem;
+  line-height: 1.22;
+}
+
+.home-portal__saint-card p {
+  color: var(--oratio-text-secondary);
+  line-height: 1.58;
+}
+
+.home-portal__library {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--oratio-primary-container) 72%, var(--oratio-surface)), var(--oratio-surface));
+}
+
+.home-portal__library-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.home-portal__library-copy {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.home-portal__library-links {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.home-portal__library-links a {
+  align-items: center;
+  background: var(--oratio-background);
+  border: 1px solid var(--home-border);
+  border-radius: var(--radius-large);
+  color: inherit;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  text-decoration: none;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.home-portal__library-links a:hover,
+.home-portal__library-links a:focus-visible {
+  border-color: var(--oratio-primary);
+  transform: translateX(4px);
+}
+
+.home-portal__library-links > a > span {
+  align-items: center;
+  background: var(--oratio-primary-container);
+  border-radius: 50%;
+  color: var(--oratio-on-primary-container);
+  display: inline-flex;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  height: 3.15rem;
+  justify-content: center;
+  width: 3.15rem;
+}
+
+.home-portal__library-links div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.home-portal__library-links strong {
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.home-portal__library-links small {
+  color: var(--oratio-primary);
+  font-weight: 800;
+}
+
+.home-portal__app {
+  background: var(--oratio-background);
+}
+
+.home-portal__app-card {
+  align-items: center;
+  background:
+    radial-gradient(circle at 92% 0%, color-mix(in srgb, var(--oratio-teal) 18%, transparent), transparent 20rem),
+    var(--oratio-primary);
+  border-radius: clamp(1.5rem, 4vw, 2.6rem);
+  color: var(--oratio-text-on-primary);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  overflow: hidden;
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  position: relative;
+}
+
+.home-portal__app-brand {
+  align-items: center;
+  background: color-mix(in srgb, var(--oratio-text-on-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--oratio-text-on-primary) 18%, transparent);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 8rem;
+  justify-content: center;
+  width: 8rem;
+}
+
+.home-portal__app-brand img {
+  height: 5.4rem;
+  width: 5.4rem;
+}
+
+.home-portal__app-copy {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.home-portal__app-copy .home-portal__overline {
+  color: color-mix(in srgb, var(--oratio-text-on-primary) 82%, transparent);
+}
+
+.home-portal__app-copy > p {
+  color: color-mix(in srgb, var(--oratio-text-on-primary) 84%, transparent);
+}
+
+.home-portal__app-copy ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-portal__app-copy li {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 750;
+  gap: 0.45rem;
+}
+
+.home-portal__app-copy li::before {
+  content: "✓";
+}
+
+.home-portal__text-link--light {
+  color: var(--oratio-text-on-primary);
+}
+
+.home-portal__closing {
+  border-top: 1px solid var(--home-border);
+}
+
+.home-portal__closing-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(1.75rem, 5vw, 4rem);
+}
+
+.home-portal__closing-grid > div:first-child {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 52rem;
+}
+
+.home-portal__empty {
+  align-items: start;
+  background: var(--oratio-surface);
+  border: 1px dashed color-mix(in srgb, var(--oratio-divider) 90%, var(--oratio-primary));
+  border-radius: var(--radius-large);
   display: grid;
   gap: var(--space-3);
-  max-width: 49rem;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
 }
 
-.home-support__card > div:first-child > p:last-child {
-  line-height: 1.75;
+.home-portal__empty > span {
+  color: var(--oratio-primary);
+  font-size: 1.35rem;
 }
 
-@media (min-width: 480px) {
-  .home-paths__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.home-portal__empty h3 {
+  font-size: 1.35rem;
+}
+
+.home-portal__empty p {
+  color: var(--oratio-text-secondary);
+  line-height: 1.65;
+}
+
+.home-portal__empty--small {
+  padding: 1.25rem;
+}
+
+.home-portal [hidden] {
+  display: none !important;
+}
+
+@media (min-width: 360px) {
+  .home-portal__explore-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .home-paths__grid li,
-  .home-paths__grid li:nth-child(odd) {
-    border-right: 1px solid var(--oratio-divider);
+  .home-portal__explore-grid a:nth-child(odd) {
+    border-right: 1px solid var(--home-border);
   }
 
-  .home-paths__grid li:nth-child(3n) {
-    border-right: 0;
+  .home-portal__explore-grid a:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
+}
 
-  .home-editorial__grid,
-  .home-feature-grid,
-  .home-recent__grid {
+@media (min-width: 520px) {
+  .home-portal__content-grid,
+  .home-portal__saints-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 768px) {
-  .home-hero__grid {
+@media (min-width: 760px) {
+  .home-portal__intro-grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
   }
 
-  .home-mission__grid {
-    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+  .home-portal__section-heading--split {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.48fr);
   }
 
-  .home-editorial__grid,
-  .home-recent__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .home-recent__intro {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .home-recent__intro .button {
+  .home-portal__section-heading--split > p,
+  .home-portal__section-heading--split > .home-portal__heading-link,
+  .home-portal__section-heading--split > .button {
     justify-self: end;
   }
 
-  .home-callout__inner,
-  .home-support__card {
-    align-items: center;
+  .home-portal__today-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-portal__daily-card--liturgy {
+    grid-row: span 2;
+    min-height: 31rem;
+  }
+
+  .home-portal__prayer-layout {
+    grid-template-columns: minmax(0, 1.65fr) minmax(17rem, 0.7fr);
+  }
+
+  .home-portal__content-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-portal__saints-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-portal__library-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(21rem, 0.95fr);
+  }
+
+  .home-portal__app-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .home-portal__app-actions {
+    grid-column: 2;
+  }
+
+  .home-portal__closing-grid {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .home-callout__actions,
-  .home-support__actions {
-    align-items: stretch;
-    flex-direction: column;
+  .home-portal__closing-actions {
+    justify-content: flex-end;
   }
 }
 
 @media (min-width: 1024px) {
-  .home-paths__grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .home-portal__today-grid {
+    grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.85fr));
   }
 
-  .home-paths__grid li,
-  .home-paths__grid li:nth-child(3n) {
-    border-bottom: 0;
-    border-right: 1px solid var(--oratio-divider);
+  .home-portal__daily-card--liturgy {
+    grid-column: 1;
+    grid-row: 1 / span 2;
   }
 
-  .home-paths__grid li:last-child {
+  .home-portal__daily-card--saint {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .home-portal__explore-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .home-portal__explore-grid a,
+  .home-portal__explore-grid a:nth-child(odd) {
+    border-bottom: 1px solid var(--home-border);
+    border-right: 1px solid var(--home-border);
+  }
+
+  .home-portal__explore-grid a:nth-child(4n) {
     border-right: 0;
   }
 
-  .home-feature-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .home-portal__explore-grid a:nth-last-child(-n + 4) {
+    border-bottom: 0;
   }
 
-  .home-screenshots {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    margin-inline: 0;
-    overflow: visible;
-    padding-inline: 0;
+  .home-portal__saints-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .home-screenshot {
-    flex-basis: auto;
+  .home-portal__app-card {
+    grid-template-columns: auto minmax(0, 1fr) auto;
   }
 
-}
-
-
-@media (max-width: 767px) {
-  .home-section-heading {
-    align-items: start;
-    display: grid;
-    gap: var(--space-4);
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .home-section-heading > div,
-  .home-section-heading > p,
-  .home-section-heading > a {
-    grid-column: 1;
-    justify-self: start;
-    max-width: 100%;
-    width: auto;
-  }
-
-  .home-section-heading > p {
-    margin-top: 0;
+  .home-portal__app-actions {
+    align-items: stretch;
+    flex-direction: column;
+    grid-column: auto;
   }
 }
 
-@media (max-width: 767px) {
-  .home-hero__visual {
-    max-width: 17.25rem;
-    width: min(64vw, 17.25rem);
-  }
-
-  .home-hero__seal {
-    bottom: 4%;
-    height: 5.25rem;
-    right: -10%;
-    width: 5.25rem;
-  }
-}
-
-@media (max-width: 359px) {
-  .home-hero__actions .button,
-  .home-callout__actions .button,
-  .home-support__actions .button {
+@media (max-width: 759px) {
+  .home-portal__intro-actions .button,
+  .home-portal__closing-actions .button,
+  .home-portal__app-actions .button {
+    justify-content: center;
     width: 100%;
   }
 
-  .home-hero__seal {
-    height: 5rem;
-    right: -8%;
-    width: 5rem;
+  .home-portal__section-heading--split > .home-portal__heading-link,
+  .home-portal__section-heading--split > .button {
+    justify-self: start;
   }
 
-  .home-paths__grid {
-    grid-template-columns: 1fr;
+  .home-portal__daily-card--liturgy {
+    min-height: 26rem;
   }
 
-  .home-paths__grid li,
-  .home-paths__grid li:nth-child(odd) {
-    border-right: 0;
+  .home-portal__subheading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-portal *,
+  .home-portal *::before,
+  .home-portal *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
