@@ -1,24 +1,17 @@
 desktop:
-  - label: "Aplicativo"
-    url: "/aplicativo/"
   - label: "Liturgia"
     url: "/liturgia/"
-  - label: "Meditações"
-    url: "/meditacoes/"
-  - label: "Bíblia"
-    url: "/biblia/"
-  - label: "Catecismo"
-    url: "/catecismo/"
   - label: "Orações"
     url: "/oracoes/"
-  - label: "Novenas"
-    url: "/novenas/"
+  - label: "Bíblia"
+    url: "/biblia/"
+  - label: "Meditações"
+    url: "/meditacoes/"
   - label: "Santos"
     url: "/santos/"
   - label: "Formações"
     url: "/formacoes/"
-  - label: "Blog"
-    url: "/blog/"
+
 drawer_groups:
   - id: "oratio"
     title: "Oratio"
@@ -30,6 +23,7 @@ drawer_groups:
         url: "/aplicativo/"
       - label: "Recursos do Oratio"
         url: "/recursos/"
+
   - id: "liturgia"
     title: "Liturgia"
     links:
@@ -37,16 +31,9 @@ drawer_groups:
         url: "/liturgia/"
       - label: "Liturgia das Horas"
         url: "/liturgia-das-horas/"
-  - id: "sagrada-escritura"
-    title: "Sagrada Escritura"
-    links:
-      - label: "Bíblia Sagrada"
-        url: "/biblia/"
-  - id: "doutrina-igreja"
-    title: "Doutrina da Igreja"
-    links:
-      - label: "Catecismo da Igreja Católica"
-        url: "/catecismo/"
+      - label: "Calendário litúrgico"
+        url: "/calendario-liturgico/"
+
   - id: "oracoes-devocoes"
     title: "Orações e devoções"
     links:
@@ -66,6 +53,7 @@ drawer_groups:
         url: "/triduos/"
       - label: "Devocionários"
         url: "/devocionarios/"
+
   - id: "tercos-rosarios"
     title: "Terços e rosários"
     links:
@@ -75,10 +63,15 @@ drawer_groups:
         url: "/rosarios/"
       - label: "Coroas e coroinhas"
         url: "/coroas/"
-  - id: "formacao-conteudo"
-    title: "Formação e conteúdo"
+
+  - id: "leitura-formacao"
+    title: "Leitura e formação"
     links:
-      - label: "Meditações diárias"
+      - label: "Bíblia Sagrada"
+        url: "/biblia/"
+      - label: "Catecismo da Igreja Católica"
+        url: "/catecismo/"
+      - label: "Meditações"
         url: "/meditacoes/"
       - label: "História dos Santos"
         url: "/santos/"
@@ -86,6 +79,7 @@ drawer_groups:
         url: "/formacoes/"
       - label: "Blog"
         url: "/blog/"
+
   - id: "institucional"
     title: "Institucional"
     links:
