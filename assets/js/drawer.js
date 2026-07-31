@@ -10,15 +10,53 @@
   var closeButtons = layer.querySelectorAll('[data-drawer-close]');
   var searchButton = drawer.querySelector('[data-drawer-search]');
   var accordionItems = Array.prototype.slice.call(drawer.querySelectorAll('[data-drawer-accordion-item]'));
-  var desktopQuery = window.matchMedia ? window.matchMedia('(min-width: 1180px)') : null;
+  var desktopQuery = window.matchMedia ? window.matchMedia('(min-width: 1360px)') : null;
   var lastFocused = null;
-  var closeTimer = null;
+  var inertTargets = [];
   var focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   function focusableElements() {
     return Array.prototype.slice.call(drawer.querySelectorAll(focusableSelector)).filter(function (element) {
       return !element.hidden && element.offsetParent !== null;
     });
+  }
+
+  function pageElementsOutsideDrawer() {
+    return Array.prototype.slice.call(document.body.children).filter(function (element) {
+      if (element === layer) return false;
+      if (element.matches && element.matches('[data-search-dialog]')) return false;
+      return element.tagName !== 'SCRIPT' && element.tagName !== 'STYLE' && element.tagName !== 'NOSCRIPT';
+    });
+  }
+
+  function isolatePage() {
+    inertTargets = pageElementsOutsideDrawer().map(function (element) {
+      return {
+        element: element,
+        hadInert: element.hasAttribute('inert')
+      };
+    });
+
+    inertTargets.forEach(function (entry) {
+      entry.element.setAttribute('inert', '');
+      entry.element.inert = true;
+    });
+  }
+
+  function restorePage() {
+    inertTargets.forEach(function (entry) {
+      if (!entry.element || !document.documentElement.contains(entry.element)) return;
+
+      if (entry.hadInert) {
+        entry.element.setAttribute('inert', '');
+        entry.element.inert = true;
+      } else {
+        entry.element.removeAttribute('inert');
+        entry.element.inert = false;
+      }
+    });
+
+    inertTargets = [];
   }
 
   function itemForElement(element) {
@@ -84,8 +122,11 @@
   }
 
   function openDrawer() {
-    window.clearTimeout(closeTimer);
+    if (layer.classList.contains('is-open')) return;
+
     lastFocused = document.activeElement;
+    isolatePage();
+    layer.removeAttribute('inert');
     layer.inert = false;
     layer.setAttribute('aria-hidden', 'false');
     openButton.setAttribute('aria-expanded', 'true');
@@ -101,20 +142,24 @@
     });
   }
 
-  function closeDrawer(restoreFocus) {
+  function closeDrawer(restoreFocus, focusDesktop) {
     if (layer.getAttribute('aria-hidden') === 'true' && !layer.classList.contains('is-open')) return;
 
+    var focusWasInside = layer.contains(document.activeElement);
+
     layer.classList.remove('is-open');
+    layer.setAttribute('aria-hidden', 'true');
+    layer.setAttribute('inert', '');
+    layer.inert = true;
     openButton.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('drawer-open');
-
-    closeTimer = window.setTimeout(function () {
-      layer.setAttribute('aria-hidden', 'true');
-      layer.inert = true;
-    }, 270);
+    restorePage();
 
     if (restoreFocus !== false && lastFocused && typeof lastFocused.focus === 'function') {
       lastFocused.focus();
+    } else if ((focusWasInside || focusDesktop) && desktopQuery && desktopQuery.matches) {
+      var desktopFocusTarget = document.querySelector('.toolbar__search') || document.querySelector('.toolbar__brand');
+      if (desktopFocusTarget && typeof desktopFocusTarget.focus === 'function') desktopFocusTarget.focus();
     }
   }
 
@@ -173,7 +218,7 @@
 
   if (desktopQuery) {
     var handleDesktopChange = function (event) {
-      if (event.matches) closeDrawer(false);
+      if (event.matches) closeDrawer(false, true);
     };
 
     if (typeof desktopQuery.addEventListener === 'function') {
