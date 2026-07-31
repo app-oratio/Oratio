@@ -72,7 +72,9 @@ permalink: /
 
       <aside class="home-portal__welcome" aria-label="Acessos principais do Oratio">
         <div class="home-portal__welcome-heading">
-          <span aria-hidden="true">✢</span>
+          <span class="home-portal__welcome-logo" aria-hidden="true">
+            <img src="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}" width="48" height="48" alt="">
+          </span>
           <div>
             <strong>Oratio</strong>
             <small>“{{ app.tagline }}”</small>
@@ -121,6 +123,13 @@ permalink: /
             <a class="button button--light" data-home-liturgy-link href="{{ '/liturgia/' | relative_url }}">Abrir Liturgia diária</a>
             <a class="home-portal__text-link" data-home-hours-link href="{{ '/liturgia-das-horas/' | relative_url }}">Rezar a Liturgia das Horas <span aria-hidden="true">→</span></a>
           </div>
+          <nav class="home-portal__canonical-hours" aria-label="Horas canônicas do dia" data-home-canonical-hours hidden>
+            <div class="home-portal__canonical-hours-heading">
+              <span>Horas canônicas</span>
+              <a data-home-all-hours-link href="{{ '/liturgia-das-horas/' | relative_url }}">Ver todas</a>
+            </div>
+            <div class="home-portal__canonical-hours-list" data-home-canonical-hours-list></div>
+          </nav>
         </article>
 
         <article class="home-portal__daily-card home-portal__daily-card--saint" data-home-saint-card>
@@ -168,7 +177,7 @@ permalink: /
           <article class="home-portal__daily-card home-portal__daily-card--compact">
             <div class="home-portal__daily-card-head">
               <span class="home-portal__daily-label">Para meditar</span>
-              <span class="home-portal__daily-symbol" aria-hidden="true">◌</span>
+              <span class="home-portal__daily-symbol" aria-hidden="true">✦</span>
             </div>
             <div class="home-portal__daily-card-body">
               <h3>{{ home_meditation.title }}</h3>
@@ -180,7 +189,7 @@ permalink: /
           <article class="home-portal__daily-card home-portal__daily-card--compact">
             <div class="home-portal__daily-card-head">
               <span class="home-portal__daily-label">Meditações</span>
-              <span class="home-portal__daily-symbol" aria-hidden="true">◌</span>
+              <span class="home-portal__daily-symbol" aria-hidden="true">✦</span>
             </div>
             <div class="home-portal__daily-card-body">
               <h3>Medite com o Oratio</h3>
@@ -293,7 +302,7 @@ permalink: /
         </div>
       {% else %}
         <div class="home-portal__empty">
-          <span aria-hidden="true">◌</span>
+          <span aria-hidden="true">✦</span>
           <h3>Novas meditações serão publicadas em breve</h3>
           <p>Esta seção utilizará automaticamente os conteúdos publicados na coleção de meditações.</p>
         </div>
