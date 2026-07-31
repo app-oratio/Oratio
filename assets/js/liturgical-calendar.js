@@ -860,9 +860,6 @@ function renderDayDetails(day) {
   addDetailRow(facts, 'Próprio', detailValue(sources, [
     'Próprio', 'Proprio', 'proper'
   ]));
-  addDetailRow(facts, 'Comum', detailValue(sources, [
-    'Comum', 'common'
-  ]));
   addDetailRow(facts, 'Ofício', detailValue(sources, [
     'Ofício', 'Oficio', 'office'
   ]));
