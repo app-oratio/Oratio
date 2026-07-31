@@ -116,6 +116,9 @@
     const date = portal.querySelector("[data-home-liturgy-date]");
     const dailyLink = portal.querySelector("[data-home-liturgy-link]");
     const hoursLink = portal.querySelector("[data-home-hours-link]");
+    const allHoursLink = portal.querySelector("[data-home-all-hours-link]");
+    const canonicalHours = portal.querySelector("[data-home-canonical-hours]");
+    const canonicalHoursList = portal.querySelector("[data-home-canonical-hours-list]");
 
     if (status) status.textContent = exactDate ? "Liturgia de hoje" : "Liturgia disponível";
     if (title) title.textContent = selectedLiturgy.celebration || "Liturgia e leituras do dia";
@@ -126,6 +129,67 @@
     }
     if (dailyLink && selectedLiturgy.daily_url) dailyLink.href = siteUrl(selectedLiturgy.daily_url);
     if (hoursLink && selectedLiturgy.hours_url) hoursLink.href = siteUrl(selectedLiturgy.hours_url);
+    if (allHoursLink && selectedLiturgy.hours_url) allHoursLink.href = siteUrl(selectedLiturgy.hours_url);
+
+    if (canonicalHours && canonicalHoursList) {
+      const hourOrder = [
+        "oficio-das-leituras",
+        "laudes",
+        "hora-terca",
+        "hora-sexta",
+        "hora-nona",
+        "vesperas",
+        "completas"
+      ];
+      const hourLabels = {
+        "oficio-das-leituras": "Ofício das Leituras",
+        "laudes": "Laudes",
+        "hora-terca": "Terça",
+        "hora-sexta": "Sexta",
+        "hora-nona": "Nona",
+        "vesperas": "Vésperas",
+        "completas": "Completas"
+      };
+      const hourCardsBySlug = {};
+
+      if (Array.isArray(selectedLiturgy.hour_cards)) {
+        selectedLiturgy.hour_cards.forEach((hour) => {
+          if (hour && hour.slug && hour.url) hourCardsBySlug[hour.slug] = hour;
+        });
+      }
+
+      if (selectedLiturgy.hours && typeof selectedLiturgy.hours === "object") {
+        Object.keys(selectedLiturgy.hours).forEach((slug) => {
+          if (!hourCardsBySlug[slug] && selectedLiturgy.hours[slug]) {
+            hourCardsBySlug[slug] = { slug, url: selectedLiturgy.hours[slug] };
+          }
+        });
+      }
+
+      while (canonicalHoursList.firstChild) {
+        canonicalHoursList.removeChild(canonicalHoursList.firstChild);
+      }
+
+      const fragment = document.createDocumentFragment();
+      let availableHourCount = 0;
+
+      hourOrder.forEach((slug) => {
+        const hour = hourCardsBySlug[slug];
+        if (!hour || !hour.url) return;
+
+        const link = document.createElement("a");
+        link.className = "home-portal__canonical-hour";
+        link.href = siteUrl(hour.url);
+        link.textContent = hour.short_title || hourLabels[slug] || slug;
+        fragment.appendChild(link);
+        availableHourCount += 1;
+      });
+
+      if (availableHourCount > 0) {
+        canonicalHoursList.appendChild(fragment);
+        canonicalHours.hidden = false;
+      }
+    }
   }
 
   const normalizeNumber = (value) => {
