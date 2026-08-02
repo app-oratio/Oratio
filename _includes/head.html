@@ -11,6 +11,7 @@
 {% if page.liturgia_page %}<link rel="stylesheet" href="{{ '/assets/css/liturgy.css' | relative_url }}">{% endif %}
 {% if page.bible_page or page.layout == 'bible-index' or page.layout == 'bible-book' or page.layout == 'bible-chapter' %}<link rel="stylesheet" href="{{ '/assets/css/bible.css' | relative_url }}">{% endif %}
 {% if page.catechism_page or page.layout == 'catechism-index' or page.layout == 'catechism-reader' %}<link rel="stylesheet" href="{{ '/assets/css/catechism.css' | relative_url }}">{% endif %}
+{% if page.layout == 'meditations-index' or page.layout == 'meditation-author' or page.layout == 'meditation-period' or page.layout == 'meditation' %}<link rel="stylesheet" href="{{ '/assets/css/meditations.css' | relative_url }}">{% endif %}
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/branding/oratio-symbol.svg' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/icons/pwa/apple-touch-icon.png' | relative_url }}">
