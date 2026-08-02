@@ -388,7 +388,7 @@ reading_width: wide
               <span>Nossa maior inspiração</span>
               <h3>Santíssima Virgem Maria</h3>
               <p>
-                A Imaculada Mãe de Cristo é para nós o modelo perfeito de fé, oração, humildade e contemplação. Aquela que guardava todas as coisas em seu coração nos ensina que a verdadeira vida espiritual nasce da escuta da Palavra de Deus e da disponibilidade para cumprir sua vontade.
+                A Imaculada Mãe de Deus é para nós o modelo perfeito de fé, oração, humildade e contemplação. Aquela que guardava todas as coisas em seu coração nos ensina que a verdadeira vida espiritual nasce da escuta da Palavra de Deus e da disponibilidade para cumprir sua vontade.
               </p>
               <p>
                 A tradição católica a invoca como Medianeira de todas as graças e reconhece nela a Mãe que conduz seus filhos a Jesus. Por isso, confiamos e consagramos inteiramente esta missão à Santíssima Virgem, pedindo que cada pessoa alcançada pelo Oratio seja conduzida por suas mãos ao coração de Cristo.
