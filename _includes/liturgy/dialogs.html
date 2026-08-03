@@ -1,3 +1,77 @@
+<style>
+  /*
+   * Mantém o cabeçalho do diálogo visível e limita a rolagem ao conteúdo.
+   * O seletor [open] evita que display:flex torne o <dialog> visível quando fechado.
+   */
+  dialog.liturgy-dialog[open] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: min(92vw, 46rem);
+    max-width: 46rem;
+    max-height: min(88dvh, 56rem);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  dialog.liturgy-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.58);
+  }
+
+  .liturgy-dialog__header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color, rgba(127, 127, 127, 0.3));
+    background: var(--surface-color, var(--background-color, Canvas));
+  }
+
+  .liturgy-dialog__header h2 {
+    margin: 0;
+  }
+
+  .liturgy-dialog__content {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1.25rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Classe controlada pelo script abaixo enquanto algum diálogo litúrgico está aberto. */
+  html.liturgy-dialog-scroll-locked,
+  body.liturgy-dialog-scroll-locked {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  @media (max-width: 40rem) {
+    dialog.liturgy-dialog[open] {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+      max-height: calc(100dvh - 1rem);
+    }
+
+    .liturgy-dialog__header {
+      padding: 0.875rem 1rem;
+    }
+
+    .liturgy-dialog__content {
+      padding: 1rem;
+    }
+  }
+</style>
+
 <dialog class="liturgy-dialog" data-liturgy-dialog aria-labelledby="liturgy-dialog-title">
   <div class="liturgy-dialog__header">
     <h2 id="liturgy-dialog-title" data-liturgy-dialog-title></h2>
@@ -124,3 +198,95 @@
   <p><strong>Todos:</strong><br>
     Amém.</p>
 </template>
+
+<script>
+  (() => {
+    const dialogs = Array.from(document.querySelectorAll('[data-liturgy-dialog]'));
+
+    if (!dialogs.length) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+    let isLocked = false;
+    let savedScrollY = 0;
+    let previousBodyStyles = null;
+    let previousHtmlOverflow = '';
+
+    const anyDialogIsOpen = () => dialogs.some((dialog) => dialog.open);
+
+    const lockPageScroll = () => {
+      if (isLocked) return;
+
+      savedScrollY = window.scrollY || window.pageYOffset || 0;
+      previousHtmlOverflow = html.style.overflow;
+      previousBodyStyles = {
+        position: body.style.position,
+        top: body.style.top,
+        left: body.style.left,
+        right: body.style.right,
+        width: body.style.width,
+        overflow: body.style.overflow,
+        paddingRight: body.style.paddingRight
+      };
+
+      const scrollbarWidth = Math.max(0, window.innerWidth - html.clientWidth);
+
+      html.classList.add('liturgy-dialog-scroll-locked');
+      body.classList.add('liturgy-dialog-scroll-locked');
+      html.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+      body.style.top = `-${savedScrollY}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      body.style.overflow = 'hidden';
+
+      if (scrollbarWidth > 0) {
+        body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+
+      isLocked = true;
+    };
+
+    const unlockPageScroll = () => {
+      if (!isLocked || !previousBodyStyles) return;
+
+      html.classList.remove('liturgy-dialog-scroll-locked');
+      body.classList.remove('liturgy-dialog-scroll-locked');
+      html.style.overflow = previousHtmlOverflow;
+
+      Object.entries(previousBodyStyles).forEach(([property, value]) => {
+        body.style[property] = value;
+      });
+
+      isLocked = false;
+      previousBodyStyles = null;
+      window.scrollTo(0, savedScrollY);
+    };
+
+    const synchronizeScrollLock = () => {
+      if (anyDialogIsOpen()) {
+        lockPageScroll();
+      } else {
+        unlockPageScroll();
+      }
+    };
+
+    dialogs.forEach((dialog) => {
+      const observer = new MutationObserver(synchronizeScrollLock);
+      observer.observe(dialog, {
+        attributes: true,
+        attributeFilter: ['open']
+      });
+
+      dialog.addEventListener('close', synchronizeScrollLock);
+      dialog.addEventListener('cancel', () => {
+        requestAnimationFrame(synchronizeScrollLock);
+      });
+    });
+
+    window.addEventListener('pagehide', unlockPageScroll, { once: true });
+    synchronizeScrollLock();
+  })();
+</script>
+
