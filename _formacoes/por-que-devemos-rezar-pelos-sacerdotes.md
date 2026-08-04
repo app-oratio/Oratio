@@ -6,8 +6,8 @@ category: "Vida espiritual"
 author: "Paulo Ricardo"
 date: 2026-08-04
 last_modified_at: 2026-08-04
-image: "/assets/images/saints/sao-joao-maria-vianney.png"
-image_alt: "Vitral de São João Maria Vianney, o Santo Cura d'Ars, padroeiro dos párocos"
+image: "/assets/images/formation/por-que-devemos-rezar-pelos-sacerdotes.png"
+image_alt: "Imagem de um sacerdote oferecendo o Santo Sacrifício da Missa"
 featured: true
 level: "Introdutório"
 draft: false
