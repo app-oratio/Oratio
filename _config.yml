@@ -1,8 +1,8 @@
 # Configuração principal do portal Oratio.
 # Em um repositório de projeto, use url: "https://usuario.github.io" e
 # baseurl: "/nome-do-repositorio". Em domínio próprio, use baseurl: "".
-title: "Oratio | App Católico"
-description: "Portal oficial do Oratio, aplicativo católico de oração, liturgia e formação espiritual."
+title: "Oratio App Católico"
+description: "Portal e aplicativo católico gratuito para oração, Liturgia diária, Liturgia das Horas, Bíblia, Catecismo e formação espiritual."
 url: "https://oratioapp.com.br"
 baseurl: ""
 lang: "pt-BR"

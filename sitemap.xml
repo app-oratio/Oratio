@@ -27,7 +27,14 @@ sitemap: false
     | concat: site.catecismo %}
   {% for document in sitemap_documents %}
     {% if document.sitemap != false and document.url and document.url != empty %}
-      <url><loc>{{ document.url | absolute_url | xml_escape }}</loc>{% if document.date %}<lastmod>{{ document.date | date_to_xmlschema }}</lastmod>{% elsif document.last_modified_at %}<lastmod>{{ document.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}</url>
+      <url>
+        <loc>{{ document.url | absolute_url | xml_escape }}</loc>
+        {% if document.last_modified_at %}
+          <lastmod>{{ document.last_modified_at | date_to_xmlschema }}</lastmod>
+        {% elsif document.date %}
+          <lastmod>{{ document.date | date_to_xmlschema }}</lastmod>
+        {% endif %}
+      </url>
     {% endif %}
   {% endfor %}
 </urlset>

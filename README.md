@@ -8,9 +8,9 @@
 
 **“Que Seu nome nunca se afaste dos seus lábios”**
 
-[Conheça o portal](https://app-oratio.github.io/Oratio/) ·
-[Baixe o aplicativo para Android](https://app-oratio.github.io/Oratio/aplicativo/) ·
-[Conheça a história do Oratio](https://app-oratio.github.io/Oratio/sobre/)
+[Conheça o portal](https://oratioapp.com.br/) ·
+[Baixe o aplicativo para Android](https://oratioapp.com.br/aplicativo/) ·
+[Conheça a história do Oratio](https://oratioapp.com.br/sobre/)
 
 </div>
 
@@ -52,7 +52,7 @@ O aplicativo é gratuito e está disponível atualmente para dispositivos Androi
 
 <div align="center">
 
-### [Conheça e baixe o aplicativo](https://app-oratio.github.io/Oratio/aplicativo/)
+### [Conheça e baixe o aplicativo](https://oratioapp.com.br/aplicativo/)
 
 </div>
 
@@ -76,7 +76,7 @@ Você pode colaborar:
 
 <div align="center">
 
-### [Apoie o Oratio](https://app-oratio.github.io/Oratio/apoie/)
+### [Apoie o Oratio](https://oratioapp.com.br/apoiar/)
 
 </div>
 
@@ -86,7 +86,7 @@ Encontrou algum erro, deseja sugerir um conteúdo ou quer entrar em contato com 
 
 <div align="center">
 
-### [Entre em contato](https://app-oratio.github.io/Oratio/contato/)
+### [Entre em contato](https://oratioapp.com.br/contato/)
 
 </div>
 
@@ -104,6 +104,6 @@ Essa licença não concede automaticamente autorização para utilizar o nome **
 
 **Oração, liturgia e formação para acompanhar sua caminhada de fé.**
 
-[Portal oficial](https://app-oratio.github.io/Oratio/)
+[Portal oficial](https://oratioapp.com.br/)
 
 </div>
