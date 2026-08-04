@@ -84,7 +84,7 @@
   font-size: clamp(2.45rem, 7vw, 5.15rem);
   letter-spacing: -0.052em;
   line-height: 1.03;
-  max-width: 13ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 
