@@ -339,7 +339,7 @@
       return;
     }
     if (matches.length > 1) {
-      content.appendChild(element('p', 'saint-today__multiple-note', matches.length + ' celebrações cadastradas para esta data. Cada história permanece disponível de forma independente.'));
+      content.appendChild(element('p', 'saint-today__multiple-note', matches.length + ' celebrações disponíveis para esta data.'));
     }
     var grid = element('div', 'saint-today__grid');
     matches.forEach(function (saint) { grid.appendChild(createSaintCard(saint, { compact: true, eager: true, year: date.getUTCFullYear() })); });
