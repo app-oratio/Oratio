@@ -6,10 +6,10 @@ category: Quaresmas devocionais
 image: /assets/images/quaresmas/quaresma-de-sao-miguel-arcanjo.png
 image_alt: Quaresma de São Miguel Arcanjo
 search: true
-days: 40
+days: 39
 calendar:
   base_month: 9
-  base_day: 29
+  base_day: 30
   skip_weekdays: [0]
 calendar_source: fixed
 ---
