@@ -20,7 +20,9 @@ sitemap: false
   | concat: site.santos
   | concat: site.formacoes
   | concat: site.meditacoes
-  | concat: site.catecismo %}
+  | concat: site.catecismo
+  | concat: site.livros
+  | concat: site.livro_secoes %}
 {% assign search_documents = search_documents | where_exp: 'item', 'item.search != false' %}
 [
   {% assign first_search_record = true %}
@@ -48,6 +50,21 @@ sitemap: false
         parágrafos {{ item.paragraph_start }} a {{ item.paragraph_end }}
         {{ catechism_search_unit.plainText }}
       {% endif %}
+      {% if item.collection == 'livros' %}
+        {{ item.author }}
+        {{ item.original_title }}
+        {{ item.publisher }}
+        {{ item.edition }}
+        {{ item.categories | join: ' ' }}
+        {{ item.formats | map: 'label' | join: ' ' }}
+      {% endif %}
+      {% if item.collection == 'livro_secoes' %}
+        {{ item.book_title }}
+        {{ item.book_author }}
+        {{ item.heading }}
+        {{ item.subtitle }}
+        {{ item.nav_label }}
+      {% endif %}
       {% case item.collection %}
         {% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}
           {% assign modern_search_days = site.dias_novena | where: 'devotion', item.slug %}
@@ -62,7 +79,7 @@ sitemap: false
           {% endfor %}
       {% endcase %}
     {% endcapture %}
-    {% capture item_type %}{% case item.collection %}{% when 'posts' %}Blog{% when 'oracoes' %}Oração{% when 'novenas' %}Novena{% when 'quaresmas' %}Quaresma{% when 'trintenas' %}Trintena{% when 'devocoes_mensais' %}Devoção mensal{% when 'trezenas' %}Trezena{% when 'triduos' %}Tríduo{% when 'tercos' %}Terço{% when 'rosarios' %}Rosário{% when 'coroas' %}Coroa{% when 'santos' %}Santo{% when 'devocionarios' %}Devocionário{% when 'formacoes' %}Formação{% when 'meditacoes' %}Meditação{% when 'catecismo' %}Catecismo{% else %}Página{% endcase %}{% endcapture %}
+    {% capture item_type %}{% case item.collection %}{% when 'posts' %}Blog{% when 'oracoes' %}Oração{% when 'novenas' %}Novena{% when 'quaresmas' %}Quaresma{% when 'trintenas' %}Trintena{% when 'devocoes_mensais' %}Devoção mensal{% when 'trezenas' %}Trezena{% when 'triduos' %}Tríduo{% when 'tercos' %}Terço{% when 'rosarios' %}Rosário{% when 'coroas' %}Coroa{% when 'santos' %}Santo{% when 'devocionarios' %}Devocionário{% when 'formacoes' %}Formação{% when 'meditacoes' %}Meditação{% when 'catecismo' %}Catecismo{% when 'livros' %}Biblioteca · Livro{% when 'livro_secoes' %}Biblioteca · Seção{% else %}Página{% endcase %}{% endcapture %}
     {
       "title": {{ item.title | default: site.title | jsonify }},
       "description": {{ item.description | default: item.excerpt | strip_html | strip_newlines | jsonify }},
@@ -74,7 +91,7 @@ sitemap: false
       "aliases": {{ item.aliases | default: empty | jsonify }},
       "excerpt": {{ searchable_content | normalize_whitespace | truncate: 320 | jsonify }},
       "searchText": {{ searchable_content | normalize_whitespace | jsonify }},
-      "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% when 'meditacoes' %}"Texto integral da meditação"{% when 'catecismo' %}"Unidade do Catecismo"{% else %}null{% endcase %},
+      "searchScope": {% case item.collection %}{% when 'novenas', 'quaresmas', 'trintenas', 'devocoes_mensais', 'trezenas', 'triduos' %}"Inclui o texto de todos os dias"{% when 'meditacoes' %}"Texto integral da meditação"{% when 'catecismo' %}"Unidade do Catecismo"{% when 'livros' %}"Ficha editorial do livro"{% when 'livro_secoes' %}"Texto integral da seção do livro"{% else %}null{% endcase %},
       "image": {{ item.image | jsonify }}
     }
     {% assign first_search_record = false %}
