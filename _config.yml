@@ -83,6 +83,12 @@ collections:
   catecismo:
     output: true
     permalink: /catecismo/:name/
+  livros:
+    output: true
+    permalink: /biblioteca/:name/
+  livro_secoes:
+    output: true
+    permalink: /biblioteca/:path/
 defaults:
   - scope:
       path: ""
@@ -189,6 +195,18 @@ defaults:
       layout: catechism-reader
       catechism_page: true
       image: "/assets/images/social/og-default.webp"
+  - scope:
+      path: ""
+      type: livros
+    values:
+      layout: book
+      library_page: true
+  - scope:
+      path: ""
+      type: livro_secoes
+    values:
+      layout: book-reader
+      library_page: true
 plugins:
   - jekyll-seo-tag
   - jekyll-feed

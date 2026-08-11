@@ -24,7 +24,9 @@ sitemap: false
     | concat: site.formacoes
     | concat: site.meditacoes
     | concat: site.biblia
-    | concat: site.catecismo %}
+    | concat: site.catecismo
+    | concat: site.livros
+    | concat: site.livro_secoes %}
   {% for document in sitemap_documents %}
     {% if document.sitemap != false and document.url and document.url != empty %}
       <url>
