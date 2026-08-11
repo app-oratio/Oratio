@@ -14,6 +14,7 @@
 {% include_relative support-page.css %}
 {% include_relative contact-page.css %}
 {% include_relative legal.css %}
+{% include_relative library.css %}
 {% include_relative responsive.css %}
 {% include_relative dark-theme.css %}
 {% include_relative site-chrome.css %}
