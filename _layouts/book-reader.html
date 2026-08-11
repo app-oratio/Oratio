@@ -1,0 +1,147 @@
+---
+layout: default
+---
+{% assign book = site.livros | where: 'slug', page.book_slug | first %}
+{% assign book_sections = site.livro_secoes | where: 'book_slug', page.book_slug | sort: 'order' %}
+{% assign frontmatter_sections = book_sections | where: 'section_group', 'frontmatter' %}
+{% assign chapter_sections = book_sections | where: 'section_group', 'chapters' %}
+{% assign backmatter_sections = book_sections | where: 'section_group', 'backmatter' %}
+{% assign progress_percent = page.reading_position | times: 100.0 | divided_by: page.reading_total %}
+
+<div class="library-reader" data-library-reader data-book-slug="{{ page.book_slug }}" data-current-url="{{ page.url }}" data-current-label="{{ page.nav_label | default: page.heading | escape }}" data-current-title="{{ page.subtitle | default: page.heading | escape }}" data-reading-position="{{ page.reading_position }}" data-reading-total="{{ page.reading_total }}">
+  <div class="library-reader__progress" aria-hidden="true"><span style="width: {{ progress_percent }}%"></span></div>
+
+  <div class="container container--large library-reader__top">
+    {% include library-breadcrumb.html book=book %}
+
+    <div class="library-reader-toolbar" aria-label="Ferramentas de leitura">
+      <a class="library-reader-toolbar__book" href="{{ book.url | relative_url }}">
+        <span>Você está lendo</span>
+        <strong>{{ book.title }}</strong>
+      </a>
+      <div class="library-reader-toolbar__actions">
+        <div class="library-font-controls" aria-label="Tamanho do texto">
+          <button type="button" data-reader-font-decrease aria-label="Diminuir tamanho do texto">A−</button>
+          <button type="button" data-reader-font-reset aria-label="Restaurar tamanho do texto">A</button>
+          <button type="button" data-reader-font-increase aria-label="Aumentar tamanho do texto">A+</button>
+        </div>
+        <button class="button button--tonal button--small library-toc-open" type="button" data-library-toc-open aria-haspopup="dialog" aria-controls="library-reader-toc" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 5h2v2H4V5Zm4 0h12v2H8V5ZM4 11h2v2H4v-2Zm4 0h12v2H8v-2Zm-4 6h2v2H4v-2Zm4 0h12v2H8v-2Z"/></svg>
+          Sumário
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container library-reader__container" aria-labelledby="library-reader-title">
+    <article class="library-reader-article">
+      <header class="library-reader-article__header">
+        {% if page.section_type == 'chapter' %}<p class="library-reader-article__kind">{{ page.heading }}</p>{% endif %}
+        <h1 id="library-reader-title">{% if page.section_type == 'chapter' and page.subtitle %}{{ page.subtitle }}{% else %}{{ page.heading }}{% endif %}</h1>
+        {% if page.section_type != 'chapter' and page.subtitle %}<p class="library-reader-article__subtitle">{{ page.subtitle }}</p>{% endif %}
+        <p class="library-reader-article__position">{{ page.reading_position }} de {{ page.reading_total }} seções{% if page.section_type == 'chapter' %} · capítulo {{ page.chapter_number }} de {{ chapter_sections | size }}{% endif %}</p>
+      </header>
+
+      <div class="library-reader-prose" data-reader-prose>
+        {{ content }}
+      </div>
+
+      <nav class="library-reader-nav" aria-label="Navegação entre seções">
+        {% if page.previous_slug %}
+          {% assign previous_url = '/biblioteca/' | append: page.book_slug | append: '/' | append: page.previous_slug | append: '/' %}
+          <a class="library-reader-nav__link library-reader-nav__link--previous" href="{{ previous_url | relative_url }}">
+            <span>Anterior</span>
+            <strong>{{ page.previous_label }}</strong>
+          </a>
+        {% else %}
+          <a class="library-reader-nav__link library-reader-nav__link--previous" href="{{ book.url | relative_url }}">
+            <span>Voltar</span>
+            <strong>{{ book.title }}</strong>
+          </a>
+        {% endif %}
+
+        {% if page.next_slug %}
+          {% assign next_url = '/biblioteca/' | append: page.book_slug | append: '/' | append: page.next_slug | append: '/' %}
+          <a class="library-reader-nav__link library-reader-nav__link--next" href="{{ next_url | relative_url }}">
+            <span>Próxima</span>
+            <strong>{{ page.next_label }}</strong>
+          </a>
+        {% else %}
+          <a class="library-reader-nav__link library-reader-nav__link--next" href="{{ book.url | relative_url }}">
+            <span>Fim da leitura</span>
+            <strong>Voltar ao livro</strong>
+          </a>
+        {% endif %}
+      </nav>
+    </article>
+  </div>
+
+  <div class="library-reader-toc" id="library-reader-toc" data-library-toc hidden aria-hidden="true">
+    <button class="library-reader-toc__backdrop" type="button" data-library-toc-close tabindex="-1" aria-label="Fechar sumário"></button>
+    <aside class="library-reader-toc__panel" role="dialog" aria-modal="true" aria-labelledby="library-reader-toc-title">
+      <header class="library-reader-toc__header">
+        <div>
+          <span>{{ book.author }}</span>
+          <h2 id="library-reader-toc-title">{{ book.title }}</h2>
+        </div>
+        <button class="icon-button" type="button" data-library-toc-close aria-label="Fechar sumário">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m6.7 5.3 5.3 5.3 5.3-5.3 1.4 1.4-5.3 5.3 5.3 5.3-1.4 1.4-5.3-5.3-5.3 5.3-1.4-1.4 5.3-5.3-5.3-5.3 1.4-1.4Z"/></svg>
+        </button>
+      </header>
+      <nav class="library-reader-toc__nav" aria-label="Sumário completo">
+        {% if frontmatter_sections.size > 0 %}
+        <section class="library-reader-toc__group">
+          <h3>Elementos preliminares</h3>
+          <ol>
+            {% for section in frontmatter_sections %}
+            <li><a href="{{ section.url | relative_url }}"{% if section.url == page.url %} aria-current="page"{% endif %}><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+            {% endfor %}
+          </ol>
+        </section>
+        {% endif %}
+
+        {% if chapter_sections.size > 0 %}
+        <section class="library-reader-toc__group">
+          <h3>Capítulos</h3>
+          <ol>
+            {% for section in chapter_sections %}
+            <li><a href="{{ section.url | relative_url }}"{% if section.url == page.url %} aria-current="page"{% endif %}><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+            {% endfor %}
+          </ol>
+        </section>
+        {% endif %}
+
+        {% if backmatter_sections.size > 0 %}
+        <section class="library-reader-toc__group">
+          <h3>Elementos finais</h3>
+          <ol>
+            {% for section in backmatter_sections %}
+            <li><a href="{{ section.url | relative_url }}"{% if section.url == page.url %} aria-current="page"{% endif %}><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+            {% endfor %}
+          </ol>
+        </section>
+        {% endif %}
+      </nav>
+    </aside>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "inLanguage": {{ book.language | default: 'pt-BR' | jsonify }},
+  "position": {{ page.reading_position }},
+  "isPartOf": {
+    "@type": "Book",
+    "@id": {{ book.url | absolute_url | append: '#book' | jsonify }},
+    "name": {{ book.title | jsonify }},
+    "author": {"@type": "Person", "name": {{ book.author | jsonify }}}
+  }
+}
+</script>
+{% include library-breadcrumb-schema.html book=book %}
+<script src="{{ '/assets/js/library.js' | relative_url }}" defer></script>

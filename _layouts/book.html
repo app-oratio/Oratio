@@ -1,0 +1,168 @@
+---
+layout: default
+---
+{% assign book_sections = site.livro_secoes | where: 'book_slug', page.slug | sort: 'order' %}
+{% assign frontmatter_sections = book_sections | where: 'section_group', 'frontmatter' %}
+{% assign chapter_sections = book_sections | where: 'section_group', 'chapters' %}
+{% assign backmatter_sections = book_sections | where: 'section_group', 'backmatter' %}
+{% assign read_slug = page.reading_start | default: book_sections.first.slug %}
+{% assign read_url = '/biblioteca/' | append: page.slug | append: '/' | append: read_slug | append: '/' %}
+
+<div class="container container--wide page-shell library-book" data-library-book data-book-slug="{{ page.slug }}">
+  {% include library-breadcrumb.html %}
+
+  <article>
+    <header class="library-book-hero">
+      <div class="library-book-hero__cover">
+        <img src="{{ page.cover }}" alt="{{ page.image_alt | default: page.title | escape }}" decoding="async" fetchpriority="high">
+      </div>
+
+      <div class="library-book-hero__content">
+        <div class="library-book-hero__labels">
+          {% if page.category %}<span class="chip">{{ page.category }}</span>{% endif %}
+          <span class="library-availability">Leitura online</span>
+        </div>
+        <div>
+          <h1>{{ page.title }}</h1>
+          {% if page.subtitle %}<p class="library-book-hero__subtitle">{{ page.subtitle }}</p>{% endif %}
+          <p class="library-book-hero__author">{{ page.author }}</p>
+        </div>
+        <p class="library-book-hero__description">{{ page.description }}</p>
+
+        <div class="library-book-hero__actions">
+          <a class="button button--primary library-read-button" href="{{ read_url | relative_url }}" data-reading-primary data-default-label="Ler online">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v17H7.5A2.5 2.5 0 0 0 5 21.5v-17Zm2.5-.5A.5.5 0 0 0 7 4.5v13.55c.16-.03.33-.05.5-.05H18V4H7.5Z"/></svg>
+            <span data-reading-primary-label>Ler online</span>
+          </a>
+          <a class="button button--tonal" href="#downloads">Baixar esta edição</a>
+        </div>
+
+        <dl class="library-book-quick-meta">
+          {% if page.publisher %}<div><dt>Edição</dt><dd>{{ page.publisher }}{% if page.edition_year %} · {{ page.edition_year }}{% endif %}</dd></div>{% endif %}
+          {% if page.chapter_count %}<div><dt>Extensão</dt><dd>{{ page.chapter_count }} capítulos</dd></div>{% endif %}
+          {% if page.language %}<div><dt>Idioma</dt><dd>{% if page.language == 'pt-BR' %}Português brasileiro{% else %}{{ page.language }}{% endif %}</dd></div>{% endif %}
+        </dl>
+      </div>
+    </header>
+
+    <div class="library-book-layout">
+      <div class="library-book-main">
+        <section class="library-book-section" aria-labelledby="sobre-a-obra">
+          <p class="eyebrow">Sobre a obra</p>
+          <h2 id="sobre-a-obra">{{ page.title }}</h2>
+          <div class="library-prose">{{ content }}</div>
+        </section>
+
+        <section class="library-book-section" id="sumario" aria-labelledby="sumario-title">
+          <div class="library-section-heading library-section-heading--compact">
+            <div>
+              <p class="eyebrow">Leitura online</p>
+              <h2 id="sumario-title">Sumário</h2>
+            </div>
+            <p>{{ book_sections | size }} seções disponíveis para leitura no navegador.</p>
+          </div>
+
+          <nav class="library-toc-list" aria-label="Sumário de {{ page.title | escape }}">
+            {% if frontmatter_sections.size > 0 %}
+            <section class="library-toc-group">
+              <h3>Elementos preliminares</h3>
+              <ol>
+                {% for section in frontmatter_sections %}
+                  <li><a href="{{ section.url | relative_url }}"><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+                {% endfor %}
+              </ol>
+            </section>
+            {% endif %}
+
+            {% if chapter_sections.size > 0 %}
+            <section class="library-toc-group">
+              <h3>Capítulos</h3>
+              <ol>
+                {% for section in chapter_sections %}
+                  <li><a href="{{ section.url | relative_url }}"><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+                {% endfor %}
+              </ol>
+            </section>
+            {% endif %}
+
+            {% if backmatter_sections.size > 0 %}
+            <section class="library-toc-group">
+              <h3>Elementos finais</h3>
+              <ol>
+                {% for section in backmatter_sections %}
+                  <li><a href="{{ section.url | relative_url }}"><span>{{ section.nav_label | default: section.heading }}</span>{% if section.subtitle %}<small>{{ section.subtitle }}</small>{% endif %}</a></li>
+                {% endfor %}
+              </ol>
+            </section>
+            {% endif %}
+          </nav>
+        </section>
+
+        <section class="library-book-section" id="downloads" aria-labelledby="downloads-title">
+          <p class="eyebrow">Arquivos da edição</p>
+          <h2 id="downloads-title">Baixar em outros formatos</h2>
+          <p class="library-section-intro">A leitura online é a opção principal da Biblioteca Oratio, mas esta edição também pode ser obtida em formatos universais. O sistema aceita novos formatos apenas adicionando outro item à lista de arquivos do livro.</p>
+
+          <div class="library-download-list">
+            {% for format in page.formats %}
+              <a class="library-download" href="{{ format.url }}" rel="external">
+                <span class="library-download__type">{{ format.label }}</span>
+                <span class="library-download__copy">
+                  <strong>Baixar {{ format.label }}</strong>
+                  {% if format.description %}<small>{{ format.description }}</small>{% endif %}
+                </span>
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3Zm-6 16h14v2H5v-2Z"/></svg>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+
+      <aside class="library-book-sidebar" aria-labelledby="ficha-editorial-title">
+        <section class="library-metadata-card">
+          <h2 id="ficha-editorial-title">Ficha editorial</h2>
+          <dl>
+            <div><dt>Autor</dt><dd>{{ page.author }}</dd></div>
+            {% if page.original_title %}<div><dt>Título original</dt><dd><em>{{ page.original_title }}</em></dd></div>{% endif %}
+            {% if page.original_language %}<div><dt>Idioma original</dt><dd>{{ page.original_language }}</dd></div>{% endif %}
+            {% if page.original_publication %}<div><dt>Primeira publicação</dt><dd>{{ page.original_publication }}</dd></div>{% endif %}
+            {% if page.translator %}<div><dt>Tradução e edição</dt><dd>{{ page.translator }}</dd></div>{% endif %}
+            {% if page.publisher %}<div><dt>Publicação</dt><dd>{{ page.publisher }}</dd></div>{% endif %}
+            {% if page.edition %}<div><dt>Edição</dt><dd>{{ page.edition }}</dd></div>{% endif %}
+            {% if page.edition_year %}<div><dt>Ano</dt><dd>{{ page.edition_year }}</dd></div>{% endif %}
+          </dl>
+        </section>
+
+        {% if page.source_note or page.rights %}
+        <section class="library-note-card">
+          <h2>Sobre esta edição</h2>
+          {% if page.source_note %}<p>{{ page.source_note }}</p>{% endif %}
+          {% if page.rights %}<p><strong>Condições de uso:</strong> {{ page.rights }}</p>{% endif %}
+        </section>
+        {% endif %}
+      </aside>
+    </div>
+  </article>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "@id": {{ page.url | absolute_url | append: '#book' | jsonify }},
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "image": {{ page.cover | jsonify }},
+  "inLanguage": {{ page.language | default: 'pt-BR' | jsonify }},
+  "author": {"@type": "Person", "name": {{ page.author | jsonify }}},
+  "publisher": {"@type": "Organization", "name": {{ page.publisher | default: 'Edições Oratio' | jsonify }}}{% if page.edition_year %},
+  "datePublished": {{ page.edition_year | append: '-01-01' | jsonify }}{% endif %}{% if page.original_title %},
+  "alternateName": {{ page.original_title | jsonify }}{% endif %}{% if page.tags and page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ', ' | jsonify }}{% endif %},
+  "encoding": [{% for format in page.formats %}{"@type":"MediaObject","name":{{ format.label | jsonify }},"contentUrl":{{ format.url | jsonify }},"encodingFormat":{{ format.mime | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "potentialAction": {"@type": "ReadAction", "target": {{ read_url | absolute_url | jsonify }}}
+}
+</script>
+{% include library-breadcrumb-schema.html book=page %}
+<script src="{{ '/assets/js/library.js' | relative_url }}" defer></script>
