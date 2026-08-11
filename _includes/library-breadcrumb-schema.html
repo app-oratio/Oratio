@@ -1,0 +1,14 @@
+{% assign schema_book = include.book %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Início","item":{{ '/' | absolute_url | jsonify }}},
+    {"@type":"ListItem","position":2,"name":"Biblioteca","item":{{ '/biblioteca/' | absolute_url | jsonify }}}{% if page.collection == 'livros' %},
+    {"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":{{ page.url | absolute_url | jsonify }}}{% elsif page.collection == 'livro_secoes' and schema_book %},
+    {"@type":"ListItem","position":3,"name":{{ schema_book.title | jsonify }},"item":{{ schema_book.url | absolute_url | jsonify }}},
+    {"@type":"ListItem","position":4,"name":{{ page.nav_label | default: page.heading | jsonify }},"item":{{ page.url | absolute_url | jsonify }}}{% endif %}
+  ]
+}
+</script>

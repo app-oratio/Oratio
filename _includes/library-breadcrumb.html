@@ -1,0 +1,22 @@
+{% assign breadcrumb_book = include.book %}
+{% if breadcrumb_book == nil and page.collection == 'livro_secoes' %}
+  {% assign breadcrumb_book = site.livros | where: 'slug', page.book_slug | first %}
+{% endif %}
+<nav class="breadcrumb library-breadcrumb" aria-label="Navegação estrutural">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Início</a></li>
+    {% if page.url == '/biblioteca/' %}
+      <li aria-current="page">Biblioteca</li>
+    {% else %}
+      <li><a href="{{ '/biblioteca/' | relative_url }}">Biblioteca</a></li>
+      {% if page.collection == 'livro_secoes' and breadcrumb_book %}
+        <li><a href="{{ breadcrumb_book.url | relative_url }}">{{ breadcrumb_book.title }}</a></li>
+        <li aria-current="page">{{ page.nav_label | default: page.heading | default: page.title }}</li>
+      {% elsif page.collection == 'livros' %}
+        <li aria-current="page">{{ page.title }}</li>
+      {% else %}
+        <li aria-current="page">{{ page.title }}</li>
+      {% endif %}
+    {% endif %}
+  </ol>
+</nav>
