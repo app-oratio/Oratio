@@ -81,7 +81,7 @@ image: /assets/images/social/og-default.webp
           {% elsif feature.id == 'santos' %}
             <a class="resources-feature-card__link" href="{{ '/santos/' | relative_url }}">Conhecer os santos</a>
           {% elsif feature.id == 'livros' %}
-            <a class="resources-feature-card__link" href="{{ '/formacoes/' | relative_url }}">Explorar a formação</a>
+            <a class="resources-feature-card__link" href="{{ '/biblioteca/' | relative_url }}">Explorar a Biblioteca</a>
           {% endif %}
         </article>
       {% endfor %}
