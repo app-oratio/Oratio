@@ -49,7 +49,7 @@ module Oratio
         return nil unless rank_code.empty? || rank_code.casecmp("FE").zero?
 
         weekday = WEEKDAY_MAP.fetch(info["diaSemana"].to_s, info["diaSemana"].to_s).strip
-        return nil if weekday.empty? || weekday == "Domingo"
+        return nil if weekday.empty?
 
         week_number = info["semana"].to_s.sub(/\.0\z/, "").strip
         season = season_complement(info["tempoLiturgico"])
