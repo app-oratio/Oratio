@@ -34,8 +34,7 @@ virtues:
 - caridade
 summary: Antigo eremita venerado no sul da França, Santo Egídio deixou a riqueza para buscar
   uma vida de oração e tornou-se pai espiritual de uma comunidade monástica.
-prayer: Santo Egídio, intercedei por nós, para que permaneçamos fiéis a Cristo e cresçamos
-  no amor a Deus e ao próximo. Amém.
+prayer: Deus todo-poderoso e bom, de quem tudo provém, infundi em nós a vossa graça para que, a exemplo de Santo Egídio, saibamos amar nossos irmãos de coração aberto e generoso. Nós vos louvamos e vos agradecemos, Senhor Nosso. Amém.
 related_saints:
   []
 related: []
