@@ -45,6 +45,12 @@ sources:
 ---
 ## Da viuvez à vida dominicana
 
-Ingrid nasceu na Suécia do século XIII em uma família nobre e recebeu sólida formação cristã. Depois de um casamento breve e da viuvez, realizou extensas peregrinações à Terra Santa, Roma e Santiago de Compostela, experiências que aprofundaram seu desejo de consagração.
+Ingrid nasceu perto da metade do século XIII, na nobre família Elovsdotter, na Suécia. Cristãos fervorosos, os pais deram a ela e aos outros filhos uma educação digna dos fidalgos e no rigoroso seguimento de Cristo. A menina, desde os primeiros anos de vida, mostrou-se muito virtuosa, amável, caridosa e pia, surpreendendo a todos com seu cândido ideal religioso.
 
-De volta à Suécia, aproximou-se da espiritualidade dominicana e, com apoio eclesial, fundou um mosteiro em Skänninge. Ali viveu como religiosa até sua morte em 1282. Sua história reúne caridade, peregrinação e busca contemplativa em uma época de grande florescimento da vida religiosa feminina.
+No início da adolescência, como era costume da época, teve de contrair um riquíssimo casamento. Mesmo contrariando sua vocação, ela aceitou tudo com humilde resignação, mas não deixou que o mundo de luxo, futilidades e poder contaminassem sua alma, apesar de ter de conviver nele. Continuou, serenamente, a cuidar das obras de caridade que fundara para os pobres e doentes abandonados, aos quais atendia pessoalmente. Possuindo dons especiais de profecia e cura, gozava, entre a população, da fama de santidade.
+
+Ingrid enviuvou pouco tempo depois. Assim, decidiu fazer uma longa peregrinação para a Terra Santa, acompanhada por sua irmã mais velha e algumas damas da corte. Ali seu amor ao Senhor Jesus aumentou ainda mais, alimentando o seu desejo de consagrar-se à vida religiosa. Da Palestina, viajou para Roma, onde visitou os túmulos dos apóstolos e dos primeiros mártires e, de lá, foi para Santiago de Compostela, na Espanha, rezar junto às relíquias do apóstolo Tiago.
+
+Só então Ingrid retornou para a Suécia. Logo depois, em 1281, seguindo seu confessor e orientador espiritual, o padre dominicano Pedro de Dacia, e com a autorização do bispo e do rei, ela fez seus votos perpétuos e fundou um mosteiro, sob as Regras de são Domingos, em Skanninge, Suécia. Nele, junto com um grande número de jovens da corte, dedicou-se totalmente às orações contemplativas e à vida de rigorosa austeridade.
+
+Morreu como priora, com fama de santidade, no dia 2 de setembro de 1282, no seu convento em Skanninge. Seu culto se espalhou depressa entre as populações vizinhas e difundiu-se entre os devotos. O papa Alexandre VI confirmou o culto à bem-aventurada Ingrid e o dia de sua morte para a sua celebração.
