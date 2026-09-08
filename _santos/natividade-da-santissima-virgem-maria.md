@@ -35,8 +35,7 @@ virtues:
 - devoção mariana
 summary: A Igreja celebra o nascimento da Virgem Maria como aurora da obra de salvação que
   culmina na encarnação de Cristo.
-prayer: Oh! Maria Santíssima! Eleita e destinada ao eterno pela augustíssima Trindade para Mãe do Unigênito Filho do Pai, anunciada pelos profetas, esperada dos Patriarcas e desejada de todas as gentes. Sacrário e templo vivo do Espírito Santo, sol sem mancha, porque fostes concebida sem pecado original.
-Senhora do céu e da terra, Rainha dos anjos, nós, humildemente prostrados, veneramo-vos e nos alegramos da solene comemoração anual de vosso felicíssimo nascimento. Do mais íntimo de nosso coração, suplicamo-vos que vos digneis benigna vir a nascer espiritualmente em nossas almas, para que, cativadas estas por vossa amabilidade e doçura, vivam sempre unidas a vosso dulcíssimo e amabilíssimo coração.
+prayer: Oh! Maria Santíssima! Eleita e destinada ao eterno pela augustíssima Trindade para Mãe do Unigênito Filho do Pai, anunciada pelos profetas, esperada dos Patriarcas e desejada de todas as gentes. Sacrário e templo vivo do Espírito Santo, sol sem mancha, porque fostes concebida sem pecado original. Senhora do céu e da terra, Rainha dos anjos, nós, humildemente prostrados, veneramo-vos e nos alegramos da solene comemoração anual de vosso felicíssimo nascimento. Do mais íntimo de nosso coração, suplicamo-vos que vos digneis benigna vir a nascer espiritualmente em nossas almas, para que, cativadas estas por vossa amabilidade e doçura, vivam sempre unidas a vosso dulcíssimo e amabilíssimo coração.
 related_saints:
   []
 related: []
