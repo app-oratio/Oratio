@@ -34,8 +34,7 @@ virtues:
 - fé
 summary: Guido de Anderlecht viveu como homem pobre, sacristão e peregrino, tornando-se uma
   figura popular de santidade na Bélgica medieval.
-prayer: São Guido de Anderlecht, intercedei por nós, para que permaneçamos fiéis a Cristo
-  e cresçamos no amor a Deus e ao próximo. Amém.
+prayer: São Guido de Anderlecht, intercedei por nós, para que permaneçamos fiéis a Cristo e cresçamos no amor a Deus e ao próximo. Amém.
 related_saints:
   []
 related: []
@@ -45,6 +44,14 @@ sources:
 ---
 ## Santidade na simplicidade
 
-Guido nasceu em condição humilde na região de Brabante e trabalhou ligado a uma igreja em Anderlecht. Desejava ajudar os pobres e, segundo a tradição, uma tentativa de melhorar sua condição por meios comerciais terminou em fracasso, experiência que aprofundou seu desapego.
+Nascido em Brabante, Bélgica, Guido de Anderlecht viveu entre os séculos X e XI. Desde a infância, já demonstrava seu desapego pelos bens terrenos, tanto que, na juventude, distribuiu aos pobres tudo o que possuía e ganhava. Na ânsia de viver uma vida ascética, Guido abandonou a casa dos pais, que eram bondosos cristãos camponeses, e foi ser sacristão do vigário de Laken, perto de Bruxelas, pois assim poderia ser mais útil às pessoas carentes e também dedicar-se às orações e à penitência.
 
-Depois disso, empreendeu longas peregrinações a lugares santos e retornou à sua terra com saúde enfraquecida. Morreu no início do século XI e passou a ser venerado pela simplicidade, espírito de serviço e confiança em Deus. Sua memória mostra uma santidade construída longe de cargos e prestígio.
+Quando ficou órfão, decidiu ser comerciante, pois teria mais recursos para auxiliar e socorrer os pobres e doentes. Mas seu navio repleto de mercadorias afundou nas águas do Sena. Então, o comerciante Guido teve a certeza de que tinha escolhido o caminho errado, de modo que se convenceu do equívoco cometido ao abandonar sua vocação religiosa para trabalhar no comércio, mesmo que sua intenção fosse apenas ajudar os mais necessitados.
+
+Sendo assim, Guido deixou a vida de comerciante, vestiu o hábito de peregrino e pôs-se novamente no caminho da religiosidade, da peregrinação e assistência aos pobres e doentes. Percorreu, durante sete anos, as inseguras e longas estradas da Europa para visitar os maiores santuários da cristandade.
+
+Depois da longa peregrinação, que incluiu a Terra Santa, Guido voltou para o seu país de origem, já fraco e cansado. Ficou hospedado na casa de um sacerdote na cidade de Anderlecht, perto de Bruxelas, de onde herdou o sobrenome. Pouco tempo depois, morreu, com fama de santidade. Foi sepultado naquela cidade e sua sepultura tornou-se um polo de peregrinação. Assim, com o passar do tempo, foi erguida uma igreja dedicada a ele, para guardar suas relíquias.
+
+Ao longo dos séculos, a devoção a são Guido de Anderlecht cresceu, principalmente entre os sacristãos, trabalhadores da lavoura, camponeses e cocheiros. Aliás, ele é tido como protetor das cocheiras, em especial dos cavalos. Diz a tradição que Guido não resistiu a uma infecção que lhe provocou forte desarranjo intestinal, muito comum naquela época pelos poucos recursos de saneamento e higiene das cidades. Seu nome até hoje é invocado pelos fiéis para a cura desse mal.
+
+A sua festa litúrgica, tradicionalmente celebrada no dia 12 de setembro, traz uma carga de devoção popular muito intensa. Na cidade de Anderlecht, ela é precedida por uma procissão e finalizada com uma bênção especial, concedida aos cavalos e seus cavaleiros.
