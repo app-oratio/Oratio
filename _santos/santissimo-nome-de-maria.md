@@ -32,8 +32,7 @@ virtues:
 - confiança
 - fé
 - devoção mariana
-summary: A celebração do Santíssimo Nome de Maria convida os fiéis a venerar a Mãe de Cristo
-  e a recordar sua missão singular na história da salvação.
+summary: A celebração do Santíssimo Nome de Maria convida os fiéis a venerar a Mãe de Cristo e a recordar sua missão singular na história da salvação.
 prayer: Ao teu nome clamamos, Mãe querida. Sabemos que, quando te chamamos, Tu nos ouves e nos socorre. O teu nome tem poder no Céu e na terra, por isso, confiamos em ti e te chamamos: Maria, nossa Mãe!
 related_saints:
   []
