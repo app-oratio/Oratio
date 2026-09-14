@@ -35,7 +35,7 @@ virtues:
 - amor à cruz
 summary: A Exaltação da Santa Cruz celebra o instrumento da Paixão transformado, pela morte
   e ressurreição de Cristo, em sinal de salvação e vitória.
-prayer: Jesus, que pela Santa Cruz vos tornastes nosso divino Salvador, fazei com que atravessemos a nossa vida livres dos perigos e dos inimigos da nossa alma. Permite que o precioso lenho da vossa Santa Cruz, que deu ao mundo o fruto divino da redenção, sempre produza novos frutos de salvação e de graça como a que agora vos peço: (fazer o pedido). Salve, preciosa e santíssima Cruz, que recebeste em teus braços nosso Senhor e Salvador! Salve, instrumento da minha redenção e garantia da minha felicidade eterna! Protege-me com tua sombra enquanto eu viver neste mundo terreno e abre-me as portas do céu para que em teu nome me acolha aquele que por meio de ti me salvou. Amém.
+prayer: Jesus, que pela Santa Cruz vos tornastes nosso divino Salvador, fazei com que atravessemos a nossa vida livres dos perigos e dos inimigos da nossa alma. Permite que o precioso lenho da vossa Santa Cruz, que deu ao mundo o fruto divino da redenção, sempre produza novos frutos de salvação e de graça como a que agora vos peço (fazer o pedido). Salve, preciosa e santíssima Cruz, que recebeste em teus braços nosso Senhor e Salvador! Salve, instrumento da minha redenção e garantia da minha felicidade eterna! Protege-me com tua sombra enquanto eu viver neste mundo terreno e abre-me as portas do céu para que em teu nome me acolha aquele que por meio de ti me salvou. Amém.
 related_saints:
   []
 related: []
