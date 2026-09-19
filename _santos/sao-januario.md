@@ -34,8 +34,7 @@ virtues:
 - zelo pastoral
 summary: São Januário, ou Gennaro, é um antigo mártir venerado como padroeiro de Nápoles e
   ligado à célebre tradição da liquefação de uma relíquia de sangue.
-prayer: São Januário, intercedei por nós, para que permaneçamos fiéis a Cristo e cresçamos
-  no amor a Deus e ao próximo. Amém.
+prayer: Deus eterno e todo-poderoso, que a vossos pastores associates São Januário, a quem destes a graça de lutar pela justiça até a morte, concedei-nos, por sua intercessão, suportar por vosso amor as adversidades, e correr ao encontro de vós que sois a nossa vida. Por Nosso Senhor Jesus Cristo, vosso filho, na unidade do Espírito Santo. Amém.
 related_saints:
   []
 related: []
@@ -45,6 +44,12 @@ sources:
 ---
 ## Mártir e padroeiro de Nápoles
 
-Januário é tradicionalmente identificado como bispo de Benevento que sofreu martírio no início do século IV, durante as perseguições do Império Romano. Sua memória tornou-se especialmente forte em Nápoles, onde relíquias associadas ao santo são conservadas e veneradas.
+A esse santo é atribuído o ‘milagre do sangue de são Januário’, ou Gennaro, como é o seu nome na língua italiana. Durante a sua festa, no dia 19 de setembro, sua imagem é exposta à imensa população de fiéis. Por várias vezes, nessa ocasião, a relíquia do seu sangue se liquefaz, adquirindo de novo a aparência de recém-derramado e a coloração vermelha. A primeira vez, devidamente registrada e desde então amplamente documentada, ocorreu na festa de 1389. A última, foi em 1988.
 
-A conhecida liquefação de uma substância tradicionalmente identificada como seu sangue ocorre em determinadas celebrações e é acompanhada com grande devoção popular. A Igreja permite essa veneração sem fazer do fenômeno o fundamento da santidade de Januário, que repousa прежде de tudo no antigo testemunho de martírio e na continuidade de seu culto.
+O mais incrível é que a ciência já tentou, mas ainda não conseguiu chegar a alguma conclusão de como o sangue, depositado num vidro em estado sólido, de repente torna-se líquido, mudando a cor, consistência e, até mesmo, duplicando seu peso. Assim, segue, através dos séculos, a liquefação do sangue de são Januário como um mistério que só mesmo a fé consegue entender e explicar.
+
+Por essa razão, o povo de Nápoles e todos os católicos devotam enorme veneração por são Januário. Até a história dessa linda cidade italiana, cravada ao pé da montanha do Vesúvio, confunde-se com a devoção dedicada a ele, que os protege das pestes e das erupções do vulcão. Na verdade, ela se torna a própria história deste santo que, segundo os atos do Vaticano, era napolitano de origem e viveu no fim do século III. Considerado um homem bom, caridoso e zeloso com as coisas da fé, foi eleito bispo de Benevento, uma cidade situada a 70 quilômetros da sua cidade natal. Era uma época em que os inimigos do cristianismo submetiam os cristãos a testemunharem sua fé por meio dos terríveis martírios seguidos de morte.
+
+No ano 304, o imperador romano Diocleciano desencadeou a última e também a mais violenta perseguição contra a Igreja. O bispo Januário foi preso com mais alguns membros do clero, sendo todos julgados e sentenciados à morte num espetáculo público no Circo. Sua execução era para ser um verdadeiro evento macabro, pois seriam jogados aos leões para que fossem devorados aos olhos do povo chamado para assistir. Porém, a exemplo do que aconteceu com o profeta Daniel, as feras tornaram-se mansas e não lhes fizeram mal. O imperador determinou, então, que fossem todos degolados ali mesmo. Era o dia 19 de setembro de 305.
+
+Alguns cristãos, piedosamente, recolheram em duas ampolas o sangue do bispo Januário e o guardaram como a preciosa relíquia que viria a ser um dos mais misteriosos e incríveis milagres da Igreja Católica. São Januário é venerado desde o século V, mas sua confirmação canônica veio somente por meio do papa Sixto V, em 1586.
