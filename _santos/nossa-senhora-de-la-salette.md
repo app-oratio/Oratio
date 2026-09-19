@@ -35,11 +35,11 @@ virtues:
 summary: A devoção a Nossa Senhora de La Salette nasceu após o relato de dois jovens pastores
   que afirmaram ter visto a Virgem chorando nos Alpes franceses.
 prayer: |
-Lembrai-vos, Ó Nossa Senhora de La Salette, das lágrimas que derramastes por nós, no Calvário. Lembrai-vos também dos cuidados que, sem cessar, tendes por vosso povo, a fim de que, em nome de Cristo, se deixe reconciliar com Deus. E vede se, depois de tanto terdes feito por vossos filhos, podeis agora abandoná-los. Reconfortados por vossa ternura, ó Mãe, eis-nos aqui, suplicantes, apesar de nossa infidelidade e ingratidão. Não rejeiteis nossa oração, ó Virgem Reconciliadora, mas volvei nosso coração para vosso, Filho.
+  Lembrai-vos, Ó Nossa Senhora de La Salette, das lágrimas que derramastes por nós, no Calvário. Lembrai-vos também dos cuidados que, sem cessar, tendes por vosso povo, a fim de que, em nome de Cristo, se deixe reconciliar com Deus. E vede se, depois de tanto terdes feito por vossos filhos, podeis agora abandoná-los. Reconfortados por vossa ternura, ó Mãe, eis-nos aqui, suplicantes, apesar de nossa infidelidade e ingratidão. Não rejeiteis nossa oração, ó Virgem Reconciliadora, mas volvei nosso coração para vosso, Filho.
 
-Alcançai-nos a graça de amar Jesus acima de tudo, e de vos consolar por uma vida de doação, para a glória de Deus e o amor de nossos irmãos. Amém.
+  Alcançai-nos a graça de amar Jesus acima de tudo, e de vos consolar por uma vida de doação, para a glória de Deus e o amor de nossos irmãos. Amém.
 
-Nossa Senhora de La Salette, Reconciliadora dos pecadores, rogai sem cessar por nós que recorremos a vós!
+  Nossa Senhora de La Salette, Reconciliadora dos pecadores, rogai sem cessar por nós que recorremos a vós!
 related_saints:
   []
 related: []
