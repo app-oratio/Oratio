@@ -34,8 +34,12 @@ virtues:
 - penitência
 summary: A devoção a Nossa Senhora de La Salette nasceu após o relato de dois jovens pastores
   que afirmaram ter visto a Virgem chorando nos Alpes franceses.
-prayer: Nossa Senhora de La Salette, intercedei por nós, para que permaneçamos fiéis a Cristo
-  e cresçamos no amor a Deus e ao próximo. Amém.
+prayer: |
+Lembrai-vos, Ó Nossa Senhora de La Salette, das lágrimas que derramastes por nós, no Calvário. Lembrai-vos também dos cuidados que, sem cessar, tendes por vosso povo, a fim de que, em nome de Cristo, se deixe reconciliar com Deus. E vede se, depois de tanto terdes feito por vossos filhos, podeis agora abandoná-los. Reconfortados por vossa ternura, ó Mãe, eis-nos aqui, suplicantes, apesar de nossa infidelidade e ingratidão. Não rejeiteis nossa oração, ó Virgem Reconciliadora, mas volvei nosso coração para vosso, Filho.
+
+Alcançai-nos a graça de amar Jesus acima de tudo, e de vos consolar por uma vida de doação, para a glória de Deus e o amor de nossos irmãos. Amém.
+
+Nossa Senhora de La Salette, Reconciliadora dos pecadores, rogai sem cessar por nós que recorremos a vós!
 related_saints:
   []
 related: []
@@ -45,6 +49,16 @@ sources:
 ---
 ## Um chamado à conversão
 
-Em 19 de setembro de 1846, Mélanie Calvat e Maximin Giraud, jovens pastores nos Alpes franceses, relataram uma aparição de uma “Bela Senhora” em La Salette. Segundo seus testemunhos, a mensagem insistia na conversão, na oração e na necessidade de levar a sério a vida cristã.
+A primeira manifestação solene da Virgem, advertindo para a iminência desta tragédia e convocando a todos a ajudarem a conjurá-la se deu em La Salette, um lugarejo dos Alpes franceses, pertencente à diocese de Grenoble. Ali, pelas 15 hs. de 19 de setembro de 1846, ela se mostrava a duas crianças analfabetas, enquanto cuidavam de quatro vacas do patrão: Melânia Calvat (15 anos) e Maximino Giraud (11 anos). A bela Senhora, que aparecia dentro de uma luz, assentou-se sobre a casinha de pedras, que tinham construído de manhã e à qual deram o nome de “Paraíso”. “Cheguem perto – convidou – não tenham medo”.
 
-Depois de investigação, o bispo local reconheceu a aparição como digna de crédito, permitindo e incentivando a devoção, que se espalhou por diversos países. Como em toda revelação privada aprovada, La Salette não acrescenta uma nova doutrina à fé católica, mas propõe um chamado espiritual que deve permanecer subordinado ao Evangelho e ao ensinamento da Igreja.
+“Estas doces palavras – conta Maximino – me fizeram voar até ela. Enquanto falava, as lágrimas começaram a rolar de seus belos olhos. Disse: ‘Se o meu povo não quiser se converter, serei obrigada a deixar cair a mão do meu Filho. Ela é tão pesada que já não consigo sustentá-la’ ”.
+
+Queixa-se do trabalho manual aos domingos e da blasfêmia: “São estas duas coisas que tomam tão pesado o braço do meu Filho”. Em contrapartida, “se os pecadores se converterem, as pedras e as rochas se transformarão em montões de trigo”.
+
+Depois revelou a Maximino um curto segredo, que nunca deveria revelar, e a Melânia, outro, bem mais longo, que só poderia tomar público a partir de 1858.
+
+Particularmente às crianças disse que deveriam rezar ao menos um pai-nosso e uma ave-maria ao levantar e deitar e quando fosse possível que fizessem mais. Ela disse que se não se convertessem não haveria trigo e nem batatas naquele ano, mas que se se convertessem haveriam colheitas excepcionais e muita abundância. Ela desapareceu dizendo aos pastores que levassem esta mensagem a todo o seu povo.
+
+No lugar onde seus pés pousaram brotou uma nascente, que nunca mais secou.
+
+No quinto aniversário da aparição (1851), o bispo de Grenoble, Dom Bruillard, autorizou o culto a Nossa Senhora da Salette, e ele mesmo subiu ao monte a cavalo, para lançar a pedra fundamental do futuro Santuário. No ano seguinte, o papa Pio IX, depois de aprovar essa aparição, quis conhecer os dois segredos, que prontamente foram escritos pelos videntes, agora alfabetizados, na presença de testemunhas eclesiásticas, e remetidos ao Papa. Quando esse os leu, seus lábios se contraíram e o rosto se alterou. Mais tarde disse: “O que há nos segredos de La Salette? Bem, são as palavras do Evangelho: se não fizerdes penitência, todos perecereis”.
