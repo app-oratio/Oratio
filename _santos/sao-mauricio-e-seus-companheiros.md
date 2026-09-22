@@ -34,8 +34,10 @@ virtues:
 - fidelidade
 summary: A tradição venera Maurício e seus companheiros como soldados cristãos mortos por se
   recusarem a agir contra a fé e a consciência.
-prayer: São Maurício e seus companheiros, intercedei por nós, para que permaneçamos fiéis
-  a Cristo e cresçamos no amor a Deus e ao próximo. Amém.
+prayer: |
+  Ó Deus, que destes a São Maurício e aos soldados da Legião Tebana a coragem de preferir a morte à traição da fé, concedei-nos, por sua intercessão, a firmeza de obedecer-Vos acima de tudo. Ensinai-nos a recusar o mal, a cumprir com fidelidade os nossos deveres e a permanecer unidos na fé, para que, servindo-Vos nesta vida, alcancemos a coroa eterna. Amém.
+
+  São Maurício e companheiros, rogai por nós!
 related_saints:
   []
 related: []
@@ -45,6 +47,14 @@ sources:
 ---
 ## Soldados e mártires
 
-O culto a São Maurício e aos chamados mártires da Legião Tebana é muito antigo no território da atual Suíça. Uma narrativa do final da Antiguidade conta que uma unidade de soldados cristãos teria sido executada por se recusar a cumprir ordens incompatíveis com sua fé.
+Diocleciano, assim que foi aclamado imperador, no ano 284, imediatamente nomeou Maximiano Hercúleo governador do Ocidente, com a incumbência de entrar em combate contra os gauleses, agora chamados franceses, os quais já haviam dado início à luta armada para vingarem-se da morte de Carino, filho do até então imperador, que fora assassinado pelo sanguinário Diocleciano por ocasião da sua tomada do poder.
 
-A extensão e os detalhes dessa história são discutidos historicamente, e o famoso número de milhares de mártires pertence à tradição hagiográfica. Ainda assim, a antiguidade do culto em Agaunum é bem documentada. A celebração transmite principalmente a ideia de que a obediência militar encontra limite quando exige violar a consciência e a fidelidade a Deus.
+No alto Egito, foi recrutado um batalhão de soldados cristãos, conhecidos como ‘a legião de soldados cristãos da Tebaida’, chefiados pelo comandante Maurício. Apesar do ódio que Maximiano nutria pelos cristãos, a incorporação de tais soldados em seu exército não era nenhum acontecimento especial ou extraordinário, uma vez que o próprio imperador Diocleciano, na época, era simpatizante confesso deles. Até mesmo confiava-lhes cargos administrativos importantíssimos no Império. Nesse período, ele ainda não via ou citava os cristãos como uma ameaça ao Império Romano.
+
+Depois de muitas batalhas, durante um período de descanso de três dias em Octodorum, por ordem do imperador, haveria três dias de comemorações e grandes festas religiosas, nas quais os deuses pagãos seriam homenageados pela vitória conseguida sobre o inimigo. É claro que os soldados cristãos da legião tebaica recusaram-se a participar de tal festa.
+
+Então, decidiram levantar acampamento e seguiram para Agaunum, uma aldeia a cinco quilômetros de distância da cidade. Esse ato irritou o governador Maximiano, que ordenou o retorno imediato do batalhão cristão, para que se aliassem ao restante do exército, nas solenidades aos deuses.
+
+Comandados por Maurício e com o apoio, principalmente, de Exupério, Cândido, Vitor, Inocêncio e Vital, todos os soldados da tropa de Tebaida recusaram-se, novamente, a participar dos festejos. A irritação de Maximiano aumentou ainda mais, e a tal ponto, que imediatamente deu ordem a seu exército para marchar contra eles.
+
+Maurício e seus companheiros foram, então, massacrados pelos soldados pagãos. O campo ficou forrado de sangue e cadáveres. Naquele lugar e naquela época, foi erguida uma igreja em honra e culto a esses santos mártires do cristianismo, encontrada somente por volta do ano 1893. A maioria das relíquias dos corpos dos soldados cristãos da legião tebaica, atualmente, é venerada no Convento de São Mauricio de Agaunum, na região do Valese, atual Suíça. Especialmente no dia 22 de setembro, determinado pelo calendário oficial da Igreja de Roma.
