@@ -34,8 +34,7 @@ virtues:
 - fidelidade
 summary: Gerardo, monge e bispo, colaborou na consolidação do cristianismo na Hungria e morreu
   durante uma reação pagã no século XI.
-prayer: São Gerardo Sagredo, intercedei por nós, para que permaneçamos fiéis a Cristo e cresçamos
-  no amor a Deus e ao próximo. Amém.
+prayer: Senhor Deus, que destes o testemunho de Vós mesmo a todas as nações, em Cristo, concedei-nos por intercessão de São Geraldo a graça de sempre nos recusarmos a coroar de pecados as nossas vidas, mas como legítimos herdeiros do Céu, não morramos antes de nos lançarmos com perfeição às boas obras. Por Nosso Senhor Jesus Cristo. Amém.
 related_saints:
   []
 related: []
@@ -45,6 +44,14 @@ sources:
 ---
 ## Missionário na Hungria
 
-Gerardo nasceu provavelmente em Veneza e recebeu formação monástica. Em viagem para o Oriente, acabou permanecendo na Hungria, onde foi chamado a colaborar com o rei Santo Estêvão na formação cristã do reino e na educação do príncipe Emerico.
+Gerardo Sagredo, filho de pais ilustres e piedosos, nasceu no ano 980, em Veneza, Itália. Sagrado sacerdote beneditino, foi como missionário para a Corte da Hungria, onde, depois de ser orientador espiritual e professor do rei Estêvão I, uniu-se ao monarca, também santo da Igreja, para converter seu povo ao cristianismo. Decisão que o santo monarca tomou ao retornar do Oriente, onde, em peregrinação, visitara os lugares santos da Palestina. O rei, então, pediu a Gerardo que o ajudasse na missão evangelizadora, porque percebera que Gerardo possuía os dotes e as virtudes necessárias para a missão, ao tê-lo como seu hóspede na Corte.
 
-Mais tarde tornou-se bispo de Csanád e trabalhou na organização e evangelização da região. Depois da morte do rei, conflitos políticos e uma revolta anticristã tornaram sua posição perigosa. Gerardo foi morto em 1046 e passou a ser venerado como mártir e um dos grandes santos ligados às origens cristãs da Hungria.
+Educado numa escola beneditina, Gerardo recebeu não só instrução científica, como também formação religiosa: entregou-se de corpo, alma e coração às ciências das leis de Deus e à salvação de almas. Aliás, só por isso aceitou a proposta do santo monarca. Retirando-se com alguns companheiros para um local de total solidão, buscou a inspiração entregando-se, exclusivamente, à pratica da oração, da penitência e dos exercícios espirituais. Mas assim que julgou terminado o retiro, e sentindo-se pronto, dedicou-se com total energia ao serviço apostólico junto ao povo húngaro.
+
+Falecendo o bispo de Chonad, o rei Estêvão I, imediatamente, recomendou Gerardo para seu lugar. Mesmo contra a vontade, Gerardo foi consagrado e assumiu o bispado, conseguindo acabar, de uma vez por todas, com a idolatria aos deuses pagãos, consolidando a fé nos ensinamentos de Cristo entre os fiéis e convertendo os demais.
+
+Uma das virtudes mais destacadas do bispo Gerardo era a caridade com os doentes, principalmente os pobres. Conta a antiga tradição húngara que ele convidava os doentes leprosos para fazerem as refeições em sua casa, acolhendo-os com carinhoso e dedicado tratamento. Até mesmo, quando necessário, eram alojados em sua própria cama, enquanto ele dormia no duro chão.
+
+Quando o rei Estêvão I morreu, começaram as perseguições de seus sucessores, que queriam restabelecer o regime pagão e seus cultos aos deuses. O bispo Gerardo, nessa ocasião, foi ferido por uma lança dos soldados do duque de Vatha, sempre lutando para levar a fiéis e infiéis a verdadeira palavra de Cristo. Gerardo morreu no dia 24 de setembro de 1046.
+
+As relíquias de são Gerardo Sagredo estão guardadas em Veneza, sua terra natal, na igreja de Nossa Senhora de Murano. E é festejado pela Igreja Católica, como o ‘Apóstolo da Hungria’, no dia de sua morte.
