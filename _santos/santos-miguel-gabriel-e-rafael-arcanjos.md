@@ -37,8 +37,10 @@ virtues:
 - confiança
 summary: A Igreja celebra conjuntamente Miguel, Gabriel e Rafael, os três arcanjos cujo nome
   aparece explicitamente na tradição bíblica canônica.
-prayer: Santos Miguel, Gabriel e Rafael Arcanjos, intercedei por nós, para que permaneçamos
-  fiéis a Cristo e cresçamos no amor a Deus e ao próximo. Amém.
+prayer: |
+  Pelos Arcanjos, pedimos a proteção da nossa Igreja, das nossas famílias, nosso trabalho e saúde. Onde houver o mal, defendei-nos e protegei-nos, ao mesmo tempo nos ilumine contra toda a tentação do demônio. Sede nossos companheiros e amigos na caminhada rumo ao Céu. Por Nosso Senhor Jesus Cristo. Amém!
+
+  Santos Arcanjos Miguel, Gabriel e Rafael, rogai por nós!
 related_saints:
   []
 related: []
