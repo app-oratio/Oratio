@@ -37,11 +37,9 @@ virtues:
 summary: A memória de Dionísio está ligada às origens cristãs de Paris e ao testemunho de fé
   levado até o martírio.
 prayer: |
-   Deus eterno e todo-poderoso, que destes a São Dionísio e seus companheiros a graça de sofrerem o martírio pela fé, concedei-nos, por sua intercessão, a coragem de professar o vosso nome diante dos homens e a graça de perseverar até o fim no vosso amor.
+  Deus eterno e todo-poderoso, que destes a São Dionísio e seus companheiros a graça de sofrerem o martírio pela fé, concedei-nos, por sua intercessão, a coragem de professar o vosso nome diante dos homens e a graça de perseverar até o fim no vosso amor.
 
-  Ao apóstolo da Gália, pedimos por aqueles que estão enfermos na mente, aqueles que têm grandes enxaquecas e diversas outras doenças. Rogamos com confiança, sabendo que através do teu martírio podemos alcançar as graças de Jesus.
-
-  Por Cristo, nosso Senhor. Amém.
+  Ao apóstolo da Gália, pedimos por aqueles que estão enfermos na mente, aqueles que têm grandes enxaquecas e diversas outras doenças. Rogamos com confiança, sabendo que através do teu martírio podemos alcançar as graças de Jesus. Por Cristo, nosso Senhor. Amém.
 related_saints:
   []
 related: []
