@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require "cgi"
@@ -25,6 +26,19 @@ module Oratio
       "vesperas" => "Vésperas",
       "completas" => "Completas"
     }.freeze
+
+    ADSENSE_AD_HTML = <<~HTML.freeze
+      <!-- Anúncio AdSense: Liturgia das Horas -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1180918818204539"
+           data-ad-slot="7637208551"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    HTML
 
     COLOR_MAP = {
       "R" => { "label" => "Vermelho", "hex" => "#9D2020", "on" => "#FFFFFF" },
@@ -129,7 +143,9 @@ module Oratio
       end
 
       def parse_day(site, directory)
-        relative = directory.delete_prefix(File.join(site.source, site.config.dig("liturgia", "source") || "content/liturgia") + File::SEPARATOR)
+        relative = directory.delete_prefix(
+          File.join(site.source, site.config.dig("liturgia", "source") || "content/liturgia") + File::SEPARATOR
+        )
         year, month, day = relative.split(File::SEPARATOR).map(&:to_i)
         date = Date.new(year, month, day)
 
@@ -458,7 +474,6 @@ module Oratio
         }
       end
 
-
       def preferred_social_cover(day)
         laudes = day["hours"].find { |hour| hour["slug"] == "laudes" }
         preferred = laudes || day["hours"].first
@@ -510,6 +525,12 @@ module Oratio
         html.gsub!(/<(h[2-4])([^>]*)>\s*(?:<br\s*\/?\s*>\s*)+/i, '<\1\2>')
         html.gsub!(/>\s*-(?:i|ii)\s*</i, "><")
         html.gsub!(/\A\s*<h1\b[^>]*>.*?<\/h1\s*>\s*(?:<hr\b[^>]*>\s*){0,2}/mi, "") if strip_title
+
+        # Substitui <ad> ou <ad /> pelo bloco do Google AdSense.
+        # A substituição ocorre depois da limpeza do HTML para preservar
+        # a tag <script> necessária ao funcionamento do anúncio.
+        html.gsub!(/<ad\s*\/?>/i, ADSENSE_AD_HTML)
+
         html.strip
       end
 
