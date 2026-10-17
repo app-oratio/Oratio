@@ -473,6 +473,25 @@
     return escapeHtml(value).replace(/`/g, '&#96;');
   }
 
+  function initAdSense() {
+  var client = 'ca-pub-1180918818204539';
+  var scriptSelector =
+    'script[src*="pagead/js/adsbygoogle.js"]';
+
+  if (!document.querySelector(scriptSelector)) {
+    var script = document.createElement('script');
+
+    script.async = true;
+    script.src =
+      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
+      + client;
+    script.crossOrigin = 'anonymous';
+
+    document.head.appendChild(script);
+  }
+  }
+  
+
   function init() {
     var data = readDaysData();
     if (redirectDailyIndex(data.days, data.baseurl)) return;
@@ -485,6 +504,7 @@
     initLegacyLanguageSwitches();
     initDialogs();
     initToc();
+    initAdSense();
   }
 
   window.OratioLiturgia = Object.freeze({
