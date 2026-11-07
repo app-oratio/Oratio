@@ -37,7 +37,8 @@ virtues:
 - Perseverança
 summary: A festa recorda que a santidade é a vocação de todo batizado e que a Igreja peregrina
   permanece unida aos santos que já contemplam Deus.
-prayer: Ó, Deus, Onipotente e Eterno, que pela força do teu Espírito Santo santificastes a vida de tantos fiéis que vos serviram ao longo de todos os tempos e em todos os lugares, testemunhando a vossa grandeza, amor e bondade: fazei que, pela poderosa intercessão de todos os santos, cheguemos nós também à graça da vida eterna junto de vós, na companhia de vosso santíssimo filho Jesus Cristo, de Nossa Senhora e de todos os santos e santas.
+prayer: >-
+  Ó, Deus, Onipotente e Eterno, que pela força do teu Espírito Santo santificastes a vida de tantos fiéis que vos serviram ao longo de todos os tempos e em todos os lugares, testemunhando a vossa grandeza, amor e bondade: fazei que, pela poderosa intercessão de todos os santos, cheguemos nós também à graça da vida eterna junto de vós, na companhia de vosso santíssimo filho Jesus Cristo, de Nossa Senhora e de todos os santos e santas.
 related_saints:
   []
 related: []
