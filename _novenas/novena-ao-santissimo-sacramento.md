@@ -8,8 +8,8 @@ image_alt: Novena ao Santíssimo Sacramento
 search: true
 days: 9
 calendar:
-  base_month: 6
-  base_day: 4
+  base_month: 5
+  base_day: 27
   skip_weekdays: []
 calendar_source: movable-2026
 ---
