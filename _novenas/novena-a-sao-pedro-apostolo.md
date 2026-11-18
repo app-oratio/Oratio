@@ -8,8 +8,8 @@ image_alt: Novena a São Pedro Apóstolo
 search: true
 days: 9
 calendar:
-  base_month: 6
-  base_day: 29
+  base_month: 7
+  base_day: 4
   skip_weekdays: []
 calendar_source: fixed
 ---
