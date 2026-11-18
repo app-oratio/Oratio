@@ -8,8 +8,8 @@ image_alt: Novena a Nossa Senhora da Anunciação
 search: true
 days: 9
 calendar:
-  base_month: 3
-  base_day: 25
+  base_month: 4
+  base_day: 5
   skip_weekdays: []
 calendar_source: fixed
 ---
